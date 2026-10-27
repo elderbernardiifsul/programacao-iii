@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programação III - Material Didático</title>
+  <style>
+    
+
+    :root {
+      --ifsul-verde: #2f9e41;
+      --ifsul-verde-escuro: #1d7a2d;
+      --ifsul-vermelho: #cd191e;
+      --bg: #f4f6f8;
+      --texto: #1f2933;
+      --muted: #6b7c86;
+      --borda: #d9e2e8;
+      --superficie: #ffffff;
+      --codigo-bg: #f7faf9;
+    }
+
+    /* Identidade institucional na tela; impressão compacta para a atividade. */
+@media print {
+  @page { size: A4; margin: 15mm; }
+  html, body { font-size: 10.5pt !important; line-height: 1.35 !important; }
+  .hero, footer { display: none !important; }
+  .page { max-width: none !important; overflow: visible !important; border-radius: 0 !important; }
+  main { padding: 0 !important; }
+  h1 { font-size: 20pt !important; line-height: 1.15 !important; margin: 0 0 10pt !important; }
+  h2 { font-size: 13pt !important; margin: 13pt 0 6pt !important; }
+  h3 { font-size: 11pt !important; margin: 10pt 0 5pt !important; }
+  h1, h2, h3 { break-after: avoid; }
+  p, ul, ol, table, blockquote, pre { margin-top: 0 !important; margin-bottom: 7pt !important; }
+  li { margin-bottom: 3pt !important; }
+  table { font-size: 9pt !important; page-break-inside: auto !important; break-inside: auto !important; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; break-inside: avoid; }
+  th, td { padding: 5pt 6pt !important; overflow-wrap: anywhere; }
+  img { max-width: 100%; }
+  code { font-size: 0.92em !important; }
+}
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #eef5ef 0%, var(--bg) 220px);
+      color: var(--texto);
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.7;
+      padding: 32px 16px 48px;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      background: var(--superficie);
+      border-radius: 16px;
+      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(47, 158, 65, 0.12);
+    }
+
+    .hero {
+      padding: 28px 32px 20px;
+      background:
+        linear-gradient(135deg, rgba(47, 158, 65, 0.14), rgba(29, 122, 45, 0.06)),
+        linear-gradient(180deg, #ffffff, #f7fbf8);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.15;
+      color: var(--ifsul-verde-escuro);
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      color: #41515b;
+      max-width: 70ch;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    main {
+      padding: 32px;
+    }
+
+    main h1,
+    main h2,
+    main h3,
+    main h4,
+    main h5,
+    main h6 {
+      color: var(--ifsul-verde-escuro);
+      line-height: 1.25;
+    }
+
+    main h1 { font-size: 2rem; }
+    main h2 {
+      font-size: 1.5rem;
+      margin-top: 2.3rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(47, 158, 65, 0.18);
+    }
+    main h3 { font-size: 1.2rem; margin-top: 1.8rem; }
+
+    p, ul, ol, table, blockquote, pre {
+      margin: 1rem 0;
+    }
+
+    code, pre code {
+      font-family: 'Fira Code', monospace;
+    }
+
+    code {
+      background: rgba(47, 158, 65, 0.08);
+      color: #14532d;
+      padding: 0.12rem 0.35rem;
+      border-radius: 6px;
+      font-size: 0.92em;
+    }
+
+    pre {
+      background: #f8faf9;
+      border: 1px solid rgba(47, 158, 65, 0.18);
+      border-left: 5px solid var(--ifsul-verde);
+      border-radius: 12px;
+      padding: 16px 18px;
+      overflow-x: auto;
+      color: #1f2933;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: 0.88em;
+      line-height: 1.6;
+    }
+
+    /* Syntax highlighting — light theme (print-friendly) */
+    .hljs-keyword,
+    .hljs-selector-tag { color: #8839ef; }
+    .hljs-built_in { color: #1e66f5; }
+    .hljs-string,
+    .hljs-attr { color: #40a02b; }
+    .hljs-number,
+    .hljs-literal { color: #d2691e; }
+    .hljs-comment { color: #7c7f93; font-style: italic; }
+    .hljs-function .hljs-title,
+    .hljs-title.function_ { color: #1e66f5; }
+    .hljs-variable,
+    .hljs-params { color: #1f2933; }
+    .hljs-operator,
+    .hljs-punctuation { color: #04a5e5; }
+    .hljs-meta,
+    .hljs-tag { color: #d20f39; }
+    .hljs-name { color: #d20f39; }
+    .hljs-attribute { color: #df8e1d; }
+    .hljs-regexp { color: #ea76cb; }
+    .hljs-type,
+    .hljs-title.class_ { color: #df8e1d; }
+
+    blockquote {
+      margin-left: 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--ifsul-verde);
+      background: rgba(47, 158, 65, 0.06);
+      color: #244234;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .markdown-alert {
+      margin: 1.4em 0;
+      padding: 12px 16px;
+      border-left: 4px solid var(--ifsul-verde);
+      background: rgba(47, 158, 65, 0.06);
+      border-radius: 0 12px 12px 0;
+    }
+    .markdown-alert > :last-child { margin-bottom: 0; }
+    .markdown-alert-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 6px;
+      font-weight: 700;
+    }
+    .markdown-alert-title svg { fill: currentColor; }
+    .markdown-alert-note { border-left-color: #1f6feb; background: rgba(31, 111, 235, 0.06); }
+    .markdown-alert-note .markdown-alert-title { color: #1f6feb; }
+    .markdown-alert-tip { border-left-color: var(--ifsul-verde); }
+    .markdown-alert-tip .markdown-alert-title { color: var(--ifsul-verde-escuro); }
+    .markdown-alert-important { border-left-color: #8250df; background: rgba(130, 80, 223, 0.06); }
+    .markdown-alert-important .markdown-alert-title { color: #8250df; }
+    .markdown-alert-warning { border-left-color: #bf8700; background: rgba(191, 135, 0, 0.08); }
+    .markdown-alert-warning .markdown-alert-title { color: #9a6700; }
+    .markdown-alert-caution { border-left-color: var(--ifsul-vermelho); background: rgba(205, 25, 30, 0.06); }
+    .markdown-alert-caution .markdown-alert-title { color: var(--ifsul-vermelho); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--borda);
+      font-size: 0.95rem;
+    }
+
+    thead th {
+      background: var(--ifsul-verde);
+      color: white;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafcfb;
+    }
+
+    a {
+      color: var(--ifsul-verde-escuro);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    main { min-width: 0; overflow-wrap: anywhere; }
+    pre { max-width: 100%; overflow-wrap: normal; }
+    table { display: block; max-width: 100%; overflow-x: auto; }
+    :target { scroll-margin-top: 24px; }
+    a:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+    main img { display: block; margin: 24px auto 8px; padding: 16px; border: 1px solid var(--borda); border-radius: 12px; background: white; }
+    .diagram-expand, .diagram-close { padding: 10px 16px; border: 1px solid #1d7a2d; border-radius: 8px; background: white; color: #14532d; cursor: pointer; font: inherit; }
+    .diagram-expand { display: block; margin: 8px auto 24px; }
+    .diagram-dialog { width: 95vw; max-width: 1600px; max-height: 94vh; padding: 20px; border: 1px solid #9bbda4; border-radius: 12px; }
+    .diagram-dialog::backdrop { background: rgba(15, 30, 20, .75); }
+    .diagram-scroll { overflow: auto; max-height: 72vh; margin-top: 16px; }
+    .diagram-scroll img { display: block; max-width: none; width: auto; min-width: 700px; background: white; }
+    .diagram-close:focus-visible, .diagram-expand:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 18px 32px 28px;
+      border-top: 1px solid var(--borda);
+      color: var(--muted);
+      font-size: 0.82rem;
+      background: #fbfcfc;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding: 18px 10px 28px;
+      }
+
+      .hero,
+      main,
+      footer {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .page {
+        border-radius: 12px;
+      }
+    }
+
+    @media print {
+      .diagram-expand, .diagram-dialog { display: none; }
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        border: none;
+      }
+
+      .hero {
+        background: white;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      pre,
+      blockquote,
+      .markdown-alert,
+      table,
+      img {
+        page-break-inside: avoid;
+      }
+
+      /* No papel não há barra de rolagem: linha de código longa quebra em vez de sumir */
+      pre,
+      pre code {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+
+      @page {
+        size: A4;
+        margin: 1.8cm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-top">
+        <span>IFSul — Campus Passo Fundo</span>
+        <span>Ensino Médio Integrado</span>
+      </div>
+      <h1>Programação III</h1>
+      <div class="meta">
+        <div class="meta-card"><strong>Professor</strong>Elder Francisco Fontana Bernardi</div>
+        <div class="meta-card"><strong>Curso</strong>Ensino Médio Integrado — Técnico em Informática</div>
+      </div>
+    </section>
+    <main>
+      <h1 id="guia-passo-a-passo--colocando-o-karaokê-no-ar-com-a-rendercom">Guia Passo a Passo — Colocando o Karaokê no Ar com a Render.com</h1>
+<p><strong>Disciplina:</strong> Programação III</p>
+<p><strong>Curso:</strong> Ensino Médio Integrado — Técnico em Informática</p>
+<p><strong>Professor:</strong> Elder Francisco Fontana Bernardi</p>
+<p><strong>Instituição:</strong> IFSul — Campus Passo Fundo</p>
+<p><strong>Material de apoio</strong> · Projeto usado como exemplo: o Karaokê com banco de dados construído no Guia passo a passo do Supabase (disponível no Classroom da disciplina), que é a base do projeto &quot;O repertório da turma&quot;</p>
+<p>Hoje o projeto de vocês só funciona no computador de vocês. Para alguém ver o karaokê, precisa estar ali do lado, com o <code>npm start</code> rodando.</p>
+<p>Quando vocês terminarem este guia, o projeto vai ter um endereço na internet, tipo <code>karaoke-turma.onrender.com</code>. Qualquer pessoa poderá abrir esse endereço no celular, de qualquer lugar.</p>
+<p>A plataforma que vamos usar chama <strong>Render.com</strong>. Ela mantém o servidor de vocês ligado do mesmo jeito que ele fica ligado no computador de vocês, com o mesmo <code>app.listen()</code> de sempre. Por isso quase nada muda no código: praticamente tudo que vocês já sabem continua valendo.</p>
+<h3 id="como-usar-este-guia">Como usar este guia</h3>
+<ul>
+<li>Siga as etapas <strong>na ordem</strong>. Elas dependem umas das outras.</li>
+<li>Cada etapa termina com um teste. <strong>Se o teste falhar, não avance.</strong> Vá à <a href="#etapa-10--socorro-erros-mais-comuns">Etapa 10</a> e resolva antes.</li>
+<li>Não decore os cliques. Entenda o motivo de cada um — é isso que vai ser cobrado na apresentação.</li>
+</ul>
+<h3 id="quando-chamar-o-professor">Quando chamar o professor</h3>
+<p>Este guia foi escrito para vocês conseguirem ir sozinhos do começo ao fim. Mesmo assim, alguns pontos do caminho envolvem <strong>segurança, dados de pagamento ou risco de perder trabalho já feito</strong>. Nesses pontos vocês vão ver um aviso assim:</p>
+<blockquote>
+<p><strong>Chame o professor.</strong> É melhor perguntar antes do que desfazer depois.</p>
+</blockquote>
+<p>Chamem sem constrangimento. Pedir ajuda não tira nota de ninguém. Ficar duas horas travados no mesmo erro, esse sim custa caro — em tempo e em vontade de continuar.</p>
+<p>Chamem <strong>imediatamente</strong>, sem tentar resolver sozinhos, quando:</p>
+<ul>
+<li>alguma tela pedir <strong>dados de cartão de crédito</strong>;</li>
+<li>vocês perceberem que uma <strong>senha ou chave foi para o GitHub</strong>;</li>
+<li>aparecer qualquer coisa sobre <strong>apagar, forçar ou sobrescrever</strong> o repositório;</li>
+<li>o mesmo erro voltar pela <strong>terceira vez</strong> depois de vocês já terem tentado o que o guia manda;</li>
+<li>estiverem a menos de <strong>uma hora da apresentação</strong> com o sistema fora do ar.</li>
+</ul>
+<p><strong>Como pedir ajuda de um jeito que funciona.</strong> Cheguem com estas quatro informações — assim o problema costuma se resolver em minutos, e não no fim da aula:</p>
+<ol>
+<li>Em que etapa do guia vocês estavam.</li>
+<li>A mensagem de erro <strong>copiada inteira</strong> (print da tela do log serve).</li>
+<li>O que vocês já tentaram.</li>
+<li>O link do repositório no GitHub e o link do serviço na Render.</li>
+</ol>
+<p>&quot;Não funciona&quot; não é uma descrição de problema. &quot;Travou na Etapa 7, o log diz <code>Cannot find module</code>, já rodei <code>npm install</code> e commitei&quot; é.</p>
+<hr>
+<h3 id="três-palavras-que-vão-aparecer-o-tempo-todo">Três palavras que vão aparecer o tempo todo</h3>
+<table>
+<thead>
+<tr>
+<th>Palavra</th>
+<th>O que quer dizer</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Deploy</strong></td>
+<td>Colocar a aplicação no ar. &quot;Fazer o deploy&quot; = publicar uma versão na internet.</td>
+</tr>
+<tr>
+<td><strong>Produção</strong></td>
+<td>O lugar onde as pessoas de verdade usam o sistema. O contrário é o computador de vocês, onde vocês desenvolvem.</td>
+</tr>
+<tr>
+<td><strong>Servidor</strong></td>
+<td>O computador que fica ligado recebendo pedidos e respondendo. Até agora, esse computador era o de vocês.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="sumário">Sumário</h2>
+<ul>
+<li><a href="#etapa-0--o-que-vai-acontecer">Etapa 0 — O que vai acontecer</a></li>
+<li><a href="#etapa-1--conferindo-o-projeto-antes-de-publicar">Etapa 1 — Conferindo o projeto antes de publicar</a></li>
+<li><a href="#etapa-2--duas-mudan%C3%A7as-no-c%C3%B3digo">Etapa 2 — Duas mudanças no código</a></li>
+<li><a href="#etapa-3--o-reposit%C3%B3rio-no-github">Etapa 3 — O repositório no GitHub</a></li>
+<li><a href="#etapa-4--criando-a-conta-na-render">Etapa 4 — Criando a conta na Render</a></li>
+<li><a href="#etapa-5--criando-o-web-service">Etapa 5 — Criando o Web Service</a></li>
+<li><a href="#etapa-6--configurando-as-senhas-e-chaves">Etapa 6 — Configurando as senhas e chaves</a></li>
+<li><a href="#etapa-7--acompanhando-o-primeiro-deploy">Etapa 7 — Acompanhando o primeiro deploy</a></li>
+<li><a href="#etapa-8--testando-o-sistema-publicado">Etapa 8 — Testando o sistema publicado</a></li>
+<li><a href="#etapa-9--o-dia-a-dia-depois-de-publicar">Etapa 9 — O dia a dia depois de publicar</a></li>
+<li><a href="#etapa-10--socorro-erros-mais-comuns">Etapa 10 — Socorro: erros mais comuns</a></li>
+<li><a href="#etapa-11--o-que-o-plano-gratuito-permite">Etapa 11 — O que o plano gratuito permite</a></li>
+<li><a href="#antes-da-apresenta%C3%A7%C3%A3o">Antes da apresentação</a></li>
+<li><a href="#checklist-final-de-entrega">Checklist final de entrega</a></li>
+<li><a href="#anexo--gloss%C3%A1rio">Anexo — Glossário</a></li>
+</ul>
+<hr>
+<h2 id="etapa-0--o-que-vai-acontecer">Etapa 0 — O que vai acontecer</h2>
+<p>Publicar não é &quot;mandar os arquivos para um site&quot;. Funciona assim:</p>
+<p>A Render é um computador emprestado, ligado 24 horas por dia, dentro da internet. Só que ela <strong>não pega os arquivos direto do computador de vocês</strong>. Ela pega do <strong>GitHub</strong>.</p>
+<p>Então o caminho é este:</p>
+<pre><code class="hljs language-plaintext">   Computador de vocês           GitHub                       Render.com
+┌────────────────────┐      ┌──────────────┐      ┌────────────────────────────┐
+│ projeto karaokê    │      │ repositório  │      │ 1. copia o repositório     │
+│  app.js            │─push→│  (a cópia    │─────→│ 2. instala as bibliotecas  │
+│  DAO/MusicaDAO.js  │      │   oficial)   │ aviso│    (npm install)           │
+│  public/           │      │              │      │ 3. liga o servidor         │
+│  package.json      │      └──────────────┘      │    (npm start)             │
+│  .env  (não sobe)  │                            │ 4. entrega o endereço      │
+└────────────────────┘                            │    público                 │
+                                                  └────────────────────────────┘
+                                                        ↓
+                                            https://karaoke-turma.onrender.com</code></pre><p>Guardem estas três frases. Elas explicam quase todos os erros que vocês vão encontrar:</p>
+<p><strong>1. A Render só enxerga o que está no GitHub.</strong>
+Arquivo que vocês não commitaram, para ela, não existe. Quando algo funciona no computador de vocês e não funciona lá, essa é sempre a primeira coisa a checar.</p>
+<p><strong>2. A Render instala as bibliotecas do zero.</strong>
+Ela lê o <code>package.json</code> e baixa tudo de novo. A pasta <code>node_modules</code> do computador de vocês não vai junto (nem precisa). Se uma biblioteca não está anotada no <code>package.json</code>, ela não vai existir lá.</p>
+<p><strong>3. O arquivo <code>.env</code> não sobe — e isso é de propósito.</strong>
+Senhas e chaves nunca vão para o GitHub. Como a Render precisa desses valores para funcionar, vocês vão informá-los de outro jeito: digitando no painel dela (<a href="#etapa-6--configurando-as-senhas-e-chaves">Etapa 6</a>).</p>
+<blockquote>
+<p><strong>Existe um nome para isso.</strong> Quando o código é igual em todo lugar e só os valores mudam de um ambiente para o outro, chamamos de <strong>configuração por ambiente</strong>. É assim que empresas de software trabalham.</p>
+</blockquote>
+<hr>
+<h2 id="etapa-1--conferindo-o-projeto-antes-de-publicar">Etapa 1 — Conferindo o projeto antes de publicar</h2>
+<p>Antes de criar conta em qualquer lugar, o projeto precisa estar arrumado <strong>no computador de vocês</strong>. São seis conferências rápidas. Façam todas.</p>
+<h3 id="11-o-projeto-roda-sem-erro-aqui">1.1 O projeto roda sem erro aqui</h3>
+<p>Abram o terminal na pasta do projeto e rodem:</p>
+<pre><code class="hljs language-bash">npm install
+npm start</code></pre><p>Abram <code>http://localhost:3000</code> e testem as rotas com o arquivo <code>testes/musicas.http</code>. No terminal deve aparecer <code>Karaokê no ar: http://localhost:3000</code>.</p>
+<p>Se está quebrado aqui, vai estar quebrado lá também — com a diferença de que lá vocês não têm o VS Code para procurar o problema. Arrumem agora.</p>
+<h3 id="12-o-packagejson-tem-um-script-start">1.2 O <code>package.json</code> tem um script <code>start</code></h3>
+<p>Abram o <code>package.json</code> e procurem o bloco <code>scripts</code>:</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;nosso-karaoke&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1.0.0&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;node app&quot;</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;dependencies&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;@supabase/supabase-js&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2.117.1&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;dotenv&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;18.0.3&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;express&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;5.2.1&quot;</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;engines&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;node&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&gt;=22&quot;</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre><p>Duas coisas importantes:</p>
+<ul>
+<li>O <code>start</code> tem que rodar com <strong><code>node</code></strong>, nunca com <code>nodemon</code>. O <code>nodemon</code> serve para desenvolver: ele fica vigiando se vocês salvaram algum arquivo, para reiniciar sozinho. Na internet, ninguém edita arquivo — então ele não tem função ali, e ainda pode nem estar instalado.</li>
+<li>O script <code>start</code> precisa apontar para o arquivo que liga o servidor. No projeto do Guia do Supabase é <code>node app</code>, que executa o <code>app.js</code>. Se o arquivo principal de vocês tiver outro nome, ajustem o script.</li>
+<li>Os números de versão no seu <code>package.json</code> podem ser diferentes dos do exemplo. O que importa é que as três bibliotecas estejam em <code>dependencies</code>.</li>
+</ul>
+<p><strong>Como saber se está certo:</strong> o comando <code>npm start</code> liga o servidor. Se aparecer <code>Missing script: &quot;start&quot;</code>, é porque esse script não existe. Criem.</p>
+<h3 id="13-as-bibliotecas-estão-anotadas">1.3 As bibliotecas estão anotadas</h3>
+<p>Toda biblioteca que vocês usam com <code>require</code> (<code>express</code>, <code>@supabase/supabase-js</code> e <code>dotenv</code> neste projeto) precisa aparecer em <code>dependencies</code>, no <code>package.json</code>.</p>
+<p>Para ver a lista do que está instalado:</p>
+<pre><code class="hljs language-bash">npm <span class="hljs-built_in">ls</span> --depth=0</code></pre><p>Se faltar alguma, instalem assim:</p>
+<pre><code class="hljs language-bash">npm install nome-da-biblioteca</code></pre><p>Esse comando já anota a biblioteca no <code>package.json</code> sozinho.</p>
+<blockquote>
+<p><strong>Cuidado com o <code>-D</code>.</strong> Se vocês instalarem com <code>npm install -D alguma-coisa</code>, a biblioteca vai parar numa lista chamada <code>devDependencies</code>, que serve só para ferramentas de desenvolvimento. Em produção, essa lista pode ser ignorada — e o programa quebra com <code>Cannot find module</code>. Biblioteca que o servidor usa para funcionar vai em <code>dependencies</code>, sem o <code>-D</code>.</p>
+</blockquote>
+<h3 id="14-o-gitignore-está-protegendo-o-que-não-pode-subir">1.4 O <code>.gitignore</code> está protegendo o que não pode subir</h3>
+<p>Precisa existir um arquivo chamado <code>.gitignore</code> na raiz do projeto com, no mínimo:</p>
+<pre><code class="hljs language-plaintext">node_modules/
+.env</code></pre><p>Para conferir se está funcionando:</p>
+<pre><code class="hljs language-bash">git status</code></pre><p>Se aparecer <code>node_modules</code> ou <code>.env</code> na lista (o <code>.env.example</code> pode e deve aparecer: ele não tem valores reais), alguma coisa está errada: ou o <code>.gitignore</code> não está sendo lido, ou esses arquivos já foram commitados antes (nesse caso, vejam a <a href="#34-e-se-o-env-j%C3%A1-subiu-sem-querer">Etapa 3.4</a>).</p>
+<h3 id="15-maiúsculas-e-minúsculas-nos-nomes-dos-arquivos">1.5 Maiúsculas e minúsculas nos nomes dos arquivos</h3>
+<p>Esta é a causa número 1 de erro no primeiro deploy da turma. Leiam com atenção.</p>
+<p>No Windows e no macOS, <code>MusicaDAO.js</code> e <code>musicadao.js</code> são tratados como o <strong>mesmo</strong> arquivo. No Linux, são <strong>dois arquivos diferentes</strong>. E a Render roda Linux.</p>
+<p>Ou seja: um <code>require</code> escrito com a letra errada funciona no computador de vocês e quebra na internet.</p>
+<p>Confiram cada <code>require</code> do projeto:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> musicaDAO = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./DAO/MusicaDAO&#x27;</span>);
+<span class="hljs-comment">//                          ↑ a pasta é DAO ou dao?</span>
+<span class="hljs-comment">//                                ↑ o arquivo é MusicaDAO ou musicaDAO?</span></code></pre><p>Para ver o nome verdadeiro dos arquivos, usem o terminal:</p>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">ls</span> DAO/</code></pre><p>A regra: <strong>o que está escrito no <code>require</code> tem que ser igual, letra por letra, ao que o <code>ls</code> mostrou.</strong></p>
+<blockquote>
+<p><strong>Chame o professor</strong> se vocês decidirem <strong>renomear</strong> uma pasta ou um arquivo para arrumar isso. O Git às vezes não percebe uma renomeação que só muda maiúscula para minúscula, e o resultado é um arquivo duplicado no repositório — que quebra a publicação de um jeito difícil de enxergar. Renomear com alguém do lado leva dois minutos; descobrir esse problema sozinho leva uma aula.</p>
+</blockquote>
+<h3 id="16-nenhum-caminho-do-seu-computador-no-código">1.6 Nenhum caminho do seu computador no código</h3>
+<p>Procurem no código por trechos como <code>C:\Users\aluno\...</code> ou <code>/home/aluno/...</code>. Essas pastas não existem na Render.</p>
+<p>Os caminhos precisam ser relativos ao projeto:</p>
+<pre><code class="hljs language-javascript">app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">static</span>(<span class="hljs-string">&#x27;public&#x27;</span>));                          <span class="hljs-comment">// funciona</span>
+app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">static</span>(path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;public&#x27;</span>)));    <span class="hljs-comment">// melhor ainda</span></code></pre><hr>
+<h2 id="etapa-2--duas-mudanças-no-código">Etapa 2 — Duas mudanças no código</h2>
+<p>Só duas. E uma delas é opcional.</p>
+<h3 id="21-a-porta-precisa-vir-do-ambiente-obrigatório">2.1 A porta precisa vir do ambiente (obrigatório)</h3>
+<p>No computador de vocês, o servidor escuta na porta 3000. Se vocês seguiram o Guia do Supabase, o <code>app.js</code> já faz a leitura certa (veja o bloco &quot;DEPOIS&quot; abaixo) e esta correção só precisa ser conferida. Se o seu <code>app.listen</code> ainda tem o número fixo, troquem.</p>
+<p>Na Render é diferente: <strong>quem escolhe a porta é ela</strong>. A Render escolhe um número (normalmente <code>10000</code>), guarda esse número num lugar chamado <em>variável de ambiente</em>, e fica esperando o servidor de vocês atender ali. Se o servidor insistir na 3000, a Render procura, não encontra ninguém, conclui que o programa não subiu e cancela a publicação.</p>
+<p>A correção é uma linha:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// ANTES — só funciona no computador de vocês</span>
+app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Karaokê no ar: http://localhost:3000&#x27;</span>);
+});
+
+<span class="hljs-comment">// DEPOIS — funciona nos dois lugares</span>
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">PORT</span> = process.<span class="hljs-property">env</span>.<span class="hljs-property">PORT</span> || <span class="hljs-number">3000</span>;
+
+app.<span class="hljs-title function_">listen</span>(<span class="hljs-variable constant_">PORT</span>, <span class="hljs-function">(<span class="hljs-params">erro</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (erro) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">`Não foi possível usar a porta <span class="hljs-subst">${PORT}</span>: <span class="hljs-subst">${erro.message}</span>`</span>);
+        process.<span class="hljs-title function_">exit</span>(<span class="hljs-number">1</span>);
+    }
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Karaokê no ar: http://localhost:<span class="hljs-subst">${PORT}</span>`</span>);
+});</code></pre><p>O <code>||</code> é o coração da coisa. Ele se lê assim:</p>
+<blockquote>
+<p>&quot;Use a porta que o ambiente mandou. Se ninguém mandou nada (ou seja, estou no computador do aluno), use a 3000.&quot;</p>
+</blockquote>
+<p>Um código só, servindo para os dois lugares.</p>
+<blockquote>
+<p><strong>Um detalhe que derruba muita gente:</strong> não escrevam <code>app.listen(PORT, &#39;localhost&#39;)</code>. O <code>localhost</code> significa &quot;só aceito conexões de dentro deste próprio computador&quot; — o que na Render impede que ela chegue até o servidor de vocês. Deixem só <code>app.listen(PORT)</code>, sem o segundo valor. O Express já faz a coisa certa sozinho.</p>
+</blockquote>
+<h3 id="22-avisar-qual-versão-do-node-o-projeto-exige-recomendado">2.2 Avisar qual versão do Node o projeto exige (recomendado)</h3>
+<p>Assim a Render usa uma versão compatível com a que vocês usam. O projeto exige Node 22 ou mais novo. Descubram a sua com:</p>
+<pre><code class="hljs language-bash">node -v</code></pre><p>E acrescentem no <code>package.json</code>:</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;engines&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;node&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&gt;=22&quot;</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre><p>O <code>package.json</code> do Guia do Supabase já traz esse trecho; confiram se ele está no seu. Isso evita aquele problema clássico de &quot;mas na minha máquina funciona&quot;, causado por versões diferentes.</p>
+<h3 id="23-testem-de-novo-aqui-mesmo">2.3 Testem de novo, aqui mesmo</h3>
+<pre><code class="hljs language-bash">npm start</code></pre><p>Tem que continuar funcionando em <code>http://localhost:3000</code>. As mudanças da Etapa 2 foram feitas justamente para não atrapalhar nada local.</p>
+<p>Agora um teste que imita a Render — vocês mesmos mandam a porta pelo ambiente:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Linux, macOS ou Git Bash</span>
+PORT=4000 npm start
+
+<span class="hljs-comment"># Windows (PowerShell)</span>
+<span class="hljs-variable">$env</span>:PORT=4000; npm start</code></pre><p>O servidor deve imprimir <code>Karaokê no ar: http://localhost:4000</code> e responder nessa porta. Se subiu, a Etapa 2 está certa.</p>
+<hr>
+<h2 id="etapa-3--o-repositório-no-github">Etapa 3 — O repositório no GitHub</h2>
+<p>A Render não copia os arquivos do computador de vocês: ela copia de um repositório do GitHub.</p>
+<p><strong>Vocês já têm esse repositório.</strong> É o mesmo que vocês vêm usando desde as atividades anteriores, com o projeto do karaokê dentro. <strong>Não criem um repositório novo.</strong> Continuem no que já existe.</p>
+<p>Por três motivos:</p>
+<ul>
+<li>O histórico de commits de vocês está lá. Ele faz parte da avaliação e conta a história do projeto.</li>
+<li>O professor já acompanha esse repositório.</li>
+<li>Repositório novo significa começar um histórico do zero, como se o trabalho anterior não tivesse existido.</li>
+</ul>
+<p>O que esta etapa faz é preparar esse repositório para a publicação.</p>
+<h3 id="31-confirmando-que-vocês-estão-no-repositório-certo">3.1 Confirmando que vocês estão no repositório certo</h3>
+<p>No terminal, dentro da pasta do projeto:</p>
+<pre><code class="hljs language-bash">git remote -v</code></pre><p>Deve aparecer o endereço do repositório de vocês, duas vezes:</p>
+<pre><code class="hljs language-plaintext">origin  https://github.com/SEU-USUARIO/karaoke-api.git (fetch)
+origin  https://github.com/SEU-USUARIO/karaoke-api.git (push)</code></pre><p>Confiram também em qual branch vocês estão:</p>
+<pre><code class="hljs language-bash">git branch --show-current</code></pre><p>Normalmente vai aparecer <code>main</code>. Se aparecer <code>master</code>, anotem esse nome — vocês vão precisar dele na <a href="#52-preenchendo-o-formul%C3%A1rio">Etapa 5.2</a>, no campo <strong>Branch</strong>.</p>
+<blockquote>
+<p><strong>O nome que vale é o que está no GitHub.</strong> A pasta no computador de vocês pode se chamar <code>karaoke</code>, <code>trabalho</code>, <code>projeto final</code> ou qualquer outra coisa — isso não tem importância nenhuma. O que a Render enxerga é o nome do <strong>repositório no GitHub</strong>, aquele que aparece no endereço do site:</p>
+<pre><code class="hljs language-plaintext">https://github.com/SEU-USUARIO/karaoke-api
+                   └── usuário ──┘ └─ nome do repositório ─┘</code></pre><p>Anotem esse nome exatamente como ele está escrito lá, com os mesmos hífens, as mesmas maiúsculas e as mesmas minúsculas. Vocês vão usá-lo na Etapa 5 para escolher o repositório certo na Render.</p>
+</blockquote>
+<blockquote>
+<p><strong>Se o <code>git remote -v</code> não mostrar nada</strong>, este projeto ainda não está ligado a nenhum repositório do GitHub. Vejam a <a href="#35-caso-especial-o-projeto-ainda-n%C3%A3o-est%C3%A1-no-github">Etapa 3.5</a>.</p>
+</blockquote>
+<h3 id="32-enviando-as-mudanças-da-etapa-2">3.2 Enviando as mudanças da Etapa 2</h3>
+<p>As alterações que vocês fizeram no código (a porta e o <code>engines</code>) ainda estão só no computador de vocês. Enviem para o GitHub:</p>
+<pre><code class="hljs language-bash">git status                                        <span class="hljs-comment"># veja o que mudou</span>
+git add .
+git commit -m <span class="hljs-string">&quot;Ajusta a porta para funcionar na Render&quot;</span>
+git push</code></pre><p><strong>Se o <code>git push</code> for recusado</strong> com uma mensagem falando em <code>rejected</code> ou <code>behind</code>, é porque tem coisa nova no GitHub que vocês ainda não baixaram (o colega da dupla commitou, por exemplo). Resolve assim:</p>
+<pre><code class="hljs language-bash">git pull
+git push</code></pre><p><strong>Como saber se deu certo:</strong> o <code>git status</code> responde <code>nothing to commit, working tree clean</code> e o <code>git log --oneline -3</code> mostra o seu commit no topo.</p>
+<blockquote>
+<p><strong>Chame o professor</strong> se o <code>git pull</code> trouxer <strong>conflito</strong> (mensagem com <code>CONFLICT</code> e marcações <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> dentro dos arquivos), ou se alguma pesquisa na internet sugerir usar <code>git push --force</code> ou <code>git reset --hard</code>.</p>
+<p>Esses três casos mexem no histórico do projeto e podem <strong>apagar o trabalho do colega da dupla</strong> de forma difícil de recuperar. Não é vergonha nenhuma não saber resolver conflito ainda — é assunto que a gente resolve junto, na hora, em poucos minutos.</p>
+</blockquote>
+<h3 id="33-a-conferência-que-salva-a-nota">3.3 A conferência que salva a nota</h3>
+<p>Abram o repositório <strong>no navegador</strong> e olhem a lista de arquivos. Não confiem na memória: olhem a página. É exatamente isso que a Render vai receber.</p>
+<table>
+<thead>
+<tr>
+<th>Precisa estar lá</th>
+<th>Não pode estar lá</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>package.json</code> e <code>package-lock.json</code></td>
+<td><code>node_modules/</code></td>
+</tr>
+<tr>
+<td><code>app.js</code></td>
+<td><code>.env</code></td>
+</tr>
+<tr>
+<td><code>DAO/</code>, <code>routes/</code>, <code>public/</code></td>
+<td>Qualquer senha, chave ou token escrito no código</td>
+</tr>
+<tr>
+<td><code>.gitignore</code> e <code>.env.example</code> (só nomes de variáveis, sem valores)</td>
+<td>Arquivos pessoais do computador de vocês</td>
+</tr>
+</tbody></table>
+<p>Confiram também se o arquivo que vocês acabaram de editar está com a versão nova. Cliquem no <code>app.js</code> dentro do GitHub e procurem a linha <code>const PORT = process.env.PORT || 3000;</code>. Se ela não estiver lá, o commit ou o push não foram feitos.</p>
+<h3 id="34-e-se-o-env-já-subiu-sem-querer">3.4 E se o <code>.env</code> já subiu sem querer?</h3>
+<p>Acontece, e tem conserto. Primeiro, tirem o arquivo do controle do Git (ele continua existindo no computador de vocês):</p>
+<pre><code class="hljs language-bash">git <span class="hljs-built_in">rm</span> --cached .<span class="hljs-built_in">env</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;.env&quot;</span> &gt;&gt; .gitignore
+git commit -m <span class="hljs-string">&quot;Remove o .env do repositório&quot;</span>
+git push</code></pre><p>Depois — e essa parte é a mais importante — <strong>troquem as chaves que estavam nele</strong>.</p>
+<p>Por quê? Porque o Git guarda o histórico. O commit antigo ainda tem a chave antiga escrita lá dentro, e num repositório público qualquer pessoa consegue ler. No Supabase, a troca fica em <strong>Project Settings → API Keys</strong>: apaguem a chave vazada e criem outra.</p>
+<blockquote>
+<p><strong>Chame o professor no mesmo dia.</strong> Chave que passou pelo GitHub é chave queimada, e quanto antes ela for trocada, menor o problema.</p>
+<p>Trocar chave vazada é rotina profissional — acontece em empresa grande toda semana. Esconder que vazou é que não é rotina, e é o único jeito de isso virar um problema sério. Ninguém perde nota por avisar; avisar é exatamente o comportamento certo.</p>
+</blockquote>
+<h3 id="35-caso-especial-o-projeto-ainda-não-está-no-github">3.5 Caso especial: o projeto ainda não está no GitHub</h3>
+<p>Se, e somente se, o <code>git remote -v</code> não mostrou nada, façam este caminho. Quem já tem repositório deve pular direto para a Etapa 4.</p>
+<ol>
+<li>Em <a href="https://github.com">github.com</a>, cliquem no <strong>+</strong> (canto superior direito) → <strong>New repository</strong>.</li>
+<li>Em <strong>Repository name</strong>, usem um nome que explique o projeto: <code>karaoke-api</code>. <strong>Anotem esse nome exatamente como vocês digitaram</strong> — vocês vão precisar dele daqui a três passos.</li>
+<li><strong>Não marquem</strong> &quot;Add a README&quot; nem &quot;Add .gitignore&quot; — o projeto de vocês já tem esses arquivos, e marcar isso cria um conflito no primeiro envio.</li>
+<li>Cliquem em <strong>Create repository</strong>.</li>
+<li>No terminal, dentro da pasta do projeto:</li>
+</ol>
+<pre><code class="hljs language-bash">git init
+git add .
+git commit -m <span class="hljs-string">&quot;Projeto do karaokê preparado para publicar&quot;</span>
+git branch -M main
+git remote add origin https://github.com/SEU-USUARIO/karaoke-api.git
+git push -u origin main</code></pre><blockquote>
+<p><strong>Atenção na linha do <code>git remote add</code>.</strong> O endereço tem que apontar para o repositório <strong>exatamente</strong> como ele existe no GitHub: o mesmo usuário e o mesmo nome, letra por letra.</p>
+<p>Não adianta escolher um nome novo aqui: o Git não cria repositório no GitHub, ele só aponta para um que já existe. Se o nome não bater, o <code>git push</code> responde algo como <code>Repository not found</code> — e o erro <strong>não</strong> aparece no <code>git remote add</code>, aparece só lá na frente, o que confunde bastante.</p>
+<p>Três armadilhas comuns:</p>
+<table>
+<thead>
+<tr>
+<th>O que vocês digitaram</th>
+<th>O que está no GitHub</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>karaoke_api</code></td>
+<td><code>karaoke-api</code></td>
+<td><code>Repository not found</code> (traço ≠ underline)</td>
+</tr>
+<tr>
+<td><code>Karaoke-API</code></td>
+<td><code>karaoke-api</code></td>
+<td><code>Repository not found</code> (o GitHub diferencia maiúsculas)</td>
+</tr>
+<tr>
+<td><code>karaoke-api</code> do colega</td>
+<td>o repositório da dupla</td>
+<td>Vocês publicam no lugar errado</td>
+</tr>
+</tbody></table>
+<p><strong>O jeito seguro é não digitar nada.</strong> Na página do repositório no GitHub, cliquem no botão verde <strong>Code</strong>, copiem o endereço HTTPS que aparece ali e colem no terminal. Endereço copiado não tem erro de digitação.</p>
+</blockquote>
+<p>Depois, voltem e façam a conferência da <a href="#33-a-confer%C3%AAncia-que-salva-a-nota">Etapa 3.3</a>.</p>
+<hr>
+<h2 id="etapa-4--criando-a-conta-na-render">Etapa 4 — Criando a conta na Render</h2>
+<h3 id="41-fazendo-o-cadastro">4.1 Fazendo o cadastro</h3>
+<ol>
+<li>Entrem em <a href="https://render.com">render.com</a> e cliquem em <strong>Get Started</strong> (ou <strong>Sign Up</strong>).</li>
+<li>Escolham entrar <strong>com o GitHub</strong>. Vale a pena: além de criar a conta, isso já adianta metade da conexão com o repositório.<ul>
+<li>Dá para usar e-mail e senha e conectar o GitHub depois, mas o caminho fica mais longo.</li>
+</ul>
+</li>
+<li>O GitHub vai pedir permissão para a Render (<strong>Authorize Render</strong>). Leiam a tela antes de aceitar: vocês estão permitindo que a Render leia seus repositórios e receba avisos quando houver commits novos. É exatamente o que a gente quer.</li>
+<li><strong>Confirmem o e-mail.</strong> A Render manda um link de confirmação. Sem clicar nele, a conta fica limitada. Se não chegar em alguns minutos, olhem o spam.</li>
+<li>Na primeira vez, a Render pergunta o nome do <em>workspace</em> (a área de trabalho da conta) e algumas informações de perfil. Pode ser o nome de vocês ou algo como <code>karaoke-turma</code>.</li>
+</ol>
+<blockquote>
+<p><strong>Sobre cartão de crédito:</strong> para criar o serviço no plano <strong>Free</strong> não é preciso cadastrar cartão.</p>
+<p><strong>Chame o professor</strong> se qualquer tela pedir dados de pagamento. Provavelmente é só um plano pago selecionado sem querer (veja a Etapa 5.3), e a gente corrige em um minuto. Mas <strong>não digitem número de cartão de ninguém</strong> — nem de vocês, nem dos pais — para fazer um trabalho da escola. Nenhuma atividade desta disciplina exige pagar por nada.</p>
+</blockquote>
+<h3 id="42-liberando-o-acesso-aos-repositórios">4.2 Liberando o acesso aos repositórios</h3>
+<p>Faça esta parte se o repositório for privado, ou se a Render não mostrar seus repositórios na Etapa 5:</p>
+<ol>
+<li>No painel da Render: <strong>Settings</strong> → <strong>GitHub</strong> → <strong>Configure</strong>.</li>
+<li>O GitHub abre uma tela perguntando o que a Render pode acessar:<ul>
+<li><strong>All repositories</strong> — mais prático;</li>
+<li><strong>Only select repositories</strong> — mais seguro; marquem o repositório do karaokê.</li>
+</ul>
+</li>
+<li>Cliquem em <strong>Save</strong> (ou <strong>Install</strong>).</li>
+</ol>
+<hr>
+<h2 id="etapa-5--criando-o-web-service">Etapa 5 — Criando o Web Service</h2>
+<p>Na Render, <strong>Web Service</strong> é o nome dado a &quot;um programa que fica ligado respondendo pedidos pela internet&quot;. É exatamente o que o Express de vocês é.</p>
+<h3 id="51-começando">5.1 Começando</h3>
+<ol>
+<li>No painel, cliquem em <strong>+ New</strong> → <strong>Web Service</strong>.</li>
+<li>Escolham <strong>Git Provider</strong>, selecionem o repositório do karaokê e cliquem em <strong>Connect</strong>.<ul>
+<li><strong>Confiram o nome antes de clicar.</strong> A Render mostra todos os repositórios da conta de vocês, e vários podem ter nomes parecidos (<code>karaoke</code>, <code>karaoke-api</code>, <code>karaoke-teste</code>, o fork de um colega). Selecionem aquele cujo nome é <strong>exatamente igual</strong> ao que vocês anotaram na <a href="#31-confirmando-que-voc%C3%AAs-est%C3%A3o-no-reposit%C3%B3rio-certo">Etapa 3.1</a>.</li>
+<li>Publicar o repositório errado não dá mensagem de erro nenhuma: a Render simplesmente coloca no ar um projeto que não é o de vocês, e a confusão pode demorar bastante para ser percebida.</li>
+<li>Se o repositório não aparecer na lista, voltem à <a href="#42-liberando-o-acesso-aos-reposit%C3%B3rios">Etapa 4.2</a>.</li>
+</ul>
+</li>
+</ol>
+<h3 id="52-preenchendo-o-formulário">5.2 Preenchendo o formulário</h3>
+<p>A Render tenta adivinhar vários campos quando percebe que é um projeto Node. <strong>Confiram todos mesmo assim</strong> — adivinhação erra.</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>O que colocar</th>
+<th>Para que serve</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td><code>karaoke-turma-XX</code> (só minúsculas, sem espaço e sem acento)</td>
+<td>Vira o endereço do site: <code>karaoke-turma-XX.onrender.com</code>. Não pode repetir um nome que já exista no mundo — se der conflito, acrescentem algo.</td>
+</tr>
+<tr>
+<td><strong>Project</strong> <em>(opcional)</em></td>
+<td>deixem em branco</td>
+<td>Serve só para organizar o painel.</td>
+</tr>
+<tr>
+<td><strong>Language</strong></td>
+<td><code>Node</code></td>
+<td>Diz à Render qual linguagem o projeto usa.</td>
+</tr>
+<tr>
+<td><strong>Branch</strong></td>
+<td><code>main</code> (ou o nome que apareceu na <a href="#31-confirmando-que-voc%C3%AAs-est%C3%A3o-no-reposit%C3%B3rio-certo">Etapa 3.1</a>)</td>
+<td>A cada <code>push</code> nessa branch, a Render publica de novo.</td>
+</tr>
+<tr>
+<td><strong>Region</strong></td>
+<td><code>Ohio (US East)</code> ou <code>Oregon (US West)</code></td>
+<td>O lugar do mundo onde o servidor vai rodar. Não existe opção na América do Sul; Ohio costuma responder um pouco mais rápido para o Brasil. Escolham uma e não mudem mais.</td>
+</tr>
+<tr>
+<td><strong>Root Directory</strong></td>
+<td>deixem em branco, se o <code>package.json</code> está na raiz do repositório</td>
+<td>Se o projeto estiver dentro de uma subpasta (<code>servidor/</code>, por exemplo), é aqui que se avisa isso.</td>
+</tr>
+<tr>
+<td><strong>Build Command</strong></td>
+<td><code>npm install</code></td>
+<td>O que rodar <strong>antes</strong> de ligar o programa: baixar as bibliotecas.</td>
+</tr>
+<tr>
+<td><strong>Start Command</strong></td>
+<td><code>npm start</code></td>
+<td>O comando que liga o servidor. Se não existe script <code>start</code>, voltem à <a href="#12-o-packagejson-tem-um-script-start">Etapa 1.2</a>.</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Qual a diferença entre Build e Start?</strong> Isso cai em prova, então entendam agora.</p>
+<p>O <strong>build</strong> roda <strong>uma vez</strong> a cada publicação e prepara o terreno (baixar bibliotecas). Ele começa e termina.</p>
+<p>O <strong>start</strong> roda depois e <strong>fica rodando</strong> o tempo todo, enquanto o site estiver no ar. Ele nunca termina sozinho.</p>
+<p>Por isso, se vocês escreverem <code>npm install &amp;&amp; npm start</code> no campo Build, a publicação trava para sempre: a Render fica esperando terminar um comando que, por natureza, não termina.</p>
+</blockquote>
+<h3 id="53-escolhendo-o-plano">5.3 Escolhendo o plano</h3>
+<p>Em <strong>Instance Type</strong>, escolham <strong>Free</strong>. Confiram que aparece <strong>$0 / month</strong> antes de continuar.</p>
+<blockquote>
+<p><strong>Chame o professor</strong> se não aparecer a opção Free, ou se aparecer qualquer valor diferente de zero. Não sigam adiante &quot;para ver no que dá&quot;.</p>
+</blockquote>
+<p>O que esse plano permite (e o que não permite) está na <a href="#etapa-11--o-que-o-plano-gratuito-permite">Etapa 11</a>. Leiam antes de marcar a apresentação para a turma.</p>
+<h3 id="54-criando">5.4 Criando</h3>
+<p>Se o projeto de vocês já usa o Supabase, <strong>antes de clicar no botão final</strong>, façam a <a href="#etapa-6--configurando-as-senhas-e-chaves">Etapa 6</a> — o próprio formulário tem um espaço para isso. Se o projeto ainda guarda os dados num array na memória, sem <code>.env</code>, podem seguir direto.</p>
+<p>Cliquem em <strong>Create Web Service</strong>. A Render abre a página do serviço e já começa a primeira publicação.</p>
+<hr>
+<h2 id="etapa-6--configurando-as-senhas-e-chaves">Etapa 6 — Configurando as senhas e chaves</h2>
+<p>Esta etapa é obrigatória para o projeto &quot;O repertório da turma&quot;, porque ele usa o Supabase. Se o projeto de vocês ainda guarda tudo num array em memória, sem <code>.env</code>, podem pular para a Etapa 7.</p>
+<h3 id="61-qual-é-o-problema">6.1 Qual é o problema</h3>
+<p>O arquivo <code>.env</code> ficou de fora do GitHub, de propósito, por segurança.</p>
+<p>Resultado: a Render não sabe qual é o endereço do banco nem a chave de acesso. O <code>supabaseClient.js</code> encontra as variáveis vazias e o servidor para na inicialização, com uma mensagem nos Logs (ver a <a href="#etapa-10--socorro-erros-mais-comuns">Etapa 10</a>).</p>
+<h3 id="62-como-resolver">6.2 Como resolver</h3>
+<p>O projeto usa <strong>somente duas</strong> variáveis. Elas precisam ser recriadas no painel da Render:</p>
+<ol>
+<li>Na página do serviço, no menu da esquerda, cliquem em <strong>Environment</strong>.</li>
+<li>Usem o botão de adicionar variável de ambiente.</li>
+<li>Preencham o nome (<strong>Key</strong>) e o valor (<strong>Value</strong>), uma variável por vez:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SUPABASE_URL</code></td>
+<td>a URL do projeto, igual à do <code>.env</code> (<code>https://xxxxxxxxxxxx.supabase.co</code>)</td>
+</tr>
+<tr>
+<td><code>SUPABASE_SECRET_KEY</code></td>
+<td>a <strong>secret key</strong> (<code>sb_secret_...</code>), copiada do painel do Supabase (botão <strong>Connect</strong>, aba <strong>Server</strong>)</td>
+</tr>
+</tbody></table>
+<ol start="4">
+<li>Salvem usando a opção que grava as variáveis e publica o serviço de novo.</li>
+</ol>
+<p>Existe um atalho: a Render aceita colar o conteúdo de um arquivo <code>.env</code> de uma vez. Se usarem, apaguem antes qualquer linha que não seja <code>SUPABASE_URL</code> ou <code>SUPABASE_SECRET_KEY</code>, principalmente a linha do <code>PORT</code>.</p>
+<blockquote>
+<p><strong>Os nomes na Render têm que ser iguais aos do código.</strong> O <code>supabaseClient.js</code> lê <code>process.env.SUPABASE_URL</code> e <code>process.env.SUPABASE_SECRET_KEY</code>. Qualquer outro nome faz o servidor parar na inicialização.</p>
+</blockquote>
+<h3 id="63-cuidados">6.3 Cuidados</h3>
+<ul>
+<li><strong>Copiem e colem com precisão.</strong> Espaço sobrando no fim, aspas em volta do valor ou o nome da variável repetido dentro do campo são as três causas mais comuns de &quot;coloquei a chave e mesmo assim não funciona&quot;. No campo <strong>Value</strong> vai só o valor puro: sem aspas, sem <code>SUPABASE_URL=</code> na frente.</li>
+<li><strong>Não criem uma variável chamada <code>PORT</code>.</strong> A Render define a porta sozinha, e o <code>app.js</code> já lê <code>process.env.PORT</code>. O <code>PORT</code> do <code>.env</code> serve só para o computador de vocês. Se criarem outra, com outro número, a publicação quebra.</li>
+<li><strong>Só a secret key vai para o servidor.</strong> Nunca usem a <strong>publishable key</strong> no servidor: o <code>supabaseClient.js</code> do projeto foi escrito para a secret key, e a publishable key tem outro nível de acesso. Também não coloquem nenhuma chave no <code>player.js</code> nem em arquivo da pasta <code>public/</code>.</li>
+<li><strong>Chave continua sendo segredo.</strong> O valor que aparece nessa tela não pode ir para print no grupo da turma, slide de apresentação, README ou conversa com o agente de IA.</li>
+</ul>
+<blockquote>
+<p><strong>Chame o professor</strong> se ficarem em dúvida sobre <strong>qual</strong> chave copiar do Supabase. A <strong>secret key</strong> (<code>sb_secret_...</code>) dá acesso total ao banco: quem tem ela na mão pode apagar tudo. Copiar a chave errada para o lugar errado é o tipo de erro que só aparece depois, quando já é problema. Vale a pergunta de trinta segundos.</p>
+</blockquote>
+<ul>
+<li><strong>O <code>dotenv</code> continua no código, sem problema.</strong> Ele lê o <code>.env</code> quando o arquivo existe (no computador de vocês) e não faz nada quando não existe (na Render). Nos dois casos, o <code>process.env.SUPABASE_URL</code> chega ao código do mesmo jeito.</li>
+</ul>
+<blockquote>
+<p><strong>Por que a Render precisa publicar de novo depois que eu mudo uma variável?</strong></p>
+<p>Porque o programa lê as variáveis <strong>na hora em que liga</strong>. Mudar o valor com o programa já rodando não muda nada: é preciso desligar e ligar de novo.</p>
+<p>É igual ao computador de vocês: se alterarem o <code>.env</code>, precisam parar o servidor (<code>Ctrl+C</code>) e subir de novo.</p>
+</blockquote>
+<hr>
+<h2 id="etapa-7--acompanhando-o-primeiro-deploy">Etapa 7 — Acompanhando o primeiro deploy</h2>
+<p>Assim que o serviço é criado, a Render mostra a aba <strong>Logs</strong>, com o relato do que está acontecendo, linha por linha.</p>
+<p><strong>Leiam esses logs.</strong> Não é enfeite: é a única janela que vocês têm para dentro daquele computador. Saber ler log é conteúdo da disciplina.</p>
+<p>A publicação passa por estas fases:</p>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>O que aparece nos logs</th>
+<th>O que significa</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Copiando</td>
+<td><code>==&gt; Cloning from https://github.com/...</code></td>
+<td>A Render está baixando o repositório.</td>
+</tr>
+<tr>
+<td>Instalando</td>
+<td><code>==&gt; Running build command &#39;npm install&#39;...</code></td>
+<td>Baixando as bibliotecas.</td>
+</tr>
+<tr>
+<td>Empacotando</td>
+<td><code>==&gt; Uploading build...</code></td>
+<td>Guardando o resultado.</td>
+</tr>
+<tr>
+<td>Ligando</td>
+<td><code>==&gt; Running &#39;npm start&#39;</code></td>
+<td>Ligando o servidor. É aqui que aparece a mensagem do <code>app.js</code>: <code>Karaokê no ar: http://localhost:10000</code> (o texto diz <code>localhost</code>, mas a porta é a que a Render escolheu).</td>
+</tr>
+<tr>
+<td>Achando a porta</td>
+<td><code>==&gt; Detected service running on port 10000</code></td>
+<td>A Render encontrou o servidor. Esta linha é a mais importante de todas.</td>
+</tr>
+<tr>
+<td>Pronto</td>
+<td><code>==&gt; Your service is live</code></td>
+<td>Está no ar.</td>
+</tr>
+</tbody></table>
+<p>No alto da página, o status muda para <strong>Live</strong>, em verde. Do lado do nome do serviço aparece o endereço público, algo como <code>https://karaoke-turma-XX.onrender.com</code>.</p>
+<p>Se aparecer <code>==&gt; Port scan timeout reached, no open ports detected</code>, o problema é a porta: revejam a <a href="#21-a-porta-precisa-vir-do-ambiente-obrigat%C3%B3rio">Etapa 2.1</a>. Outros erros estão na <a href="#etapa-10--socorro-erros-mais-comuns">Etapa 10</a>.</p>
+<blockquote>
+<p>O primeiro deploy costuma levar de 2 a 5 minutos. Se demorar bem mais que isso sem nada novo nos logs, atualizem a página antes de achar que travou.</p>
+</blockquote>
+<blockquote>
+<p><strong>Chame o professor</strong> se o deploy falhar <strong>três vezes seguidas</strong> e a mensagem não estiver na tabela da Etapa 10. Três tentativas já mostram que vocês não estão sendo desatentos — o problema é outro, e ler log de deploy junto com alguém mais experiente é a forma mais rápida de aprender a ler log sozinho depois.</p>
+</blockquote>
+<hr>
+<h2 id="etapa-8--testando-o-sistema-publicado">Etapa 8 — Testando o sistema publicado</h2>
+<p>Status verde não quer dizer que está tudo funcionando. Testem de verdade, nesta ordem.</p>
+<h3 id="81-a-página-do-karaokê">8.1 A página do karaokê</h3>
+<p>Abram o endereço público no navegador. A página <code>public/index.html</code> deve carregar com a lista de músicas.</p>
+<p>Se a página vier em branco, ou a lista vazia, apertem <strong>F12</strong> e olhem a aba <strong>Console</strong>. Erros de <code>fetch</code> aparecem ali.</p>
+<blockquote>
+<p><strong>A armadilha mais comum aqui:</strong> endereço fixo no JavaScript do front-end.</p>
+<p>Se o <code>player.js</code> tem <code>fetch(&#39;http://localhost:3000/api/musicas&#39;)</code>, ele vai continuar procurando o servidor <strong>no computador de quem abriu a página</strong> — e não vai encontrar nada.</p>
+<p>A correção é usar caminho relativo. Como o front-end e a API são entregues pelo mesmo endereço, funciona nos dois lugares:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// errado na internet</span>
+<span class="hljs-keyword">const</span> resposta = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;http://localhost:3000/api/musicas&#x27;</span>);
+
+<span class="hljs-comment">// certo em qualquer lugar</span>
+<span class="hljs-keyword">const</span> resposta = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;/api/musicas&#x27;</span>);</code></pre></blockquote>
+<h3 id="82-a-api-pelo-rest-client">8.2 A API pelo REST Client</h3>
+<p>O arquivo <code>testes/musicas.http</code> do Guia do Supabase já serve. Basta trocar o endereço no topo:</p>
+<pre><code class="hljs language-http"># @baseUrl = http://localhost:3000
+@baseUrl = https://karaoke-turma-XX.onrender.com
+
+### --- 1. GET: Listar todas as músicas ---
+GET {{baseUrl}}/api/musicas
+
+### --- 2. POST: Criar nova música ---
+POST {{baseUrl}}/api/musicas
+<span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/json
+
+{
+    &quot;nome&quot;: &quot;Smells Like Teen Spirit&quot;,
+    &quot;artista&quot;: &quot;Nirvana&quot;
+}</code></pre><p>Rodem <strong>todos</strong> os testes do arquivo, inclusive os que esperam erro (404 e 400). O comportamento na internet tem que ser igual ao do computador de vocês.</p>
+<p>Confiram os mesmos códigos de resposta do computador de vocês. A primeira requisição pode demorar até um minuto, se o serviço estiver &quot;dormindo&quot; (<a href="#etapa-11--o-que-o-plano-gratuito-permite">Etapa 11</a>).</p>
+<h3 id="83-o-teste-que-vale-mais">8.3 O teste que vale mais</h3>
+<p>Abram o endereço <strong>no celular, usando dados móveis</strong> (fora do Wi-Fi da escola).</p>
+<p>Se abriu, está publicado de verdade: o projeto de vocês está acessível de qualquer lugar do mundo. Mandem o link para alguém de fora da turma.</p>
+<h3 id="84-o-teste-de-persistência-r7">8.4 O teste de persistência (R7)</h3>
+<p>Este teste é obrigatório. Ele prova o requisito R7 do projeto &quot;O repertório da turma&quot; (o enunciado está disponível no Classroom da disciplina): o CRUD funciona na URL pública, e o banco e os dados continuam lá depois de reiniciar o servidor.</p>
+<p>Recarregar a página não prova nada, porque o servidor continua de pé. Só um reinício, que cria um processo novo com a memória vazia, separa o dado guardado no banco do dado guardado na memória.</p>
+<ol>
+<li>Criem uma música <strong>pela tela publicada</strong> (o formulário da página, no endereço público). Se a página ainda não tem formulário, usem o <code>POST /api/musicas</code> do arquivo <code>.http</code>.</li>
+<li>Anotem o <code>id</code> da música criada.</li>
+<li>No painel da Render, reiniciem o serviço: <strong>Manual Deploy</strong> → <strong>Restart service</strong>. Esperem o status voltar a <strong>Live</strong> e a mensagem <code>Karaokê no ar</code> aparecer nos <strong>Logs</strong>.</li>
+<li>Consultem o <strong>mesmo <code>id</code></strong>: <code>GET /api/musicas/&lt;id&gt;</code> no <code>.http</code>, ou a lista na página. A resposta precisa ser <code>200</code> com a música.</li>
+<li>Removam a música de teste (<code>DELETE /api/musicas/&lt;id&gt;</code>) e confirmem que ela saiu da lista.</li>
+<li>Registrem o resultado no <code>README.md</code>, usando o modelo do Guia passo a passo do Supabase (disponível no Classroom da disciplina). O registro por marco tem data, teste, resultado e próximo passo:</li>
+</ol>
+<pre><code class="hljs language-markdown"><span class="hljs-section">## Prova de persistência na URL pública</span>
+
+<span class="hljs-bullet">-</span> <span class="hljs-strong">**Data:**</span> 00/00/0000
+<span class="hljs-bullet">-</span> <span class="hljs-strong">**Teste:**</span> criei uma música pela tela publicada (id 0), reiniciei o serviço
+  na Render (Restart service) e consultei GET /api/musicas/0 no endereço público.
+<span class="hljs-bullet">-</span> <span class="hljs-strong">**Resultado:**</span> a música respondeu 200 depois do reinício; removi o registro de teste.
+<span class="hljs-bullet">-</span> <span class="hljs-strong">**Próximo passo:**</span> conferir a seção &quot;Antes da apresentação&quot; deste guia.</code></pre><p>Troquem os zeros pelos valores reais e escrevam o que vocês observaram, mesmo que seja diferente do esperado.</p>
+<p>Se a música sumiu depois do reinício, os dados estão na memória e não no banco. Revejam o <code>DAO/MusicaDAO.js</code> (ele deve usar o <code>supabaseClient</code>) e as variáveis da <a href="#etapa-6--configurando-as-senhas-e-chaves">Etapa 6</a>.</p>
+<hr>
+<h2 id="etapa-9--o-dia-a-dia-depois-de-publicar">Etapa 9 — O dia a dia depois de publicar</h2>
+<h3 id="91-publicação-automática">9.1 Publicação automática</h3>
+<p>Depois que o serviço existe, o trabalho de vocês passa a ser só este:</p>
+<pre><code class="hljs language-bash">git add .
+git commit -m <span class="hljs-string">&quot;Corrige a validação do POST de partes&quot;</span>
+git push</code></pre><p>A Render percebe o <code>push</code> na branch <code>main</code> e publica de novo sozinha. Dá para acompanhar pela aba <strong>Events</strong>.</p>
+<p>Isso muda o peso de cada commit: <strong>tudo que vocês enviam para a <code>main</code> vai para o ar</strong>. Commitar só código que funciona deixa de ser conselho do professor e vira consequência prática.</p>
+<h3 id="92-logs-de-produção">9.2 Logs de produção</h3>
+<p>Na aba <strong>Logs</strong> aparece tudo que o servidor imprime: <code>console.log</code>, <code>console.error</code> e os erros que ninguém tratou.</p>
+<p>Quando algo funciona no computador de vocês e quebra na internet (vai acontecer), é o primeiro lugar a olhar.</p>
+<p>Aproveitem para melhorar o próprio código. Um <code>console.error(&#39;Erro ao listar músicas:&#39;, erro)</code> bem colocado dentro do <code>catch</code> é a diferença entre saber que &quot;quebrou&quot; e saber &quot;quebrou aqui, por causa disso&quot;.</p>
+<h3 id="93-voltar-para-a-versão-anterior-rollback">9.3 Voltar para a versão anterior (rollback)</h3>
+<p>A publicação quebrou o sistema e a apresentação é daqui a dez minutos? Dá para voltar atrás:</p>
+<ol>
+<li>Abram a aba <strong>Events</strong> (ou <strong>Deploys</strong>).</li>
+<li>Procurem a última publicação que estava funcionando.</li>
+<li>Cliquem em <strong>Rollback to this version</strong>.</li>
+</ol>
+<p>Em cerca de um minuto o sistema volta ao que era antes.</p>
+<blockquote>
+<p>Atenção: isso resolve a emergência, não o problema. O commit ruim continua na <code>main</code>. Depois da apresentação, corrijam o código, testem no computador de vocês e façam o <code>push</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Chame o professor</strong> se o sistema estiver fora do ar faltando menos de uma hora para a apresentação. Não tentem &quot;consertar rápido&quot; sob pressão: é assim que um problema pequeno vira três. Chamem, expliquem o que aconteceu e a gente decide junto entre voltar a versão anterior ou apresentar rodando localmente.</p>
+</blockquote>
+<h3 id="94-publicar-na-mão">9.4 Publicar na mão</h3>
+<p>O botão <strong>Manual Deploy</strong> tem três opções:</p>
+<ul>
+<li><strong>Deploy latest commit</strong> — publica de novo o último commit.</li>
+<li><strong>Clear build cache &amp; deploy</strong> — refaz tudo do zero. Serve quando o erro é de biblioteca (&quot;mas eu instalei esse pacote!&quot;) e nada mais explica.</li>
+<li><strong>Restart service</strong> — só desliga e liga o programa, sem reinstalar nada. É o que usar para reiniciar o servidor, como no teste da <a href="#84-o-teste-de-persist%C3%AAncia-r7">Etapa 8.4</a>.</li>
+</ul>
+<hr>
+<h2 id="etapa-10--socorro-erros-mais-comuns">Etapa 10 — Socorro: erros mais comuns</h2>
+<p>Procurem a mensagem que aparece nos <strong>Logs da Render</strong>, não a que aparece no navegador. O navegador mostra só o sintoma; o log mostra a causa.</p>
+<table>
+<thead>
+<tr>
+<th>Mensagem no log</th>
+<th>O que causou</th>
+<th>Como resolver</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Port scan timeout reached, no open ports detected</code></td>
+<td>O servidor não está escutando na porta que a Render escolheu</td>
+<td>Usar <code>process.env.PORT</code> (<a href="#21-a-porta-precisa-vir-do-ambiente-obrigat%C3%B3rio">Etapa 2.1</a>). Conferir também se não escreveram <code>&#39;localhost&#39;</code> no <code>listen</code>.</td>
+</tr>
+<tr>
+<td><code>Error: Cannot find module &#39;express&#39;</code></td>
+<td>A biblioteca não está no <code>package.json</code>, ou está em <code>devDependencies</code></td>
+<td>Rodar <code>npm install express</code> (sem <code>-D</code>), commitar o <code>package.json</code> e o <code>package-lock.json</code> e dar <code>push</code>.</td>
+</tr>
+<tr>
+<td><code>Error: Cannot find module &#39;./DAO/musicaDAO&#39;</code></td>
+<td>Maiúscula ou minúscula diferente do nome real do arquivo</td>
+<td>Corrigir o <code>require</code> para ficar igual ao que o <code>ls</code> mostra (<a href="#15-mai%C3%BAsculas-e-min%C3%BAsculas-nos-nomes-dos-arquivos">Etapa 1.5</a>).</td>
+</tr>
+<tr>
+<td><code>Missing script: &quot;start&quot;</code></td>
+<td>Não existe script <code>start</code> no <code>package.json</code></td>
+<td>Criar (<a href="#12-o-packagejson-tem-um-script-start">Etapa 1.2</a>).</td>
+</tr>
+<tr>
+<td><code>npm ERR! code ENOENT ... package.json</code></td>
+<td>A Render não achou o <code>package.json</code> na raiz</td>
+<td>Preencher o campo <strong>Root Directory</strong> com a subpasta do projeto (<a href="#52-preenchendo-o-formul%C3%A1rio">Etapa 5.2</a>).</td>
+</tr>
+<tr>
+<td><code>Preencham SUPABASE_URL e SUPABASE_SECRET_KEY no .env (ou no ambiente da Render)</code> ou <code>supabaseUrl is required</code>, logo ao ligar</td>
+<td>As variáveis <code>SUPABASE_URL</code> / <code>SUPABASE_SECRET_KEY</code> não foram configuradas, ou o nome está diferente do usado no código</td>
+<td>Revisar as variáveis (<a href="#etapa-6--configurando-as-senhas-e-chaves">Etapa 6</a>) e publicar de novo.</td>
+</tr>
+<tr>
+<td><code>Invalid API key</code> nas rotas</td>
+<td>A chave foi copiada errada, incompleta ou com espaço sobrando, ou é a publishable key no lugar da secret key</td>
+<td>Copiar de novo a secret key do Supabase e colar sem aspas e sem espaços.</td>
+</tr>
+<tr>
+<td><code>Não foi possível usar a porta ...</code></td>
+<td>A porta já está em uso, ou há uma variável <code>PORT</code> criada à mão na Render</td>
+<td>Apagar a variável <code>PORT</code> do painel Environment e publicar de novo (<a href="#63-cuidados">Etapa 6.3</a>).</td>
+</tr>
+<tr>
+<td>As rotas respondem erro 500 e os Logs mostram falha de conexão com o Supabase, ou a lista vem vazia de repente</td>
+<td>O projeto do Supabase foi pausado por 7 dias sem atividade</td>
+<td>Abrir o painel do Supabase e usar <strong>Restore</strong> no projeto (<a href="#antes-da-apresenta%C3%A7%C3%A3o">Antes da apresentação</a>).</td>
+</tr>
+<tr>
+<td>O build termina, mas o serviço fica &quot;Deploying&quot; para sempre</td>
+<td>Colocaram <code>npm install &amp;&amp; npm start</code> no <strong>Build Command</strong></td>
+<td>Separar: Build = <code>npm install</code>, Start = <code>npm start</code> (<a href="#52-preenchendo-o-formul%C3%A1rio">Etapa 5.2</a>).</td>
+</tr>
+<tr>
+<td><code>404 Not Found</code> na página inicial, mas a API responde</td>
+<td>O Express não está entregando a pasta <code>public</code></td>
+<td>Conferir o <code>app.use(express.static(&#39;public&#39;))</code> e se a pasta foi commitada.</td>
+</tr>
+<tr>
+<td>No console do navegador: <code>Failed to fetch</code> ou erro de CORS</td>
+<td>O front-end está chamando <code>http://localhost:3000</code></td>
+<td>Trocar por caminho relativo (<a href="#81-a-p%C3%A1gina-do-karaok%C3%AA">Etapa 8.1</a>).</td>
+</tr>
+<tr>
+<td>A primeira requisição demora quase um minuto, depois fica tudo rápido</td>
+<td>O serviço estava dormindo (plano Free)</td>
+<td>É o comportamento esperado (<a href="#etapa-11--o-que-o-plano-gratuito-permite">Etapa 11</a>).</td>
+</tr>
+</tbody></table>
+<p><strong>E quando o erro não está na tabela?</strong> Sigam este método:</p>
+<ol>
+<li>Leiam a <strong>primeira</strong> linha de erro do log, não a última. As de baixo costumam ser só consequência da primeira.</li>
+<li>Tentem reproduzir no computador de vocês com <code>npm start</code>. Se acontecer aqui também, o problema está no código.</li>
+<li>Se aqui funciona e lá não, o problema é diferença de ambiente: variável faltando, nome de arquivo, versão do Node ou biblioteca não commitada.</li>
+<li>Para pedir ajuda, <strong>copiem a mensagem de erro inteira</strong>. &quot;Não funciona&quot; não ajuda ninguém a ajudar vocês.</li>
+</ol>
+<blockquote>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;O serviço na Render mostra este erro nos Logs (colado abaixo, sem chaves). Explique a causa provável e o que devo conferir no painel Environment.&quot;</em> Colem a mensagem do log abaixo do pedido. Antes de colar, apaguem qualquer chave, URL de projeto com senha ou valor do Environment. Usem o agente para entender e diagnosticar; a correção, quem faz e confere são vocês.</p>
+</blockquote>
+<blockquote>
+<p><strong>Chame o professor</strong> quando vocês já tiverem passado por esses quatro passos e o erro continuar. A partir daí, insistir sozinho costuma virar tentativa e erro no escuro — e tentativa e erro no escuro, num sistema publicado, tem chance de quebrar o que ainda funcionava.</p>
+<p>Levem as quatro informações combinadas na abertura do guia: etapa, mensagem copiada, o que já tentaram e os links do repositório e do serviço.</p>
+</blockquote>
+<hr>
+<h2 id="etapa-11--o-que-o-plano-gratuito-permite">Etapa 11 — O que o plano gratuito permite</h2>
+<p>O plano Free da Render é generoso, mas tem regras. Vocês precisam conhecer essas regras <strong>antes</strong> da apresentação, não no meio dela.</p>
+<table>
+<thead>
+<tr>
+<th>Regra</th>
+<th>O que isso significa na prática</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Dorme depois de 15 minutos sem acesso</strong></td>
+<td>Se ninguém abrir o site por 15 minutos, a Render desliga o programa para economizar.</td>
+</tr>
+<tr>
+<td><strong>Acordar leva cerca de 1 minuto</strong></td>
+<td>A primeira pessoa que acessar depois disso vai ver uma tela de carregamento. As próximas entram normalmente.</td>
+</tr>
+<tr>
+<td><strong>750 horas de funcionamento por mês</strong></td>
+<td>Sobra para os projetos da turma. Só conta o tempo em que o serviço está acordado.</td>
+</tr>
+<tr>
+<td><strong>Um servidor só</strong></td>
+<td>Não dá para dividir a carga entre vários. Para nós, não faz diferença.</td>
+</tr>
+<tr>
+<td><strong>Não guarda arquivos</strong></td>
+<td>Arquivo que o programa gravar some na próxima publicação ou reinício. Dados vão para o banco; arquivos vão para o Storage.</td>
+</tr>
+<tr>
+<td><strong>Sem acesso por terminal</strong></td>
+<td>Vocês só conseguem investigar pelos logs. Mais um motivo para escrever bons <code>console.error</code>.</td>
+</tr>
+</tbody></table>
+<p><strong>O que fazer no dia da apresentação:</strong> abram o endereço <strong>cinco minutos antes</strong> de começar, para o serviço acordar. Começar a apresentação com um minuto de tela branca não é defeito do projeto de vocês, mas perde a atenção da turma. Evitar isso é planejamento — e planejamento também é conteúdo desta disciplina.</p>
+<blockquote>
+<p><strong>Chame o professor</strong> se o serviço aparecer como suspenso, ou se a Render avisar que as horas do mês acabaram. Tem conserto, mas o conserto depende do que causou — e não é coisa para descobrir na véspera da entrega.</p>
+</blockquote>
+<blockquote>
+<p><strong>Não montem robôs para ficar acessando o site</strong> de minuto em minuto só para ele não dormir. Além de contornar a regra do plano gratuito, isso gasta as 750 horas do mês muito mais rápido. Quando as horas acabam, o serviço fica desligado até o mês seguinte — provavelmente no dia da entrega.</p>
+</blockquote>
+<hr>
+<h2 id="antes-da-apresentação">Antes da apresentação</h2>
+<p>Dois serviços gratuitos entram na cadeia, e os dois podem estar parados no dia. Confiram <strong>na véspera</strong> e <strong>alguns minutos antes de começar</strong>.</p>
+<ol>
+<li><strong>Projeto do Supabase pausado.</strong> Projetos gratuitos são pausados depois de 7 dias sem atividade. Entrem no painel do Supabase com antecedência. Se o projeto estiver pausado, usem <strong>Restore</strong> e esperem o status voltar a <strong>Healthy</strong> (pode levar alguns minutos). Não deixem para fazer isso na hora da apresentação.</li>
+<li><strong>Serviço da Render dormindo.</strong> O plano gratuito põe o serviço para dormir depois de 15 minutos sem acesso. Abram a URL pública alguns minutos antes e esperem a lista carregar (<a href="#etapa-11--o-que-o-plano-gratuito-permite">Etapa 11</a>).</li>
+<li><strong>Música de amostra presente.</strong> A página publicada precisa mostrar pelo menos a música de exemplo e tocar o karaokê. Se a lista estiver vazia, o banco foi apagado ou o projeto é outro: revejam a <a href="#etapa-6--configurando-as-senhas-e-chaves">Etapa 6</a>.</li>
+<li><strong>Registro de teste removido.</strong> A música criada no teste da <a href="#84-o-teste-de-persist%C3%AAncia-r7">Etapa 8.4</a> não pode ficar na lista da apresentação.</li>
+<li><strong><code>.env.example</code> no repositório.</strong> Abram o repositório no GitHub e confirmem que o <code>.env.example</code> está lá, com os nomes <code>SUPABASE_URL</code> e <code>SUPABASE_SECRET_KEY</code> e sem valores reais. Confirmem também que o <code>.env</code> não está.</li>
+</ol>
+<hr>
+<h2 id="checklist-final-de-entrega">Checklist final de entrega</h2>
+<p>Confiram tudo antes de mandar o link para o professor:</p>
+<ul>
+<li><input disabled="" type="checkbox"> O endereço público abre numa aba anônima e em outra rede (celular com dados móveis).</li>
+<li><input disabled="" type="checkbox"> <code>GET /api/musicas</code> responde <code>200</code> com o JSON das músicas.</li>
+<li><input disabled="" type="checkbox"> Os testes de erro do arquivo <code>.http</code> respondem <code>400</code> e <code>404</code>, também no endereço público.</li>
+<li><input disabled="" type="checkbox"> A página publicada lista as músicas e toca o karaokê.</li>
+<li><input disabled="" type="checkbox"> O teste de persistência da Etapa 8.4 foi feito na URL pública e está registrado no <code>README.md</code> (data, teste, resultado e próximo passo).</li>
+<li><input disabled="" type="checkbox"> O projeto do Supabase está <strong>Healthy</strong> (não pausado) e a página lista a música de amostra.</li>
+<li><input disabled="" type="checkbox"> O repositório no GitHub <strong>não</strong> tem <code>.env</code> nem <code>node_modules/</code>, e <strong>tem</strong> o <code>.env.example</code>.</li>
+<li><input disabled="" type="checkbox"> Nenhuma chave ou senha aparece em nenhum arquivo commitado.</li>
+<li><input disabled="" type="checkbox"> O <code>README.md</code> do repositório traz o endereço público e como rodar o projeto localmente (copiar o <code>.env.example</code> para <code>.env</code> e preencher).</li>
+<li><input disabled="" type="checkbox"> O último commit da <code>main</code> é o mesmo que está publicado (confiram na aba <strong>Events</strong>).</li>
+<li><input disabled="" type="checkbox"> Vocês sabem explicar, sem olhar o guia: por que o <code>.env</code> não vai para o GitHub, e de onde a Render tira essas informações.</li>
+</ul>
+<p>O último item é justamente o que costuma ser perguntado na apresentação.</p>
+<hr>
+<h2 id="anexo--glossário">Anexo — Glossário</h2>
+<table>
+<thead>
+<tr>
+<th>Termo</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Deploy</strong></td>
+<td>Publicar a aplicação em algum lugar. &quot;Fazer o deploy&quot; = colocar no ar.</td>
+</tr>
+<tr>
+<td><strong>Build</strong></td>
+<td>A preparação que acontece antes de ligar o programa. No nosso caso, o <code>npm install</code>.</td>
+</tr>
+<tr>
+<td><strong>Web Service</strong></td>
+<td>Nome que a Render dá a um programa que fica ligado respondendo pedidos pela internet.</td>
+</tr>
+<tr>
+<td><strong>Variável de ambiente</strong></td>
+<td>Um valor guardado fora do código, que o programa lê com <code>process.env</code>. Serve para segredos e para o que muda de um lugar para outro.</td>
+</tr>
+<tr>
+<td><strong>Produção</strong></td>
+<td>O ambiente que as pessoas usam de verdade. O oposto de &quot;desenvolvimento&quot;, que é o computador de vocês.</td>
+</tr>
+<tr>
+<td><strong>Cold start</strong></td>
+<td>A demora da primeira resposta depois que o serviço dormiu.</td>
+</tr>
+<tr>
+<td><strong>Rollback</strong></td>
+<td>Voltar o sistema publicado para uma versão anterior.</td>
+</tr>
+<tr>
+<td><strong>Logs</strong></td>
+<td>O relato do que o servidor foi imprimindo enquanto rodava.</td>
+</tr>
+<tr>
+<td><strong>Webhook</strong></td>
+<td>O aviso automático que o GitHub manda para a Render a cada <code>push</code>, disparando uma nova publicação.</td>
+</tr>
+<tr>
+<td><strong>Repositório</strong></td>
+<td>A pasta do projeto versionada pelo Git — no GitHub, a cópia oficial do código.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="uma-última-coisa">Uma última coisa</h2>
+<p>Publicar um sistema pela primeira vez dá um pouco de insegurança, e isso é normal — é a primeira vez que o código de vocês sai do computador de vocês e fica exposto para o mundo. Errar aqui faz parte, e quase tudo tem conserto.</p>
+<p>O que não vale é ficar travado em silêncio. Chamem. Perguntem na aula, perguntem no laboratório, tragam o erro copiado. Trabalhar assim — pedindo ajuda cedo, com informação organizada na mão — é exatamente como funciona uma equipe de desenvolvimento de verdade.</p>
+<hr>
+<p><em>Material de apoio da disciplina de Programação III — IFSul, Campus Passo Fundo. As telas e os nomes dos botões da Render podem mudar com o tempo; a lógica das etapas continua a mesma. Dúvida que a Etapa 10 não resolveu: tragam a mensagem de erro copiada do log.</em></p>
+
+    </main>
+    <footer>
+      <span>IFSul — Campus Passo Fundo · Programação III</span>
+    </footer>
+  </div>
+  <dialog class="diagram-dialog" aria-label="Diagrama ampliado">
+    <button type="button" class="diagram-close">Fechar diagrama</button>
+    <p>Use a rolagem para explorar o diagrama. Pressione Esc para fechar.</p>
+    <div class="diagram-scroll"></div>
+  </dialog>
+  <script>
+    const diagramDialog = document.querySelector('.diagram-dialog');
+    const diagramScroll = document.querySelector('.diagram-scroll');
+    document.querySelector('.diagram-close').addEventListener('click', () => diagramDialog.close());
+    document.querySelectorAll('main img').forEach((img) => {
+      if (!img.src.startsWith('data:image/svg+xml') && !/\.svg(?:[?#]|$)/i.test(img.src)) return;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'diagram-expand';
+      button.textContent = 'Ampliar diagrama';
+      button.setAttribute('aria-label', 'Ampliar: ' + img.alt);
+      img.insertAdjacentElement('afterend', button);
+      button.addEventListener('click', () => {
+        const enlarged = img.cloneNode();
+        diagramScroll.replaceChildren(enlarged);
+        diagramDialog.showModal();
+        diagramScroll.scrollTo(0, 0);
+      });
+    });
+  </script>
+</body>
+</html>

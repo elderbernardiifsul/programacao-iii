@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programação III - Material Didático</title>
+  <style>
+    
+
+    :root {
+      --ifsul-verde: #2f9e41;
+      --ifsul-verde-escuro: #1d7a2d;
+      --ifsul-vermelho: #cd191e;
+      --bg: #f4f6f8;
+      --texto: #1f2933;
+      --muted: #6b7c86;
+      --borda: #d9e2e8;
+      --superficie: #ffffff;
+      --codigo-bg: #f7faf9;
+    }
+
+    /* Identidade institucional na tela; impressão compacta para a atividade. */
+@media print {
+  @page { size: A4; margin: 15mm; }
+  html, body { font-size: 10.5pt !important; line-height: 1.35 !important; }
+  .hero, footer { display: none !important; }
+  .page { max-width: none !important; overflow: visible !important; border-radius: 0 !important; }
+  main { padding: 0 !important; }
+  h1 { font-size: 20pt !important; line-height: 1.15 !important; margin: 0 0 10pt !important; }
+  h2 { font-size: 13pt !important; margin: 13pt 0 6pt !important; }
+  h3 { font-size: 11pt !important; margin: 10pt 0 5pt !important; }
+  h1, h2, h3 { break-after: avoid; }
+  p, ul, ol, table, blockquote, pre { margin-top: 0 !important; margin-bottom: 7pt !important; }
+  li { margin-bottom: 3pt !important; }
+  table { font-size: 9pt !important; page-break-inside: auto !important; break-inside: auto !important; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; break-inside: avoid; }
+  th, td { padding: 5pt 6pt !important; overflow-wrap: anywhere; }
+  img { max-width: 100%; }
+  code { font-size: 0.92em !important; }
+}
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #eef5ef 0%, var(--bg) 220px);
+      color: var(--texto);
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.7;
+      padding: 32px 16px 48px;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      background: var(--superficie);
+      border-radius: 16px;
+      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(47, 158, 65, 0.12);
+    }
+
+    .hero {
+      padding: 28px 32px 20px;
+      background:
+        linear-gradient(135deg, rgba(47, 158, 65, 0.14), rgba(29, 122, 45, 0.06)),
+        linear-gradient(180deg, #ffffff, #f7fbf8);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.15;
+      color: var(--ifsul-verde-escuro);
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      color: #41515b;
+      max-width: 70ch;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    main {
+      padding: 32px;
+    }
+
+    main h1,
+    main h2,
+    main h3,
+    main h4,
+    main h5,
+    main h6 {
+      color: var(--ifsul-verde-escuro);
+      line-height: 1.25;
+    }
+
+    main h1 { font-size: 2rem; }
+    main h2 {
+      font-size: 1.5rem;
+      margin-top: 2.3rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(47, 158, 65, 0.18);
+    }
+    main h3 { font-size: 1.2rem; margin-top: 1.8rem; }
+
+    p, ul, ol, table, blockquote, pre {
+      margin: 1rem 0;
+    }
+
+    code, pre code {
+      font-family: 'Fira Code', monospace;
+    }
+
+    code {
+      background: rgba(47, 158, 65, 0.08);
+      color: #14532d;
+      padding: 0.12rem 0.35rem;
+      border-radius: 6px;
+      font-size: 0.92em;
+    }
+
+    pre {
+      background: #f8faf9;
+      border: 1px solid rgba(47, 158, 65, 0.18);
+      border-left: 5px solid var(--ifsul-verde);
+      border-radius: 12px;
+      padding: 16px 18px;
+      overflow-x: auto;
+      color: #1f2933;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: 0.88em;
+      line-height: 1.6;
+    }
+
+    /* Syntax highlighting — light theme (print-friendly) */
+    .hljs-keyword,
+    .hljs-selector-tag { color: #8839ef; }
+    .hljs-built_in { color: #1e66f5; }
+    .hljs-string,
+    .hljs-attr { color: #40a02b; }
+    .hljs-number,
+    .hljs-literal { color: #d2691e; }
+    .hljs-comment { color: #7c7f93; font-style: italic; }
+    .hljs-function .hljs-title,
+    .hljs-title.function_ { color: #1e66f5; }
+    .hljs-variable,
+    .hljs-params { color: #1f2933; }
+    .hljs-operator,
+    .hljs-punctuation { color: #04a5e5; }
+    .hljs-meta,
+    .hljs-tag { color: #d20f39; }
+    .hljs-name { color: #d20f39; }
+    .hljs-attribute { color: #df8e1d; }
+    .hljs-regexp { color: #ea76cb; }
+    .hljs-type,
+    .hljs-title.class_ { color: #df8e1d; }
+
+    blockquote {
+      margin-left: 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--ifsul-verde);
+      background: rgba(47, 158, 65, 0.06);
+      color: #244234;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .markdown-alert {
+      margin: 1.4em 0;
+      padding: 12px 16px;
+      border-left: 4px solid var(--ifsul-verde);
+      background: rgba(47, 158, 65, 0.06);
+      border-radius: 0 12px 12px 0;
+    }
+    .markdown-alert > :last-child { margin-bottom: 0; }
+    .markdown-alert-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 6px;
+      font-weight: 700;
+    }
+    .markdown-alert-title svg { fill: currentColor; }
+    .markdown-alert-note { border-left-color: #1f6feb; background: rgba(31, 111, 235, 0.06); }
+    .markdown-alert-note .markdown-alert-title { color: #1f6feb; }
+    .markdown-alert-tip { border-left-color: var(--ifsul-verde); }
+    .markdown-alert-tip .markdown-alert-title { color: var(--ifsul-verde-escuro); }
+    .markdown-alert-important { border-left-color: #8250df; background: rgba(130, 80, 223, 0.06); }
+    .markdown-alert-important .markdown-alert-title { color: #8250df; }
+    .markdown-alert-warning { border-left-color: #bf8700; background: rgba(191, 135, 0, 0.08); }
+    .markdown-alert-warning .markdown-alert-title { color: #9a6700; }
+    .markdown-alert-caution { border-left-color: var(--ifsul-vermelho); background: rgba(205, 25, 30, 0.06); }
+    .markdown-alert-caution .markdown-alert-title { color: var(--ifsul-vermelho); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--borda);
+      font-size: 0.95rem;
+    }
+
+    thead th {
+      background: var(--ifsul-verde);
+      color: white;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafcfb;
+    }
+
+    a {
+      color: var(--ifsul-verde-escuro);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 18px 32px 28px;
+      border-top: 1px solid var(--borda);
+      color: var(--muted);
+      font-size: 0.82rem;
+      background: #fbfcfc;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding: 18px 10px 28px;
+      }
+
+      .hero,
+      main,
+      footer {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .page {
+        border-radius: 12px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        border: none;
+      }
+
+      .hero {
+        background: white;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      pre,
+      blockquote,
+      .markdown-alert,
+      table,
+      img {
+        page-break-inside: avoid;
+      }
+
+      /* No papel não há barra de rolagem: linha de código longa quebra em vez de sumir */
+      pre,
+      pre code {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+
+      @page {
+        size: A4;
+        margin: 1.8cm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-top">
+        <span>IFSul - Campus Passo Fundo</span>
+        <span>Ensino Médio Integrado</span>
+      </div>
+      <h1>Programação III</h1>
+      <div class="meta">
+        <div class="meta-card"><strong>Professor</strong>Élder F. F. Bernardi</div>
+        <div class="meta-card"><strong>Curso</strong>Ensino Médio Integrado - Técnico em Informática</div>
+      </div>
+    </section>
+    <main>
+      <h1 id="rubrica-do-trabalho-integrador--curadoria-do-repertório">Rubrica do trabalho integrador — Curadoria do repertório</h1>
+<p><strong>Versão de entrega · 20/10/2026.</strong>
+<strong>Programação III · IFSul — Campus Passo Fundo · Professor Élder F. F. Bernardi</strong>
+<strong>Tutor da atividade:</strong> Prof. Leonardo Constantin  </p>
+<p>Os critérios abaixo descrevem as evidências que serão observadas no núcleo do trabalho. O núcleo bem executado e compreendido permite nota máxima, com ou sem base de retomada, Vue ou funcionalidades extras. Não há desconto pelo apoio recebido nem avaliação por quantidade de código ou commits.</p>
+<h2 id="pesos-e-cálculo-da-pontuação">Pesos e cálculo da pontuação</h2>
+<p><strong>Valor total: 4,0 pontos. Tutor da atividade: Prof. Leonardo Constantin.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Critério</th>
+<th>Origem da evidência</th>
+<th>Peso</th>
+<th>Valor máximo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C1 — Integração e funcionamento</td>
+<td>Dupla</td>
+<td>30%</td>
+<td>1,2 ponto</td>
+</tr>
+<tr>
+<td>C2 — Persistência e publicação</td>
+<td>Dupla</td>
+<td>20%</td>
+<td>0,8 ponto</td>
+</tr>
+<tr>
+<td>C3 — Qualidade proporcional ao ensino</td>
+<td>Dupla</td>
+<td>10%</td>
+<td>0,4 ponto</td>
+</tr>
+<tr>
+<td>C4 — Compreensão</td>
+<td>Individual</td>
+<td>30%</td>
+<td>1,2 ponto</td>
+</tr>
+<tr>
+<td>C5 — Processo e comunicação</td>
+<td>Dupla, com participação de ambos</td>
+<td>10%</td>
+<td>0,4 ponto</td>
+</tr>
+</tbody></table>
+<p>Para cada critério, multiplicar o valor máximo pelo fator do nível: Excelente = 1; Bom = 0,75; Regular = 0,50; Insuficiente = 0,25. A pontuação de cada estudante soma os quatro critérios da dupla (até 2,8 pontos) ao seu C4 individual (até 1,2 ponto). Evidência ausente ou impedida fica pendente de verificação equivalente, sem inferir desconhecimento automaticamente.</p>
+<p>Uma falha externa ou ausência de evidência exige encaminhamento e nova conferência; não equivale automaticamente a desconhecimento.</p>
+<h3 id="c1--integração-e-funcionamento--r1r4-r6">C1 — Integração e funcionamento · R1–R4, R6</h3>
+<table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Evidência observável</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Excelente</strong></td>
+<td>Consulta, cadastro, edição no mesmo ID e exclusão funcionam pela interface com dados coerentes; cancelamento preserva registro; player do seed funciona e música sem partes tem estado claro, sem tentativa inválida de reprodução.</td>
+</tr>
+<tr>
+<td><strong>Bom</strong></td>
+<td>Percurso CRUD é demonstrável e preserva os dados corretos; há falha pontual de seleção/atualização visual ou estado do player, identificada e corrigível sem reconstruir o fluxo.</td>
+</tr>
+<tr>
+<td><strong>Regular</strong></td>
+<td>Demonstra leitura e ao menos uma escrita integrada; uma ou mais operações dependem de requisição manual, ou a interface diverge da API sem que a dupla consiga completar a conferência.</td>
+</tr>
+<tr>
+<td><strong>Insuficiente</strong></td>
+<td>Não apresenta leitura e escrita integradas verificáveis; alteração existe só na tela ou as ações indicam sucesso sem executar o percurso correspondente.</td>
+</tr>
+</tbody></table>
+<p><strong>Observar:</strong> CRUD cotidiano acontece na interface. Chamadas manuais são apoio
+de diagnóstico, não substituem a integração. Preservar amostra para o player.</p>
+<h3 id="c2--persistência-e-publicação--r2r4-r7">C2 — Persistência e publicação · R2–R4, R7</h3>
+<table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Evidência observável</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Excelente</strong></td>
+<td>Na URL pública, a dupla cria, consulta, edita e exclui com banco; identifica o mesmo ID antes/depois de reiniciar o serviço e explica onde os dados ficam. Configuração é reproduzível, com segredos somente no servidor.</td>
+</tr>
+<tr>
+<td><strong>Bom</strong></td>
+<td>CRUD público com banco e persistência são demonstrados; falta um registro de conferência ou há ajuste pontual de configuração que a dupla identifica e conclui com orientação breve.</td>
+</tr>
+<tr>
+<td><strong>Regular</strong></td>
+<td>Banco funciona localmente, mas publicação ou teste após reinício ainda não é verificável; a dupla identifica parte da configuração e precisa de apoio para concluir a prova de persistência.</td>
+</tr>
+<tr>
+<td><strong>Insuficiente</strong></td>
+<td>A única evidência é dado em memória/lista local ou aplicação pública sem integração verificável ao banco; não distingue esses estados mesmo com consulta orientada.</td>
+</tr>
+</tbody></table>
+<p><strong>Impedimento externo:</strong> indisponibilidade não equivale a nível insuficiente.
+Registrar o impedimento, evidência local com banco e evidências anteriores;
+deixar a verificação impedida pendente, conforme encaminhamento docente.
+O objetivo de publicação com banco permanece, sem criar prazo/penalidade novos.</p>
+<h3 id="c3--qualidade-proporcional-ao-ensino--r5-r8">C3 — Qualidade proporcional ao ensino · R5, R8</h3>
+<table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Evidência observável</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Excelente</strong></td>
+<td>Entradas vazias não geram cadastro válido; sucesso depende da resposta; falha controlada gera mensagem útil sem esconder problema. Campos e ações são identificáveis e responsabilidades de tela, rota e DAO permanecem reconhecíveis.</td>
+</tr>
+<tr>
+<td><strong>Bom</strong></td>
+<td>Validação e distinção entre sucesso/erro funcionam; uma mensagem ou estado exige ajuste pequeno, sem impedir a pessoa de completar a operação e conferir o resultado.</td>
+</tr>
+<tr>
+<td><strong>Regular</strong></td>
+<td>Trata apenas parte das entradas/falhas; mensagem genérica ou lista desatualizada dificulta conferir resultado. Precisa de apoio para localizar onde validar ou tratar resposta.</td>
+</tr>
+<tr>
+<td><strong>Insuficiente</strong></td>
+<td>Aceita entradas obrigatórias inválidas ou anuncia sucesso na falha, impedindo verificar operações; não consegue localizar o tratamento nem acompanhar uma correção orientada.</td>
+</tr>
+</tbody></table>
+<p>Não cobrar estética elaborada, biblioteca nova, relatório ou técnica de
+responsividade não confirmada. A análise limita-se a uso legível e feedback.</p>
+<h3 id="c4--compreensão-individual--r8-e-fluxo-associado">C4 — Compreensão individual · R8 e fluxo associado</h3>
+<table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Evidência observável de cada pessoa</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Excelente</strong></td>
+<td>Com consulta, acompanha um fluxo real tela → rota → DAO → banco → retorno e realiza ou prevê uma pequena intervenção equivalente já exemplificada, conferindo o efeito e distinguindo estado da tela de persistência.</td>
+</tr>
+<tr>
+<td><strong>Bom</strong></td>
+<td>Acompanha o fluxo e demonstra a intervenção, precisando de indicação pontual de arquivo/campo; depois explica o efeito e o teste com coerência.</td>
+</tr>
+<tr>
+<td><strong>Regular</strong></td>
+<td>Localiza parte do percurso e executa trecho com apoio frequente; ainda confunde função da rota/DAO, formato enviado/recebido ou evidência de persistência. Precisa de nova oportunidade equivalente.</td>
+</tr>
+<tr>
+<td><strong>Insuficiente</strong></td>
+<td>Mesmo com consulta e retomada orientada, não relaciona a operação demonstrada ao próprio código nem prevê seu efeito; evidência de domínio ainda não foi produzida.</td>
+</tr>
+</tbody></table>
+<p>Registrar separadamente por estudante. Ausência, ansiedade ou falta de tempo
+não comprovam desconhecimento: coletar outra evidência equivalente.
+Aceitar fala, percurso apontado no código ou anotação/desenho com demonstração;
+não pontuar rapidez, memória, quantidade de fala ou contribuição por commits.</p>
+<h3 id="c5--processo-e-comunicação-técnica--r8">C5 — Processo e comunicação técnica · R8</h3>
+<table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Evidência observável</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Excelente</strong></td>
+<td>README permite instalar/executar sem segredo e informa URL, variáveis e decisão. Registros breves mostram teste, resultado e retomada; ambos participam de interface e API/DAO e conseguem localizar suas evidências.</td>
+</tr>
+<tr>
+<td><strong>Bom</strong></td>
+<td>Instruções e registros permitem conferir o trabalho; há uma omissão pequena, suprida pela dupla sem inviabilizar execução ou compreensão do processo.</td>
+</tr>
+<tr>
+<td><strong>Regular</strong></td>
+<td>Código é localizável, mas faltam instruções de execução ou evidências de teste; participação nas camadas e decisões exigem reconstrução com ajuda do professor.</td>
+</tr>
+<tr>
+<td><strong>Insuficiente</strong></td>
+<td>Não há instrução nem registro suficiente para reproduzir/verificar o trabalho; a dupla não consegue reconstruir execução e processo mesmo com apoio.</td>
+</tr>
+</tbody></table>
+
+    </main>
+    <footer>
+      <span>IFSul - Campus Passo Fundo · Programação III</span>
+    </footer>
+  </div>
+</body>
+</html>

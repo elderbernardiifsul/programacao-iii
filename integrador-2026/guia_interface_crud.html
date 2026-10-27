@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programação III - Material Didático</title>
+  <style>
+    
+
+    :root {
+      --ifsul-verde: #2f9e41;
+      --ifsul-verde-escuro: #1d7a2d;
+      --ifsul-vermelho: #cd191e;
+      --bg: #f4f6f8;
+      --texto: #1f2933;
+      --muted: #6b7c86;
+      --borda: #d9e2e8;
+      --superficie: #ffffff;
+      --codigo-bg: #f7faf9;
+    }
+
+    /* Identidade institucional na tela; impressão compacta para a atividade. */
+@media print {
+  @page { size: A4; margin: 15mm; }
+  html, body { font-size: 10.5pt !important; line-height: 1.35 !important; }
+  .hero, footer { display: none !important; }
+  .page { max-width: none !important; overflow: visible !important; border-radius: 0 !important; }
+  main { padding: 0 !important; }
+  h1 { font-size: 20pt !important; line-height: 1.15 !important; margin: 0 0 10pt !important; }
+  h2 { font-size: 13pt !important; margin: 13pt 0 6pt !important; }
+  h3 { font-size: 11pt !important; margin: 10pt 0 5pt !important; }
+  h1, h2, h3 { break-after: avoid; }
+  p, ul, ol, table, blockquote, pre { margin-top: 0 !important; margin-bottom: 7pt !important; }
+  li { margin-bottom: 3pt !important; }
+  table { font-size: 9pt !important; page-break-inside: auto !important; break-inside: auto !important; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; break-inside: avoid; }
+  th, td { padding: 5pt 6pt !important; overflow-wrap: anywhere; }
+  img { max-width: 100%; }
+  code { font-size: 0.92em !important; }
+}
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #eef5ef 0%, var(--bg) 220px);
+      color: var(--texto);
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.7;
+      padding: 32px 16px 48px;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      background: var(--superficie);
+      border-radius: 16px;
+      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(47, 158, 65, 0.12);
+    }
+
+    .hero {
+      padding: 28px 32px 20px;
+      background:
+        linear-gradient(135deg, rgba(47, 158, 65, 0.14), rgba(29, 122, 45, 0.06)),
+        linear-gradient(180deg, #ffffff, #f7fbf8);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.15;
+      color: var(--ifsul-verde-escuro);
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      color: #41515b;
+      max-width: 70ch;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    main {
+      padding: 32px;
+    }
+
+    main h1,
+    main h2,
+    main h3,
+    main h4,
+    main h5,
+    main h6 {
+      color: var(--ifsul-verde-escuro);
+      line-height: 1.25;
+    }
+
+    main h1 { font-size: 2rem; }
+    main h2 {
+      font-size: 1.5rem;
+      margin-top: 2.3rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(47, 158, 65, 0.18);
+    }
+    main h3 { font-size: 1.2rem; margin-top: 1.8rem; }
+
+    p, ul, ol, table, blockquote, pre {
+      margin: 1rem 0;
+    }
+
+    code, pre code {
+      font-family: 'Fira Code', monospace;
+    }
+
+    code {
+      background: rgba(47, 158, 65, 0.08);
+      color: #14532d;
+      padding: 0.12rem 0.35rem;
+      border-radius: 6px;
+      font-size: 0.92em;
+    }
+
+    pre {
+      background: #f8faf9;
+      border: 1px solid rgba(47, 158, 65, 0.18);
+      border-left: 5px solid var(--ifsul-verde);
+      border-radius: 12px;
+      padding: 16px 18px;
+      overflow-x: auto;
+      color: #1f2933;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: 0.88em;
+      line-height: 1.6;
+    }
+
+    /* Syntax highlighting — light theme (print-friendly) */
+    .hljs-keyword,
+    .hljs-selector-tag { color: #8839ef; }
+    .hljs-built_in { color: #1e66f5; }
+    .hljs-string,
+    .hljs-attr { color: #40a02b; }
+    .hljs-number,
+    .hljs-literal { color: #d2691e; }
+    .hljs-comment { color: #7c7f93; font-style: italic; }
+    .hljs-function .hljs-title,
+    .hljs-title.function_ { color: #1e66f5; }
+    .hljs-variable,
+    .hljs-params { color: #1f2933; }
+    .hljs-operator,
+    .hljs-punctuation { color: #04a5e5; }
+    .hljs-meta,
+    .hljs-tag { color: #d20f39; }
+    .hljs-name { color: #d20f39; }
+    .hljs-attribute { color: #df8e1d; }
+    .hljs-regexp { color: #ea76cb; }
+    .hljs-type,
+    .hljs-title.class_ { color: #df8e1d; }
+
+    blockquote {
+      margin-left: 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--ifsul-verde);
+      background: rgba(47, 158, 65, 0.06);
+      color: #244234;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .markdown-alert {
+      margin: 1.4em 0;
+      padding: 12px 16px;
+      border-left: 4px solid var(--ifsul-verde);
+      background: rgba(47, 158, 65, 0.06);
+      border-radius: 0 12px 12px 0;
+    }
+    .markdown-alert > :last-child { margin-bottom: 0; }
+    .markdown-alert-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 6px;
+      font-weight: 700;
+    }
+    .markdown-alert-title svg { fill: currentColor; }
+    .markdown-alert-note { border-left-color: #1f6feb; background: rgba(31, 111, 235, 0.06); }
+    .markdown-alert-note .markdown-alert-title { color: #1f6feb; }
+    .markdown-alert-tip { border-left-color: var(--ifsul-verde); }
+    .markdown-alert-tip .markdown-alert-title { color: var(--ifsul-verde-escuro); }
+    .markdown-alert-important { border-left-color: #8250df; background: rgba(130, 80, 223, 0.06); }
+    .markdown-alert-important .markdown-alert-title { color: #8250df; }
+    .markdown-alert-warning { border-left-color: #bf8700; background: rgba(191, 135, 0, 0.08); }
+    .markdown-alert-warning .markdown-alert-title { color: #9a6700; }
+    .markdown-alert-caution { border-left-color: var(--ifsul-vermelho); background: rgba(205, 25, 30, 0.06); }
+    .markdown-alert-caution .markdown-alert-title { color: var(--ifsul-vermelho); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--borda);
+      font-size: 0.95rem;
+    }
+
+    thead th {
+      background: var(--ifsul-verde);
+      color: white;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafcfb;
+    }
+
+    a {
+      color: var(--ifsul-verde-escuro);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    main { min-width: 0; overflow-wrap: anywhere; }
+    pre { max-width: 100%; overflow-wrap: normal; }
+    table { display: block; max-width: 100%; overflow-x: auto; }
+    :target { scroll-margin-top: 24px; }
+    a:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+    main img { display: block; margin: 24px auto 8px; padding: 16px; border: 1px solid var(--borda); border-radius: 12px; background: white; }
+    .diagram-expand, .diagram-close { padding: 10px 16px; border: 1px solid #1d7a2d; border-radius: 8px; background: white; color: #14532d; cursor: pointer; font: inherit; }
+    .diagram-expand { display: block; margin: 8px auto 24px; }
+    .diagram-dialog { width: 95vw; max-width: 1600px; max-height: 94vh; padding: 20px; border: 1px solid #9bbda4; border-radius: 12px; }
+    .diagram-dialog::backdrop { background: rgba(15, 30, 20, .75); }
+    .diagram-scroll { overflow: auto; max-height: 72vh; margin-top: 16px; }
+    .diagram-scroll img { display: block; max-width: none; width: auto; min-width: 700px; background: white; }
+    .diagram-close:focus-visible, .diagram-expand:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 18px 32px 28px;
+      border-top: 1px solid var(--borda);
+      color: var(--muted);
+      font-size: 0.82rem;
+      background: #fbfcfc;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding: 18px 10px 28px;
+      }
+
+      .hero,
+      main,
+      footer {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .page {
+        border-radius: 12px;
+      }
+    }
+
+    @media print {
+      .diagram-expand, .diagram-dialog { display: none; }
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        border: none;
+      }
+
+      .hero {
+        background: white;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      pre,
+      blockquote,
+      .markdown-alert,
+      table,
+      img {
+        page-break-inside: avoid;
+      }
+
+      /* No papel não há barra de rolagem: linha de código longa quebra em vez de sumir */
+      pre,
+      pre code {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+
+      @page {
+        size: A4;
+        margin: 1.8cm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-top">
+        <span>IFSul — Campus Passo Fundo</span>
+        <span>Ensino Médio Integrado</span>
+      </div>
+      <h1>Programação III</h1>
+      <div class="meta">
+        <div class="meta-card"><strong>Professor</strong>Elder Francisco Fontana Bernardi</div>
+        <div class="meta-card"><strong>Curso</strong>Ensino Médio Integrado — Técnico em Informática</div>
+      </div>
+    </section>
+    <main>
+      <h1 id="guia-de-interface--crud-na-tela-com-fetch">Guia de interface — CRUD na tela com fetch</h1>
+<p><strong>Disciplina:</strong> Programação III</p>
+<p><strong>Curso:</strong> Ensino Médio Integrado — Técnico em Informática</p>
+<p><strong>Professor:</strong> Elder Francisco Fontana Bernardi</p>
+<p><strong>Instituição:</strong> IFSul — Campus Passo Fundo</p>
+<p><strong>Versão 2 · 27/10/2026</strong></p>
+<p>Este guia mostra, num exemplo completo e pronto para rodar, como uma página HTML conversa com uma API Express usando <code>fetch</code>: listar, cadastrar, editar e excluir registros sem recarregar a página. No fim, ele indica como aplicar cada padrão às músicas do projeto, sem entregar o código das músicas.</p>
+<h2 id="para-que-serve">Para que serve</h2>
+<p>No projeto integrador, &quot;O repertório da turma&quot;, os requisitos R2 (cadastrar), R3 (editar), R4 (excluir) e R5 (validar e informar) acontecem <strong>na tela</strong>: a pessoa digita, clica e vê o resultado. A API de músicas já responde; falta a parte da página que chama a API, interpreta a resposta e atualiza o que aparece.</p>
+<p>O guia usa um exemplo menor, o <strong>Mural de recados</strong>, em que cada recado tem só um texto. Com um campo só, dá para ver cada padrão sem o ruído das músicas. Depois de ler o mural, vocês aplicam os mesmos padrões ao catálogo, com duas diferenças que a seção &quot;Aplicando às músicas&quot; explica.</p>
+<p>O que o guia entrega e o que não entrega:</p>
+<table>
+<thead>
+<tr>
+<th>Entrega</th>
+<th>Não entrega</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>O mural completo, com cada arquivo comentado</td>
+<td>O código de cadastro, edição e exclusão de músicas</td>
+</tr>
+<tr>
+<td>Os sete padrões que se repetem em qualquer tela com API</td>
+<td>A decisão de como organizar o código de vocês</td>
+</tr>
+<tr>
+<td>Como conferir cada operação na aba Rede do navegador</td>
+<td>A resposta pronta do Percurso para testar e demonstrar</td>
+</tr>
+<tr>
+<td>Tabelas e checklists para as músicas</td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Para quem é cada trilha.</strong> Quem usa a base de retomada (o projeto que acompanha o Roteiro de retomada, disponível no Classroom da disciplina) e quem seguiu o <em>Guia passo a passo — Karaokê com banco de dados no Supabase</em> (disponível no Classroom da disciplina) chegam à mesma tela por caminhos diferentes. A seção &quot;Aplicando às músicas&quot; tem uma parte para cada caso.</p>
+</blockquote>
+<h2 id="rodar-o-exemplo">Rodar o exemplo</h2>
+<p>O mural está na pasta <code>mural_recados</code>, dentro do pacote de materiais de apoio, disponível no Classroom da disciplina. Descompactem o pacote, abram a pasta <code>mural_recados</code> no VS Code e, no terminal integrado:</p>
+<pre><code class="hljs language-bash">npm install
+npm start</code></pre><p>O terminal deve mostrar <code>Mural no ar: http://localhost:3001</code>. Abram esse endereço no navegador. A página lista um recado inicial (&quot;Ensaio do karaokê na sexta.&quot;) e já aceita cadastrar, editar e excluir.</p>
+<p>Os recados ficam num array na memória do servidor. Se vocês pararem o servidor e subirem de novo, a lista volta ao recado inicial. Isso é esperado: o mural ensina a tela, não a persistência. As músicas do projeto, essas sim, ficam no banco.</p>
+<h3 id="árvore-de-arquivos">Árvore de arquivos</h3>
+<pre><code class="hljs language-text">mural_recados/
+├── package.json
+├── app.js
+└── public/
+    ├── index.html
+    ├── estilo.css
+    └── mural.js</code></pre><h3 id="quem-usa-quem">Quem usa quem</h3>
+<table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>Usa</th>
+<th>Para quê</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>public/index.html</code></td>
+<td><code>estilo.css</code> e <code>mural.js</code></td>
+<td>A estrutura da página: formulário, lista, mensagem.</td>
+</tr>
+<tr>
+<td><code>public/mural.js</code></td>
+<td>os elementos de <code>index.html</code>, pelos IDs; a rota <code>/api/recados</code></td>
+<td>Lê o que a pessoa digitou, chama a API e desenha o resultado.</td>
+</tr>
+<tr>
+<td><code>app.js</code></td>
+<td><code>express</code>; a pasta <code>public</code></td>
+<td>Serve os arquivos da pasta <code>public</code> e responde às rotas <code>/api/recados</code>.</td>
+</tr>
+<tr>
+<td><code>package.json</code></td>
+<td>—</td>
+<td>Declara a dependência (<code>express</code>) e o comando <code>npm start</code>.</td>
+</tr>
+</tbody></table>
+<p>O caminho de uma ação, do clique ao resultado: <code>index.html</code> mostra o botão, <code>mural.js</code> trata o clique e chama <code>fetch(&#39;/api/recados&#39;)</code>, <code>app.js</code> recebe a requisição, altera o array e responde, e <code>mural.js</code> redesenha a lista com a resposta.</p>
+<h3 id="os-cinco-arquivos-por-inteiro">Os cinco arquivos, por inteiro</h3>
+<p>Os arquivos abaixo são exatamente os do pacote. Leiam cada um uma vez antes de seguir para os padrões; as seções seguintes voltam a trechos específicos.</p>
+<!-- arquivo: package.json | etapa: 1 -->
+<p><strong>Arquivo <code>package.json</code></strong></p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;mural-recados&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1.0.0&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;private&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Exemplo de CRUD na tela com fetch — Programação III, IFSul Passo Fundo&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;commonjs&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;main&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;app.js&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;node app.js&quot;</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;dependencies&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;express&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;5.2.1&quot;</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;engines&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;node&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&gt;=22&quot;</span> <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre><p>O <code>package.json</code> declara só o <code>express</code>, na versão exata, e exige Node 22 ou superior. O comando <code>npm start</code> roda <code>node app.js</code>.</p>
+<!-- arquivo: app.js | etapa: 1 -->
+<p><strong>Arquivo <code>app.js</code></strong></p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// mural_recados/app.js — API de exemplo: recados guardados num array (memória).</span>
+<span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;node:path&#x27;</span>);
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();
+app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">json</span>());
+app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">static</span>(path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;public&#x27;</span>)));
+
+<span class="hljs-keyword">let</span> recados = [{ <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">texto</span>: <span class="hljs-string">&#x27;Ensaio do karaokê na sexta.&#x27;</span> }];
+<span class="hljs-keyword">let</span> proximoId = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Lê o texto do corpo; devolve null se faltar ou vier vazio</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">lerTexto</span>(<span class="hljs-params">body</span>) {
+    <span class="hljs-keyword">const</span> texto = <span class="hljs-keyword">typeof</span> body?.<span class="hljs-property">texto</span> === <span class="hljs-string">&#x27;string&#x27;</span> ? body.<span class="hljs-property">texto</span>.<span class="hljs-title function_">trim</span>() : <span class="hljs-string">&#x27;&#x27;</span>;
+    <span class="hljs-keyword">return</span> texto || <span class="hljs-literal">null</span>;
+}
+
+app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/api/recados&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
+    res.<span class="hljs-title function_">json</span>(recados);
+});
+
+app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/api/recados/:id&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> recado = recados.<span class="hljs-title function_">find</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> r.<span class="hljs-property">id</span> === <span class="hljs-title class_">Number</span>(req.<span class="hljs-property">params</span>.<span class="hljs-property">id</span>));
+    <span class="hljs-keyword">if</span> (!recado) <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">404</span>).<span class="hljs-title function_">json</span>({ <span class="hljs-attr">erro</span>: <span class="hljs-string">&#x27;Recado não encontrado&#x27;</span> });
+    res.<span class="hljs-title function_">json</span>(recado);
+});
+
+app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/api/recados&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> texto = <span class="hljs-title function_">lerTexto</span>(req.<span class="hljs-property">body</span>);
+    <span class="hljs-keyword">if</span> (!texto) <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">400</span>).<span class="hljs-title function_">json</span>({ <span class="hljs-attr">erro</span>: <span class="hljs-string">&#x27;Escreva o texto do recado&#x27;</span> });
+    <span class="hljs-keyword">const</span> recado = { <span class="hljs-attr">id</span>: proximoId++, texto };
+    recados.<span class="hljs-title function_">push</span>(recado);
+    res.<span class="hljs-title function_">status</span>(<span class="hljs-number">201</span>).<span class="hljs-title function_">json</span>(recado);
+});
+
+app.<span class="hljs-title function_">put</span>(<span class="hljs-string">&#x27;/api/recados/:id&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> texto = <span class="hljs-title function_">lerTexto</span>(req.<span class="hljs-property">body</span>);
+    <span class="hljs-keyword">if</span> (!texto) <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">400</span>).<span class="hljs-title function_">json</span>({ <span class="hljs-attr">erro</span>: <span class="hljs-string">&#x27;Escreva o texto do recado&#x27;</span> });
+    <span class="hljs-keyword">const</span> recado = recados.<span class="hljs-title function_">find</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> r.<span class="hljs-property">id</span> === <span class="hljs-title class_">Number</span>(req.<span class="hljs-property">params</span>.<span class="hljs-property">id</span>));
+    <span class="hljs-keyword">if</span> (!recado) <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">404</span>).<span class="hljs-title function_">json</span>({ <span class="hljs-attr">erro</span>: <span class="hljs-string">&#x27;Recado não encontrado&#x27;</span> });
+    recado.<span class="hljs-property">texto</span> = texto;
+    res.<span class="hljs-title function_">json</span>(recado);
+});
+
+app.<span class="hljs-title function_">delete</span>(<span class="hljs-string">&#x27;/api/recados/:id&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> indice = recados.<span class="hljs-title function_">findIndex</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> r.<span class="hljs-property">id</span> === <span class="hljs-title class_">Number</span>(req.<span class="hljs-property">params</span>.<span class="hljs-property">id</span>));
+    <span class="hljs-keyword">if</span> (indice === -<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">404</span>).<span class="hljs-title function_">json</span>({ <span class="hljs-attr">erro</span>: <span class="hljs-string">&#x27;Recado não encontrado&#x27;</span> });
+    <span class="hljs-keyword">const</span> [removido] = recados.<span class="hljs-title function_">splice</span>(indice, <span class="hljs-number">1</span>);
+    res.<span class="hljs-title function_">json</span>({ <span class="hljs-attr">mensagem</span>: <span class="hljs-string">&#x27;Recado removido&#x27;</span>, <span class="hljs-attr">recado</span>: removido });
+});
+
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">PORT</span> = process.<span class="hljs-property">env</span>.<span class="hljs-property">PORT</span> || <span class="hljs-number">3001</span>;
+app.<span class="hljs-title function_">listen</span>(<span class="hljs-variable constant_">PORT</span>, <span class="hljs-function">(<span class="hljs-params">erro</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (erro) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">`Não foi possível usar a porta <span class="hljs-subst">${PORT}</span>: <span class="hljs-subst">${erro.message}</span>`</span>);
+        process.<span class="hljs-title function_">exit</span>(<span class="hljs-number">1</span>);
+    }
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Mural no ar: http://localhost:<span class="hljs-subst">${PORT}</span>`</span>);
+});</code></pre><p>Pontos do <code>app.js</code> que importam para a tela:</p>
+<ul>
+<li><code>express.json()</code> converte o corpo JSON que o <code>fetch</code> envia em <code>req.body</code>. Sem essa linha, <code>req.body</code> chega vazio.</li>
+<li><code>express.static(...)</code> serve a pasta <code>public</code>. É por isso que <code>http://localhost:3001</code> abre o <code>index.html</code> sem rota própria.</li>
+<li>Os status seguem o contrato que as músicas também seguem: <code>200</code> na leitura, edição e exclusão; <code>201</code> no cadastro; <code>400</code> quando o texto falta; <code>404</code> quando o recado não existe. Todo erro vem como <code>{ erro: &#39;...&#39; }</code>. É esse <code>erro</code> que a tela mostra.</li>
+<li><code>lerTexto</code> devolve <code>null</code> para texto ausente, que não seja <code>string</code> ou que fique vazio depois do <code>trim</code>. A API valida de novo o que a tela já validou: a tela é uma conveniência, a API é a garantia.</li>
+<li>O fim do arquivo usa <code>app.listen(PORT, (erro) =&gt; {...})</code>. No Express 5, o segundo argumento recebe o erro de inicialização. O caso mais comum é <code>EADDRINUSE</code>: a porta 3001 já está ocupada, em geral por outro <code>npm start</code> esquecido num terminal. Em vez de falhar em silêncio, o programa imprime a mensagem e encerra com <code>process.exit(1)</code>. Para resolver, fechem o outro processo ou rodem com outra porta (<code>PORT=3002 npm start</code> no Linux e no macOS; no PowerShell, <code>$env:PORT=3002; npm start</code>).</li>
+</ul>
+<!-- arquivo: public/index.html | etapa: 1 -->
+<p><strong>Arquivo <code>public/index.html</code></strong></p>
+<pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;pt-BR&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Mural de recados<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;estilo.css&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Mural de recados<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;formulario-recado&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;titulo-formulario&quot;</span>&gt;</span>Novo recado<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;texto&quot;</span>&gt;</span>Texto do recado<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;texto&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;texto&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">&quot;200&quot;</span> <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">&quot;off&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;acoes&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;salvar&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>Cadastrar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;cancelar-edicao&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">hidden</span>&gt;</span>Cancelar edição<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;excluir&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">disabled</span>&gt;</span>Excluir selecionado<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;mensagem&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;status&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Recados<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;lista-recados&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;mural.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><!-- arquivo: public/estilo.css | etapa: 1 -->
+<p><strong>Arquivo <code>public/estilo.css</code></strong></p>
+<pre><code class="hljs language-css"><span class="hljs-comment">/* estilo.css — visual simples do mural; funciona em tela estreita. */</span>
+* { <span class="hljs-attribute">box-sizing</span>: border-box; }
+<span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>; <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&#x27;Segoe UI&#x27;</span>, Arial, sans-serif; <span class="hljs-attribute">background</span>: <span class="hljs-number">#f4f6f8</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#1f2933</span>; }
+<span class="hljs-selector-tag">main</span> { <span class="hljs-attribute">max-width</span>: <span class="hljs-number">640px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto; <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>; }
+<span class="hljs-selector-tag">h1</span> { <span class="hljs-attribute">color</span>: <span class="hljs-number">#1d7a2d</span>; }
+<span class="hljs-selector-tag">form</span>, <span class="hljs-selector-tag">section</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>; <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#d9e2e8</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>; <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">16px</span>; }
+<span class="hljs-selector-tag">label</span> { <span class="hljs-attribute">display</span>: block; <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">600</span>; <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">4px</span>; }
+<span class="hljs-selector-tag">input</span> { <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1rem</span>; <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#9aa8b2</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">6px</span>; }
+<span class="hljs-selector-class">.acoes</span> { <span class="hljs-attribute">display</span>: flex; <span class="hljs-attribute">flex-wrap</span>: wrap; <span class="hljs-attribute">gap</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">12px</span>; }
+<span class="hljs-selector-tag">button</span> { <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span> <span class="hljs-number">14px</span>; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1rem</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">6px</span>; <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#1d7a2d</span>; <span class="hljs-attribute">background</span>: <span class="hljs-number">#2f9e41</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>; <span class="hljs-attribute">cursor</span>: pointer; }
+<span class="hljs-selector-tag">button</span><span class="hljs-selector-attr">[type=<span class="hljs-string">&quot;button&quot;</span>]</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#1d7a2d</span>; }
+<span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:disabled</span> { <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.5</span>; <span class="hljs-attribute">cursor</span>: not-allowed; }
+<span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:focus-visible</span>, <span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">:focus-visible</span> { <span class="hljs-attribute">outline</span>: <span class="hljs-number">3px</span> solid <span class="hljs-number">#1d7a2d</span>; <span class="hljs-attribute">outline-offset</span>: <span class="hljs-number">2px</span>; }
+<span class="hljs-selector-id">#mensagem</span> { <span class="hljs-attribute">min-height</span>: <span class="hljs-number">1.4em</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">12px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>; }
+<span class="hljs-selector-id">#mensagem</span><span class="hljs-selector-class">.sucesso</span> { <span class="hljs-attribute">color</span>: <span class="hljs-number">#1d7a2d</span>; }
+<span class="hljs-selector-id">#mensagem</span><span class="hljs-selector-class">.erro</span> { <span class="hljs-attribute">color</span>: <span class="hljs-number">#b00020</span>; <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">600</span>; }
+<span class="hljs-selector-tag">ul</span> { <span class="hljs-attribute">list-style</span>: none; <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>; }
+<span class="hljs-selector-tag">li</span> <span class="hljs-selector-tag">button</span> { <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>; <span class="hljs-attribute">text-align</span>: left; <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">6px</span>; <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#1f2933</span>; <span class="hljs-attribute">border-color</span>: <span class="hljs-number">#d9e2e8</span>; }
+<span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.selecionado</span> <span class="hljs-selector-tag">button</span> { <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#1d7a2d</span>; <span class="hljs-attribute">background</span>: <span class="hljs-number">#e6f4ed</span>; }</code></pre><p>O CSS não participa da lógica. Duas linhas importam para os padrões: <code>#mensagem.sucesso</code> e <code>#mensagem.erro</code>, que pintam a mensagem de verde ou de vermelho conforme a classe que o JavaScript coloca, e <code>li.selecionado button</code>, que destaca o recado em edição.</p>
+<!-- arquivo: public/mural.js | etapa: 1 -->
+<p><strong>Arquivo <code>public/mural.js</code></strong></p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// public/mural.js — tela do mural: lista, cadastra, edita e exclui recados pela API.</span>
+<span class="hljs-keyword">const</span> formulario = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;formulario-recado&#x27;</span>);
+<span class="hljs-keyword">const</span> campoTexto = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;texto&#x27;</span>);
+<span class="hljs-keyword">const</span> tituloFormulario = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;titulo-formulario&#x27;</span>);
+<span class="hljs-keyword">const</span> botaoSalvar = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;salvar&#x27;</span>);
+<span class="hljs-keyword">const</span> botaoCancelar = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;cancelar-edicao&#x27;</span>);
+<span class="hljs-keyword">const</span> botaoExcluir = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;excluir&#x27;</span>);
+<span class="hljs-keyword">const</span> mensagem = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;mensagem&#x27;</span>);
+<span class="hljs-keyword">const</span> lista = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;lista-recados&#x27;</span>);
+
+<span class="hljs-keyword">let</span> idEmEdicao = <span class="hljs-literal">null</span>;   <span class="hljs-comment">// null = cadastrando; um número = editando esse recado</span>
+
+<span class="hljs-comment">// Mostra uma mensagem; erro = true pinta de vermelho</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">mostrarMensagem</span>(<span class="hljs-params">texto, erro</span>) {
+    mensagem.<span class="hljs-property">textContent</span> = texto;
+    mensagem.<span class="hljs-property">className</span> = erro ? <span class="hljs-string">&#x27;erro&#x27;</span> : <span class="hljs-string">&#x27;sucesso&#x27;</span>;
+}
+
+<span class="hljs-comment">// Faz a requisição e devolve o JSON. Lança Error em dois casos:</span>
+<span class="hljs-comment">// 1) o servidor respondeu com erro (400, 404, 500...)</span>
+<span class="hljs-comment">// 2) não houve resposta (servidor parado, sem rede)</span>
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">chamarApi</span>(<span class="hljs-params">caminho, opcoes</span>) {
+    <span class="hljs-keyword">let</span> resposta;
+    <span class="hljs-keyword">try</span> {
+        resposta = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(caminho, opcoes);
+    } <span class="hljs-keyword">catch</span> {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Sem conexão com o servidor. Confiram se ele está rodando.&#x27;</span>);
+    }
+    <span class="hljs-keyword">const</span> dados = <span class="hljs-keyword">await</span> resposta.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">catch</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-literal">null</span>);
+    <span class="hljs-keyword">if</span> (!resposta.<span class="hljs-property">ok</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(dados?.<span class="hljs-property">erro</span> || <span class="hljs-string">&#x27;O servidor respondeu com erro &#x27;</span> + resposta.<span class="hljs-property">status</span>);
+    }
+    <span class="hljs-keyword">return</span> dados;
+}
+
+<span class="hljs-comment">// Desabilita os botões enquanto uma requisição está em andamento</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">definirOcupado</span>(<span class="hljs-params">ocupado</span>) {
+    botaoSalvar.<span class="hljs-property">disabled</span> = ocupado;
+    botaoCancelar.<span class="hljs-property">disabled</span> = ocupado;
+    botaoExcluir.<span class="hljs-property">disabled</span> = ocupado || idEmEdicao === <span class="hljs-literal">null</span>;
+}
+
+<span class="hljs-comment">// Busca os recados e redesenha a lista</span>
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">carregarRecados</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> recados = <span class="hljs-keyword">await</span> <span class="hljs-title function_">chamarApi</span>(<span class="hljs-string">&#x27;/api/recados&#x27;</span>);
+    lista.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&#x27;&#x27;</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> recado <span class="hljs-keyword">of</span> recados) {
+        <span class="hljs-keyword">const</span> item = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;li&#x27;</span>);
+        <span class="hljs-keyword">const</span> botao = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;button&#x27;</span>);
+        botao.<span class="hljs-property">type</span> = <span class="hljs-string">&#x27;button&#x27;</span>;
+        botao.<span class="hljs-property">textContent</span> = recado.<span class="hljs-property">texto</span>;   <span class="hljs-comment">// textContent: o texto aparece como texto, nunca como HTML</span>
+        botao.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">selecionarRecado</span>(recado));
+        <span class="hljs-keyword">if</span> (recado.<span class="hljs-property">id</span> === idEmEdicao) item.<span class="hljs-property">className</span> = <span class="hljs-string">&#x27;selecionado&#x27;</span>;
+        item.<span class="hljs-title function_">appendChild</span>(botao);
+        lista.<span class="hljs-title function_">appendChild</span>(item);
+    }
+}
+
+<span class="hljs-comment">// Clicar num recado: o formulário passa para o modo edição</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">selecionarRecado</span>(<span class="hljs-params">recado</span>) {
+    idEmEdicao = recado.<span class="hljs-property">id</span>;
+    campoTexto.<span class="hljs-property">value</span> = recado.<span class="hljs-property">texto</span>;
+    tituloFormulario.<span class="hljs-property">textContent</span> = <span class="hljs-string">&#x27;Editando recado &#x27;</span> + recado.<span class="hljs-property">id</span>;
+    botaoSalvar.<span class="hljs-property">textContent</span> = <span class="hljs-string">&#x27;Salvar alteração&#x27;</span>;
+    botaoCancelar.<span class="hljs-property">hidden</span> = <span class="hljs-literal">false</span>;
+    botaoExcluir.<span class="hljs-property">disabled</span> = <span class="hljs-literal">false</span>;
+    <span class="hljs-title function_">mostrarMensagem</span>(<span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-literal">false</span>);
+    <span class="hljs-title function_">carregarRecados</span>().<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">erro</span>) =&gt;</span> <span class="hljs-title function_">mostrarMensagem</span>(erro.<span class="hljs-property">message</span>, <span class="hljs-literal">true</span>));   <span class="hljs-comment">// redesenha o destaque</span>
+}
+
+<span class="hljs-comment">// Volta o formulário para o modo cadastro</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">voltarParaCadastro</span>(<span class="hljs-params"></span>) {
+    idEmEdicao = <span class="hljs-literal">null</span>;
+    formulario.<span class="hljs-title function_">reset</span>();
+    tituloFormulario.<span class="hljs-property">textContent</span> = <span class="hljs-string">&#x27;Novo recado&#x27;</span>;
+    botaoSalvar.<span class="hljs-property">textContent</span> = <span class="hljs-string">&#x27;Cadastrar&#x27;</span>;
+    botaoCancelar.<span class="hljs-property">hidden</span> = <span class="hljs-literal">true</span>;
+    botaoExcluir.<span class="hljs-property">disabled</span> = <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-comment">// Submit do formulário: POST (cadastro) ou PUT (edição)</span>
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">salvarRecado</span>(<span class="hljs-params">evento</span>) {
+    evento.<span class="hljs-title function_">preventDefault</span>();   <span class="hljs-comment">// impede o navegador de recarregar a página</span>
+    <span class="hljs-keyword">const</span> texto = campoTexto.<span class="hljs-property">value</span>.<span class="hljs-title function_">trim</span>();
+    <span class="hljs-keyword">if</span> (!texto) {
+        <span class="hljs-title function_">mostrarMensagem</span>(<span class="hljs-string">&#x27;Escreva o texto do recado.&#x27;</span>, <span class="hljs-literal">true</span>);
+        campoTexto.<span class="hljs-title function_">focus</span>();
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-keyword">const</span> editando = idEmEdicao !== <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">const</span> caminho = editando ? <span class="hljs-string">&#x27;/api/recados/&#x27;</span> + idEmEdicao : <span class="hljs-string">&#x27;/api/recados&#x27;</span>;
+    <span class="hljs-title function_">definirOcupado</span>(<span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> recado = <span class="hljs-keyword">await</span> <span class="hljs-title function_">chamarApi</span>(caminho, {
+            <span class="hljs-attr">method</span>: editando ? <span class="hljs-string">&#x27;PUT&#x27;</span> : <span class="hljs-string">&#x27;POST&#x27;</span>,
+            <span class="hljs-attr">headers</span>: { <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span> },
+            <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>({ texto })
+        });
+        <span class="hljs-title function_">voltarParaCadastro</span>();
+        <span class="hljs-keyword">await</span> <span class="hljs-title function_">carregarRecados</span>();
+        <span class="hljs-title function_">mostrarMensagem</span>((editando ? <span class="hljs-string">&#x27;Recado alterado&#x27;</span> : <span class="hljs-string">&#x27;Recado cadastrado&#x27;</span>) + <span class="hljs-string">&#x27; (id &#x27;</span> + recado.<span class="hljs-property">id</span> + <span class="hljs-string">&#x27;).&#x27;</span>, <span class="hljs-literal">false</span>);
+    } <span class="hljs-keyword">catch</span> (erro) {
+        <span class="hljs-title function_">mostrarMensagem</span>(erro.<span class="hljs-property">message</span>, <span class="hljs-literal">true</span>);   <span class="hljs-comment">// o texto digitado continua no campo</span>
+    } <span class="hljs-keyword">finally</span> {
+        <span class="hljs-title function_">definirOcupado</span>(<span class="hljs-literal">false</span>);
+    }
+}
+
+<span class="hljs-comment">// Botão Excluir: confirma antes de enviar o DELETE</span>
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">excluirRecado</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">if</span> (idEmEdicao === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
+    <span class="hljs-keyword">const</span> confirmou = <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">confirm</span>(<span class="hljs-string">&#x27;Excluir o recado &#x27;</span> + idEmEdicao + <span class="hljs-string">&#x27;?&#x27;</span>);
+    <span class="hljs-keyword">if</span> (!confirmou) {
+        <span class="hljs-title function_">mostrarMensagem</span>(<span class="hljs-string">&#x27;Exclusão cancelada.&#x27;</span>, <span class="hljs-literal">false</span>);
+        <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-title function_">definirOcupado</span>(<span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> resultado = <span class="hljs-keyword">await</span> <span class="hljs-title function_">chamarApi</span>(<span class="hljs-string">&#x27;/api/recados/&#x27;</span> + idEmEdicao, { <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;DELETE&#x27;</span> });
+        <span class="hljs-title function_">voltarParaCadastro</span>();
+        <span class="hljs-keyword">await</span> <span class="hljs-title function_">carregarRecados</span>();
+        <span class="hljs-title function_">mostrarMensagem</span>(<span class="hljs-string">&#x27;Recado &#x27;</span> + resultado.<span class="hljs-property">recado</span>.<span class="hljs-property">id</span> + <span class="hljs-string">&#x27; excluído.&#x27;</span>, <span class="hljs-literal">false</span>);
+    } <span class="hljs-keyword">catch</span> (erro) {
+        <span class="hljs-title function_">mostrarMensagem</span>(erro.<span class="hljs-property">message</span>, <span class="hljs-literal">true</span>);
+    } <span class="hljs-keyword">finally</span> {
+        <span class="hljs-title function_">definirOcupado</span>(<span class="hljs-literal">false</span>);
+    }
+}
+
+formulario.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;submit&#x27;</span>, salvarRecado);
+botaoCancelar.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">voltarParaCadastro</span>();
+    <span class="hljs-title function_">mostrarMensagem</span>(<span class="hljs-string">&#x27;Edição cancelada.&#x27;</span>, <span class="hljs-literal">false</span>);
+});
+botaoExcluir.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, excluirRecado);
+
+<span class="hljs-title function_">carregarRecados</span>().<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">erro</span>) =&gt;</span> <span class="hljs-title function_">mostrarMensagem</span>(erro.<span class="hljs-property">message</span>, <span class="hljs-literal">true</span>));</code></pre><h2 id="padrão-1--html-e-javascript-se-encontram-pelos-ids">Padrão 1 — HTML e JavaScript se encontram pelos IDs</h2>
+<p>O JavaScript não &quot;enxerga&quot; o HTML por posição nem por aparência. Ele procura cada elemento por um <strong>ID</strong>, com <code>document.getElementById</code>, e guarda o resultado numa constante. Se o ID do HTML e o texto procurado no JavaScript não forem idênticos, a busca devolve <code>null</code> e a primeira linha que usar a constante quebra com <code>Cannot read properties of null</code>.</p>
+<p>As primeiras linhas de <code>mural.js</code> fazem esse encontro:</p>
+<table>
+<thead>
+<tr>
+<th>ID no <code>index.html</code></th>
+<th>Constante em <code>mural.js</code></th>
+<th>Papel</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>formulario-recado</code></td>
+<td><code>formulario</code></td>
+<td>O <code>&lt;form&gt;</code>; recebe o evento <code>submit</code> e o <code>reset()</code>.</td>
+</tr>
+<tr>
+<td><code>texto</code></td>
+<td><code>campoTexto</code></td>
+<td>O campo de texto; <code>value</code> lê e escreve o que está digitado.</td>
+</tr>
+<tr>
+<td><code>titulo-formulario</code></td>
+<td><code>tituloFormulario</code></td>
+<td>Muda entre &quot;Novo recado&quot; e &quot;Editando recado N&quot;.</td>
+</tr>
+<tr>
+<td><code>salvar</code></td>
+<td><code>botaoSalvar</code></td>
+<td>Botão <code>submit</code>; o texto alterna entre &quot;Cadastrar&quot; e &quot;Salvar alteração&quot;.</td>
+</tr>
+<tr>
+<td><code>cancelar-edicao</code></td>
+<td><code>botaoCancelar</code></td>
+<td>Aparece só no modo edição (atributo <code>hidden</code>).</td>
+</tr>
+<tr>
+<td><code>excluir</code></td>
+<td><code>botaoExcluir</code></td>
+<td>Começa desabilitado; só vale com um recado selecionado.</td>
+</tr>
+<tr>
+<td><code>mensagem</code></td>
+<td><code>mensagem</code></td>
+<td>Onde sucesso e erro aparecem; tem <code>role=&quot;status&quot;</code> para leitores de tela.</td>
+</tr>
+<tr>
+<td><code>lista-recados</code></td>
+<td><code>lista</code></td>
+<td>O <code>&lt;ul&gt;</code> que a função de listar preenche.</td>
+</tr>
+</tbody></table>
+<p><strong>A ordem do <code>&lt;script&gt;</code> importa.</strong> No <code>index.html</code>, a tag <code>&lt;script src=&quot;mural.js&quot;&gt;</code> fica no <strong>fim do <code>body</code></strong>, depois de todos os elementos. O navegador lê o HTML de cima para baixo: se o script viesse no <code>head</code>, ele rodaria antes de o formulário existir, e todos os <code>getElementById</code> devolveriam <code>null</code>.</p>
+<p><strong>Como conferir.</strong> Abram o console do navegador (F12, aba Console) e digitem <code>document.getElementById(&#39;texto&#39;)</code>. Se aparecer o elemento, o ID existe; se aparecer <code>null</code>, há diferença entre HTML e JavaScript (maiúscula, hífen, letra trocada).</p>
+<blockquote>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Explique o que acontece se eu esquecer o evento.preventDefault() no submit. Antes de responder, peça que eu preveja.&quot;</em></p>
+</blockquote>
+<h2 id="padrão-2--listar-e-desenhar">Padrão 2 — Listar e desenhar</h2>
+<p>A função <code>carregarRecados</code> faz três coisas, sempre nesta ordem: <strong>buscar</strong> os dados na API, <strong>limpar</strong> a lista antiga e <strong>desenhar</strong> um item para cada registro.</p>
+<pre><code class="hljs language-text">buscar:   const recados = await chamarApi(&#x27;/api/recados&#x27;);
+limpar:   lista.innerHTML = &#x27;&#x27;;
+desenhar: para cada recado, criar &lt;li&gt; + &lt;button&gt;, preencher, anexar à lista</code></pre><p>Pontos que valem atenção:</p>
+<ul>
+<li>A função é <code>async</code> porque <code>fetch</code> é assíncrono. O <code>await</code> faz a função esperar a resposta antes de seguir.</li>
+<li><code>lista.innerHTML = &#39;&#39;</code> apaga os itens antigos. Sem isso, cada chamada acrescentaria a lista inteira de novo ao final da anterior.</li>
+<li>Cada item é criado com <code>document.createElement</code> e preenchido com <strong><code>textContent</code></strong>, não com <code>innerHTML</code>.</li>
+</ul>
+<p><strong>Por que <code>textContent</code> e não <code>innerHTML</code> para dados.</strong> O <code>innerHTML</code> interpreta o texto como HTML. O <code>textContent</code> mostra o texto como texto. Para dados que vêm de uma pessoa (o recado, o nome de uma música), só o <code>textContent</code> é seguro.</p>
+<p><strong>Teste do negrito.</strong> Cadastrem o recado <code>&lt;b&gt;negrito&lt;/b&gt;</code>. Com <code>textContent</code>, a lista mostra exatamente <code>&lt;b&gt;negrito&lt;/b&gt;</code>, com os sinais de menor e maior. Se vocês trocassem a linha por <code>botao.innerHTML = recado.texto</code>, a lista mostraria a palavra &quot;negrito&quot; em negrito, porque o navegador trataria o texto como marcação. Com um texto como <code>&lt;img src=x onerror=...&gt;</code>, a mesma troca executaria código de quem digitou. Isso se chama injeção de HTML (XSS), e o <code>textContent</code> evita o problema sem esforço.</p>
+<p><strong>Observação sobre <code>selecionarRecado</code>.</strong> Cada clique num recado chama <code>carregarRecados()</code> de novo, só para redesenhar qual item está destacado. Funciona, mas gasta uma requisição por clique. Uma alternativa mais simples seria trocar a classe <code>selecionado</code> direto nos elementos da lista, sem ir à API. O mural mantém o recarregamento porque ele mostra, num único lugar, como a lista é sempre desenhada a partir do estado (<code>idEmEdicao</code>). Vocês podem escolher outro caminho nas músicas, desde que a lista e o destaque não fiquem fora de sincronia.</p>
+<h2 id="padrão-3--cadastrar">Padrão 3 — Cadastrar</h2>
+<p>O cadastro é o caso base: <code>salvarRecado</code>, quando <code>idEmEdicao</code> é <code>null</code>, envia um <code>POST</code>. O caminho, linha a linha:</p>
+<ol>
+<li><p><strong><code>evento.preventDefault()</code></strong> é a primeira linha. O <code>submit</code> de um formulário recarrega a página por padrão. Sem esta linha, a página recarrega antes de a resposta da API chegar, a mensagem some e a lista é redesenhada do zero.</p>
+</li>
+<li><p><strong><code>campoTexto.value.trim()</code></strong> lê o texto e tira os espaços das pontas. Um texto só com espaços vira vazio.</p>
+</li>
+<li><p><strong>Validação antes de enviar.</strong> Se o texto estiver vazio, a função mostra a mensagem de erro, devolve o foco ao campo com <code>focus()</code> e termina com <code>return</code>. Nenhuma requisição é feita. Isso atende ao R5 no lado da tela.</p>
+</li>
+<li><p><strong>O <code>fetch</code> do POST</strong> leva três opções:</p>
+<table>
+<thead>
+<tr>
+<th>Opção</th>
+<th>Valor</th>
+<th>Por quê</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>method</code></td>
+<td><code>&#39;POST&#39;</code></td>
+<td>Cadastrar.</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>{ &#39;Content-Type&#39;: &#39;application/json&#39; }</code></td>
+<td>Avisa a API de que o corpo é JSON. Sem este cabeçalho, o <code>express.json()</code> ignora o corpo e a API responde <code>400</code>.</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td><code>JSON.stringify({ texto })</code></td>
+<td>O <code>fetch</code> só envia texto. <code>JSON.stringify</code> transforma o objeto em texto JSON.</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>Status <code>201</code>.</strong> A API responde <code>201 Created</code> com o recado criado. Quem decide se deu certo é <code>response.ok</code> (veja o Padrão 4), que vale para qualquer status de <code>200</code> a <code>299</code>.</p>
+</li>
+<li><p><strong>Ler o <code>id</code> da resposta.</strong> O recado devolvido traz o <code>id</code> que o servidor atribuiu. O mural usa esse <code>id</code> na mensagem: &quot;Recado cadastrado (id 2).&quot; Esse número é a prova de que o registro foi criado pela API, não só desenhado na tela. Nas músicas, é o <code>id</code> que o R2 pede que vocês anotem.</p>
+</li>
+<li><p><strong>Voltar ao cadastro e recarregar.</strong> <code>voltarParaCadastro()</code> limpa o formulário e <code>await carregarRecados()</code> redesenha a lista com o novo registro.</p>
+</li>
+</ol>
+<p><strong>Dois detalhes de ordem.</strong> A mensagem de sucesso só é escrita <strong>depois</strong> de <code>chamarApi</code> retornar sem lançar erro. E a mensagem vem <strong>depois</strong> do recarregamento da lista. Por isso, se a gravação funcionou mas o recarregamento falhou (queda de conexão entre as duas chamadas), a tela mostra a mensagem de falha de conexão, embora o recado tenha sido gravado. A mensagem não está errada sobre o que falhou (a atualização da lista), mas pode confundir. Quando uma mensagem de erro aparece logo depois de um salvamento, abram a aba Rede e leiam a ordem das requisições: se o <code>POST</code> aparece com <code>201</code>, o registro existe e só a lista não atualizou.</p>
+<h2 id="padrão-4--erro-http--falha-de-conexão">Padrão 4 — Erro HTTP × falha de conexão</h2>
+<p>O <code>fetch</code> tem uma regra que surpreende quem vem de outras linguagens: <strong>ele só lança exceção quando não consegue falar com o servidor.</strong> Se o servidor respondeu, mesmo com <code>400</code>, <code>404</code> ou <code>500</code>, o <code>fetch</code> termina normalmente e entrega uma resposta cujo <code>response.ok</code> é <code>false</code>. Quem confere o status é o seu código.</p>
+<p>A função <code>chamarApi</code> junta os dois casos num só: lança um <code>Error</code> com uma mensagem que a tela pode mostrar. Linha a linha:</p>
+<pre><code class="hljs language-text">async function chamarApi(caminho, opcoes) {
+    let resposta;                               // declarada fora do try para valer depois dele
+    try {
+        resposta = await fetch(caminho, opcoes);   // falha aqui = sem resposta nenhuma
+    } catch {
+        throw new Error(&#x27;Sem conexão com o servidor. Confiram se ele está rodando.&#x27;);
+    }
+    const dados = await resposta.json().catch(() =&gt; null);   // corpo não é JSON? vira null
+    if (!resposta.ok) {                         // o servidor respondeu, mas com erro
+        throw new Error(dados?.erro || &#x27;O servidor respondeu com erro &#x27; + resposta.status);
+    }
+    return dados;                               // só chega aqui se deu certo
+}</code></pre><ul>
+<li>O <code>try/catch</code> em volta do <code>fetch</code> captura apenas a <strong>falha de conexão</strong>.</li>
+<li><code>resposta.json().catch(() =&gt; null)</code> evita um segundo erro quando o corpo da resposta não é JSON (por exemplo, uma página de erro em HTML). Nesse caso, <code>dados</code> fica <code>null</code>.</li>
+<li><code>dados?.erro</code> usa o campo <code>erro</code> que a API manda. Se ele não existir, a mensagem cai no texto genérico com o status.</li>
+<li>Quem chama <code>chamarApi</code> usa um <code>try/catch</code> só, e trata os dois casos do mesmo jeito: <code>mostrarMensagem(erro.message, true)</code>.</li>
+</ul>
+<h3 id="situação-fetch-e-tela">Situação, <code>fetch</code> e tela</h3>
+<table>
+<thead>
+<tr>
+<th>Situação</th>
+<th>O que o <code>fetch</code> faz</th>
+<th>O que a tela mostra</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>400</code> — texto vazio que passou pela tela</td>
+<td>Termina normal; <code>response.ok</code> é <code>false</code></td>
+<td>A mensagem da API: &quot;Escreva o texto do recado&quot;, em vermelho</td>
+</tr>
+<tr>
+<td><code>404</code> — recado já excluído em outra aba</td>
+<td>Termina normal; <code>response.ok</code> é <code>false</code></td>
+<td>&quot;Recado não encontrado&quot;, em vermelho</td>
+</tr>
+<tr>
+<td><code>500</code> — erro interno no servidor</td>
+<td>Termina normal; <code>response.ok</code> é <code>false</code></td>
+<td>A mensagem de <code>erro</code>, se o servidor mandar; senão &quot;O servidor respondeu com erro 500&quot;</td>
+</tr>
+<tr>
+<td>Servidor parado ou sem rede</td>
+<td><strong>Lança exceção</strong> (o <code>catch</code> do <code>try</code> interno)</td>
+<td>&quot;Sem conexão com o servidor. Confiram se ele está rodando.&quot;, em vermelho</td>
+</tr>
+<tr>
+<td><code>200</code> ou <code>201</code></td>
+<td>Termina normal; <code>response.ok</code> é <code>true</code></td>
+<td>Mensagem de sucesso, em verde</td>
+</tr>
+</tbody></table>
+<p><strong>A regra:</strong> a tela só anuncia sucesso depois da resposta <code>ok</code>. Na prática, a linha <code>mostrarMensagem(&#39;Recado cadastrado...&#39;, false)</code> fica <strong>depois</strong> do <code>await chamarApi(...)</code>, nunca antes. Se ela viesse antes, uma queda de conexão deixaria a tela dizendo &quot;cadastrado&quot; para um registro que não existe. É exatamente o erro que o R5 quer evitar.</p>
+<blockquote>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Qual a diferença entre a resposta ter response.ok falso e o fetch lançar uma exceção? Dê um exemplo de cada situação no meu projeto.&quot;</em></p>
+</blockquote>
+<h2 id="padrão-5--selecionar-e-editar">Padrão 5 — Selecionar e editar</h2>
+<p>Editar não é uma tela nova. É o <strong>mesmo formulário</strong> em outro modo. Uma única variável de estado, <code>idEmEdicao</code>, diz em qual modo ele está:</p>
+<table>
+<thead>
+<tr>
+<th><code>idEmEdicao</code></th>
+<th>Modo</th>
+<th>Título</th>
+<th>Botão</th>
+<th>Cancelar</th>
+<th>Excluir</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>null</code></td>
+<td>Cadastro</td>
+<td>Novo recado</td>
+<td>Cadastrar</td>
+<td>escondido</td>
+<td>desabilitado</td>
+</tr>
+<tr>
+<td>um número</td>
+<td>Edição</td>
+<td>Editando recado N</td>
+<td>Salvar alteração</td>
+<td>visível</td>
+<td>habilitado</td>
+</tr>
+</tbody></table>
+<p>As três funções que mexem nesse estado:</p>
+<ul>
+<li><p><strong><code>selecionarRecado(recado)</code></strong> entra no modo edição. Guarda o <code>id</code>, copia o texto para o campo, troca título e botão, mostra &quot;Cancelar edição&quot; e habilita &quot;Excluir selecionado&quot;. Ao final, recarrega a lista para redesenhar o destaque (a observação do Padrão 2).</p>
+</li>
+<li><p><strong><code>voltarParaCadastro()</code></strong> faz o caminho inverso: <code>idEmEdicao = null</code>, <code>formulario.reset()</code> e os textos originais. É usada depois de salvar, depois de excluir e ao cancelar.</p>
+</li>
+<li><p><strong><code>salvarRecado</code></strong> decide sozinha entre criar e alterar:</p>
+<pre><code class="hljs language-text">const editando = idEmEdicao !== null;
+const caminho  = editando ? &#x27;/api/recados/&#x27; + idEmEdicao : &#x27;/api/recados&#x27;;
+method: editando ? &#x27;PUT&#x27; : &#x27;POST&#x27;</code></pre><p>O mesmo <code>submit</code> serve aos dois modos. O que muda é o método (<code>PUT</code> ou <code>POST</code>) e o endereço (com ou sem <code>/id</code>). É por isso que a variável <code>idEmEdicao</code> precisa estar certa na hora de salvar: se ela ficar <code>null</code> no modo edição, o <code>submit</code> cria um registro novo em vez de alterar o existente.</p>
+</li>
+</ul>
+<p>O botão <strong>Cancelar edição</strong> chama <code>voltarParaCadastro()</code> e informa &quot;Edição cancelada.&quot; Nada é enviado à API.</p>
+<p><strong>Com a API fora do ar, o texto não se perde.</strong> No <code>catch</code> de <code>salvarRecado</code>, a função não chama <code>voltarParaCadastro()</code>. O texto digitado continua no campo e o modo de edição continua ativo, para a pessoa tentar de novo.</p>
+<blockquote>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Estou no modo edição e, ao salvar, é criada uma música nova em vez de alterar a existente. Que perguntas devo me fazer para achar o erro?&quot;</em></p>
+</blockquote>
+<h2 id="padrão-6--excluir-com-confirmação">Padrão 6 — Excluir com confirmação</h2>
+<p><code>excluirRecado</code> segue uma ordem fixa:</p>
+<ol>
+<li><strong>Exigir seleção.</strong> Sem <code>idEmEdicao</code>, a função termina na primeira linha. O botão já fica desabilitado, e esta verificação é a segunda barreira.</li>
+<li><strong>Confirmar.</strong> <code>window.confirm(&#39;Excluir o recado N?&#39;)</code> abre uma caixa com OK e Cancelar e devolve <code>true</code> ou <code>false</code>. Se for <code>false</code>, a função mostra &quot;Exclusão cancelada.&quot; e termina <strong>sem enviar nada</strong>. Esse é o comportamento que o R4 pede: cancelar mantém o registro.</li>
+<li><strong>Enviar o <code>DELETE</code></strong> para <code>/api/recados/</code> + o <code>id</code>. Não há corpo.</li>
+<li><strong>Atualizar.</strong> Depois de uma resposta <code>ok</code>, <code>voltarParaCadastro()</code> zera a seleção, <code>await carregarRecados()</code> redesenha a lista sem o registro e a mensagem usa o que a API devolveu: <code>resultado.recado.id</code>. A API responde <code>{ mensagem, recado }</code>; para as músicas, o contrato é <code>{ mensagem, musica }</code>.</li>
+</ol>
+<p><strong>Observação sobre o foco.</strong> Durante a exclusão, <code>definirOcupado(true)</code> desabilita o botão Excluir, e no <code>finally</code> ele continua desabilitado (porque <code>voltarParaCadastro()</code> já zerou a seleção). O botão que tinha o foco deixou de aceitar foco, e quem navega pelo teclado perde a posição na página. O mural não corrige isso. Se vocês quiserem tratar, o caminho é mandar o foco para o campo de texto depois de excluir. Vale a pena fazer nas músicas se o tempo permitir; não é exigido pelos requisitos.</p>
+<blockquote>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Revise a minha função de exclusão (colada abaixo). Aponte a linha do problema e explique, sem reescrever a função.&quot;</em></p>
+</blockquote>
+<h2 id="padrão-7--evitar-envio-duplicado">Padrão 7 — Evitar envio duplicado</h2>
+<p>Se a pessoa clicar duas vezes em &quot;Cadastrar&quot; antes de a resposta chegar, duas requisições partem e dois registros são criados. A defesa é desabilitar os botões enquanto a requisição está em andamento.</p>
+<p><code>definirOcupado(ocupado)</code> faz isso em um lugar só:</p>
+<pre><code class="hljs language-text">botaoSalvar.disabled   = ocupado;
+botaoCancelar.disabled = ocupado;
+botaoExcluir.disabled  = ocupado || idEmEdicao === null;</code></pre><p>A última linha tem uma sutileza: ao terminar (<code>ocupado</code> igual a <code>false</code>), o botão Excluir só volta a ficar habilitado se ainda houver um recado selecionado.</p>
+<p>O padrão fica completo com o <code>finally</code>:</p>
+<pre><code class="hljs language-text">definirOcupado(true);
+try {
+    ...await chamarApi(...)...
+} catch (erro) {
+    mostrarMensagem(erro.message, true);
+} finally {
+    definirOcupado(false);     // roda com sucesso OU com erro
+}</code></pre><p>O <code>finally</code> roda sempre, inclusive quando o <code>catch</code> é executado. Se a liberação estivesse só no fim do <code>try</code>, um erro de rede deixaria os botões desabilitados para sempre e a pessoa teria de recarregar a página. É esse o sintoma &quot;o botão Excluir continua desabilitado&quot; da seção &quot;Se deu errado&quot;.</p>
+<h2 id="conferir-na-aba-rede-devtools">Conferir na aba Rede (DevTools)</h2>
+<p>A tela mostra o que o JavaScript decidiu mostrar. A aba <strong>Rede</strong> (em inglês, <em>Network</em>) mostra o que realmente aconteceu entre o navegador e a API. É a fonte da evidência para o Percurso para testar e demonstrar.</p>
+<p><strong>Abrir.</strong> Com a página do mural aberta, apertem F12 e escolham a aba Rede. Marquem o filtro <strong>Fetch/XHR</strong> para ver só as chamadas à API. Recarreguem a página (F5) para a lista de requisições começar do zero.</p>
+<p><strong>O que ler em cada requisição.</strong> Cliquem numa linha da lista:</p>
+<table>
+<thead>
+<tr>
+<th>Onde olhar</th>
+<th>O que mostra</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Coluna <strong>Método</strong> (ou aba Cabeçalhos)</td>
+<td><code>GET</code>, <code>POST</code>, <code>PUT</code> ou <code>DELETE</code></td>
+</tr>
+<tr>
+<td>Coluna <strong>Nome</strong> / URL</td>
+<td>O endereço chamado, como <code>/api/recados/2</code></td>
+</tr>
+<tr>
+<td>Coluna <strong>Status</strong></td>
+<td><code>200</code>, <code>201</code>, <code>400</code>, <code>404</code>...</td>
+</tr>
+<tr>
+<td>Aba <strong>Carga</strong> (<em>Payload</em>)</td>
+<td>O que a página enviou no corpo (o JSON de <code>JSON.stringify</code>)</td>
+</tr>
+<tr>
+<td>Aba <strong>Resposta</strong> (<em>Response</em>)</td>
+<td>O que a API devolveu, como texto JSON</td>
+</tr>
+</tbody></table>
+<p><strong>Onde ver o <code>id</code> criado (evidência do R2).</strong> Cadastrem um recado e procurem a requisição <code>POST</code> para <code>/api/recados</code>. Na aba Resposta, o JSON traz <code>id</code> e <code>texto</code>. Esse <code>id</code>, junto com o status <code>201</code>, mostra que a API criou o registro. Anotem o <code>id</code>: o Percurso pede que vocês consultem o registro de novo depois.</p>
+<p><strong>Falha controlada (R5).</strong></p>
+<ol>
+<li>Com a página aberta e funcionando, voltem ao terminal onde o <code>npm start</code> roda e apertem <code>Ctrl+C</code>. O servidor para; a página continua aberta.</li>
+<li>Na página, digitem um recado e cliquem em &quot;Cadastrar&quot;.</li>
+<li>Leiam a mensagem. Ela deve ser a de falha de conexão (&quot;Sem conexão com o servidor...&quot;) e <strong>não</strong> pode dizer que o recado foi cadastrado. Na aba Rede, a requisição aparece em vermelho, sem status.</li>
+<li>Reiniciem com <code>npm start</code>, recarreguem a página e confiram a lista. Como os recados vivem na memória, só o recado inicial volta.</li>
+</ol>
+<p>Esse é o mesmo teste da &quot;Falha controlada local&quot; do enunciado do projeto. Nas músicas, a diferença é que a lista volta com os dados do banco.</p>
+<h2 id="aplicando-às-músicas-sem-código">Aplicando às músicas (sem código)</h2>
+<p>Esta seção diz <strong>o que muda</strong> do mural para o catálogo e <strong>o que conferir</strong> em cada requisito. Ela não traz o código das músicas: a escrita é de vocês, com os padrões acima.</p>
+<h3 id="o-que-muda-do-mural-para-as-músicas">O que muda do mural para as músicas</h3>
+<table>
+<thead>
+<tr>
+<th>Ponto</th>
+<th>Mural de recados</th>
+<th>Músicas</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Campos do formulário</td>
+<td>Um (<code>texto</code>)</td>
+<td>Dois (<code>nome</code> e <code>artista</code>), ambos obrigatórios</td>
+</tr>
+<tr>
+<td>Corpo enviado no POST e no PUT</td>
+<td><code>{ texto }</code></td>
+<td><code>{ nome, artista }</code>, os dois como <strong>texto</strong></td>
+</tr>
+<tr>
+<td>O que a API devolve para o artista</td>
+<td>—</td>
+<td>Um <strong>objeto</strong> <code>{ id, nome }</code>. Para preencher o campo no modo edição, usem <code>artista.nome</code>. Usar <code>artista</code> direto escreve <code>[object Object]</code> no campo</td>
+</tr>
+<tr>
+<td>Editar o artista</td>
+<td>—</td>
+<td>Muda o <strong>vínculo desta música</strong>: a música passa a apontar para outro artista (que a API encontra ou cria pelo nome). Os outros registros do artista antigo não são renomeados</td>
+</tr>
+<tr>
+<td>Lista</td>
+<td>Só o texto</td>
+<td>Cada item traz também <code>totalPartes</code></td>
+</tr>
+<tr>
+<td>Música sem partes</td>
+<td>—</td>
+<td>É válida. Ao selecioná-la, a tela informa que não há partes e mantém <strong>Tocar</strong> indisponível</td>
+</tr>
+<tr>
+<td>Resposta do DELETE</td>
+<td><code>{ mensagem, recado }</code></td>
+<td><code>{ mensagem, musica }</code></td>
+</tr>
+<tr>
+<td>Validação na tela</td>
+<td>Um campo vazio</td>
+<td>Nome vazio <strong>ou</strong> artista vazio: cada um deve ser recusado, e a mensagem precisa dizer qual</td>
+</tr>
+</tbody></table>
+<h3 id="checklist-por-requisito">Checklist por requisito</h3>
+<p>Os testes abaixo vêm do &quot;Percurso para testar e demonstrar&quot; do enunciado de &quot;O repertório da turma&quot;. Em todos, usem uma música de teste sem partes e preservem a música que o player usa na demonstração.</p>
+<table>
+<thead>
+<tr>
+<th>Requisito</th>
+<th>O que a tela precisa fazer</th>
+<th>Como conferir</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>R2 — Cadastrar</strong></td>
+<td>Enviar nome e artista (<code>POST /api/musicas</code>); mostrar o resultado; recarregar a lista</td>
+<td>Cadastrar uma música de teste. Na aba Rede, ver <code>201</code> e anotar o <code>id</code> da resposta. Consultar a música de novo. Ao selecioná-la, a tela informa que não há partes e Tocar fica indisponível</td>
+</tr>
+<tr>
+<td><strong>R3 — Editar</strong></td>
+<td>Preencher o formulário ao selecionar; enviar <code>PUT /api/musicas/:id</code> com o <code>id</code> em edição; manter o <code>id</code></td>
+<td>Mudar nome ou artista da música de teste. A lista e a resposta da API mostram a mudança; o <code>id</code> é o mesmo. Reiniciar o servidor e consultar de novo: o mesmo <code>id</code> com os dados novos</td>
+</tr>
+<tr>
+<td><strong>R4 — Excluir</strong></td>
+<td>Exigir seleção; pedir confirmação; só então enviar <code>DELETE /api/musicas/:id</code></td>
+<td>Iniciar a exclusão e <strong>cancelar</strong>: a consulta seguinte mostra a música ainda cadastrada. Iniciar de novo e <strong>confirmar</strong>: a consulta seguinte não a mostra</td>
+</tr>
+<tr>
+<td><strong>R5 — Validar e informar</strong></td>
+<td>Recusar campos vazios antes de enviar; mostrar erro em vermelho e sucesso em verde; distinguir erro da API de falha de conexão</td>
+<td>Tentar cadastrar com nome vazio e com artista vazio: a tela informa o problema e não anuncia cadastro. Parar o servidor local, tentar atualizar a lista ou cadastrar: a mensagem de erro aparece, nunca a de sucesso. Reiniciar e consultar a lista</td>
+</tr>
+</tbody></table>
+<h3 id="quem-usa-a-base-de-retomada">Quem usa a base de retomada</h3>
+<p>Quem usa a base de retomada (disponível no Classroom da disciplina) não escreve a página inteira. Todo o trabalho acontece em <strong><code>public/admin.js</code></strong>, que já está ligado ao HTML e traz comentários <code>TODO</code> para cadastro, edição e exclusão. O <code>catalogo.js</code> já oferece:</p>
+<table>
+<thead>
+<tr>
+<th>Item pronto</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>consultarApi(caminho, opcoes)</code></td>
+<td>Faz o <code>fetch</code>, devolve o JSON em caso de sucesso e <strong>lança <code>Error</code></strong> tanto para erro HTTP quanto para falha de rede. É o equivalente do <code>chamarApi</code> do mural</td>
+</tr>
+<tr>
+<td><code>carregarMusicas()</code></td>
+<td>Busca as músicas e redesenha a lista (o equivalente de <code>carregarRecados</code>)</td>
+</tr>
+<tr>
+<td><code>limparSelecao()</code></td>
+<td>Desfaz a seleção atual</td>
+</tr>
+<tr>
+<td><code>mostrarMensagem(id, texto, erro)</code></td>
+<td>Escreve uma mensagem no elemento de ID <code>id</code>; <code>erro</code> pinta como erro. Atenção: recebe o <strong>ID do elemento</strong> como primeiro argumento, ao contrário do mural</td>
+</tr>
+<tr>
+<td><code>definirCatalogoOcupado(bool)</code></td>
+<td>Trava e destrava a lista enquanto uma operação está em andamento</td>
+</tr>
+<tr>
+<td><code>estadoCatalogo.musicaSelecionada</code></td>
+<td>O detalhe da música selecionada, ou <code>null</code></td>
+</tr>
+<tr>
+<td>evento <code>musica-selecionada</code></td>
+<td>Disparado ao selecionar ou limpar; o detalhe vem em <code>evento.detail</code>, ou <code>null</code></td>
+</tr>
+</tbody></table>
+<p>Os IDs do formulário da base: <code>formulario-musica</code>, <code>nome</code>, <code>artista</code>, <code>salvar-musica</code>, <code>excluir-musica</code>, <code>nova-musica</code>, <code>titulo-formulario</code> e <code>estado-formulario</code>.</p>
+<p>Na correspondência com os padrões: o <code>idEmEdicao</code> do mural é o ID da música selecionada; o <code>voltarParaCadastro</code> tem o papel de preparar um novo cadastro (limpar seleção e campos); o <code>definirOcupado</code> combina a trava dos botões do formulário com <code>definirCatalogoOcupado</code>. Os controles de escrita vêm desabilitados no HTML: habilitar o botão não basta, é preciso integrar a operação e tratar a resposta.</p>
+<h3 id="quem-seguiu-o-guia-do-supabase">Quem seguiu o guia do Supabase</h3>
+<p>Quem seguiu o <em>Guia passo a passo — Karaokê com banco de dados no Supabase</em> tem a página em <code>public/index.html</code> e o código em <code>public/player.js</code> (IDs <code>listaMusicas</code>, <code>nomeMusica</code>, <code>artista</code>, <code>tag</code>, <code>letra</code>, <code>contador</code>, <code>btnTocar</code> e <code>mensagem</code>). O caminho para as operações de escrita:</p>
+<ol>
+<li>Acrescentar ao <code>public/index.html</code> um <code>&lt;form&gt;</code> com os campos <code>nome</code> e <code>artista</code>, um elemento de mensagem e os botões (cadastrar, cancelar edição e excluir). Cuidado com os IDs: <code>artista</code> e <code>mensagem</code> <strong>já existem</strong> no player, e dois elementos com o mesmo ID quebram o <code>getElementById</code>. Escolham nomes novos para o formulário.</li>
+<li>Criar o arquivo <code>public/admin.js</code> e incluí-lo no <code>index.html</code> <strong>depois</strong> do <code>player.js</code>, ambos no fim do <code>body</code>.</li>
+<li>Para recarregar a lista depois de cada operação, chamar <code>carregarPlaylist()</code>, a função do <code>player.js</code> que desenha a lista.</li>
+<li>Aplicar os Padrões 3 a 7 com o mesmo formato de chamada do mural, trocando <code>/api/recados</code> por <code>/api/musicas</code>.</li>
+</ol>
+<h2 id="se-deu-errado">Se deu errado</h2>
+<table>
+<thead>
+<tr>
+<th>Sintoma</th>
+<th>Causa provável</th>
+<th>O que fazer</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A página recarrega ao salvar e a mensagem some</td>
+<td>Faltou <code>evento.preventDefault()</code> no <code>submit</code>, ou o listener foi ligado ao botão em vez de ao formulário</td>
+<td>Conferir a primeira linha da função do <code>submit</code> e <code>formulario.addEventListener(&#39;submit&#39;, ...)</code> (Padrão 3)</td>
+</tr>
+<tr>
+<td>A tela diz &quot;cadastrado&quot; com o servidor parado</td>
+<td>A mensagem de sucesso é escrita antes da resposta, ou o <code>fetch</code> é chamado sem tratar a exceção</td>
+<td>Conferir que o sucesso só é escrito depois do <code>await</code> que retornou sem lançar erro (Padrão 4)</td>
+</tr>
+<tr>
+<td>O campo artista mostra <code>[object Object]</code></td>
+<td>O campo recebeu o objeto <code>artista</code> em vez de <code>artista.nome</code></td>
+<td>Preencher com <code>musica.artista.nome</code> (a tabela &quot;O que muda&quot;)</td>
+</tr>
+<tr>
+<td>A lista não atualiza depois de salvar</td>
+<td>Faltou chamar (ou esperar) o recarregamento da lista depois do salvamento</td>
+<td>Chamar a função de listar com <code>await</code> depois da operação. Conferir na aba Rede se o <code>GET</code> saiu depois do <code>POST</code></td>
+</tr>
+<tr>
+<td>O botão Excluir continua desabilitado</td>
+<td>O <code>definirOcupado(false)</code> não roda em caso de erro, ou a seleção foi zerada</td>
+<td>Colocar a liberação dentro do <code>finally</code> (Padrão 7) e conferir o estado da seleção</td>
+</tr>
+<tr>
+<td><code>Cannot read properties of null</code> na primeira linha</td>
+<td>ID do JavaScript diferente do ID do HTML, ou <code>&lt;script&gt;</code> antes dos elementos</td>
+<td>Conferir o ID no console com <code>getElementById</code> e a posição do <code>&lt;script&gt;</code> (Padrão 1)</td>
+</tr>
+<tr>
+<td>A API responde <code>400</code> mesmo com o campo preenchido</td>
+<td>Faltou o cabeçalho <code>Content-Type: application/json</code> ou o <code>JSON.stringify</code></td>
+<td>Conferir a aba Rede, aba Carga: o corpo deve ser um JSON com os campos</td>
+</tr>
+<tr>
+<td><code>EADDRINUSE</code> ao subir o servidor</td>
+<td>A porta já está ocupada por outro <code>npm start</code></td>
+<td>Fechar o outro processo ou usar outra porta (seção &quot;Os cinco arquivos&quot;)</td>
+</tr>
+</tbody></table>
+
+    </main>
+    <footer>
+      <span>IFSul — Campus Passo Fundo · Programação III</span>
+    </footer>
+  </div>
+  <dialog class="diagram-dialog" aria-label="Diagrama ampliado">
+    <button type="button" class="diagram-close">Fechar diagrama</button>
+    <p>Use a rolagem para explorar o diagrama. Pressione Esc para fechar.</p>
+    <div class="diagram-scroll"></div>
+  </dialog>
+  <script>
+    const diagramDialog = document.querySelector('.diagram-dialog');
+    const diagramScroll = document.querySelector('.diagram-scroll');
+    document.querySelector('.diagram-close').addEventListener('click', () => diagramDialog.close());
+    document.querySelectorAll('main img').forEach((img) => {
+      if (!img.src.startsWith('data:image/svg+xml') && !/\.svg(?:[?#]|$)/i.test(img.src)) return;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'diagram-expand';
+      button.textContent = 'Ampliar diagrama';
+      button.setAttribute('aria-label', 'Ampliar: ' + img.alt);
+      img.insertAdjacentElement('afterend', button);
+      button.addEventListener('click', () => {
+        const enlarged = img.cloneNode();
+        diagramScroll.replaceChildren(enlarged);
+        diagramDialog.showModal();
+        diagramScroll.scrollTo(0, 0);
+      });
+    });
+  </script>
+</body>
+</html>

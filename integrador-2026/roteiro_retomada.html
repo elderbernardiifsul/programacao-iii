@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programação III - Material Didático</title>
+  <style>
+    
+
+    :root {
+      --ifsul-verde: #2f9e41;
+      --ifsul-verde-escuro: #1d7a2d;
+      --ifsul-vermelho: #cd191e;
+      --bg: #f4f6f8;
+      --texto: #1f2933;
+      --muted: #6b7c86;
+      --borda: #d9e2e8;
+      --superficie: #ffffff;
+      --codigo-bg: #f7faf9;
+    }
+
+    /* Identidade institucional na tela; impressão compacta para a atividade. */
+@media print {
+  @page { size: A4; margin: 15mm; }
+  html, body { font-size: 10.5pt !important; line-height: 1.35 !important; }
+  .hero, footer { display: none !important; }
+  .page { max-width: none !important; overflow: visible !important; border-radius: 0 !important; }
+  main { padding: 0 !important; }
+  h1 { font-size: 20pt !important; line-height: 1.15 !important; margin: 0 0 10pt !important; }
+  h2 { font-size: 13pt !important; margin: 13pt 0 6pt !important; }
+  h3 { font-size: 11pt !important; margin: 10pt 0 5pt !important; }
+  h1, h2, h3 { break-after: avoid; }
+  p, ul, ol, table, blockquote, pre { margin-top: 0 !important; margin-bottom: 7pt !important; }
+  li { margin-bottom: 3pt !important; }
+  table { font-size: 9pt !important; page-break-inside: auto !important; break-inside: auto !important; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; break-inside: avoid; }
+  th, td { padding: 5pt 6pt !important; overflow-wrap: anywhere; }
+  img { max-width: 100%; }
+  code { font-size: 0.92em !important; }
+}
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #eef5ef 0%, var(--bg) 220px);
+      color: var(--texto);
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.7;
+      padding: 32px 16px 48px;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      background: var(--superficie);
+      border-radius: 16px;
+      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(47, 158, 65, 0.12);
+    }
+
+    .hero {
+      padding: 28px 32px 20px;
+      background:
+        linear-gradient(135deg, rgba(47, 158, 65, 0.14), rgba(29, 122, 45, 0.06)),
+        linear-gradient(180deg, #ffffff, #f7fbf8);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.15;
+      color: var(--ifsul-verde-escuro);
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      color: #41515b;
+      max-width: 70ch;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    main {
+      padding: 32px;
+    }
+
+    main h1,
+    main h2,
+    main h3,
+    main h4,
+    main h5,
+    main h6 {
+      color: var(--ifsul-verde-escuro);
+      line-height: 1.25;
+    }
+
+    main h1 { font-size: 2rem; }
+    main h2 {
+      font-size: 1.5rem;
+      margin-top: 2.3rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(47, 158, 65, 0.18);
+    }
+    main h3 { font-size: 1.2rem; margin-top: 1.8rem; }
+
+    p, ul, ol, table, blockquote, pre {
+      margin: 1rem 0;
+    }
+
+    code, pre code {
+      font-family: 'Fira Code', monospace;
+    }
+
+    code {
+      background: rgba(47, 158, 65, 0.08);
+      color: #14532d;
+      padding: 0.12rem 0.35rem;
+      border-radius: 6px;
+      font-size: 0.92em;
+    }
+
+    pre {
+      background: #f8faf9;
+      border: 1px solid rgba(47, 158, 65, 0.18);
+      border-left: 5px solid var(--ifsul-verde);
+      border-radius: 12px;
+      padding: 16px 18px;
+      overflow-x: auto;
+      color: #1f2933;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: 0.88em;
+      line-height: 1.6;
+    }
+
+    /* Syntax highlighting — light theme (print-friendly) */
+    .hljs-keyword,
+    .hljs-selector-tag { color: #8839ef; }
+    .hljs-built_in { color: #1e66f5; }
+    .hljs-string,
+    .hljs-attr { color: #40a02b; }
+    .hljs-number,
+    .hljs-literal { color: #d2691e; }
+    .hljs-comment { color: #7c7f93; font-style: italic; }
+    .hljs-function .hljs-title,
+    .hljs-title.function_ { color: #1e66f5; }
+    .hljs-variable,
+    .hljs-params { color: #1f2933; }
+    .hljs-operator,
+    .hljs-punctuation { color: #04a5e5; }
+    .hljs-meta,
+    .hljs-tag { color: #d20f39; }
+    .hljs-name { color: #d20f39; }
+    .hljs-attribute { color: #df8e1d; }
+    .hljs-regexp { color: #ea76cb; }
+    .hljs-type,
+    .hljs-title.class_ { color: #df8e1d; }
+
+    blockquote {
+      margin-left: 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--ifsul-verde);
+      background: rgba(47, 158, 65, 0.06);
+      color: #244234;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .markdown-alert {
+      margin: 1.4em 0;
+      padding: 12px 16px;
+      border-left: 4px solid var(--ifsul-verde);
+      background: rgba(47, 158, 65, 0.06);
+      border-radius: 0 12px 12px 0;
+    }
+    .markdown-alert > :last-child { margin-bottom: 0; }
+    .markdown-alert-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 6px;
+      font-weight: 700;
+    }
+    .markdown-alert-title svg { fill: currentColor; }
+    .markdown-alert-note { border-left-color: #1f6feb; background: rgba(31, 111, 235, 0.06); }
+    .markdown-alert-note .markdown-alert-title { color: #1f6feb; }
+    .markdown-alert-tip { border-left-color: var(--ifsul-verde); }
+    .markdown-alert-tip .markdown-alert-title { color: var(--ifsul-verde-escuro); }
+    .markdown-alert-important { border-left-color: #8250df; background: rgba(130, 80, 223, 0.06); }
+    .markdown-alert-important .markdown-alert-title { color: #8250df; }
+    .markdown-alert-warning { border-left-color: #bf8700; background: rgba(191, 135, 0, 0.08); }
+    .markdown-alert-warning .markdown-alert-title { color: #9a6700; }
+    .markdown-alert-caution { border-left-color: var(--ifsul-vermelho); background: rgba(205, 25, 30, 0.06); }
+    .markdown-alert-caution .markdown-alert-title { color: var(--ifsul-vermelho); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--borda);
+      font-size: 0.95rem;
+    }
+
+    thead th {
+      background: var(--ifsul-verde);
+      color: white;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafcfb;
+    }
+
+    a {
+      color: var(--ifsul-verde-escuro);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    main { min-width: 0; overflow-wrap: anywhere; }
+    pre { max-width: 100%; overflow-wrap: normal; }
+    table { display: block; max-width: 100%; overflow-x: auto; }
+    :target { scroll-margin-top: 24px; }
+    a:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+    main img { display: block; margin: 24px auto 8px; padding: 16px; border: 1px solid var(--borda); border-radius: 12px; background: white; }
+    .diagram-expand, .diagram-close { padding: 10px 16px; border: 1px solid #1d7a2d; border-radius: 8px; background: white; color: #14532d; cursor: pointer; font: inherit; }
+    .diagram-expand { display: block; margin: 8px auto 24px; }
+    .diagram-dialog { width: 95vw; max-width: 1600px; max-height: 94vh; padding: 20px; border: 1px solid #9bbda4; border-radius: 12px; }
+    .diagram-dialog::backdrop { background: rgba(15, 30, 20, .75); }
+    .diagram-scroll { overflow: auto; max-height: 72vh; margin-top: 16px; }
+    .diagram-scroll img { display: block; max-width: none; width: auto; min-width: 700px; background: white; }
+    .diagram-close:focus-visible, .diagram-expand:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 18px 32px 28px;
+      border-top: 1px solid var(--borda);
+      color: var(--muted);
+      font-size: 0.82rem;
+      background: #fbfcfc;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding: 18px 10px 28px;
+      }
+
+      .hero,
+      main,
+      footer {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .page {
+        border-radius: 12px;
+      }
+    }
+
+    @media print {
+      .diagram-expand, .diagram-dialog { display: none; }
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        border: none;
+      }
+
+      .hero {
+        background: white;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      pre,
+      blockquote,
+      .markdown-alert,
+      table,
+      img {
+        page-break-inside: avoid;
+      }
+
+      /* No papel não há barra de rolagem: linha de código longa quebra em vez de sumir */
+      pre,
+      pre code {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+
+      @page {
+        size: A4;
+        margin: 1.8cm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-top">
+        <span>IFSul - Campus Passo Fundo</span>
+        <span>Ensino Médio Integrado</span>
+      </div>
+      <h1>Programação III</h1>
+      <div class="meta">
+        <div class="meta-card"><strong>Professor</strong>Élder F. F. Bernardi · **Modalidade:** duplas</div>
+        <div class="meta-card"><strong>Curso</strong>Ensino Médio Integrado - Técnico em Informática</div>
+      </div>
+    </section>
+    <main>
+      <h1 id="roteiro-de-retomada--catálogo-do-karaokê">Roteiro de retomada — Catálogo do karaokê</h1>
+<p><strong>Versão 2 · 27/10/2026</strong> (substitui a versão de entrega de 20/10/2026; tarefas e aceites não mudaram).<br><strong>Programação III · Ensino Médio Integrado — Técnico em Informática · IFSul — Campus Passo Fundo</strong><br><strong>Professor:</strong> Élder F. F. Bernardi · <strong>Modalidade:</strong> duplas
+<strong>Tutor da atividade:</strong> Prof. Leonardo Constantin  </p>
+<p><strong>Organização:</strong> 14 duplas por turma, 150min em aula e 1h extraclasse
+por encontro. Quatro encontros: 600 + até 240min = 14h de desenvolvimento;
+apresentação em outro encontro de 150min. Setup essencial acompanhado em aula.</p>
+<h2 id="para-que-serve-esta-base">Para que serve esta base</h2>
+<p>A base de retomada disponibilizada pelo professor no Classroom é opcional e não reduz a nota.
+Ela permite retomar a integração sem reconstruir toda a infraestrutura.
+Leitura, listagem, player, API e DAOs já vêm preparados, junto com um <code>AGENTS.md</code> que orienta o agente de IA a agir como tutor.
+As tarefas da dupla são integrar <strong>cadastro, edição e exclusão na interface</strong>,
+tratar respostas e atualizar a lista. O núcleo e a compreensão exigidos
+são os mesmos para quem usa projeto próprio.</p>
+<h2 id="1-preparar-e-executar">1. Preparar e executar</h2>
+<ol>
+<li>Abram a pasta <code>base_retomada</code> no editor e confiram o README.</li>
+<li>Usem <strong>Node.js 22 ou superior</strong>, compatível com as dependências fixadas na base.</li>
+<li>Executem <code>npm ci</code> para instalar as dependências declaradas.</li>
+<li>A partir de <code>.env.example</code>, configurem no servidor <code>SUPABASE_URL</code> e <code>SUPABASE_SECRET_KEY</code>, com orientação do professor.</li>
+<li>Em um banco de demonstração separado, apliquem <code>sql/schema.sql</code> somente se as tabelas ainda não existirem e incluam a amostra com <code>sql/seed.sql</code>, conforme o README. O seed desta base é aditivo, não apaga o catálogo; não o substituam por scripts antigos de restauração que removem dados.
+Se as tabelas da atividade anterior já existem, não as recriem: rodem <code>sql/diagnostico.sql</code> no SQL Editor. Se alguma linha vier <code>ajustar</code>, rodem <code>sql/ajustes.sql</code> (não apaga dados) e depois o diagnóstico de novo. O passo a passo está na etapa 4 do &quot;Guia passo a passo do Supabase&quot;, disponível no Classroom da disciplina.</li>
+<li>Com ambiente e banco preparados, executem <code>npm start</code>. Abram a URL indicada pelo servidor e confirmem lista, seleção e reprodução da música de exemplo.</li>
+</ol>
+<p>Os valores reais das variáveis são secretos: não enviar ao Git, ao navegador,
+a capturas ou a mensagens. A interface usa a API na mesma origem, como
+<code>/api/musicas</code>; não precisa de CORS nem de chave de banco no JavaScript público.
+Se a leitura falhar, registrem a mensagem e o ponto do fluxo antes de continuar.</p>
+<h2 id="2-encontrar-cada-responsabilidade">2. Encontrar cada responsabilidade</h2>
+<table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>O que localizar durante a leitura</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>app.js</code></td>
+<td>Rotas HTTP, leitura do corpo JSON, chamada de DAO e resposta.</td>
+</tr>
+<tr>
+<td><code>supabaseClient.js</code></td>
+<td>Configuração do cliente no servidor, sem copiar os valores secretos.</td>
+</tr>
+<tr>
+<td><code>karaoke/artista.js</code>, <code>musica.js</code>, <code>parte.js</code></td>
+<td>Objetos usados para representar os dados.</td>
+</tr>
+<tr>
+<td><code>karaoke/DAO/ArtistaDAO.js</code>, <code>MusicaDAO.js</code>, <code>ParteDAO.js</code></td>
+<td>Consultas, alterações e transformação de linhas do banco em objetos.</td>
+</tr>
+<tr>
+<td><code>sql/schema.sql</code>, <code>sql/seed.sql</code></td>
+<td>Relações entre tabelas e repertório inicial de demonstração.</td>
+</tr>
+<tr>
+<td><code>sql/diagnostico.sql</code>, <code>sql/ajustes.sql</code></td>
+<td>Conferir e corrigir, sem apagar dados, tabelas que já existiam.</td>
+</tr>
+<tr>
+<td><code>AGENTS.md</code></td>
+<td>Orientações para o agente de IA agir como tutor: explica e pergunta, sem entregar a solução.</td>
+</tr>
+<tr>
+<td><code>public/index.html</code>, <code>estilo.css</code></td>
+<td>Campos, lista, mensagens e botões da interface.</td>
+</tr>
+<tr>
+<td><code>public/catalogo.js</code></td>
+<td>Leitura, atualização da lista, seleção e player já preparados.</td>
+</tr>
+<tr>
+<td><code>public/admin.js</code></td>
+<td>Pontos de integração a completar: cadastro, edição, exclusão e feedback.</td>
+</tr>
+</tbody></table>
+<p>Uma pessoa acompanha o clique até a rota; a outra acompanha a rota até o
+DAO e o banco. Depois troquem e expliquem o caminho de volta à tela.</p>
+<h3 id="se-vocês-vieram-do-repositório-da-aula">Se vocês vieram do repositório da aula</h3>
+<p>A base tem os mesmos arquivos do repositório da aula, mas alguns ficam em outras pastas. O código dos DAOs é o mesmo; só mudam os caminhos dos <code>require</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>Repositório da aula</th>
+<th>Base de retomada</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>supabaseClient.js</code>, <code>app.js</code></td>
+<td>raiz</td>
+<td>raiz</td>
+</tr>
+<tr>
+<td><code>Artista</code>, <code>Musica</code>, <code>Parte</code></td>
+<td><code>karaoke/artista.js</code>, <code>karaoke/musica.js</code>, <code>karaoke/parte.js</code></td>
+<td><code>karaoke/artista.js</code>, <code>karaoke/musica.js</code>, <code>karaoke/parte.js</code></td>
+</tr>
+<tr>
+<td><code>ArtistaDAO</code>, <code>ParteDAO</code>, <code>MusicaDAO</code></td>
+<td><code>DAO/</code></td>
+<td><code>karaoke/DAO/</code></td>
+</tr>
+<tr>
+<td>testes</td>
+<td><code>testes/</code></td>
+<td><code>testes/</code> (a base já traz os seus)</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td><code>sql/</code></td>
+<td><code>sql/</code></td>
+</tr>
+</tbody></table>
+<p>Exemplo: o <code>MusicaDAO.js</code> importa o cliente com <code>require(&#39;../supabaseClient&#39;)</code> no repositório da aula e com <code>require(&#39;../../supabaseClient&#39;)</code> na base. O &quot;Guia passo a passo do Supabase&quot;, disponível no Classroom da disciplina, traz no Anexo a tabela completa de <code>require</code> e como calcular o caminho em projeto próprio.</p>
+<h2 id="3-conferir-o-contrato-antes-de-programar">3. Conferir o contrato antes de programar</h2>
+<table>
+<thead>
+<tr>
+<th>Operação</th>
+<th>Contrato da base</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Listar</td>
+<td><code>GET /api/musicas</code>: itens com <code>id</code>, <code>nome</code>, <code>artista</code> e <code>totalPartes</code>.</td>
+</tr>
+<tr>
+<td>Consultar</td>
+<td><code>GET /api/musicas/:id</code>: música e suas partes; cada parte tem <code>letra</code>, <code>tempoEspera</code>, <code>tag</code> e <code>ordem</code>.</td>
+</tr>
+<tr>
+<td>Cadastrar</td>
+<td><code>POST /api/musicas</code>: JSON <code>{ &quot;nome&quot;: &quot;Música de teste&quot;, &quot;artista&quot;: &quot;Artista de teste&quot; }</code>.</td>
+</tr>
+<tr>
+<td>Editar</td>
+<td><code>PUT /api/musicas/:id</code>: os mesmos campos de texto do cadastro.</td>
+</tr>
+<tr>
+<td>Excluir</td>
+<td><code>DELETE /api/musicas/:id</code>: ID da música escolhida no caminho da URL.</td>
+</tr>
+</tbody></table>
+<p><strong>Atenção:</strong> no envio, <code>artista</code> é uma <strong>string</strong>; na resposta de música,
+<code>artista</code> é um <strong>objeto</strong> com <code>id</code> e <code>nome</code>. Para preencher um campo de texto,
+localizem o nome dentro do objeto. Não enviem o objeto inteiro no POST/PUT.
+Leiam a rota e a resposta real para conferir status e mensagem de erro.</p>
+<h2 id="4-integrar-cadastro--r2-e-r5">4. Integrar cadastro — R2 e R5</h2>
+<ol>
+<li>Em <code>admin.js</code>, localizem a tarefa do formulário e os campos existentes no HTML.</li>
+<li>Leiam nome/artista, verifiquem os obrigatórios e impeçam recarregamento involuntário do formulário.</li>
+<li>Planejem um POST com corpo JSON e o cabeçalho correspondente; aguardem a resposta.</li>
+<li>Separem resposta de sucesso de erro HTTP/falha de conexão. Só anunciem cadastro após confirmação.</li>
+<li>Reutilizem a atualização da lista já fornecida; anotem ID e resultado de uma nova consulta.</li>
+</ol>
+<blockquote>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Explique o que acontece se eu esquecer o evento.preventDefault() no submit do formulário. Antes de responder, peça que eu preveja.&quot;</em> Depois: <em>&quot;Qual a diferença entre a resposta ter response.ok falso e o fetch lançar uma exceção? Dê um exemplo de cada situação no meu projeto.&quot;</em></p>
+</blockquote>
+<p><strong>Aceite:</strong> registro aparece após recarregar a página e permanece após reiniciar
+o servidor. Nome ou artista vazio não gera cadastro válido. Troquem a condução.</p>
+<h2 id="5-integrar-edição--r3-e-r5">5. Integrar edição — R3 e R5</h2>
+<ol>
+<li>Localizem como guardar o ID selecionado e preencher nome e <code>artista.nome</code>.</li>
+<li>Diferenciem o estado de edição do cadastro e permitam cancelar a edição.</li>
+<li>Enviem PUT ao ID selecionado, confiram a resposta e atualizem a lista.</li>
+</ol>
+<blockquote>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Estou no modo edição e, ao salvar, é criada uma música nova em vez de alterar a existente. Que perguntas devo me fazer para achar o erro?&quot;</em></p>
+</blockquote>
+<p><strong>Aceite:</strong> o mesmo ID passa a ter o novo nome/artista após nova consulta;
+editar não cria outra música. Expliquem onde ID e campos entram na requisição.</p>
+<h2 id="6-integrar-exclusão--r4-e-r5">6. Integrar exclusão — R4 e R5</h2>
+<ol>
+<li>Identifiquem o registro e peçam confirmação simples antes do DELETE.</li>
+<li>Aguardem resposta, mostrem erro quando houver e atualizem lista/seleção após sucesso.</li>
+<li>Testem cancelamento e exclusão usando uma música criada para teste.</li>
+</ol>
+<blockquote>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Revise a minha função de exclusão (colada abaixo). Aponte a linha do problema e explique, sem reescrever a função.&quot;</em></p>
+</blockquote>
+<p><strong>Aceite:</strong> cancelar preserva o dado; confirmar remove o registro em nova consulta.
+Preservem a música do seed usada para demonstrar o player.</p>
+<h2 id="7-conferir-o-núcleo-e-publicar--r1-r6-r7-e-r8">7. Conferir o núcleo e publicar — R1, R6, R7 e R8</h2>
+<ul>
+<li>Cadastrem música sem partes: ela é válida, pode ser editada/excluída, mostra a situação e mantém Tocar indisponível.</li>
+<li>Reproduzam uma música com partes fornecidas; confiram vínculo e ordem, sem adicionar letras como requisito.</li>
+<li>Iniciem a configuração da publicação no primeiro encontro e retomem o CRUD na URL pública conforme os marcos.</li>
+<li>Registrem ID antes/depois de reiniciar o serviço; expliquem por que uma lista local não comprova persistência.</li>
+<li>Completem README com execução, URL, variáveis sem valores e uma decisão; registrem um teste por marco.</li>
+</ul>
+<p>Para a interface com <code>fetch</code>, consultem o &quot;Guia de interface — CRUD na tela com fetch&quot;, disponível no Classroom da disciplina. Para a publicação, o &quot;Guia de deploy na Render&quot;, também disponível no Classroom da disciplina, traz o passo a passo.</p>
+<p>Cada pessoa acompanha uma operação e realiza ou prevê uma pequena alteração
+equivalente com consulta. Podem explicar oralmente, apontando o código ou por
+anotação/desenho acompanhado de demonstração. Se travar, registrem o primeiro
+ponto que falhou e peçam apoio em aula. O trabalho essencial tem espaço em aula.</p>
+<h2 id="8-consolidar-entre-encontros--proposta-de-até-60min">8. Consolidar entre encontros — proposta de até 60min</h2>
+<table>
+<thead>
+<tr>
+<th>Após o marco</th>
+<th>Tarefa delimitada de revisão/teste/documentação</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>M1</td>
+<td>Rever mapa do fluxo (20min), completar execução no README (20min), anotar dúvida/próximo passo (20min).</td>
+</tr>
+<tr>
+<td>M2</td>
+<td>Repetir cadastro/reconsulta (20min), registrar teste (20min), revisar trecho para explicar (20min).</td>
+</tr>
+<tr>
+<td>M3</td>
+<td>Repetir checklist conhecido (30min), registrar primeira falha (15min), preparar explicação (15min).</td>
+</tr>
+<tr>
+<td>M4</td>
+<td>Revisar README (20min), ensaiar percurso (20min), organizar evidências (20min).</td>
+</tr>
+</tbody></table>
+<p>Se houver impedimento de acesso, registrem para organizar apoio com o professor;
+não ampliem a tarefa além da hora prevista. Não é necessário adicionar extras.</p>
+
+    </main>
+    <footer>
+      <span>IFSul - Campus Passo Fundo · Programação III</span>
+    </footer>
+  </div>
+  <dialog class="diagram-dialog" aria-label="Diagrama ampliado">
+    <button type="button" class="diagram-close">Fechar diagrama</button>
+    <p>Use a rolagem para explorar o diagrama. Pressione Esc para fechar.</p>
+    <div class="diagram-scroll"></div>
+  </dialog>
+  <script>
+    const diagramDialog = document.querySelector('.diagram-dialog');
+    const diagramScroll = document.querySelector('.diagram-scroll');
+    document.querySelector('.diagram-close').addEventListener('click', () => diagramDialog.close());
+    document.querySelectorAll('main img').forEach((img) => {
+      if (!img.src.startsWith('data:image/svg+xml') && !/\.svg(?:[?#]|$)/i.test(img.src)) return;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'diagram-expand';
+      button.textContent = 'Ampliar diagrama';
+      button.setAttribute('aria-label', 'Ampliar: ' + img.alt);
+      img.insertAdjacentElement('afterend', button);
+      button.addEventListener('click', () => {
+        const enlarged = img.cloneNode();
+        diagramScroll.replaceChildren(enlarged);
+        diagramDialog.showModal();
+        diagramScroll.scrollTo(0, 0);
+      });
+    });
+  </script>
+</body>
+</html>
