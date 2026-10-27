@@ -405,7 +405,7 @@
 </tr>
 </tbody></table>
 <blockquote>
-<p><strong>Para quem é cada trilha.</strong> Quem usa a base de retomada (o projeto que acompanha o Roteiro de retomada, disponível no Classroom da disciplina) e quem seguiu o <em>Guia passo a passo — Karaokê com banco de dados no Supabase</em> (disponível no Classroom da disciplina) chegam à mesma tela por caminhos diferentes. A seção &quot;Aplicando às músicas&quot; tem uma parte para cada caso.</p>
+<p><strong>Para quem é cada trilha.</strong> Quem usa a base de retomada (o projeto que acompanha o Roteiro de retomada, disponível no Classroom da disciplina) e quem seguiu o &quot;Guia passo a passo do Supabase&quot; (disponível no Classroom da disciplina) chegam à mesma tela por caminhos diferentes. A seção &quot;Aplicando às músicas&quot; tem uma parte para cada caso.</p>
 </blockquote>
 <h2 id="rodar-o-exemplo">Rodar o exemplo</h2>
 <p>O mural está na pasta <code>mural_recados</code>, dentro do pacote de materiais de apoio, disponível no Classroom da disciplina. Descompactem o pacote, abram a pasta <code>mural_recados</code> no VS Code e, no terminal integrado:</p>
@@ -780,9 +780,6 @@ botaoExcluir.<span class="hljs-title function_">addEventListener</span>(<span cl
 </tbody></table>
 <p><strong>A ordem do <code>&lt;script&gt;</code> importa.</strong> No <code>index.html</code>, a tag <code>&lt;script src=&quot;mural.js&quot;&gt;</code> fica no <strong>fim do <code>body</code></strong>, depois de todos os elementos. O navegador lê o HTML de cima para baixo: se o script viesse no <code>head</code>, ele rodaria antes de o formulário existir, e todos os <code>getElementById</code> devolveriam <code>null</code>.</p>
 <p><strong>Como conferir.</strong> Abram o console do navegador (F12, aba Console) e digitem <code>document.getElementById(&#39;texto&#39;)</code>. Se aparecer o elemento, o ID existe; se aparecer <code>null</code>, há diferença entre HTML e JavaScript (maiúscula, hífen, letra trocada).</p>
-<blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Explique o que acontece se eu esquecer o evento.preventDefault() no submit. Antes de responder, peça que eu preveja.&quot;</em></p>
-</blockquote>
 <h2 id="padrão-2--listar-e-desenhar">Padrão 2 — Listar e desenhar</h2>
 <p>A função <code>carregarRecados</code> faz três coisas, sempre nesta ordem: <strong>buscar</strong> os dados na API, <strong>limpar</strong> a lista antiga e <strong>desenhar</strong> um item para cada registro.</p>
 <pre><code class="hljs language-text">buscar:   const recados = await chamarApi(&#x27;/api/recados&#x27;);
@@ -839,6 +836,9 @@ desenhar: para cada recado, criar &lt;li&gt; + &lt;button&gt;, preencher, anexar
 </li>
 </ol>
 <p><strong>Dois detalhes de ordem.</strong> A mensagem de sucesso só é escrita <strong>depois</strong> de <code>chamarApi</code> retornar sem lançar erro. E a mensagem vem <strong>depois</strong> do recarregamento da lista. Por isso, se a gravação funcionou mas o recarregamento falhou (queda de conexão entre as duas chamadas), a tela mostra a mensagem de falha de conexão, embora o recado tenha sido gravado. A mensagem não está errada sobre o que falhou (a atualização da lista), mas pode confundir. Quando uma mensagem de erro aparece logo depois de um salvamento, abram a aba Rede e leiam a ordem das requisições: se o <code>POST</code> aparece com <code>201</code>, o registro existe e só a lista não atualizou.</p>
+<blockquote>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Explique o que acontece se eu esquecer o evento.preventDefault() no submit. Antes de responder, peça que eu preveja.&quot;</em></p>
+</blockquote>
 <h2 id="padrão-4--erro-http--falha-de-conexão">Padrão 4 — Erro HTTP × falha de conexão</h2>
 <p>O <code>fetch</code> tem uma regra que surpreende quem vem de outras linguagens: <strong>ele só lança exceção quando não consegue falar com o servidor.</strong> Se o servidor respondeu, mesmo com <code>400</code>, <code>404</code> ou <code>500</code>, o <code>fetch</code> termina normalmente e entrega uma resposta cujo <code>response.ok</code> é <code>false</code>. Quem confere o status é o seu código.</p>
 <p>A função <code>chamarApi</code> junta os dois casos num só: lança um <code>Error</code> com uma mensagem que a tela pode mostrar. Linha a linha:</p>
@@ -1063,7 +1063,7 @@ try {
 <tr>
 <td>Validação na tela</td>
 <td>Um campo vazio</td>
-<td>Nome vazio <strong>ou</strong> artista vazio: cada um deve ser recusado, e a mensagem precisa dizer qual</td>
+<td>Nome vazio <strong>ou</strong> artista vazio: cada um deve ser recusado; de preferência, a mensagem diz qual</td>
 </tr>
 </tbody></table>
 <h3 id="checklist-por-requisito">Checklist por requisito</h3>
@@ -1137,11 +1137,14 @@ try {
 </tbody></table>
 <p>Os IDs do formulário da base: <code>formulario-musica</code>, <code>nome</code>, <code>artista</code>, <code>salvar-musica</code>, <code>excluir-musica</code>, <code>nova-musica</code>, <code>titulo-formulario</code> e <code>estado-formulario</code>.</p>
 <p>Na correspondência com os padrões: o <code>idEmEdicao</code> do mural é o ID da música selecionada; o <code>voltarParaCadastro</code> tem o papel de preparar um novo cadastro (limpar seleção e campos); o <code>definirOcupado</code> combina a trava dos botões do formulário com <code>definirCatalogoOcupado</code>. Os controles de escrita vêm desabilitados no HTML: habilitar o botão não basta, é preciso integrar a operação e tratar a resposta.</p>
-<h3 id="quem-seguiu-o-guia-do-supabase">Quem seguiu o guia do Supabase</h3>
-<p>Quem seguiu o <em>Guia passo a passo — Karaokê com banco de dados no Supabase</em> tem a página em <code>public/index.html</code> e o código em <code>public/player.js</code> (IDs <code>listaMusicas</code>, <code>nomeMusica</code>, <code>artista</code>, <code>tag</code>, <code>letra</code>, <code>contador</code>, <code>btnTocar</code> e <code>mensagem</code>). O caminho para as operações de escrita:</p>
+<blockquote>
+<p><strong>Cuidado ao aproveitar o código do mural.</strong> O <code>admin.js</code> divide o escopo global com o <code>catalogo.js</code> (na base) ou com o <code>player.js</code> (no projeto do Guia passo a passo do Supabase): o que um arquivo declara no nível de cima vale para todos os scripts da página. Se vocês copiarem a <code>mostrarMensagem(texto, erro)</code> do mural para o <code>admin.js</code> da base, ela substitui a <code>mostrarMensagem(id, texto, erro)</code> do <code>catalogo.js</code> e quebra as mensagens do catálogo. Repetir um <code>const</code> ou <code>let</code> de nível superior que já existe no outro arquivo dá o erro <code>Identifier &#39;…&#39; has already been declared</code> no console, e o <code>admin.js</code> inteiro deixa de rodar. Usem as funções que a base já oferece e escolham nomes novos para o que for de vocês.</p>
+</blockquote>
+<h3 id="quem-seguiu-o-guia-passo-a-passo-do-supabase">Quem seguiu o Guia passo a passo do Supabase</h3>
+<p>Quem seguiu o &quot;Guia passo a passo do Supabase&quot; tem a página em <code>public/index.html</code> e o código em <code>public/player.js</code> (IDs <code>listaMusicas</code>, <code>nomeMusica</code>, <code>artista</code>, <code>tag</code>, <code>letra</code>, <code>contador</code>, <code>btnTocar</code> e <code>mensagem</code>). O caminho para as operações de escrita:</p>
 <ol>
 <li>Acrescentar ao <code>public/index.html</code> um <code>&lt;form&gt;</code> com os campos <code>nome</code> e <code>artista</code>, um elemento de mensagem e os botões (cadastrar, cancelar edição e excluir). Cuidado com os IDs: <code>artista</code> e <code>mensagem</code> <strong>já existem</strong> no player, e dois elementos com o mesmo ID quebram o <code>getElementById</code>. Escolham nomes novos para o formulário.</li>
-<li>Criar o arquivo <code>public/admin.js</code> e incluí-lo no <code>index.html</code> <strong>depois</strong> do <code>player.js</code>, ambos no fim do <code>body</code>.</li>
+<li>Criar o arquivo <code>public/admin.js</code> e incluí-lo no <code>index.html</code> <strong>depois</strong> do <code>player.js</code>, ambos no fim do <code>body</code>. O cuidado com o escopo global da seção anterior vale aqui: nada de repetir no <code>admin.js</code> um nome declarado no nível de cima do <code>player.js</code>.</li>
 <li>Para recarregar a lista depois de cada operação, chamar <code>carregarPlaylist()</code>, a função do <code>player.js</code> que desenha a lista.</li>
 <li>Aplicar os Padrões 3 a 7 com o mesmo formato de chamada do mural, trocando <code>/api/recados</code> por <code>/api/musicas</code>.</li>
 </ol>
@@ -1188,6 +1191,11 @@ try {
 <td>A API responde <code>400</code> mesmo com o campo preenchido</td>
 <td>Faltou o cabeçalho <code>Content-Type: application/json</code> ou o <code>JSON.stringify</code></td>
 <td>Conferir a aba Rede, aba Carga: o corpo deve ser um JSON com os campos</td>
+</tr>
+<tr>
+<td>No console: <code>Identifier &#39;…&#39; has already been declared</code>, e nenhum botão do formulário responde</td>
+<td>Um <code>const</code>, <code>let</code> ou função de nível superior do <code>admin.js</code> repete um nome do <code>catalogo.js</code> ou do <code>player.js</code></td>
+<td>Renomear o que é de vocês no <code>admin.js</code> (seção &quot;Quem usa a base de retomada&quot;)</td>
 </tr>
 <tr>
 <td><code>EADDRINUSE</code> ao subir o servidor</td>

@@ -479,29 +479,43 @@ Senhas e chaves nunca vão para o GitHub. Como a Render precisa desses valores p
 <h3 id="11-o-projeto-roda-sem-erro-aqui">1.1 O projeto roda sem erro aqui</h3>
 <p>Abram o terminal na pasta do projeto e rodem:</p>
 <pre><code class="hljs language-bash">npm install
-npm start</code></pre><p>Abram <code>http://localhost:3000</code> e testem as rotas com o arquivo <code>testes/musicas.http</code>. No terminal deve aparecer <code>Karaokê no ar: http://localhost:3000</code>.</p>
+npm start</code></pre><p>Abram <code>http://localhost:3000</code> e testem as rotas com o arquivo <code>testes/musicas.http</code>. No terminal deve aparecer <code>Karaokê no ar: http://localhost:3000</code> (na base de retomada, <code>Karaokê disponível na porta 3000</code>).</p>
 <p>Se está quebrado aqui, vai estar quebrado lá também — com a diferença de que lá vocês não têm o VS Code para procurar o problema. Arrumem agora.</p>
+<blockquote>
+<p><strong>Quem usa a base de retomada.</strong> Este guia usa como exemplo o projeto do Guia passo a passo do Supabase. Na base de retomada, a mensagem de início é <code>Karaokê disponível na porta …</code>, o DAO fica em <code>karaoke/DAO/</code>, a mensagem de variável faltando é <code>Preencha SUPABASE_URL e SUPABASE_SECRET_KEY no .env ou no ambiente do servidor</code>, e o <code>.http</code> vem da seção 3.5 do Guia passo a passo do Supabase (disponível no Classroom da disciplina), porque a base não traz esse arquivo. O resto do caminho é o mesmo.</p>
+</blockquote>
 <h3 id="12-o-packagejson-tem-um-script-start">1.2 O <code>package.json</code> tem um script <code>start</code></h3>
-<p>Abram o <code>package.json</code> e procurem o bloco <code>scripts</code>:</p>
+<p>Abram o <code>package.json</code> e procurem o bloco <code>scripts</code>. No fim do Guia passo a passo do Supabase, o arquivo fica assim:</p>
 <pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;nosso-karaoke&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1.0.0&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-        <span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;node app&quot;</span>
-    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-attr">&quot;dependencies&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-        <span class="hljs-attr">&quot;@supabase/supabase-js&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2.117.1&quot;</span><span class="hljs-punctuation">,</span>
-        <span class="hljs-attr">&quot;dotenv&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;18.0.3&quot;</span><span class="hljs-punctuation">,</span>
-        <span class="hljs-attr">&quot;express&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;5.2.1&quot;</span>
-    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-attr">&quot;engines&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-        <span class="hljs-attr">&quot;node&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&gt;=22&quot;</span>
-    <span class="hljs-punctuation">}</span>
-<span class="hljs-punctuation">}</span></code></pre><p>Duas coisas importantes:</p>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;aula-nodejs-1-sexta&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1.0.0&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Projeto para aprender Node.js&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;license&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;ISC&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;author&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Elder Bernardi&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;commonjs&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;main&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;index.js&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;test&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;node app&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;teste&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;echo SCRIPT de teste! &quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;karaoke&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;node ./karaoke/player&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;dev&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;nodemon app&quot;</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;dependencies&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;@supabase/supabase-js&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^2.117.1&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;chalk&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^4.1.2&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;dotenv&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^18.0.3&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;express&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^5.2.1&quot;</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;engines&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;node&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&gt;=22&quot;</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre><p>Na base de retomada, o <code>package.json</code> é outro: nome <code>karaoke-integrador-retomada</code>, versões fixas (sem o <code>^</code>), sem o <code>chalk</code> e com <code>&quot;start&quot;: &quot;node app.js&quot;</code>. Os dois funcionam na Render.</p>
+<p>Três coisas importantes:</p>
 <ul>
-<li>O <code>start</code> tem que rodar com <strong><code>node</code></strong>, nunca com <code>nodemon</code>. O <code>nodemon</code> serve para desenvolver: ele fica vigiando se vocês salvaram algum arquivo, para reiniciar sozinho. Na internet, ninguém edita arquivo — então ele não tem função ali, e ainda pode nem estar instalado.</li>
+<li>O <code>start</code> tem que rodar com <strong><code>node</code></strong>, nunca com <code>nodemon</code>. O <code>nodemon</code> serve para desenvolver: ele fica vigiando se vocês salvaram algum arquivo, para reiniciar sozinho. Na internet, ninguém edita arquivo — então ele não tem função ali, e ainda pode nem estar instalado. O script <code>dev</code> do exemplo usa <code>nodemon</code> e pode ficar: a Render só roda o <code>start</code>.</li>
 <li>O script <code>start</code> precisa apontar para o arquivo que liga o servidor. No projeto do Guia do Supabase é <code>node app</code>, que executa o <code>app.js</code>. Se o arquivo principal de vocês tiver outro nome, ajustem o script.</li>
-<li>Os números de versão no seu <code>package.json</code> podem ser diferentes dos do exemplo. O que importa é que as três bibliotecas estejam em <code>dependencies</code>.</li>
+<li>Os números de versão no seu <code>package.json</code> podem ser diferentes dos do exemplo. O que importa é que as três bibliotecas que o servidor usa (<code>express</code>, <code>@supabase/supabase-js</code> e <code>dotenv</code>) estejam em <code>dependencies</code>.</li>
 </ul>
 <p><strong>Como saber se está certo:</strong> o comando <code>npm start</code> liga o servidor. Se aparecer <code>Missing script: &quot;start&quot;</code>, é porque esse script não existe. Criem.</p>
 <h3 id="13-as-bibliotecas-estão-anotadas">1.3 As bibliotecas estão anotadas</h3>
@@ -524,7 +538,7 @@ npm start</code></pre><p>Abram <code>http://localhost:3000</code> e testem as ro
 <p>Confiram cada <code>require</code> do projeto:</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> musicaDAO = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./DAO/MusicaDAO&#x27;</span>);
 <span class="hljs-comment">//                          ↑ a pasta é DAO ou dao?</span>
-<span class="hljs-comment">//                                ↑ o arquivo é MusicaDAO ou musicaDAO?</span></code></pre><p>Para ver o nome verdadeiro dos arquivos, usem o terminal:</p>
+<span class="hljs-comment">//                                ↑ o arquivo é MusicaDAO ou musicaDAO?</span></code></pre><p>Para ver o nome verdadeiro dos arquivos, usem o terminal (na base de retomada, a pasta é <code>karaoke/DAO/</code>):</p>
 <pre><code class="hljs language-bash"><span class="hljs-built_in">ls</span> DAO/</code></pre><p>A regra: <strong>o que está escrito no <code>require</code> tem que ser igual, letra por letra, ao que o <code>ls</code> mostrou.</strong></p>
 <blockquote>
 <p><strong>Chame o professor</strong> se vocês decidirem <strong>renomear</strong> uma pasta ou um arquivo para arrumar isso. O Git às vezes não percebe uma renomeação que só muda maiúscula para minúscula, e o resultado é um arquivo duplicado no repositório — que quebra a publicação de um jeito difícil de enxergar. Renomear com alguém do lado leva dois minutos; descobrir esse problema sozinho leva uma aula.</p>
@@ -577,7 +591,7 @@ app.<span class="hljs-title function_">listen</span>(<span class="hljs-variable 
 PORT=4000 npm start
 
 <span class="hljs-comment"># Windows (PowerShell)</span>
-<span class="hljs-variable">$env</span>:PORT=4000; npm start</code></pre><p>O servidor deve imprimir <code>Karaokê no ar: http://localhost:4000</code> e responder nessa porta. Se subiu, a Etapa 2 está certa.</p>
+<span class="hljs-variable">$env</span>:PORT=4000; npm start</code></pre><p>O servidor deve imprimir <code>Karaokê no ar: http://localhost:4000</code> (na base de retomada, <code>Karaokê disponível na porta 4000</code>) e responder nessa porta. Se subiu, a Etapa 2 está certa.</p>
 <hr>
 <h2 id="etapa-3--o-repositório-no-github">Etapa 3 — O repositório no GitHub</h2>
 <p>A Render não copia os arquivos do computador de vocês: ela copia de um repositório do GitHub.</p>
@@ -633,7 +647,7 @@ git push</code></pre><p><strong>Como saber se deu certo:</strong> o <code>git st
 <td><code>.env</code></td>
 </tr>
 <tr>
-<td><code>DAO/</code>, <code>routes/</code>, <code>public/</code></td>
+<td><code>karaoke/</code>, <code>DAO/</code> (na base de retomada, <code>karaoke/DAO/</code>) e <code>public/</code></td>
 <td>Qualquer senha, chave ou token escrito no código</td>
 </tr>
 <tr>
@@ -641,11 +655,12 @@ git push</code></pre><p><strong>Como saber se deu certo:</strong> o <code>git st
 <td>Arquivos pessoais do computador de vocês</td>
 </tr>
 </tbody></table>
-<p>Confiram também se o arquivo que vocês acabaram de editar está com a versão nova. Cliquem no <code>app.js</code> dentro do GitHub e procurem a linha <code>const PORT = process.env.PORT || 3000;</code>. Se ela não estiver lá, o commit ou o push não foram feitos.</p>
+<p>Confiram também se o arquivo que vocês acabaram de editar está com a versão nova. Cliquem no <code>app.js</code> dentro do GitHub e procurem a linha com <code>process.env.PORT || 3000</code> (no projeto do Guia passo a passo do Supabase, <code>const PORT = process.env.PORT || 3000;</code>; na base de retomada, <code>const porta = process.env.PORT || 3000;</code>). Se ela não estiver lá, o commit ou o push não foram feitos.</p>
 <h3 id="34-e-se-o-env-já-subiu-sem-querer">3.4 E se o <code>.env</code> já subiu sem querer?</h3>
 <p>Acontece, e tem conserto. Primeiro, tirem o arquivo do controle do Git (ele continua existindo no computador de vocês):</p>
-<pre><code class="hljs language-bash">git <span class="hljs-built_in">rm</span> --cached .<span class="hljs-built_in">env</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;.env&quot;</span> &gt;&gt; .gitignore
+<pre><code class="hljs language-bash">git <span class="hljs-built_in">rm</span> --cached .<span class="hljs-built_in">env</span></code></pre><p>Depois, abram o <code>.gitignore</code> no VS Code e confiram que ele tem uma linha só com <code>.env</code>. Se não tiver, acrescentem essa linha e salvem. Editem pelo VS Code, e não com <code>echo &quot;.env&quot; &gt;&gt; .gitignore</code>: no PowerShell do Windows, esse comando pode gravar o texto em UTF-16, uma codificação que o Git não lê no <code>.gitignore</code>, e a proteção não funciona.</p>
+<p>Por fim, registrem e enviem a remoção:</p>
+<pre><code class="hljs language-bash">git add .gitignore
 git commit -m <span class="hljs-string">&quot;Remove o .env do repositório&quot;</span>
 git push</code></pre><p>Depois — e essa parte é a mais importante — <strong>troquem as chaves que estavam nele</strong>.</p>
 <p>Por quê? Porque o Git guarda o histórico. O commit antigo ainda tem a chave antiga escrita lá dentro, e num repositório público qualquer pessoa consegue ler. No Supabase, a troca fica em <strong>Project Settings → API Keys</strong>: apaguem a chave vazada e criem outra.</p>
@@ -781,8 +796,8 @@ git push -u origin main</code></pre><blockquote>
 </tr>
 <tr>
 <td><strong>Build Command</strong></td>
-<td><code>npm install</code></td>
-<td>O que rodar <strong>antes</strong> de ligar o programa: baixar as bibliotecas.</td>
+<td><code>npm install</code> (projeto do Guia passo a passo do Supabase) ou <code>npm ci</code> (base de retomada)</td>
+<td>O que rodar <strong>antes</strong> de ligar o programa: baixar as bibliotecas. O <code>npm ci</code> instala exatamente as versões do <code>package-lock.json</code> (a base traz esse arquivo); o <code>npm install</code> também segue o <code>package-lock.json</code> quando ele está no repositório. Os dois funcionam.</td>
 </tr>
 <tr>
 <td><strong>Start Command</strong></td>
@@ -879,7 +894,7 @@ git push -u origin main</code></pre><blockquote>
 </tr>
 <tr>
 <td>Instalando</td>
-<td><code>==&gt; Running build command &#39;npm install&#39;...</code></td>
+<td><code>==&gt; Running build command &#39;npm install&#39;...</code> (ou <code>&#39;npm ci&#39;</code>)</td>
 <td>Baixando as bibliotecas.</td>
 </tr>
 <tr>
@@ -890,7 +905,7 @@ git push -u origin main</code></pre><blockquote>
 <tr>
 <td>Ligando</td>
 <td><code>==&gt; Running &#39;npm start&#39;</code></td>
-<td>Ligando o servidor. É aqui que aparece a mensagem do <code>app.js</code>: <code>Karaokê no ar: http://localhost:10000</code> (o texto diz <code>localhost</code>, mas a porta é a que a Render escolheu).</td>
+<td>Ligando o servidor. É aqui que aparece a mensagem do <code>app.js</code>: <code>Karaokê no ar: http://localhost:10000</code> (o texto diz <code>localhost</code>, mas a porta é a que a Render escolheu; na base de retomada, <code>Karaokê disponível na porta 10000</code>).</td>
 </tr>
 <tr>
 <td>Achando a porta</td>
@@ -927,7 +942,7 @@ git push -u origin main</code></pre><blockquote>
 <span class="hljs-comment">// certo em qualquer lugar</span>
 <span class="hljs-keyword">const</span> resposta = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;/api/musicas&#x27;</span>);</code></pre></blockquote>
 <h3 id="82-a-api-pelo-rest-client">8.2 A API pelo REST Client</h3>
-<p>O arquivo <code>testes/musicas.http</code> do Guia do Supabase já serve. Basta trocar o endereço no topo:</p>
+<p>O arquivo <code>testes/musicas.http</code> da seção 3.5 do Guia passo a passo do Supabase já serve (quem usa a base de retomada cria esse arquivo a partir dessa seção). Basta trocar o endereço no topo:</p>
 <pre><code class="hljs language-http"># @baseUrl = http://localhost:3000
 @baseUrl = https://karaoke-turma-XX.onrender.com
 
@@ -952,7 +967,7 @@ POST {{baseUrl}}/api/musicas
 <ol>
 <li>Criem uma música <strong>pela tela publicada</strong> (o formulário da página, no endereço público). Se a página ainda não tem formulário, usem o <code>POST /api/musicas</code> do arquivo <code>.http</code>.</li>
 <li>Anotem o <code>id</code> da música criada.</li>
-<li>No painel da Render, reiniciem o serviço: <strong>Manual Deploy</strong> → <strong>Restart service</strong>. Esperem o status voltar a <strong>Live</strong> e a mensagem <code>Karaokê no ar</code> aparecer nos <strong>Logs</strong>.</li>
+<li>No painel da Render, reiniciem o serviço: <strong>Manual Deploy</strong> → <strong>Restart service</strong>. Esperem o status voltar a <strong>Live</strong> e a mensagem de início aparecer nos <strong>Logs</strong> (<code>Karaokê no ar</code> ou, na base de retomada, <code>Karaokê disponível na porta</code>).</li>
 <li>Consultem o <strong>mesmo <code>id</code></strong>: <code>GET /api/musicas/&lt;id&gt;</code> no <code>.http</code>, ou a lista na página. A resposta precisa ser <code>200</code> com a música.</li>
 <li>Removam a música de teste (<code>DELETE /api/musicas/&lt;id&gt;</code>) e confirmem que ela saiu da lista.</li>
 <li>Registrem o resultado no <code>README.md</code>, usando o modelo do Guia passo a passo do Supabase (disponível no Classroom da disciplina). O registro por marco tem data, teste, resultado e próximo passo:</li>
@@ -964,7 +979,7 @@ POST {{baseUrl}}/api/musicas
   na Render (Restart service) e consultei GET /api/musicas/0 no endereço público.
 <span class="hljs-bullet">-</span> <span class="hljs-strong">**Resultado:**</span> a música respondeu 200 depois do reinício; removi o registro de teste.
 <span class="hljs-bullet">-</span> <span class="hljs-strong">**Próximo passo:**</span> conferir a seção &quot;Antes da apresentação&quot; deste guia.</code></pre><p>Troquem os zeros pelos valores reais e escrevam o que vocês observaram, mesmo que seja diferente do esperado.</p>
-<p>Se a música sumiu depois do reinício, os dados estão na memória e não no banco. Revejam o <code>DAO/MusicaDAO.js</code> (ele deve usar o <code>supabaseClient</code>) e as variáveis da <a href="#etapa-6--configurando-as-senhas-e-chaves">Etapa 6</a>.</p>
+<p>Se a música sumiu depois do reinício, os dados estão na memória e não no banco. Revejam o <code>MusicaDAO.js</code> (em <code>DAO/</code> ou, na base de retomada, em <code>karaoke/DAO/</code>; ele deve usar o <code>supabaseClient</code>) e as variáveis da <a href="#etapa-6--configurando-as-senhas-e-chaves">Etapa 6</a>.</p>
 <hr>
 <h2 id="etapa-9--o-dia-a-dia-depois-de-publicar">Etapa 9 — O dia a dia depois de publicar</h2>
 <h3 id="91-publicação-automática">9.1 Publicação automática</h3>
@@ -1035,7 +1050,7 @@ git push</code></pre><p>A Render percebe o <code>push</code> na branch <code>mai
 <td>Preencher o campo <strong>Root Directory</strong> com a subpasta do projeto (<a href="#52-preenchendo-o-formul%C3%A1rio">Etapa 5.2</a>).</td>
 </tr>
 <tr>
-<td><code>Preencham SUPABASE_URL e SUPABASE_SECRET_KEY no .env (ou no ambiente da Render)</code> ou <code>supabaseUrl is required</code>, logo ao ligar</td>
+<td><code>Preencham SUPABASE_URL e SUPABASE_SECRET_KEY no .env (ou no ambiente da Render)</code> (na base de retomada, <code>Preencha SUPABASE_URL e SUPABASE_SECRET_KEY no .env ou no ambiente do servidor</code>) ou <code>supabaseUrl is required</code>, logo ao ligar</td>
 <td>As variáveis <code>SUPABASE_URL</code> / <code>SUPABASE_SECRET_KEY</code> não foram configuradas, ou o nome está diferente do usado no código</td>
 <td>Revisar as variáveis (<a href="#etapa-6--configurando-as-senhas-e-chaves">Etapa 6</a>) e publicar de novo.</td>
 </tr>
@@ -1057,7 +1072,7 @@ git push</code></pre><p>A Render percebe o <code>push</code> na branch <code>mai
 <tr>
 <td>O build termina, mas o serviço fica &quot;Deploying&quot; para sempre</td>
 <td>Colocaram <code>npm install &amp;&amp; npm start</code> no <strong>Build Command</strong></td>
-<td>Separar: Build = <code>npm install</code>, Start = <code>npm start</code> (<a href="#52-preenchendo-o-formul%C3%A1rio">Etapa 5.2</a>).</td>
+<td>Separar: Build = <code>npm install</code> (ou <code>npm ci</code>), Start = <code>npm start</code> (<a href="#52-preenchendo-o-formul%C3%A1rio">Etapa 5.2</a>).</td>
 </tr>
 <tr>
 <td><code>404 Not Found</code> na página inicial, mas a API responde</td>
@@ -1173,7 +1188,7 @@ git push</code></pre><p>A Render percebe o <code>push</code> na branch <code>mai
 </tr>
 <tr>
 <td><strong>Build</strong></td>
-<td>A preparação que acontece antes de ligar o programa. No nosso caso, o <code>npm install</code>.</td>
+<td>A preparação que acontece antes de ligar o programa. No nosso caso, o <code>npm install</code> (ou o <code>npm ci</code>).</td>
 </tr>
 <tr>
 <td><strong>Web Service</strong></td>
