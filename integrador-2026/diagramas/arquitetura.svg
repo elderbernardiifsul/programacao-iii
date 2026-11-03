@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 180" role="img" aria-labelledby="titulo desc">
+<title id="titulo">Caminho dos dados do karaokê</title>
+<desc id="desc">A interface troca requisições e respostas com a API Express. A API usa os DAOs, que consultam e alteram o banco.</desc>
+<defs><marker id="seta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1d7a2d"/></marker></defs>
+<g font-family="Arial, sans-serif" text-anchor="middle">
+<rect x="20" y="25" width="240" height="110" rx="10" fill="#f0f8f1" stroke="#1d7a2d" stroke-width="2"/><text x="140" y="69" font-size="25" font-weight="bold" fill="#1d5c29">Interface</text><text x="140" y="105" font-size="17" fill="#24392b">formulário e player</text>
+<rect x="320" y="25" width="240" height="110" rx="10" fill="#f0f8f1" stroke="#1d7a2d" stroke-width="2"/><text x="440" y="69" font-size="25" font-weight="bold" fill="#1d5c29">API Express</text><text x="440" y="105" font-size="17" fill="#24392b">requisições e respostas</text>
+<rect x="620" y="25" width="240" height="110" rx="10" fill="#f0f8f1" stroke="#1d7a2d" stroke-width="2"/><text x="740" y="69" font-size="25" font-weight="bold" fill="#1d5c29">DAOs</text><text x="740" y="105" font-size="17" fill="#24392b">consultas e objetos</text>
+<rect x="920" y="25" width="240" height="110" rx="10" fill="#f0f8f1" stroke="#1d7a2d" stroke-width="2"/><text x="1040" y="69" font-size="25" font-weight="bold" fill="#1d5c29">Banco de dados</text><text x="1040" y="105" font-size="17" fill="#24392b">artistas · músicas · partes</text>
+<path d="M 272 80 H 308" stroke="#1d7a2d" stroke-width="2" marker-start="url(#seta)" marker-end="url(#seta)"/>
+<path d="M 572 80 H 608" stroke="#1d7a2d" stroke-width="2" marker-start="url(#seta)" marker-end="url(#seta)"/>
+<path d="M 872 80 H 908" stroke="#1d7a2d" stroke-width="2" marker-start="url(#seta)" marker-end="url(#seta)"/>
+<text x="600" y="166" font-size="19" fill="#42574a">O retorno percorre as mesmas camadas até atualizar a interface.</text></g></svg>

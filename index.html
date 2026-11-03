@@ -275,6 +275,11 @@
     :target { scroll-margin-top: 24px; }
     a:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
     main img { display: block; margin: 24px auto 8px; padding: 16px; border: 1px solid var(--borda); border-radius: 12px; background: white; }
+    .voltar-indice { text-align: right; margin: 28px 0 12px; break-before: avoid; page-break-before: avoid; }
+    .voltar-indice a { display: inline-block; padding: 6px 14px; border: 1px solid var(--ifsul-verde); border-radius: 999px; background: var(--superficie); color: var(--ifsul-verde-escuro); font-size: 0.9em; font-weight: 600; text-decoration: none; }
+    .voltar-indice a:hover, .voltar-indice a:focus { background: var(--ifsul-verde); color: #fff; }
+    .sumario-auto ol { columns: 2; column-gap: 32px; }
+    @media (max-width: 640px) { .sumario-auto ol { columns: 1; } }
     .diagram-expand, .diagram-close { padding: 10px 16px; border: 1px solid #1d7a2d; border-radius: 8px; background: white; color: #14532d; cursor: pointer; font: inherit; }
     .diagram-expand { display: block; margin: 8px auto 24px; }
     .diagram-dialog { width: 95vw; max-width: 1600px; max-height: 94vh; padding: 20px; border: 1px solid #9bbda4; border-radius: 12px; }

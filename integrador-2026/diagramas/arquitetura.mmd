@@ -1,0 +1,7 @@
+flowchart LR
+    A[Interface no navegador] -->|fetch / JSON| B[API Express]
+    B --> C[DAOs e objetos]
+    C --> D[(Banco de dados)]
+    D --> C
+    C --> B
+    B -->|Resposta HTTP| A

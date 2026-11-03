@@ -275,6 +275,11 @@
     :target { scroll-margin-top: 24px; }
     a:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
     main img { display: block; margin: 24px auto 8px; padding: 16px; border: 1px solid var(--borda); border-radius: 12px; background: white; }
+    .voltar-indice { text-align: right; margin: 28px 0 12px; break-before: avoid; page-break-before: avoid; }
+    .voltar-indice a { display: inline-block; padding: 6px 14px; border: 1px solid var(--ifsul-verde); border-radius: 999px; background: var(--superficie); color: var(--ifsul-verde-escuro); font-size: 0.9em; font-weight: 600; text-decoration: none; }
+    .voltar-indice a:hover, .voltar-indice a:focus { background: var(--ifsul-verde); color: #fff; }
+    .sumario-auto ol { columns: 2; column-gap: 32px; }
+    @media (max-width: 640px) { .sumario-auto ol { columns: 1; } }
     .diagram-expand, .diagram-close { padding: 10px 16px; border: 1px solid #1d7a2d; border-radius: 8px; background: white; color: #14532d; cursor: pointer; font: inherit; }
     .diagram-expand { display: block; margin: 8px auto 24px; }
     .diagram-dialog { width: 95vw; max-width: 1600px; max-height: 94vh; padding: 20px; border: 1px solid #9bbda4; border-radius: 12px; }
@@ -378,7 +383,7 @@
 <p>Este guia parte do repositório da aula de Node.js e chega a um karaokê web que guarda as músicas num banco de dados de verdade, no Supabase. O caminho está dividido em etapas curtas. Cada etapa diz quais arquivos criar ou alterar, onde eles ficam, quem usa cada um e como testar antes de seguir.</p>
 <h2 id="como-usar-este-guia">Como usar este guia</h2>
 <h3 id="de-onde-vocês-partem-e-aonde-chegam">De onde vocês partem e aonde chegam</h3>
-<p><strong>Ponto de partida:</strong> o repositório da aula, <a href="https://github.com/elderbernardiifsul/aula-nodejs-1-T1">elderbernardiifsul/aula-nodejs-1-T1</a>, num commit fixo. É o projeto das aulas de Express e DAO no ponto em que a Atividade 5 começa: o DAO guarda as músicas na memória e o player do navegador ainda tem partes por fazer. O commit fixo acrescenta só o arquivo <code>AGENTS.md</code>, explicado na etapa 0.</p>
+<p><strong>Ponto de partida:</strong> o repositório da aula, <a href="https://github.com/elderbernardiifsul/aula-nodejs-1-T1">elderbernardiifsul/aula-nodejs-1-T1</a>, num commit fixo. É o projeto das aulas de Express e DAO no ponto em que a Atividade 5 começa: o DAO guarda as músicas na memória e o player do navegador ainda tem partes por fazer. Os dois últimos commits desse ponto mexem só no arquivo <code>AGENTS.md</code>, explicado na etapa 0.</p>
 <p><strong>Resultado, ao fim da etapa 13:</strong></p>
 <ul>
 <li>API de músicas completa (listar, consultar, cadastrar, editar, excluir e acrescentar partes), gravando no Supabase;</li>
@@ -418,7 +423,7 @@
 <li><strong>Commit sugerido</strong>: os comandos e a mensagem do commit.</li>
 <li><strong>Se deu errado</strong>: os sintomas mais prováveis daquela etapa e o que fazer.</li>
 <li>Quando a etapa traz um conceito novo, um quadro <strong>Entenda</strong>, que remete à Parte II.</li>
-<li>Quando ajuda, um quadro <strong>Pergunte ao agente</strong>, com uma pergunta pronta para o agente de IA (ver etapa 0).</li>
+<li>Quando ajuda, um quadro <strong>Pergunte ao agente</strong>, com uma pergunta pronta para o agente de IA e a seção da página do trabalho que ele deve usar como fonte (ver etapa 0).</li>
 </ol>
 <p>Um exemplo de árvore:</p>
 <pre><code class="hljs language-text">nosso-karaoke/
@@ -632,7 +637,7 @@ Nome Sobrenome</code></pre><p>No Windows, a terceira linha costuma terminar com 
 </tbody></table>
 <pre><code class="hljs language-powershell"><span class="hljs-built_in">Set-ExecutionPolicy</span> <span class="hljs-literal">-Scope</span> CurrentUser RemoteSigned</code></pre><h3 id="o-agente-como-tutor">O agente como tutor</h3>
 <p>Agentes de IA são ferramentas que leem os arquivos do projeto, executam comandos e alteram código a partir de pedidos escritos. Neste trabalho, o uso deles é permitido, com um papel definido: <strong>tutor</strong>. O agente explica, faz perguntas, aponta onde olhar e revisa o que vocês escreveram, mas não entrega pronto o código das partes avaliadas. Cada um de vocês vai precisar explicar o próprio código, e é para isso que o tutor trabalha.</p>
-<p>Esse papel está escrito no arquivo <code>AGENTS.md</code>, na raiz do projeto. É um texto para o agente, não para vocês: ele descreve o projeto (camadas, pastas, contrato da API), define como o agente deve ajudar e quais cuidados deve ter com as chaves do banco. As ferramentas mais usadas leem esse arquivo antes de responder:</p>
+<p>Esse papel está escrito no arquivo <code>AGENTS.md</code>, na raiz do projeto. É um texto para o agente, não para vocês: ele descreve o projeto (camadas, pastas, contrato da API), define como o agente deve ajudar, quais cuidados deve ter com as chaves do banco e em qual documento da página do trabalho está cada parte. As ferramentas mais usadas leem esse arquivo antes de responder:</p>
 <table>
 <thead>
 <tr>
@@ -724,6 +729,29 @@ Erros respondem <span class="hljs-code">`{ &quot;erro&quot;: &quot;...&quot; }`<
 
 Mantenha o projeto como está: as mesmas camadas, as mesmas pastas e as dependências atuais (<span class="hljs-code">`express`</span>, <span class="hljs-code">`dotenv`</span> e <span class="hljs-code">`@supabase/supabase-js`</span>). Só o servidor conversa com o Supabase. Sugira apenas o que o estudante pediu; login, upload, áudio e fila ficam fora deste trabalho.
 
+<span class="hljs-section">## Fonte: página do trabalho</span>
+
+A referência oficial do trabalho é a página https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/. Antes de explicar um requisito, um passo de guia, um critério de avaliação ou uma mensagem de erro, leia o documento indicado abaixo e diga ao estudante em que documento e seção está a resposta, para ele conferir. Cada documento está na página com o mesmo nome em <span class="hljs-code">`.md`</span> (texto puro, o melhor para ler), <span class="hljs-code">`.html`</span> e <span class="hljs-code">`.pdf`</span>; por exemplo, https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/enunciado.md.
+
+| Assunto | Documento | Seção |
+|---|---|---|
+| O que construir, requisitos R1 a R8, entregas, datas, uso de IA | <span class="hljs-code">`enunciado.md`</span> | &quot;Núcleo do trabalho — R1 a R8&quot;, &quot;O que guardar e entregar&quot;, &quot;Uso de IA&quot; |
+| Critérios e pesos da avaliação | <span class="hljs-code">`rubrica_estudantes.md`</span> | documento inteiro |
+| Aceites de cada encontro | <span class="hljs-code">`ficha_marcos.md`</span> | &quot;Aceites e atividades por marco&quot; |
+| Clonar, executar, Git | <span class="hljs-code">`guia_supabase.md`</span> | Etapas 1 e 2 |
+| API com DAO em memória, arquivo <span class="hljs-code">`.http`</span>, player | <span class="hljs-code">`guia_supabase.md`</span> | Etapa 3 |
+| Banco: criar ou conferir (schema, seed, diagnóstico, ajustes) | <span class="hljs-code">`guia_supabase.md`</span> | Etapa 4 |
+| <span class="hljs-code">`.env`</span>, <span class="hljs-code">`supabaseClient.js`</span>, conexão | <span class="hljs-code">`guia_supabase.md`</span> | Etapa 5 |
+| Classes e DAOs com o banco | <span class="hljs-code">`guia_supabase.md`</span> | Etapas 6 a 9 |
+| Rotas <span class="hljs-code">`async`</span>, player com artista | <span class="hljs-code">`guia_supabase.md`</span> | Etapas 10 e 11 |
+| Teste de persistência | <span class="hljs-code">`guia_supabase.md`</span>, <span class="hljs-code">`guia_deploy_render.md`</span> | Etapa 12; Etapa 8.4 |
+| Tela de cadastro, edição e exclusão com <span class="hljs-code">`fetch`</span> | <span class="hljs-code">`guia_interface_crud.md`</span> | Padrões 1 a 7, &quot;Aplicando às músicas (sem código)&quot; |
+| Publicar na Render, variáveis de ambiente | <span class="hljs-code">`guia_deploy_render.md`</span> | Etapas 5 a 9, &quot;Antes da apresentação&quot; |
+| Mensagens de erro | <span class="hljs-code">`guia_supabase.md`</span>, <span class="hljs-code">`guia_deploy_render.md`</span> | &quot;Socorro — erros comuns&quot;; &quot;Etapa 10 — Socorro: erros mais comuns&quot; |
+| Projeto a partir da base de retomada | <span class="hljs-code">`roteiro_retomada.md`</span> | seções 1 a 7 |
+
+Os guias mostram código completo nas partes de preparação; nas partes avaliadas, o guia de interface ensina a técnica num exemplo de recados. Ao usar esse material, siga a ajuda em níveis descrita acima.
+
 <span class="hljs-section">## Segurança das chaves</span>
 
 O valor de <span class="hljs-code">`SUPABASE_SECRET_KEY`</span>, senhas e tokens ficam só no <span class="hljs-code">`.env`</span> (fora do Git) e no ambiente do servidor publicado. Nunca peça, repita nem escreva esses valores. Se o estudante colar uma chave na conversa, diga que ela precisa ser trocada no painel do Supabase (Project Settings → API Keys). Antes de um <span class="hljs-code">`git add`</span>, lembre de conferir se o <span class="hljs-code">`.env`</span> está no <span class="hljs-code">`.gitignore`</span>.
@@ -732,7 +760,7 @@ O valor de <span class="hljs-code">`SUPABASE_SECRET_KEY`</span>, senhas e tokens
 
 O trabalho pede um registro breve no README. Ao fim de uma sessão útil, sugira esta linha para o estudante completar:
 
-<span class="hljs-quote">&gt; Ferramenta: <span class="hljs-strong">___ · Parte em que ajudou: __</span>_ · Como conferimos: <span class="hljs-strong">__<span class="hljs-emphasis">_</span></span></span></code></pre><p>Na prática, peçam explicação, diagnóstico e revisão. Quando o pedido for a solução de uma parte avaliada, o agente oferece o próximo nível de ajuda (pergunta, conceito, pseudocódigo, trecho com lacunas), como está no próprio arquivo. A partir da etapa 3, os quadros <strong>Pergunte ao agente</strong> trazem perguntas prontas nesse formato.</p>
+<span class="hljs-quote">&gt; Ferramenta: <span class="hljs-strong">___ · Parte em que ajudou: __</span>_ · Como conferimos: <span class="hljs-strong">__<span class="hljs-emphasis">_</span></span></span></code></pre><p>Na prática, peçam explicação, diagnóstico e revisão. Quando o pedido for a solução de uma parte avaliada, o agente oferece o próximo nível de ajuda (pergunta, conceito, pseudocódigo, trecho com lacunas), como está no próprio arquivo. A partir da etapa 3, os quadros <strong>Pergunte ao agente</strong> trazem perguntas prontas nesse formato. Cada pergunta termina indicando a fonte: o documento e a seção na página do trabalho, <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/</a>, onde estão os mesmos materiais do Classroom. Assim o agente responde a partir do material da disciplina, e vocês conseguem conferir a resposta no mesmo lugar.</p>
 <div class="markdown-alert markdown-alert-caution">
 <p class="markdown-alert-title"><svg class="octicon octicon-stop mr-2" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Cuidado</p>
 <p>Nunca colem na conversa com o agente o conteúdo do <code>.env</code>, chaves ou senhas. Se isso acontecer, a chave precisa ser trocada no painel do Supabase (em <strong>Project Settings → API Keys</strong>; a etapa 5 mostra o caminho completo).</p>
@@ -742,7 +770,8 @@ O trabalho pede um registro breve no README. Ao fim de uma sessão útil, sugira
 <pre><code class="hljs language-markdown"><span class="hljs-section">## Uso de IA</span>
 
 <span class="hljs-quote">&gt; Ferramenta: <span class="hljs-strong">___ · Parte em que ajudou: __</span>_ · Como conferimos: <span class="hljs-strong">__<span class="hljs-emphasis">_</span></span></span></code></pre><p>Um exemplo preenchido:</p>
-<pre><code class="hljs language-markdown"><span class="hljs-quote">&gt; Ferramenta: GitHub Copilot (modo Agente) · Parte em que ajudou: explicou por que o `npm start` terminava logo depois de &quot;Servidor inciado.&quot; (porta 3000 ocupada) · Como conferimos: fechamos o outro terminal, rodamos `npm start` de novo e abrimos http://localhost:3000</span></code></pre><hr>
+<pre><code class="hljs language-markdown"><span class="hljs-quote">&gt; Ferramenta: GitHub Copilot (modo Agente) · Parte em que ajudou: explicou por que o `npm start` terminava logo depois de &quot;Servidor inciado.&quot; (porta 3000 ocupada) · Como conferimos: fechamos o outro terminal, rodamos `npm start` de novo e abrimos http://localhost:3000</span></code></pre><p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
+<hr>
 <h2 id="etapa-1--clonar-executar-e-tornar-o-repositório-de-vocês">Etapa 1 — Clonar, executar e tornar o repositório de vocês</h2>
 <p><strong>Objetivo:</strong> ter o projeto da aula rodando no computador e guardado num repositório da dupla no GitHub.</p>
 <div class="markdown-alert markdown-alert-note">
@@ -754,7 +783,7 @@ O trabalho pede um registro breve no README. Ao fim de uma sessão útil, sugira
 <!-- executar | etapa: 1 -->
 <pre><code class="hljs language-bash">git <span class="hljs-built_in">clone</span> https://github.com/elderbernardiifsul/aula-nodejs-1-T1 nosso-karaoke
 <span class="hljs-built_in">cd</span> nosso-karaoke
-git switch -c nosso-karaoke dbb2bd40e8324c35c2e44604e841753472b5d1f5
+git switch -c nosso-karaoke 787185635ed8a2ea85ce2b1717913e12b49d575f
 npm install</code></pre><table>
 <thead>
 <tr>
@@ -771,7 +800,7 @@ npm install</code></pre><table>
 <td>entra na pasta do projeto; os próximos comandos rodam dentro dela</td>
 </tr>
 <tr>
-<td><code>git switch -c nosso-karaoke dbb2bd4...</code></td>
+<td><code>git switch -c nosso-karaoke 7871856...</code></td>
 <td>cria um branch chamado <code>nosso-karaoke</code> começando exatamente no commit de partida deste guia, e passa a trabalhar nele</td>
 </tr>
 <tr>
@@ -785,7 +814,7 @@ Switched to a new branch &#x27;nosso-karaoke&#x27;
 
 added 86 packages, and audited 87 packages in 2s</code></pre><p>O Git pode mostrar as mesmas mensagens em português (&quot;Clonando em...&quot;, &quot;Alternado para um novo ramo...&quot;). O <code>npm install</code> pode terminar com um aviso de vulnerabilidades (<code>vulnerabilities</code>) em pacotes usados pelo Express. Esse aviso não é erro e não impede o projeto de rodar; atualizar dependências fica fora deste guia.</p>
 <blockquote>
-<p><strong>Entenda — por que um commit fixo.</strong> Cada commit tem um código único, o <em>hash</em> (<code>dbb2bd40e832...</code>). O <code>git switch -c nosso-karaoke &lt;hash&gt;</code> cria um branch que começa nesse commit. Se o repositório da aula receber commits novos depois, o ponto de partida de vocês continua o mesmo, e os trechos &quot;Antes&quot; deste guia continuam batendo com os arquivos de vocês.</p>
+<p><strong>Entenda — por que um commit fixo.</strong> Cada commit tem um código único, o <em>hash</em> (<code>787185635ed8...</code>). O <code>git switch -c nosso-karaoke &lt;hash&gt;</code> cria um branch que começa nesse commit. Se o repositório da aula receber commits novos depois, o ponto de partida de vocês continua o mesmo, e os trechos &quot;Antes&quot; deste guia continuam batendo com os arquivos de vocês.</p>
 </blockquote>
 <p>Agora abram o projeto no VS Code. Pelo terminal, ainda dentro da pasta:</p>
 <pre><code class="hljs language-bash">code .</code></pre><p>Ou pelo menu <strong>File → Open Folder</strong>, escolhendo a pasta <code>nosso-karaoke</code>. Daqui em diante, usem o terminal do VS Code (<strong>Terminal → New Terminal</strong>), que já abre na pasta do projeto.</p>
@@ -887,7 +916,7 @@ npm install</code></pre><p>Em seguida, ela abre a pasta no VS Code e faz o mesmo
 <h3 id="teste-agora-1">Teste agora</h3>
 <pre><code class="hljs language-bash">git remote -v</code></pre><p>Saída esperada, com o endereço do repositório da dupla duas vezes:</p>
 <pre><code class="hljs language-text">origin  https://github.com/&lt;usuario&gt;/&lt;repositorio&gt;.git (fetch)
-origin  https://github.com/&lt;usuario&gt;/&lt;repositorio&gt;.git (push)</code></pre><p>Atualizem a página do repositório no GitHub: os arquivos do projeto aparecem no branch <code>main</code>, e o último commit é &quot;add: AGENTS.md com orientações de tutor para agentes de IA&quot;.</p>
+origin  https://github.com/&lt;usuario&gt;/&lt;repositorio&gt;.git (push)</code></pre><p>Atualizem a página do repositório no GitHub: os arquivos do projeto aparecem no branch <code>main</code>, e o último commit é &quot;update: AGENTS.md indica a página do trabalho como fonte&quot;.</p>
 <h3 id="commit-sugerido">Commit sugerido</h3>
 <p>Nenhum: o <code>git push</code> da seção 1.5 já enviou o ponto de partida.</p>
 <h3 id="se-deu-errado-1">Se deu errado</h3>
@@ -920,6 +949,7 @@ origin  https://github.com/&lt;usuario&gt;/&lt;repositorio&gt;.git (push)</code>
 <td>copiem de novo o endereço da página do repositório e repitam o <code>git remote set-url</code>; em computador compartilhado, removam a credencial antiga do GitHub (no Windows, <strong>Gerenciador de Credenciais → Credenciais do Windows</strong>) e repitam o <code>git push</code></td>
 </tr>
 </tbody></table>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-2--arrumar-o-ponto-de-partida">Etapa 2 — Arrumar o ponto de partida</h2>
 <p><strong>Objetivo:</strong> deixar o projeto pronto para as próximas etapas: sem o pacote <code>@supabase/server</code>, com Node 22 como versão mínima, sem o teste do DAO no <code>app.js</code> e com a classe <code>Musica</code> recebendo o <code>id</code>.</p>
@@ -1046,6 +1076,7 @@ git push</code></pre><h3 id="se-deu-errado-2">Se deu errado</h3>
 <td>confiram se ficou <code>constructor(nome, artista, id)</code></td>
 </tr>
 </tbody></table>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-3--api-crud-com-dao-em-memória-e-player">Etapa 3 — API CRUD com DAO em memória e player</h2>
 <p><strong>Objetivo:</strong> terminar o que a Atividade 5 deixou pela metade: as rotas <code>/api/musicas</code> usando o DAO e o player da página tocando as músicas. Os dados ainda ficam na memória do servidor; o banco entra a partir da etapa 4.</p>
@@ -1571,8 +1602,9 @@ git push</code></pre><h3 id="se-deu-errado-3">Se deu errado</h3>
 </tr>
 </tbody></table>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Explique a diferença entre as respostas 400 e 404 nas rotas do <code>app.js</code>, usando os testes 2, 5 e 7 do <code>musicas.http</code>. Não altere o código.&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Explique a diferença entre as respostas 400 e 404 nas rotas do <code>app.js</code>, usando os testes 2, 5 e 7 do <code>musicas.http</code>. Não altere o código. Use como fonte o guia_supabase.md (Etapa 3), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</a>.&quot;</em></p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-4--o-banco-no-supabase">Etapa 4 — O banco no Supabase</h2>
 <p><strong>Objetivo:</strong> ter no Supabase as tabelas <code>artistas</code>, <code>musicas</code> e <code>partes</code>, com a música de exemplo &quot;Encontro da turma&quot;, e confirmar que estão como a aplicação espera. Há dois caminhos: <strong>4A</strong>, para quem vai criar um projeto novo, e <strong>4B</strong>, para quem já tem um projeto da Unidade 3.</p>
@@ -1969,8 +2001,9 @@ git push</code></pre><h3 id="se-deu-errado-4">Se deu errado</h3>
 </tbody></table>
 <p><strong>Aviso ao sair do SQL Editor.</strong> Ao fechar a página, o painel pode perguntar se vocês querem descartar a consulta. Isso não é erro: o SQL Editor não salva sozinho, e o conteúdo está no arquivo do repositório. Para guardar uma consulta no painel, usem <strong>Save</strong> (<code>Ctrl+S</code>).</p>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Rodei o diagnostico.sql e a linha &#39;ligação partes → musicas&#39; veio como ajustar. Explique o que é on delete cascade e o que aconteceria se eu excluísse uma música com partes sem ele.&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Rodei o diagnostico.sql e a linha &#39;ligação partes → musicas&#39; veio como ajustar. Explique o que é on delete cascade e o que aconteceria se eu excluísse uma música com partes sem ele. Use como fonte o guia_supabase.md (Etapa 4), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</a>.&quot;</em></p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-5--ligar-o-node-ao-supabase">Etapa 5 — Ligar o Node ao Supabase</h2>
 <p><strong>Objetivo:</strong> fazer o servidor Node conversar com o banco da etapa 4. Ao final, um teste de conexão lista no terminal a música de exemplo que está no Supabase. Os DAOs só passam a usar o banco nas etapas 7 a 9; aqui vocês montam e testam a ligação.</p>
@@ -2181,8 +2214,9 @@ git push</code></pre><h3 id="se-deu-errado-5">Se deu errado</h3>
 </tr>
 </tbody></table>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Meu teste de conexão mostra este erro: &lt;colem a mensagem, sem a chave&gt;. Quais são as causas prováveis e como eu testo cada uma?&quot;</em> Antes de colar, confiram que a mensagem não contém nenhum pedaço da chave.</p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Meu teste de conexão mostra este erro: &lt;colem a mensagem, sem a chave&gt;. Quais são as causas prováveis e como eu testo cada uma? Use como fonte o guia_supabase.md (Etapa 5 e &quot;Socorro — erros comuns&quot;), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</a>.&quot;</em> Antes de colar, confiram que a mensagem não contém nenhum pedaço da chave.</p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-6--classes">Etapa 6 — Classes</h2>
 <p><strong>Objetivo:</strong> preparar as classes do projeto para os dados que vêm do banco. Ao final, existem a classe <code>Artista</code>, a classe <code>Parte</code> com <code>id</code> e <code>ordem</code>, e a <code>Musica</code> já documentada para guardar um objeto <code>Artista</code>. Nada fala com o banco ainda; isso começa na etapa 7.</p>
@@ -2319,8 +2353,9 @@ git push</code></pre><h3 id="se-deu-errado-6">Se deu errado</h3>
 </tr>
 </tbody></table>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Explique a diferença entre uma tabela com chave estrangeira e um objeto que contém outro objeto. Dê um exemplo com Musica e Artista, sem escrever o código do projeto.&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Explique a diferença entre uma tabela com chave estrangeira e um objeto que contém outro objeto. Dê um exemplo com Musica e Artista, sem escrever o código do projeto. Use como fonte o guia_supabase.md (Etapa 6), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</a>.&quot;</em></p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-7--artistadao">Etapa 7 — <code>ArtistaDAO</code></h2>
 <p><strong>Objetivo:</strong> criar o primeiro DAO que usa o banco de verdade. Ao final, o <code>ArtistaDAO</code> lista, busca, insere e cria artistas no Supabase, e um teste confere isso direto na tabela <code>artistas</code>.</p>
@@ -2514,8 +2549,9 @@ git push</code></pre><h3 id="se-deu-errado-7">Se deu errado</h3>
 </tr>
 </tbody></table>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Explique por que o buscarOuCriar primeiro busca e só depois insere. O que daria errado se ele sempre inserisse?&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Explique por que o buscarOuCriar primeiro busca e só depois insere. O que daria errado se ele sempre inserisse? Use como fonte o guia_supabase.md (Etapa 7), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</a>.&quot;</em></p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-8--partedao">Etapa 8 — <code>ParteDAO</code></h2>
 <p><strong>Objetivo:</strong> criar o DAO das partes (versos e refrões). Ao final, o <code>ParteDAO</code> lista as partes de uma música na ordem certa e insere uma parte nova no fim da música, e um teste confere as duas partes da amostra.</p>
@@ -2704,8 +2740,9 @@ git push</code></pre><h3 id="se-deu-errado-8">Se deu errado</h3>
 </tr>
 </tbody></table>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Por que o ParteDAO precisa do .order(&#39;ordem&#39;)? Faça uma pergunta para eu verificar se entendi.&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Por que o ParteDAO precisa do .order(&#39;ordem&#39;)? Faça uma pergunta para eu verificar se entendi. Use como fonte o guia_supabase.md (Etapa 8), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</a>.&quot;</em></p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-9--musicadao-com-o-banco">Etapa 9 — <code>MusicaDAO</code> com o banco</h2>
 <p><strong>Objetivo:</strong> trocar o array do <code>MusicaDAO</code> da etapa 3 pelo banco. Ao final, listar, buscar, inserir, editar e remover músicas acontece no Supabase, e um teste confere o ciclo completo sem deixar registros.</p>
@@ -2958,7 +2995,7 @@ MusicaDAO OK</code></pre><h3 id="observem-o-servidor-com-a-rota-ainda-antiga">Ob
 <p><strong>Entenda — por que <code>async</code>.</strong> Ler do array era instantâneo. Falar com o Supabase atravessa a internet e leva milissegundos. O JavaScript não trava o programa esperando: a função <code>async</code> devolve uma Promise, uma promessa de resultado, e o <code>await</code> espera por ela dentro da própria função. Por isso o <code>await</code> aparece antes de toda chamada ao banco, e por isso as rotas também terão de esperar na etapa 10.</p>
 </blockquote>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Compare o MusicaDAO da etapa 3 com o da etapa 9: o que mudou por dentro e o que continuou igual por fora? Responda com uma tabela, sem reescrever o código.&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Compare o MusicaDAO da etapa 3 com o da etapa 9: o que mudou por dentro e o que continuou igual por fora? Responda com uma tabela, sem reescrever o código. Use como fonte o guia_supabase.md (Etapas 3 e 9), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</a>.&quot;</em></p>
 </blockquote>
 <h3 id="commit-sugerido-8">Commit sugerido</h3>
 <pre><code class="hljs language-bash">git add DAO/MusicaDAO.js testes/teste_musica_dao.js
@@ -2998,6 +3035,7 @@ git push</code></pre><h3 id="se-deu-errado-9">Se deu errado</h3>
 <td>confiram no Table Editor as partes da amostra e o <code>.eq(&#39;id&#39;, id)</code> do <code>atualizar</code></td>
 </tr>
 </tbody></table>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-10--rotas-async">Etapa 10 — Rotas <code>async</code></h2>
 <p><strong>Objetivo:</strong> fazer o <code>app.js</code> esperar o banco. Ao final, o mesmo <code>testes/musicas.http</code> da etapa 3 passa, agora com os dados vindos do Supabase.</p>
@@ -3211,8 +3249,9 @@ git push</code></pre><h3 id="se-deu-errado-10">Se deu errado</h3>
 </tr>
 </tbody></table>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Minha rota responde {} em vez da música. Não escreva o código: diga o que devo procurar e como testar.&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Minha rota responde {} em vez da música. Não escreva o código: diga o que devo procurar e como testar. Use como fonte o guia_supabase.md (Etapa 10), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</a>.&quot;</em></p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-11--player-com-o-artista-como-objeto">Etapa 11 — Player com o artista como objeto</h2>
 <p><strong>Objetivo:</strong> ajustar o <code>public/player.js</code> ao novo formato da API. Ao final, a lista e a reprodução da música de exemplo funcionam com os dados do banco.</p>
@@ -3285,8 +3324,9 @@ git push</code></pre><h3 id="se-deu-errado-11">Se deu errado</h3>
 </tr>
 </tbody></table>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Por que a página mostra [object Object] onde devia estar o nome do artista? Explique o que mudou na resposta da API, sem escrever o código da correção.&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Por que a página mostra [object Object] onde devia estar o nome do artista? Explique o que mudou na resposta da API, sem escrever o código da correção. Use como fonte o guia_supabase.md (Etapa 11), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</a>.&quot;</em></p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-12--provar-a-persistência">Etapa 12 — Provar a persistência</h2>
 <p><strong>Objetivo:</strong> demonstrar que o dado está no banco e não na memória do servidor. Ao final, vocês têm o mesmo ID consultado antes e depois de reiniciar o servidor, e um registro disso para o README.</p>
@@ -3342,8 +3382,9 @@ git push</code></pre><h3 id="se-deu-errado-12">Se deu errado</h3>
 </tr>
 </tbody></table>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Como posso provar que um dado está no banco e não só na memória do servidor? Sugira um teste que eu mesmo execute e me pergunte o resultado que espero.&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Como posso provar que um dado está no banco e não só na memória do servidor? Sugira um teste que eu mesmo execute e me pergunte o resultado que espero. Use como fonte o guia_supabase.md (Etapa 12), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</a>.&quot;</em></p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-13--publicar">Etapa 13 — Publicar</h2>
 <p><strong>Objetivo:</strong> deixar o projeto pronto para a publicação na Render. Ao final, vocês têm as variáveis de ambiente listadas e o checklist de publicação conferido.</p>
@@ -3427,8 +3468,9 @@ git push</code></pre><h3 id="se-deu-errado-12">Se deu errado</h3>
 </tr>
 </tbody></table>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Meu serviço na Render responde 500, mas no meu computador funciona. Sem eu colar nenhuma chave, explique quais diferenças entre os dois ambientes podem causar isso e o que devo procurar nos Logs.&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Meu serviço na Render responde 500, mas no meu computador funciona. Sem eu colar nenhuma chave, explique quais diferenças entre os dois ambientes podem causar isso e o que devo procurar nos Logs. Use como fonte a Etapa 13 do guia_supabase.md e a Etapa 10 do guia_deploy_render.md, na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/</a>.&quot;</em></p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="parte-ii--para-entender-consulta">Parte II — Para entender (consulta)</h2>
 <p>Esta parte reúne o que vocês precisam <strong>entender</strong> para usar o Supabase e ligar o karaokê a ele. A Parte I diz <strong>o que fazer</strong>, passo a passo; esta parte explica <strong>por quê</strong>. Os quadros <strong>Entenda</strong> da Parte I remetem a ela.</p>
@@ -4205,6 +4247,7 @@ SUPABASE_SECRET_KEY=sb_secret_SUBSTITUA_PELA_SUA_CHAVE</code></pre><p>A bibliote
 <li>Por que o <code>MusicaDAO</code> chama <code>artistaDAO.buscarOuCriar</code> em vez de simplesmente inserir o artista? Qual é o papel da restrição <code>unique</code> em <code>artistas.nome</code> para o <code>buscarOuCriar</code>? <em>(O mínimo de banco relacional; etapa 7)</em></li>
 <li>Como vocês provam, para outra pessoa, que um dado está no banco e não só na memória do servidor? Descrevam o procedimento e o que esperam ver em cada passo. <em>(Por que um banco de dados; etapa 12)</em></li>
 </ol>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="socorro--erros-comuns">Socorro — erros comuns</h2>
 <p>Procurem o sintoma na primeira coluna (a mensagem aparece no terminal onde roda o <code>npm start</code> ou o teste, no SQL Editor ou nos Logs da Render). A última coluna diz em que etapa corrigir.</p>
@@ -4352,8 +4395,9 @@ SUPABASE_SECRET_KEY=sb_secret_SUBSTITUA_PELA_SUA_CHAVE</code></pre><p>A bibliote
 </tbody></table>
 <p>Se o erro não está na tabela: leiam a mensagem <strong>inteira</strong> (ela costuma dizer a tabela e a coluna), reproduzam do jeito mais simples possível e tragam ao professor <strong>o que já tentaram</strong>.</p>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Leia esta mensagem de erro (colada abaixo, sem chaves) e me diga em qual camada o problema está: navegador, rota, DAO ou banco. Explique como você chegou a essa conclusão.&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Leia esta mensagem de erro (colada abaixo, sem chaves) e me diga em qual camada o problema está: navegador, rota, DAO ou banco. Explique como você chegou a essa conclusão. Use como fonte o guia_supabase.md (&quot;Socorro — erros comuns&quot;), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</a>.&quot;</em></p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="anexo--correspondência-de-estruturas">Anexo — Correspondência de estruturas</h2>
 <p>O guia usa a estrutura do <strong>repositório da aula</strong> (a que vocês clonam na etapa 1), com os DAOs numa pasta <code>DAO/</code> na raiz. A <strong>base de retomada</strong> (o projeto que acompanha o Roteiro de retomada, disponível no Classroom da disciplina) tem os mesmos arquivos em pastas um pouco diferentes: os DAOs ficam em <code>karaoke/DAO/</code>. Um <strong>projeto próprio</strong> pode ter qualquer organização. Em todos os casos o código dos DAOs é o mesmo; só mudam os caminhos dos <code>require</code>.</p>
@@ -4490,6 +4534,7 @@ SUPABASE_SECRET_KEY=sb_secret_SUBSTITUA_PELA_SUA_CHAVE</code></pre><p>A bibliote
 <li>A extensão <code>.js</code> pode ficar de fora, mas as maiúsculas e minúsculas precisam bater com o nome real: <code>DAO</code> e <code>Dao</code> são pastas diferentes no Linux, onde a Render roda o projeto.</li>
 </ol>
 <p>Para conferir, abram o terminal na raiz do projeto e rodem o teste do DAO (<code>node testes/teste_musica_dao.js</code>, ou o equivalente da estrutura de vocês). Se o erro for <code>Cannot find module</code>, a mensagem mostra qual <code>require</code> não foi encontrado e em qual arquivo.</p>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="onde-estudar-mais">Onde estudar mais</h2>
 <p><strong>Supabase</strong></p>
@@ -4509,6 +4554,7 @@ SUPABASE_SECRET_KEY=sb_secret_SUBSTITUA_PELA_SUA_CHAVE</code></pre><p>A bibliote
 <li><a href="https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Async_JS/Promises">MDN — async/await</a> — promessas e <code>await</code>, em português</li>
 </ul>
 <p>E o material da própria disciplina: o Guia de deploy na Render, disponível no Classroom da disciplina.</p>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 
     </main>
     <footer>

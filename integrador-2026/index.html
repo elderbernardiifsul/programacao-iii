@@ -275,6 +275,11 @@
     :target { scroll-margin-top: 24px; }
     a:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
     main img { display: block; margin: 24px auto 8px; padding: 16px; border: 1px solid var(--borda); border-radius: 12px; background: white; }
+    .voltar-indice { text-align: right; margin: 28px 0 12px; break-before: avoid; page-break-before: avoid; }
+    .voltar-indice a { display: inline-block; padding: 6px 14px; border: 1px solid var(--ifsul-verde); border-radius: 999px; background: var(--superficie); color: var(--ifsul-verde-escuro); font-size: 0.9em; font-weight: 600; text-decoration: none; }
+    .voltar-indice a:hover, .voltar-indice a:focus { background: var(--ifsul-verde); color: #fff; }
+    .sumario-auto ol { columns: 2; column-gap: 32px; }
+    @media (max-width: 640px) { .sumario-auto ol { columns: 1; } }
     .diagram-expand, .diagram-close { padding: 10px 16px; border: 1px solid #1d7a2d; border-radius: 8px; background: white; color: #14532d; cursor: pointer; font: inherit; }
     .diagram-expand { display: block; margin: 8px auto 24px; }
     .diagram-dialog { width: 95vw; max-width: 1600px; max-height: 94vh; padding: 20px; border: 1px solid #9bbda4; border-radius: 12px; }
@@ -373,19 +378,19 @@
 <p><strong>Disciplina:</strong> Programação III<br><strong>Professor:</strong> Élder F. F. Bernardi</p>
 <p>O trabalho integrador é uma aplicação web com API em Node.js e Express, banco de dados no Supabase e interface em HTML que consome a API com <code>fetch</code>. É feito em duplas, com verificação individual, e publicado na Render. <strong>Valor: 4,0 pontos.</strong></p>
 <p><strong>Apresentações:</strong> 3D2 em 24/11/2026; 3D1 em 04/12/2026.</p>
-<p>Os documentos abaixo são os mesmos distribuídos no Classroom da disciplina. Cada um está disponível em HTML, para ler na tela, e em PDF.</p>
+<p>Os documentos abaixo são os mesmos distribuídos no Classroom da disciplina. Cada um está disponível em HTML, para ler na tela, em PDF e em texto (<code>.md</code>), a versão mais leve para um agente de IA ler.</p>
 <h2 id="enunciado-e-avaliação">Enunciado e avaliação</h2>
 <ul>
-<li><strong>Enunciado (versão 2)</strong> — o que construir, requisitos, entregas e política de uso de IA. <a href="enunciado.html">Ler (HTML)</a> · <a href="enunciado.pdf">PDF</a></li>
-<li><strong>Rubrica dos estudantes</strong> — critérios, pesos e níveis de desempenho. <a href="rubrica_estudantes.html">Ler (HTML)</a> · <a href="rubrica_estudantes.pdf">PDF</a></li>
-<li><strong>Ficha de marcos</strong> — registro do andamento ao longo dos encontros. <a href="ficha_marcos.html">Ler (HTML)</a> · <a href="ficha_marcos.pdf">PDF</a></li>
+<li><strong>Enunciado (versão 2)</strong> — o que construir, requisitos, entregas e política de uso de IA. <a href="enunciado.html">Ler (HTML)</a> · <a href="enunciado.pdf">PDF</a> · <a href="enunciado.md">Texto (.md)</a></li>
+<li><strong>Rubrica dos estudantes</strong> — critérios, pesos e níveis de desempenho. <a href="rubrica_estudantes.html">Ler (HTML)</a> · <a href="rubrica_estudantes.pdf">PDF</a> · <a href="rubrica_estudantes.md">Texto (.md)</a></li>
+<li><strong>Ficha de marcos</strong> — registro do andamento ao longo dos encontros. <a href="ficha_marcos.html">Ler (HTML)</a> · <a href="ficha_marcos.pdf">PDF</a> · <a href="ficha_marcos.md">Texto (.md)</a></li>
 </ul>
 <h2 id="guias-de-apoio">Guias de apoio</h2>
 <ul>
-<li><strong>Guia passo a passo do Supabase</strong> — criação do banco, tabelas, dados iniciais e integração da API. <a href="guia_supabase.html">Ler (HTML)</a> · <a href="guia_supabase.pdf">PDF</a></li>
-<li><strong>Guia de interface — CRUD na tela com fetch</strong> — listar, criar, editar e remover registros pela página. <a href="guia_interface_crud.html">Ler (HTML)</a> · <a href="guia_interface_crud.pdf">PDF</a></li>
-<li><strong>Guia de deploy na Render</strong> — publicação da aplicação e configuração das variáveis de ambiente. <a href="guia_deploy_render.html">Ler (HTML)</a> · <a href="guia_deploy_render.pdf">PDF</a></li>
-<li><strong>Roteiro de retomada</strong> — como retomar o trabalho a partir da base de retomada, caso seja necessário. <a href="roteiro_retomada.html">Ler (HTML)</a> · <a href="roteiro_retomada.pdf">PDF</a></li>
+<li><strong>Guia passo a passo do Supabase</strong> — criação do banco, tabelas, dados iniciais e integração da API. <a href="guia_supabase.html">Ler (HTML)</a> · <a href="guia_supabase.pdf">PDF</a> · <a href="guia_supabase.md">Texto (.md)</a></li>
+<li><strong>Guia de interface — CRUD na tela com fetch</strong> — listar, criar, editar e remover registros pela página. <a href="guia_interface_crud.html">Ler (HTML)</a> · <a href="guia_interface_crud.pdf">PDF</a> · <a href="guia_interface_crud.md">Texto (.md)</a></li>
+<li><strong>Guia de deploy na Render</strong> — publicação da aplicação e configuração das variáveis de ambiente. <a href="guia_deploy_render.html">Ler (HTML)</a> · <a href="guia_deploy_render.pdf">PDF</a> · <a href="guia_deploy_render.md">Texto (.md)</a></li>
+<li><strong>Roteiro de retomada</strong> — como retomar o trabalho a partir da base de retomada, caso seja necessário. <a href="roteiro_retomada.html">Ler (HTML)</a> · <a href="roteiro_retomada.pdf">PDF</a> · <a href="roteiro_retomada.md">Texto (.md)</a></li>
 </ul>
 <h2 id="downloads">Downloads</h2>
 <ul>
@@ -393,6 +398,8 @@
 <li><strong>Mural de recados (ZIP)</strong> — exemplo executável usado no guia de interface. <a href="downloads/mural_recados.zip">mural_recados.zip</a></li>
 <li><strong>AGENTS.md</strong> — instruções para usar um agente de IA como tutor, e não como autor do código. <a href="downloads/AGENTS.md">AGENTS.md</a></li>
 </ul>
+<h2 id="para-agentes-de-ia">Para agentes de IA</h2>
+<p>Esta página é a fonte que o <code>AGENTS.md</code> do projeto indica ao agente. Ao pedir ajuda, mencionem o documento e a seção, como fazem os quadros <strong>Pergunte ao agente</strong> dos guias, e indiquem o endereço do <code>.md</code> correspondente, por exemplo <code>https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</code>. O agente responde a partir do material da disciplina, e vocês conferem a resposta no mesmo documento.</p>
 <h2 id="chaves-e-segredos">Chaves e segredos</h2>
 <p>Chaves do Supabase, URLs de conexão e qualquer valor secreto nunca entram no repositório. Eles ficam no arquivo <code>.env</code>, que está no <code>.gitignore</code>, e são digitados diretamente no painel da Render.</p>
 <p><a href="../index.html">Voltar à página da disciplina</a></p>

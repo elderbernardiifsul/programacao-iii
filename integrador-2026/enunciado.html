@@ -275,6 +275,11 @@
     :target { scroll-margin-top: 24px; }
     a:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
     main img { display: block; margin: 24px auto 8px; padding: 16px; border: 1px solid var(--borda); border-radius: 12px; background: white; }
+    .voltar-indice { text-align: right; margin: 28px 0 12px; break-before: avoid; page-break-before: avoid; }
+    .voltar-indice a { display: inline-block; padding: 6px 14px; border: 1px solid var(--ifsul-verde); border-radius: 999px; background: var(--superficie); color: var(--ifsul-verde-escuro); font-size: 0.9em; font-weight: 600; text-decoration: none; }
+    .voltar-indice a:hover, .voltar-indice a:focus { background: var(--ifsul-verde); color: #fff; }
+    .sumario-auto ol { columns: 2; column-gap: 32px; }
+    @media (max-width: 640px) { .sumario-auto ol { columns: 1; } }
     .diagram-expand, .diagram-close { padding: 10px 16px; border: 1px solid #1d7a2d; border-radius: 8px; background: white; color: #14532d; cursor: pointer; font: inherit; }
     .diagram-expand { display: block; margin: 8px auto 24px; }
     .diagram-dialog { width: 95vw; max-width: 1600px; max-height: 94vh; padding: 20px; border: 1px solid #9bbda4; border-radius: 12px; }
@@ -381,6 +386,7 @@
 <li>Texto revisado para leitura mais direta.</li>
 </ul>
 </blockquote>
+<nav class="sumario-auto"><h2 id="sumario-auto">Sumário</h2><ol><li><a href="#o-que-vocês-vão-resolver">O que vocês vão resolver</a></li><li><a href="#de-onde-partir">De onde partir</a></li><li><a href="#como-as-partes-se-conectam">Como as partes se conectam</a></li><li><a href="#banco-de-dados-preparar-e-conferir">Banco de dados: preparar e conferir</a></li><li><a href="#núcleo-do-trabalho--r1-a-r8">Núcleo do trabalho — R1 a R8</a></li><li><a href="#quatro-encontros-para-desenvolver">Quatro encontros para desenvolver</a></li><li><a href="#percurso-para-testar-e-demonstrar">Percurso para testar e demonstrar</a></li><li><a href="#o-que-guardar-e-entregar">O que guardar e entregar</a></li><li><a href="#o-que-cada-integrante-precisa-compreender">O que cada integrante precisa compreender</a></li><li><a href="#como-será-avaliado">Como será avaliado</a></li><li><a href="#uso-de-ia">Uso de IA</a></li><li><a href="#correção-e-recuperação">Correção e recuperação</a></li><li><a href="#aprofundamentos-por-escolha">Aprofundamentos por escolha</a></li><li><a href="#se-houver-impedimento-técnico">Se houver impedimento técnico</a></li><li><a href="#apoios-da-disciplina">Apoios da disciplina</a></li></ol></nav>
 <h2 id="o-que-vocês-vão-resolver">O que vocês vão resolver</h2>
 <p>A turma está organizando um repertório para um karaokê. Quem consulta o catálogo
 quer encontrar uma música, conferir seu artista e reproduzir as partes disponíveis.
@@ -395,6 +401,7 @@ e na integração com banco. Cada projeto pode estar numa etapa diferente, e voc
 podem começar de onde o projeto de vocês está.
 A primeira meta é <strong>abrir a página e listar músicas vindas da API</strong>.
 Completem uma operação por vez.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="de-onde-partir">De onde partir</h2>
 <p>Vocês podem aproveitar o projeto da dupla ou usar a base de retomada disponibilizada pelo professor no Classroom.
 A base vem acompanhada do Roteiro de retomada, disponível no Classroom da disciplina.
@@ -414,6 +421,7 @@ Quem usa projeto próprio aproveita o que já funciona e demonstra os mesmos req
 Reaproveitem as classes, os DAOs e as relações que já existem.
 O núcleo não exige trocar a arquitetura nem adicionar dependências.
 O Roteiro de retomada informa como instalar e executar a base com Node.js 22 ou superior.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="como-as-partes-se-conectam">Como as partes se conectam</h2>
 <p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDE4MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdHVsbyBkZXNjIj4KPHRpdGxlIGlkPSJ0aXR1bG8iPkNhbWluaG8gZG9zIGRhZG9zIGRvIGthcmFva8OqPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPkEgaW50ZXJmYWNlIHRyb2NhIHJlcXVpc2nDp8O1ZXMgZSByZXNwb3N0YXMgY29tIGEgQVBJIEV4cHJlc3MuIEEgQVBJIHVzYSBvcyBEQU9zLCBxdWUgY29uc3VsdGFtIGUgYWx0ZXJhbSBvIGJhbmNvLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0ic2V0YSIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI4IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjMWQ3YTJkIi8+PC9tYXJrZXI+PC9kZWZzPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPgo8cmVjdCB4PSIyMCIgeT0iMjUiIHdpZHRoPSIyNDAiIGhlaWdodD0iMTEwIiByeD0iMTAiIGZpbGw9IiNmMGY4ZjEiIHN0cm9rZT0iIzFkN2EyZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTQwIiB5PSI2OSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMxZDVjMjkiPkludGVyZmFjZTwvdGV4dD48dGV4dCB4PSIxNDAiIHk9IjEwNSIgZm9udC1zaXplPSIxNyIgZmlsbD0iIzI0MzkyYiI+Zm9ybXVsw6FyaW8gZSBwbGF5ZXI8L3RleHQ+CjxyZWN0IHg9IjMyMCIgeT0iMjUiIHdpZHRoPSIyNDAiIGhlaWdodD0iMTEwIiByeD0iMTAiIGZpbGw9IiNmMGY4ZjEiIHN0cm9rZT0iIzFkN2EyZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNDQwIiB5PSI2OSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMxZDVjMjkiPkFQSSBFeHByZXNzPC90ZXh0Pjx0ZXh0IHg9IjQ0MCIgeT0iMTA1IiBmb250LXNpemU9IjE3IiBmaWxsPSIjMjQzOTJiIj5yZXF1aXNpw6fDtWVzIGUgcmVzcG9zdGFzPC90ZXh0Pgo8cmVjdCB4PSI2MjAiIHk9IjI1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjExMCIgcng9IjEwIiBmaWxsPSIjZjBmOGYxIiBzdHJva2U9IiMxZDdhMmQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9Ijc0MCIgeT0iNjkiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMWQ1YzI5Ij5EQU9zPC90ZXh0Pjx0ZXh0IHg9Ijc0MCIgeT0iMTA1IiBmb250LXNpemU9IjE3IiBmaWxsPSIjMjQzOTJiIj5jb25zdWx0YXMgZSBvYmpldG9zPC90ZXh0Pgo8cmVjdCB4PSI5MjAiIHk9IjI1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjExMCIgcng9IjEwIiBmaWxsPSIjZjBmOGYxIiBzdHJva2U9IiMxZDdhMmQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEwNDAiIHk9IjY5IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzFkNWMyOSI+QmFuY28gZGUgZGFkb3M8L3RleHQ+PHRleHQgeD0iMTA0MCIgeT0iMTA1IiBmb250LXNpemU9IjE3IiBmaWxsPSIjMjQzOTJiIj5hcnRpc3RhcyDCtyBtw7pzaWNhcyDCtyBwYXJ0ZXM8L3RleHQ+CjxwYXRoIGQ9Ik0gMjcyIDgwIEggMzA4IiBzdHJva2U9IiMxZDdhMmQiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLXN0YXJ0PSJ1cmwoI3NldGEpIiBtYXJrZXItZW5kPSJ1cmwoI3NldGEpIi8+CjxwYXRoIGQ9Ik0gNTcyIDgwIEggNjA4IiBzdHJva2U9IiMxZDdhMmQiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLXN0YXJ0PSJ1cmwoI3NldGEpIiBtYXJrZXItZW5kPSJ1cmwoI3NldGEpIi8+CjxwYXRoIGQ9Ik0gODcyIDgwIEggOTA4IiBzdHJva2U9IiMxZDdhMmQiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLXN0YXJ0PSJ1cmwoI3NldGEpIiBtYXJrZXItZW5kPSJ1cmwoI3NldGEpIi8+Cjx0ZXh0IHg9IjYwMCIgeT0iMTY2IiBmb250LXNpemU9IjE5IiBmaWxsPSIjNDI1NzRhIj5PIHJldG9ybm8gcGVyY29ycmUgYXMgbWVzbWFzIGNhbWFkYXMgYXTDqSBhdHVhbGl6YXIgYSBpbnRlcmZhY2UuPC90ZXh0PjwvZz48L3N2Zz4K" alt="Caminho dos dados: interface, API Express, DAOs e banco, com requisições e respostas."></p>
 <p>Um artista pode ter várias músicas; uma música pode ter várias partes.
@@ -427,6 +435,7 @@ Para preencher o formulário, usem o nome contido nesse objeto.</p>
 <p><strong>Editar o artista de uma música</strong> significa alterar o nome informado e o vínculo
 daquela música com o artista correspondente. A mudança vale só para aquela música:
 as outras músicas do catálogo continuam com o artista que já tinham.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="banco-de-dados-preparar-e-conferir">Banco de dados: preparar e conferir</h2>
 <p>Esta seção orienta o preparo do banco; os requisitos continuam sendo R1 a R8.
 Os guias da disciplina usam um projeto Supabase por dupla, com dados de demonstração.</p>
@@ -444,6 +453,7 @@ Com o projeto pausado, o banco não responde e a aplicação publicada passa a d
 Antes da apresentação, abram o painel do projeto e confiram o status.
 Se ele estiver pausado, restaurem o projeto (botão <strong>Restore</strong>) e esperem o banco voltar a responder.
 Se o projeto não voltar a responder, sigam a seção &quot;Se houver impedimento técnico&quot;.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="núcleo-do-trabalho--r1-a-r8">Núcleo do trabalho — R1 a R8</h2>
 <table>
 <thead>
@@ -491,6 +501,7 @@ Preservem ao menos uma música do repertório inicial para o player.</p>
 <p>Para a tela, bastam campos identificados, texto legível e ações utilizáveis.
 Ficam fora do núcleo: relatório de dados, técnica específica de responsividade,
 fila, upload, áudio, MIDI, sincronização e autenticação.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="quatro-encontros-para-desenvolver">Quatro encontros para desenvolver</h2>
 <p>O trabalho essencial acontece em aula, incluindo a configuração inicial e o apoio para a integração.
 Para cada encontro, são <strong>150min em aula + até 60min extraclasse</strong> para revisão, testes e documentação.
@@ -547,6 +558,7 @@ A apresentação final ocupa mais um encontro de 150min.</p>
 Se faltar acesso fora da aula, registrem a dificuldade para que o apoio seja organizado.
 Se algo não funcionar, localizem a primeira quebra do percurso e retomem esse ponto com o professor.
 Os marcos orientam o acompanhamento e a retomada. Não há desconto automático por marco.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="percurso-para-testar-e-demonstrar">Percurso para testar e demonstrar</h2>
 <p>Executem esta sequência no projeto concluído. Nas escritas, usem uma música nova,
 sem partes, e preservem a amostra reproduzível. Confiram o dado antes de removê-lo.</p>
@@ -574,6 +586,7 @@ uma música de teste. Observem a mensagem de erro: a interface não pode afirmar
 sucesso. Reiniciem o processo e consultem a lista para conferir o estado.
 Não alterem credenciais reais para simular falhas nem parem o serviço publicado
 para fazer esse teste. Realizem-no com orientação do professor.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="o-que-guardar-e-entregar">O que guardar e entregar</h2>
 <ul>
 <li>Código-fonte versionado, identificando os dois integrantes, e URL pública com banco.</li>
@@ -586,6 +599,7 @@ Registro textual curto e demonstração observada bastam para acompanhar os test
 Vídeo, relatório técnico separado e slides não são necessários.
 Não enviem <code>.env</code>, chaves ou senhas.</p>
 <p><strong>Entrega pelo Classroom da disciplina:</strong> os dois integrantes devem constar na entrega. Informem o link do repositório GitHub, a URL pública da aplicação e o caminho do README. Mantenham o código e os registros no repositório; não é necessário anexar <code>node_modules/</code> ou um ZIP do projeto.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="o-que-cada-integrante-precisa-compreender">O que cada integrante precisa compreender</h2>
 <p>Alternem quem conduz e quem revisa. Ambos devem passar pela interface e pela API/DAO.
 As duas observações individuais de cada pessoa podem ocorrer nos encontros 2–4
@@ -597,6 +611,7 @@ As tarefas terão objetivos e dificuldade comparáveis para os dois integrantes.
 <p>Vocês podem consultar o próprio código e os materiais de apoio, explicar oralmente,
 apontar o percurso no código ou usar anotação/desenho com demonstração.
 Digitação rápida, memorização e fluência na fala não são critérios.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="como-será-avaliado">Como será avaliado</h2>
 <table>
 <thead>
@@ -670,10 +685,12 @@ Cada integrante pode ter uma pontuação individual diferente.</p>
 </tbody></table>
 <p>Exemplo: nível Bom em integração corresponde a <code>1,2 × 0,75 = 0,9 ponto</code>.
 Evidência ausente ou impedida fica registrada para retomada. Ela não será confundida automaticamente com domínio insuficiente.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="uso-de-ia">Uso de IA</h2>
 <p>É permitido usar IA para compreender erros, discutir soluções, revisar código e apoiar a implementação. Registrem brevemente no README a ferramenta utilizada, em que parte ajudou e como vocês conferiram o resultado. Não é necessário transcrever conversas inteiras.</p>
 <p>Cada integrante continua responsável por compreender e testar o código entregue. O uso declarado de IA não reduz a nota; a compreensão será observada no projeto, nos marcos e na verificação individual.</p>
 <p>Recomendamos usar o <code>AGENTS.md</code> fornecido (no repositório da aula e na base de retomada; explicado no Guia passo a passo do Supabase, etapa 0), que orienta o agente a explicar e revisar sem entregar a solução pronta.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="correção-e-recuperação">Correção e recuperação</h2>
 <p>Durante os marcos, corrijam as pendências no mesmo repositório, preservando os registros anteriores.
 Na recuperação, cada dupla ou estudante poderá corrigir os pontos não demonstrados e produzir
@@ -681,6 +698,7 @@ nova evidência equivalente, com consulta aos materiais e orientação do profes
 <p>A nova conferência usará os mesmos critérios e pesos.
 O professor comunicará o momento da retomada das pendências após o acompanhamento.
 Funcionalidades extras não serão condição de recuperação.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="aprofundamentos-por-escolha">Aprofundamentos por escolha</h2>
 <p>Assim que demonstrarem o núcleo funcionando, vocês podem escolher um aprofundamento,
 sem esperar o M4. Conversem com o professor sobre o recorte.</p>
@@ -715,11 +733,13 @@ sem esperar o M4. Conversem com o professor sobre o recorte.</p>
 </tbody></table>
 <p>A nota máxima não depende dessas escolhas, e elas não substituem a compreensão.
 O núcleo não exige dependências novas.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="se-houver-impedimento-técnico">Se houver impedimento técnico</h2>
 <p>Registrem no README a data, a etapa, o erro (sem segredos) e as tentativas de solução.
 Mostrem o que funciona localmente com banco e preservem as evidências anteriores.
 O professor orientará a retomada da verificação impedida.
 A publicação com banco continua sendo objetivo, sem penalidade automática por indisponibilidade externa.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="apoios-da-disciplina">Apoios da disciplina</h2>
 <p>Todos estão disponíveis no Classroom da disciplina.</p>
 <ul>
@@ -733,6 +753,7 @@ A publicação com banco continua sendo objetivo, sem penalidade automática por
 <li><strong>Atividade &quot;Evoluindo a API do Karaokê — DAO, Múltiplas Músicas e Player no Navegador&quot;</strong> (Atividade 5): rotas e responsabilidades.</li>
 <li><strong>Atividade &quot;Karaokê com Banco de Dados — DAOs no Supabase&quot;</strong> (Unidade 3): relações, persistência e configuração do servidor.</li>
 </ul>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 
     </main>
     <footer>

@@ -275,6 +275,11 @@
     :target { scroll-margin-top: 24px; }
     a:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
     main img { display: block; margin: 24px auto 8px; padding: 16px; border: 1px solid var(--borda); border-radius: 12px; background: white; }
+    .voltar-indice { text-align: right; margin: 28px 0 12px; break-before: avoid; page-break-before: avoid; }
+    .voltar-indice a { display: inline-block; padding: 6px 14px; border: 1px solid var(--ifsul-verde); border-radius: 999px; background: var(--superficie); color: var(--ifsul-verde-escuro); font-size: 0.9em; font-weight: 600; text-decoration: none; }
+    .voltar-indice a:hover, .voltar-indice a:focus { background: var(--ifsul-verde); color: #fff; }
+    .sumario-auto ol { columns: 2; column-gap: 32px; }
+    @media (max-width: 640px) { .sumario-auto ol { columns: 1; } }
     .diagram-expand, .diagram-close { padding: 10px 16px; border: 1px solid #1d7a2d; border-radius: 8px; background: white; color: #14532d; cursor: pointer; font: inherit; }
     .diagram-expand { display: block; margin: 8px auto 24px; }
     .diagram-dialog { width: 95vw; max-width: 1600px; max-height: 94vh; padding: 20px; border: 1px solid #9bbda4; border-radius: 12px; }
@@ -473,6 +478,7 @@ Senhas e chaves nunca vão para o GitHub. Como a Render precisa desses valores p
 <blockquote>
 <p><strong>Existe um nome para isso.</strong> Quando o código é igual em todo lugar e só os valores mudam de um ambiente para o outro, chamamos de <strong>configuração por ambiente</strong>. É assim que empresas de software trabalham.</p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-1--conferindo-o-projeto-antes-de-publicar">Etapa 1 — Conferindo o projeto antes de publicar</h2>
 <p>Antes de criar conta em qualquer lugar, o projeto precisa estar arrumado <strong>no computador de vocês</strong>. São seis conferências rápidas. Façam todas.</p>
@@ -547,7 +553,8 @@ npm start</code></pre><p>Abram <code>http://localhost:3000</code> e testem as ro
 <p>Procurem no código por trechos como <code>C:\Users\aluno\...</code> ou <code>/home/aluno/...</code>. Essas pastas não existem na Render.</p>
 <p>Os caminhos precisam ser relativos ao projeto:</p>
 <pre><code class="hljs language-javascript">app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">static</span>(<span class="hljs-string">&#x27;public&#x27;</span>));                          <span class="hljs-comment">// funciona</span>
-app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">static</span>(path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;public&#x27;</span>)));    <span class="hljs-comment">// melhor ainda</span></code></pre><hr>
+app.<span class="hljs-title function_">use</span>(express.<span class="hljs-title function_">static</span>(path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;public&#x27;</span>)));    <span class="hljs-comment">// melhor ainda</span></code></pre><p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
+<hr>
 <h2 id="etapa-2--duas-mudanças-no-código">Etapa 2 — Duas mudanças no código</h2>
 <p>Só duas. E uma delas é opcional.</p>
 <h3 id="21-a-porta-precisa-vir-do-ambiente-obrigatório">2.1 A porta precisa vir do ambiente (obrigatório)</h3>
@@ -592,6 +599,7 @@ PORT=4000 npm start
 
 <span class="hljs-comment"># Windows (PowerShell)</span>
 <span class="hljs-variable">$env</span>:PORT=4000; npm start</code></pre><p>O servidor deve imprimir <code>Karaokê no ar: http://localhost:4000</code> (na base de retomada, <code>Karaokê disponível na porta 4000</code>) e responder nessa porta. Se subiu, a Etapa 2 está certa.</p>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-3--o-repositório-no-github">Etapa 3 — O repositório no GitHub</h2>
 <p>A Render não copia os arquivos do computador de vocês: ela copia de um repositório do GitHub.</p>
@@ -713,6 +721,7 @@ git push -u origin main</code></pre><blockquote>
 <p><strong>O jeito seguro é não digitar nada.</strong> Na página do repositório no GitHub, cliquem no botão verde <strong>Code</strong>, copiem o endereço HTTPS que aparece ali e colem no terminal. Endereço copiado não tem erro de digitação.</p>
 </blockquote>
 <p>Depois, voltem e façam a conferência da <a href="#33-a-confer%C3%AAncia-que-salva-a-nota">Etapa 3.3</a>.</p>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-4--criando-a-conta-na-render">Etapa 4 — Criando a conta na Render</h2>
 <h3 id="41-fazendo-o-cadastro">4.1 Fazendo o cadastro</h3>
@@ -741,6 +750,7 @@ git push -u origin main</code></pre><blockquote>
 </li>
 <li>Cliquem em <strong>Save</strong> (ou <strong>Install</strong>).</li>
 </ol>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-5--criando-o-web-service">Etapa 5 — Criando o Web Service</h2>
 <p>Na Render, <strong>Web Service</strong> é o nome dado a &quot;um programa que fica ligado respondendo pedidos pela internet&quot;. É exatamente o que o Express de vocês é.</p>
@@ -822,6 +832,7 @@ git push -u origin main</code></pre><blockquote>
 <h3 id="54-criando">5.4 Criando</h3>
 <p>Se o projeto de vocês já usa o Supabase, <strong>antes de clicar no botão final</strong>, façam a <a href="#etapa-6--configurando-as-senhas-e-chaves">Etapa 6</a> — o fim do próprio formulário tem a seção <strong>Environment Variables</strong> para isso. Se o projeto ainda guarda os dados num array na memória, sem <code>.env</code>, podem seguir direto.</p>
 <p>Cliquem em <strong>Deploy web service</strong>. A Render abre a página dessa publicação, com o status (<strong>Building</strong>, depois <strong>In progress</strong>) e os logs logo abaixo.</p>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-6--configurando-as-senhas-e-chaves">Etapa 6 — Configurando as senhas e chaves</h2>
 <p>Esta etapa é obrigatória para o projeto &quot;O repertório da turma&quot;, porque ele usa o Supabase. Se o projeto de vocês ainda guarda tudo num array em memória, sem <code>.env</code>, podem pular para a Etapa 7.</p>
@@ -882,6 +893,7 @@ git push -u origin main</code></pre><blockquote>
 <p>Porque o programa lê as variáveis <strong>na hora em que liga</strong>. Mudar o valor com o programa já rodando não muda nada: é preciso desligar e ligar de novo.</p>
 <p>É igual ao computador de vocês: se alterarem o <code>.env</code>, precisam parar o servidor (<code>Ctrl+C</code>) e subir de novo.</p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-7--acompanhando-o-primeiro-deploy">Etapa 7 — Acompanhando o primeiro deploy</h2>
 <p>Assim que o serviço é criado, a Render mostra a página da publicação: o status no alto e, embaixo, os logs, com o relato do que está acontecendo, linha por linha. Os mesmos logs ficam depois na aba <strong>Logs</strong> do menu do serviço.</p>
@@ -941,6 +953,7 @@ git push -u origin main</code></pre><blockquote>
 <blockquote>
 <p><strong>Chame o professor</strong> se o deploy falhar <strong>três vezes seguidas</strong> e a mensagem não estiver na tabela da Etapa 10. Três tentativas já mostram que vocês não estão sendo desatentos — o problema é outro, e ler log de deploy junto com alguém mais experiente é a forma mais rápida de aprender a ler log sozinho depois.</p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-8--testando-o-sistema-publicado">Etapa 8 — Testando o sistema publicado</h2>
 <p>Status verde não quer dizer que está tudo funcionando. Testem de verdade, nesta ordem.</p>
@@ -996,6 +1009,7 @@ POST {{baseUrl}}/api/musicas
 <span class="hljs-bullet">-</span> <span class="hljs-strong">**Resultado:**</span> a música respondeu 200 depois do reinício; removi o registro de teste.
 <span class="hljs-bullet">-</span> <span class="hljs-strong">**Próximo passo:**</span> conferir a seção &quot;Antes da apresentação&quot; deste guia.</code></pre><p>Troquem os zeros pelos valores reais e escrevam o que vocês observaram, mesmo que seja diferente do esperado.</p>
 <p>Se a música sumiu depois do reinício, os dados estão na memória e não no banco. Revejam o <code>MusicaDAO.js</code> (em <code>DAO/</code> ou, na base de retomada, em <code>karaoke/DAO/</code>; ele deve usar o <code>supabaseClient</code>) e as variáveis da <a href="#etapa-6--configurando-as-senhas-e-chaves">Etapa 6</a>.</p>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-9--o-dia-a-dia-depois-de-publicar">Etapa 9 — O dia a dia depois de publicar</h2>
 <h3 id="91-publicação-automática">9.1 Publicação automática</h3>
@@ -1030,6 +1044,7 @@ git push</code></pre><p>A Render percebe o <code>push</code> na branch <code>mai
 <li><strong>Clear build cache &amp; deploy</strong> — refaz tudo do zero. Serve quando o erro é de biblioteca (&quot;mas eu instalei esse pacote!&quot;) e nada mais explica.</li>
 <li><strong>Restart service</strong> — só desliga e liga o programa, sem reinstalar nada. É o que usar para reiniciar o servidor, como no teste da <a href="#84-o-teste-de-persist%C3%AAncia-r7">Etapa 8.4</a>.</li>
 </ul>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-10--socorro-erros-mais-comuns">Etapa 10 — Socorro: erros mais comuns</h2>
 <p>Procurem a mensagem que aparece nos <strong>Logs da Render</strong>, não a que aparece no navegador. O navegador mostra só o sintoma; o log mostra a causa.</p>
@@ -1125,12 +1140,13 @@ git push</code></pre><p>A Render percebe o <code>push</code> na branch <code>mai
 <li>Para pedir ajuda, <strong>copiem a mensagem de erro inteira</strong>. &quot;Não funciona&quot; não ajuda ninguém a ajudar vocês.</li>
 </ol>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;O serviço na Render mostra este erro nos Logs (colado abaixo, sem chaves). Explique a causa provável e o que devo conferir no painel Environment.&quot;</em> Colem a mensagem do log abaixo do pedido. Antes de colar, apaguem qualquer chave, URL de projeto com senha ou valor do Environment. Usem o agente para entender e diagnosticar; a correção, quem faz e confere são vocês.</p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;O serviço na Render mostra este erro nos Logs (colado abaixo, sem chaves). Explique a causa provável e o que devo conferir no painel Environment. Use como fonte o guia_deploy_render.md (Etapas 6 e 10), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.md</a>.&quot;</em> Colem a mensagem do log abaixo do pedido. Antes de colar, apaguem qualquer chave, URL de projeto com senha ou valor do Environment. Usem o agente para entender e diagnosticar; a correção, quem faz e confere são vocês.</p>
 </blockquote>
 <blockquote>
 <p><strong>Chame o professor</strong> quando vocês já tiverem passado por esses quatro passos e o erro continuar. A partir daí, insistir sozinho costuma virar tentativa e erro no escuro — e tentativa e erro no escuro, num sistema publicado, tem chance de quebrar o que ainda funcionava.</p>
 <p>Levem as quatro informações combinadas na abertura do guia: etapa, mensagem copiada, o que já tentaram e os links do repositório e do serviço.</p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="etapa-11--o-que-o-plano-gratuito-permite">Etapa 11 — O que o plano gratuito permite</h2>
 <p>O plano Free da Render é generoso, mas tem regras. Vocês precisam conhecer essas regras <strong>antes</strong> da apresentação, não no meio dela.</p>
@@ -1173,6 +1189,7 @@ git push</code></pre><p>A Render percebe o <code>push</code> na branch <code>mai
 <blockquote>
 <p><strong>Não montem robôs para ficar acessando o site</strong> de minuto em minuto só para ele não dormir. Além de contornar a regra do plano gratuito, isso gasta as 750 horas do mês muito mais rápido. Quando as horas acabam, o serviço fica desligado até o mês seguinte — provavelmente no dia da entrega.</p>
 </blockquote>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="antes-da-apresentação">Antes da apresentação</h2>
 <p>Dois serviços gratuitos entram na cadeia, e os dois podem estar parados no dia. Confiram <strong>na véspera</strong> e <strong>alguns minutos antes de começar</strong>.</p>
@@ -1183,6 +1200,7 @@ git push</code></pre><p>A Render percebe o <code>push</code> na branch <code>mai
 <li><strong>Registro de teste removido.</strong> A música criada no teste da <a href="#84-o-teste-de-persist%C3%AAncia-r7">Etapa 8.4</a> não pode ficar na lista da apresentação.</li>
 <li><strong><code>.env.example</code> no repositório.</strong> Abram o repositório no GitHub e confirmem que o <code>.env.example</code> está lá, com os nomes <code>SUPABASE_URL</code> e <code>SUPABASE_SECRET_KEY</code> e sem valores reais. Confirmem também que o <code>.env</code> não está.</li>
 </ol>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="checklist-final-de-entrega">Checklist final de entrega</h2>
 <p>Confiram tudo antes de mandar o link para o professor:</p>
@@ -1200,6 +1218,7 @@ git push</code></pre><p>A Render percebe o <code>push</code> na branch <code>mai
 <li><input disabled="" type="checkbox"> Vocês sabem explicar, sem olhar o guia: por que o <code>.env</code> não vai para o GitHub, e de onde a Render tira essas informações.</li>
 </ul>
 <p>O último item é justamente o que costuma ser perguntado na apresentação.</p>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="anexo--glossário">Anexo — Glossário</h2>
 <table>
@@ -1250,12 +1269,14 @@ git push</code></pre><p>A Render percebe o <code>push</code> na branch <code>mai
 <td>A pasta do projeto versionada pelo Git — no GitHub, a cópia oficial do código.</td>
 </tr>
 </tbody></table>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="uma-última-coisa">Uma última coisa</h2>
 <p>Publicar um sistema pela primeira vez dá um pouco de insegurança, e isso é normal — é a primeira vez que o código de vocês sai do computador de vocês e fica exposto para o mundo. Errar aqui faz parte, e quase tudo tem conserto.</p>
 <p>O que não vale é ficar travado em silêncio. Chamem. Perguntem na aula, perguntem no laboratório, tragam o erro copiado. Trabalhar assim — pedindo ajuda cedo, com informação organizada na mão — é exatamente como funciona uma equipe de desenvolvimento de verdade.</p>
 <hr>
 <p><em>Material de apoio da disciplina de Programação III — IFSul, Campus Passo Fundo. As telas e os nomes dos botões da Render podem mudar com o tempo; a lógica das etapas continua a mesma. Dúvida que a Etapa 10 não resolveu: tragam a mensagem de erro copiada do log.</em></p>
+<p class="voltar-indice"><a href="#sumário">↑ Voltar ao sumário</a></p>
 
     </main>
     <footer>

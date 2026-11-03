@@ -269,6 +269,25 @@
       height: auto;
     }
 
+    main { min-width: 0; overflow-wrap: anywhere; }
+    pre { max-width: 100%; overflow-wrap: normal; }
+    table { display: block; max-width: 100%; overflow-x: auto; }
+    :target { scroll-margin-top: 24px; }
+    a:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+    main img { display: block; margin: 24px auto 8px; padding: 16px; border: 1px solid var(--borda); border-radius: 12px; background: white; }
+    .voltar-indice { text-align: right; margin: 28px 0 12px; break-before: avoid; page-break-before: avoid; }
+    .voltar-indice a { display: inline-block; padding: 6px 14px; border: 1px solid var(--ifsul-verde); border-radius: 999px; background: var(--superficie); color: var(--ifsul-verde-escuro); font-size: 0.9em; font-weight: 600; text-decoration: none; }
+    .voltar-indice a:hover, .voltar-indice a:focus { background: var(--ifsul-verde); color: #fff; }
+    .sumario-auto ol { columns: 2; column-gap: 32px; }
+    @media (max-width: 640px) { .sumario-auto ol { columns: 1; } }
+    .diagram-expand, .diagram-close { padding: 10px 16px; border: 1px solid #1d7a2d; border-radius: 8px; background: white; color: #14532d; cursor: pointer; font: inherit; }
+    .diagram-expand { display: block; margin: 8px auto 24px; }
+    .diagram-dialog { width: 95vw; max-width: 1600px; max-height: 94vh; padding: 20px; border: 1px solid #9bbda4; border-radius: 12px; }
+    .diagram-dialog::backdrop { background: rgba(15, 30, 20, .75); }
+    .diagram-scroll { overflow: auto; max-height: 72vh; margin-top: 16px; }
+    .diagram-scroll img { display: block; max-width: none; width: auto; min-width: 700px; background: white; }
+    .diagram-close:focus-visible, .diagram-expand:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+
     footer {
       display: flex;
       justify-content: space-between;
@@ -299,6 +318,7 @@
     }
 
     @media print {
+      .diagram-expand, .diagram-dialog { display: none; }
       body {
         background: white;
         padding: 0;
@@ -349,7 +369,7 @@
       </div>
       <h1>Programação III</h1>
       <div class="meta">
-        <div class="meta-card"><strong>Professor</strong>Élder F. F. Bernardi</div>
+        <div class="meta-card"><strong>Professor</strong>Élder F. F. Bernardi · **Turma:** __________ · **Ano:** 2026</div>
         <div class="meta-card"><strong>Curso</strong>Ensino Médio Integrado - Técnico em Informática</div>
       </div>
     </section>
@@ -357,6 +377,7 @@
       <h1 id="ficha-de-acompanhamento--integrador-de-programação-iii">Ficha de acompanhamento — Integrador de Programação III</h1>
 <p><strong>Versão de aplicação · 20/10/2026.</strong><br><strong>IFSul — Campus Passo Fundo · Ensino Médio Integrado — Técnico em Informática</strong><br><strong>Professor:</strong> Élder F. F. Bernardi · <strong>Turma:</strong> __________ · <strong>Ano:</strong> 2026
 <strong>Tutor da atividade:</strong> Prof. Leonardo Constantin  </p>
+<nav class="sumario-auto"><h2 id="sumario-auto">Sumário</h2><ol><li><a href="#como-usar">Como usar</a></li><li><a href="#visão-da-turma--14-duplas">Visão da turma — 14 duplas</a></li><li><a href="#identificação-da-dupla">Identificação da dupla</a></li><li><a href="#aceites-e-atividades-por-marco">Aceites e atividades por marco</a></li><li><a href="#registro-coletivo--preencher-um-por-encontro">Registro coletivo — preencher um por encontro</a></li><li><a href="#registro-individual--duas-observações-por-pessoa">Registro individual — duas observações por pessoa</a></li><li><a href="#checklist-de-conferência-final">Checklist de conferência final</a></li></ol></nav>
 <h2 id="como-usar">Como usar</h2>
 <p>Imprimir/copiar uma ficha por dupla; manter a visão da turma na tabela abaixo.
 Registrar uma evidência curta: demonstração observada, ID/data do teste,
@@ -368,6 +389,7 @@ Uso da base opcional não limita nota; toda dupla demonstra o mesmo núcleo.</p>
 e 1h extraclasse. Quatro encontros: 600 + até 240 min = 14h de desenvolvimento.
 Apresentação final: 150 min adicionais. Tempos internos abaixo são propostas.
 Setup essencial e apoio para integração devem ocorrer em aula.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="visão-da-turma--14-duplas">Visão da turma — 14 duplas</h2>
 <table>
 <thead>
@@ -538,9 +560,11 @@ Setup essencial e apoio para integração devem ocorrer em aula.</p>
 <td></td>
 </tr>
 </tbody></table>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="identificação-da-dupla">Identificação da dupla</h2>
 <p><strong>Dupla nº:</strong> ______ · <strong>Turma:</strong> ______<br><strong>Pessoa A:</strong> __________________________________________<br><strong>Pessoa B:</strong> __________________________________________<br><strong>Repositório:</strong> ________________________________________<br><strong>URL pública:</strong> ________________________________________<br><strong>Base usada / versão:</strong> _________________________________</p>
 <p><strong>Diagnóstico inicial:</strong> inicia? ____ · lista API? ____ · DAO? ____ · banco? ____<br><strong>Primeiro apoio necessário:</strong> ___________________________________________</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="aceites-e-atividades-por-marco">Aceites e atividades por marco</h2>
 <table>
 <thead>
@@ -583,6 +607,7 @@ não transformar impedimento em obrigação silenciosa além da hora prevista.</
 trabalho orientado 100min, demonstrações/observações 25min e registro/próximo passo 15min.
 Observações individuais podem ocorrer durante o trabalho orientado.
 Adaptar a divisão à necessidade de setup e ao diagnóstico, sem criar encontro extra.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="registro-coletivo--preencher-um-por-encontro">Registro coletivo — preencher um por encontro</h2>
 <table>
 <thead>
@@ -631,6 +656,7 @@ Adaptar a divisão à necessidade de setup e ao diagnóstico, sem criar encontro
 </tr>
 </tbody></table>
 <p><strong>Impedimento externo:</strong> data/hora __________ · etapa _____________________<br><strong>Erro sem segredos / tentativas:</strong> ______________________________________<br><strong>Evidência local com banco / anterior:</strong> ________________________________<br><strong>Verificação a retomar e encaminhamento docente:</strong> ______________________</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="registro-individual--duas-observações-por-pessoa">Registro individual — duas observações por pessoa</h2>
 <p>Distribuir preferencialmente entre encontros 2–4; complementar no final.
 Em cada observação, permitir consulta ao código/material e registrar forma de
@@ -682,6 +708,7 @@ Não usar fluência verbal, velocidade ou quantidade de commits como domínio.</
 </tr>
 </tbody></table>
 <p><strong>Alternância em aula:</strong> A conduziu interface em ____ e API/DAO em ____;<br>B conduziu interface em ____ e API/DAO em ____. Evidência: ________________</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="checklist-de-conferência-final">Checklist de conferência final</h2>
 <ul>
 <li><input disabled="" type="checkbox"> R1: lista e detalhe mostram nome/artista vindos da API.</li>
@@ -699,11 +726,37 @@ Usar registros prévios para completar evidências; o tempo interno não é regr
 aprovada de pontuação nem prova de domínio por rapidez.</p>
 <p><strong>Síntese docente por dimensão — evidência e necessidade de retomada:</strong><br>Integração: ____________________________________________________________<br>Persistência/publicação: _______________________________________________<br>Qualidade: ____________________________________________________________<br>Compreensão de A: ____________________ de B: ____________________________<br>Processo/documentação: _________________________________________________</p>
 <p>Avaliação de 4,0 pontos: C1 1,2; C2 0,8; C3 0,4; C4 individual 1,2; C5 0,4. Usar a rubrica para converter os níveis. IA permitida com registro breve e conferência; recuperação por correção das pendências e nova evidência equivalente.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 
     </main>
     <footer>
       <span>IFSul - Campus Passo Fundo · Programação III</span>
     </footer>
   </div>
+  <dialog class="diagram-dialog" aria-label="Diagrama ampliado">
+    <button type="button" class="diagram-close">Fechar diagrama</button>
+    <p>Use a rolagem para explorar o diagrama. Pressione Esc para fechar.</p>
+    <div class="diagram-scroll"></div>
+  </dialog>
+  <script>
+    const diagramDialog = document.querySelector('.diagram-dialog');
+    const diagramScroll = document.querySelector('.diagram-scroll');
+    document.querySelector('.diagram-close').addEventListener('click', () => diagramDialog.close());
+    document.querySelectorAll('main img').forEach((img) => {
+      if (!img.src.startsWith('data:image/svg+xml') && !/\.svg(?:[?#]|$)/i.test(img.src)) return;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'diagram-expand';
+      button.textContent = 'Ampliar diagrama';
+      button.setAttribute('aria-label', 'Ampliar: ' + img.alt);
+      img.insertAdjacentElement('afterend', button);
+      button.addEventListener('click', () => {
+        const enlarged = img.cloneNode();
+        diagramScroll.replaceChildren(enlarged);
+        diagramDialog.showModal();
+        diagramScroll.scrollTo(0, 0);
+      });
+    });
+  </script>
 </body>
 </html>

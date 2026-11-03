@@ -275,6 +275,11 @@
     :target { scroll-margin-top: 24px; }
     a:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
     main img { display: block; margin: 24px auto 8px; padding: 16px; border: 1px solid var(--borda); border-radius: 12px; background: white; }
+    .voltar-indice { text-align: right; margin: 28px 0 12px; break-before: avoid; page-break-before: avoid; }
+    .voltar-indice a { display: inline-block; padding: 6px 14px; border: 1px solid var(--ifsul-verde); border-radius: 999px; background: var(--superficie); color: var(--ifsul-verde-escuro); font-size: 0.9em; font-weight: 600; text-decoration: none; }
+    .voltar-indice a:hover, .voltar-indice a:focus { background: var(--ifsul-verde); color: #fff; }
+    .sumario-auto ol { columns: 2; column-gap: 32px; }
+    @media (max-width: 640px) { .sumario-auto ol { columns: 1; } }
     .diagram-expand, .diagram-close { padding: 10px 16px; border: 1px solid #1d7a2d; border-radius: 8px; background: white; color: #14532d; cursor: pointer; font: inherit; }
     .diagram-expand { display: block; margin: 8px auto 24px; }
     .diagram-dialog { width: 95vw; max-width: 1600px; max-height: 94vh; padding: 20px; border: 1px solid #9bbda4; border-radius: 12px; }
@@ -375,6 +380,7 @@
 <p><strong>Organização:</strong> 14 duplas por turma, 150min em aula e 1h extraclasse
 por encontro. Quatro encontros: 600 + até 240min = 14h de desenvolvimento;
 apresentação em outro encontro de 150min. Setup essencial acompanhado em aula.</p>
+<nav class="sumario-auto"><h2 id="sumario-auto">Sumário</h2><ol><li><a href="#para-que-serve-esta-base">Para que serve esta base</a></li><li><a href="#1-preparar-e-executar">1. Preparar e executar</a></li><li><a href="#2-encontrar-cada-responsabilidade">2. Encontrar cada responsabilidade</a></li><li><a href="#3-conferir-o-contrato-antes-de-programar">3. Conferir o contrato antes de programar</a></li><li><a href="#4-integrar-cadastro--r2-e-r5">4. Integrar cadastro — R2 e R5</a></li><li><a href="#5-integrar-edição--r3-e-r5">5. Integrar edição — R3 e R5</a></li><li><a href="#6-integrar-exclusão--r4-e-r5">6. Integrar exclusão — R4 e R5</a></li><li><a href="#7-conferir-o-núcleo-e-publicar--r1-r6-r7-e-r8">7. Conferir o núcleo e publicar — R1, R6, R7 e R8</a></li><li><a href="#8-consolidar-entre-encontros--proposta-de-até-60min">8. Consolidar entre encontros — proposta de até 60min</a></li></ol></nav>
 <h2 id="para-que-serve-esta-base">Para que serve esta base</h2>
 <p>A base de retomada disponibilizada pelo professor no Classroom é opcional e não reduz a nota.
 Ela permite retomar a integração sem reconstruir toda a infraestrutura.
@@ -382,6 +388,7 @@ Leitura, listagem, player, API e DAOs já vêm preparados, junto com um <code>AG
 As tarefas da dupla são integrar <strong>cadastro, edição e exclusão na interface</strong>,
 tratar respostas e atualizar a lista. O núcleo e a compreensão exigidos
 são os mesmos para quem usa projeto próprio.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="1-preparar-e-executar">1. Preparar e executar</h2>
 <ol>
 <li>Abram a pasta <code>base_retomada</code> no editor e confiram o README.</li>
@@ -395,6 +402,7 @@ são os mesmos para quem usa projeto próprio.</p>
 a capturas ou a mensagens. A interface usa a API na mesma origem, como
 <code>/api/musicas</code>; não precisa de CORS nem de chave de banco no JavaScript público.
 Se a leitura falhar, registrem a mensagem e o ponto do fluxo antes de continuar.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="2-encontrar-cada-responsabilidade">2. Encontrar cada responsabilidade</h2>
 <table>
 <thead>
@@ -483,6 +491,7 @@ DAO e o banco. Depois troquem e expliquem o caminho de volta à tela.</p>
 </tr>
 </tbody></table>
 <p>Exemplo: o <code>MusicaDAO.js</code> importa o cliente com <code>require(&#39;../supabaseClient&#39;)</code> no repositório da aula e com <code>require(&#39;../../supabaseClient&#39;)</code> na base. O &quot;Guia passo a passo do Supabase&quot;, disponível no Classroom da disciplina, traz no Anexo a tabela completa de <code>require</code> e como calcular o caminho em projeto próprio.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="3-conferir-o-contrato-antes-de-programar">3. Conferir o contrato antes de programar</h2>
 <table>
 <thead>
@@ -516,6 +525,7 @@ DAO e o banco. Depois troquem e expliquem o caminho de volta à tela.</p>
 <code>artista</code> é um <strong>objeto</strong> com <code>id</code> e <code>nome</code>. Para preencher um campo de texto,
 localizem o nome dentro do objeto. Não enviem o objeto inteiro no POST/PUT.
 Leiam a rota e a resposta real para conferir status e mensagem de erro.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="4-integrar-cadastro--r2-e-r5">4. Integrar cadastro — R2 e R5</h2>
 <ol>
 <li>Em <code>admin.js</code>, localizem a tarefa do formulário e os campos existentes no HTML.</li>
@@ -525,10 +535,11 @@ Leiam a rota e a resposta real para conferir status e mensagem de erro.</p>
 <li>Reutilizem a atualização da lista já fornecida; anotem ID e resultado de uma nova consulta.</li>
 </ol>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Explique o que acontece se eu esquecer o evento.preventDefault() no submit do formulário. Antes de responder, peça que eu preveja.&quot;</em> Depois: <em>&quot;Qual a diferença entre a resposta ter response.ok falso e o fetch lançar uma exceção? Dê um exemplo de cada situação no meu projeto.&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Explique o que acontece se eu esquecer o evento.preventDefault() no submit do formulário. Antes de responder, peça que eu preveja.&quot;</em> Depois: <em>&quot;Qual a diferença entre a resposta ter response.ok falso e o fetch lançar uma exceção? Dê um exemplo de cada situação no meu projeto. Use como fonte a seção 4 do roteiro_retomada.md e os Padrões 3 e 4 do guia_interface_crud.md, na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/</a>.&quot;</em></p>
 </blockquote>
 <p><strong>Aceite:</strong> registro aparece após recarregar a página e permanece após reiniciar
 o servidor. Nome ou artista vazio não gera cadastro válido. Troquem a condução.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="5-integrar-edição--r3-e-r5">5. Integrar edição — R3 e R5</h2>
 <ol>
 <li>Localizem como guardar o ID selecionado e preencher nome e <code>artista.nome</code>.</li>
@@ -536,10 +547,11 @@ o servidor. Nome ou artista vazio não gera cadastro válido. Troquem a conduç�
 <li>Enviem PUT ao ID selecionado, confiram a resposta e atualizem a lista.</li>
 </ol>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Estou no modo edição e, ao salvar, é criada uma música nova em vez de alterar a existente. Que perguntas devo me fazer para achar o erro?&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Estou no modo edição e, ao salvar, é criada uma música nova em vez de alterar a existente. Que perguntas devo me fazer para achar o erro? Use como fonte a seção 5 do roteiro_retomada.md e o Padrão 5 do guia_interface_crud.md, na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/</a>.&quot;</em></p>
 </blockquote>
 <p><strong>Aceite:</strong> o mesmo ID passa a ter o novo nome/artista após nova consulta;
 editar não cria outra música. Expliquem onde ID e campos entram na requisição.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="6-integrar-exclusão--r4-e-r5">6. Integrar exclusão — R4 e R5</h2>
 <ol>
 <li>Identifiquem o registro e peçam confirmação simples antes do DELETE.</li>
@@ -547,10 +559,11 @@ editar não cria outra música. Expliquem onde ID e campos entram na requisiçã
 <li>Testem cancelamento e exclusão usando uma música criada para teste.</li>
 </ol>
 <blockquote>
-<p><strong>Pergunte ao agente.</strong> <em>&quot;Revise a minha função de exclusão (colada abaixo). Aponte a linha do problema e explique, sem reescrever a função.&quot;</em></p>
+<p><strong>Pergunte ao agente.</strong> <em>&quot;Revise a minha função de exclusão (colada abaixo). Aponte a linha do problema e explique, sem reescrever a função. Use como fonte a seção 6 do roteiro_retomada.md e o Padrão 6 do guia_interface_crud.md, na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/</a>.&quot;</em></p>
 </blockquote>
 <p><strong>Aceite:</strong> cancelar preserva o dado; confirmar remove o registro em nova consulta.
 Preservem a música do seed usada para demonstrar o player.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="7-conferir-o-núcleo-e-publicar--r1-r6-r7-e-r8">7. Conferir o núcleo e publicar — R1, R6, R7 e R8</h2>
 <ul>
 <li>Cadastrem música sem partes: ela é válida, pode ser editada/excluída, mostra a situação e mantém Tocar indisponível.</li>
@@ -564,6 +577,7 @@ Preservem a música do seed usada para demonstrar o player.</p>
 equivalente com consulta. Podem explicar oralmente, apontando o código ou por
 anotação/desenho acompanhado de demonstração. Se travar, registrem o primeiro
 ponto que falhou e peçam apoio em aula. O trabalho essencial tem espaço em aula.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="8-consolidar-entre-encontros--proposta-de-até-60min">8. Consolidar entre encontros — proposta de até 60min</h2>
 <table>
 <thead>
@@ -591,6 +605,7 @@ ponto que falhou e peçam apoio em aula. O trabalho essencial tem espaço em aul
 </tbody></table>
 <p>Se houver impedimento de acesso, registrem para organizar apoio com o professor;
 não ampliem a tarefa além da hora prevista. Não é necessário adicionar extras.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 
     </main>
     <footer>
