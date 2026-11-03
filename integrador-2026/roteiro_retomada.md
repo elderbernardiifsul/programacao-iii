@@ -11,7 +11,7 @@ apresentação em outro encontro de 150min. Setup essencial acompanhado em aula.
 
 ## Para que serve esta base
 
-A base de retomada disponibilizada pelo professor no Classroom é opcional e não reduz a nota.
+A base de retomada disponibilizada pelo professor no Classroom (também em [base_retomada.zip](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip), na página do trabalho) é opcional e não reduz a nota.
 Ela permite retomar a integração sem reconstruir toda a infraestrutura.
 Leitura, listagem, player, API e DAOs já vêm preparados, junto com um `AGENTS.md` que orienta o agente de IA a agir como tutor.
 As tarefas da dupla são integrar **cadastro, edição e exclusão na interface**,
@@ -122,7 +122,7 @@ Preservem a música do seed usada para demonstrar o player.
 - Registrem ID antes/depois de reiniciar o serviço; expliquem por que uma lista local não comprova persistência.
 - Completem README com execução, URL, variáveis sem valores e uma decisão; registrem um teste por marco.
 
-Para a interface com `fetch`, consultem o "Guia de interface — CRUD na tela com fetch", disponível no Classroom da disciplina. Para a publicação, o "Guia de deploy na Render", também disponível no Classroom da disciplina, traz o passo a passo.
+Para a interface com `fetch`, consultem o "Guia de interface — CRUD na tela com fetch", disponível no Classroom da disciplina. Para a publicação, o "Guia de deploy na Render", também disponível no Classroom da disciplina, traz o passo a passo. Todos os guias e arquivos para baixar estão também na página do trabalho: https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/.
 
 Cada pessoa acompanha uma operação e realiza ou prevê uma pequena alteração
 equivalente com consulta. Podem explicar oralmente, apontando o código ou por

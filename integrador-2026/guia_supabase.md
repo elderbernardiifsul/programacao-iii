@@ -30,7 +30,7 @@ Este guia parte do repositório da aula de Node.js e chega a um karaokê web que
 | Situação da dupla | O que ler |
 |---|---|
 | Vai começar pelo repositório da aula | Todas as etapas, na ordem, da 0 à 13. |
-| Usa a base de retomada (o projeto que acompanha o Roteiro de retomada, disponível no Classroom da disciplina) | A seção 3.5 (criem o `testes/musicas.http`, que a base não traz; o contrato da API é o mesmo), as etapas 4 (o banco), 5 (ligar o Node ao Supabase) e 12 (provar a persistência), e o anexo. Na etapa 5, a base já traz prontos os itens das seções 5.1 a 5.3 e 5.6 (`.gitignore`, dependências, `.env.example` e `supabaseClient.js`): façam a cópia do `.env.example` para `.env` (fim da 5.3) e as seções 5.4, 5.5 e 5.7. A base já traz API, DAOs e player prontos, numa estrutura de pastas um pouco diferente. |
+| Usa a base de retomada (o projeto que acompanha o Roteiro de retomada, disponível no Classroom da disciplina e em [base_retomada.zip](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip)) | A seção 3.5 (criem o `testes/musicas.http`, que a base não traz; o contrato da API é o mesmo), as etapas 4 (o banco), 5 (ligar o Node ao Supabase) e 12 (provar a persistência), e o anexo. Na etapa 5, a base já traz prontos os itens das seções 5.1 a 5.3 e 5.6 (`.gitignore`, dependências, `.env.example` e `supabaseClient.js`): façam a cópia do `.env.example` para `.env` (fim da 5.3) e as seções 5.4, 5.5 e 5.7. A base já traz API, DAOs e player prontos, numa estrutura de pastas um pouco diferente. |
 | Vai aplicar o guia ao projeto que a dupla já tem | As etapas na ordem, comparando cada arquivo do guia com o de vocês. O anexo mostra os caminhos de `require` quando as pastas são diferentes. |
 
 ### Como cada etapa está organizada
@@ -226,7 +226,7 @@ Para o Claude Code, o arquivo `CLAUDE.md` na raiz do projeto, ao lado do `AGENTS
 @AGENTS.md
 ```
 
-**Este é o AGENTS.md do projeto. Ele já vem no repositório da aula; se o projeto de vocês for outro, copiem este arquivo para a raiz.**
+**Este é o AGENTS.md do projeto. Ele já vem no repositório da aula; se o projeto de vocês for outro, baixem o arquivo em [AGENTS.md](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/AGENTS.md) e coloquem na raiz.**
 
 ````markdown
 # AGENTS.md — Tutor do projeto karaokê (Programação III)
@@ -1255,7 +1255,7 @@ Os quatro arquivos ficam no repositório porque o esquema do banco também é c�
 
 ### 4.1 Os quatro arquivos SQL
 
-Criem a pasta `sql/` na raiz do projeto e, dentro dela, os quatro arquivos abaixo. Copiem o conteúdo exatamente como está.
+Criem a pasta `sql/` na raiz do projeto e, dentro dela, os quatro arquivos abaixo. Copiem o conteúdo exatamente como está. Os mesmos arquivos estão para baixar na página do trabalho: [schema.sql](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/sql/schema.sql), [seed.sql](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/sql/seed.sql), [diagnostico.sql](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/sql/diagnostico.sql) e [ajustes.sql](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/sql/ajustes.sql); quem baixar salva os quatro na pasta `sql/`, com esses nomes.
 
 <!-- arquivo: sql/schema.sql | etapa: 4 -->
 **Arquivo `sql/schema.sql`**

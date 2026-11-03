@@ -37,7 +37,7 @@ Completem uma operação por vez.
 
 ## De onde partir
 
-Vocês podem aproveitar o projeto da dupla ou usar a base de retomada disponibilizada pelo professor no Classroom.
+Vocês podem aproveitar o projeto da dupla ou usar a base de retomada disponibilizada pelo professor no Classroom (também em [base_retomada.zip](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip), na página do trabalho).
 A base vem acompanhada do Roteiro de retomada, disponível no Classroom da disciplina.
 **A base é opcional, não reduz a nota e permite alcançar o nível excelente.**
 Vocês podem recorrer a ela durante o trabalho, preservando os registros úteis.
@@ -274,7 +274,7 @@ A publicação com banco continua sendo objetivo, sem penalidade automática por
 
 ## Apoios da disciplina
 
-Todos estão disponíveis no Classroom da disciplina.
+Todos estão disponíveis no Classroom da disciplina e na página do trabalho, https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/, em HTML, PDF e texto (`.md`). A seção **Downloads** dessa página tem os arquivos para baixar: os dois pacotes do Classroom, a base de retomada, o exemplo do mural, o `AGENTS.md` e os quatro arquivos SQL.
 
 - **Guia passo a passo do Supabase:** do repositório da aula até a API gravando no banco, etapa por etapa. A etapa 0 explica o `AGENTS.md`; a etapa 4, o diagnóstico do banco.
 - **Guia de interface — CRUD na tela com fetch:** como a página cadastra, edita e exclui pela API, com um exemplo completo e a aplicação às músicas.

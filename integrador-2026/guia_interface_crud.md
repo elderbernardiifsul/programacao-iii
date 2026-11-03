@@ -31,7 +31,7 @@ O que o guia entrega e o que não entrega:
 
 ## Rodar o exemplo
 
-O mural está na pasta `mural_recados`, dentro do pacote de materiais de apoio, disponível no Classroom da disciplina. Descompactem o pacote, abram a pasta `mural_recados` no VS Code e, no terminal integrado:
+O mural está na pasta `mural_recados`, dentro do pacote de materiais de apoio, disponível no Classroom da disciplina. Ele também pode ser baixado sozinho, em [mural_recados.zip](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/mural_recados.zip), na página do trabalho. Descompactem o pacote, abram a pasta `mural_recados` no VS Code e, no terminal integrado:
 
 ```bash
 npm install
@@ -605,7 +605,7 @@ Os testes abaixo vêm do "Percurso para testar e demonstrar" do enunciado de "O 
 
 ### Quem usa a base de retomada
 
-Quem usa a base de retomada (disponível no Classroom da disciplina) não escreve a página inteira. Todo o trabalho acontece em **`public/admin.js`**, que já está ligado ao HTML e traz comentários `TODO` para cadastro, edição e exclusão. O `catalogo.js` já oferece:
+Quem usa a base de retomada (disponível no Classroom da disciplina e em [base_retomada.zip](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip)) não escreve a página inteira. Todo o trabalho acontece em **`public/admin.js`**, que já está ligado ao HTML e traz comentários `TODO` para cadastro, edição e exclusão. O `catalogo.js` já oferece:
 
 | Item pronto | O que faz |
 |---|---|
