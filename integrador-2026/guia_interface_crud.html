@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programação III - Material Didático</title>
+  <title>Guia de interface — CRUD na tela com fetch · Programação III</title>
   <style>
     
 
@@ -317,6 +317,30 @@
       }
     }
 
+    
+    /* --leitura-acessivel */
+    body { background: #faf8f4; font-size: 17px; line-height: 1.8; }
+    .page { box-shadow: none; }
+    .hero { padding: 16px 32px 12px; }
+    .hero h1 { font-size: 1.25rem; }
+    .hero .meta { margin-top: 10px; }
+    main p, main li, main blockquote { max-width: 75ch; }
+    main td p, main td li { max-width: none; }
+    main h2 { margin-top: 3rem; }
+    main li { margin: 0.35rem 0; }
+    main li.tarefa { list-style: none; margin-left: -1.4em; }
+    main li.tarefa > p { display: inline; }
+    main li.tarefa input[type="checkbox"] { display: inline-block; width: 1.15em; height: 1.15em; margin-right: 0.5em; vertical-align: -0.15em; accent-color: #1d7a2d; }
+    main li.tarefa.feita { color: #4b5a63; }
+    .pular-conteudo { position: absolute; left: -9999px; top: 0; padding: 10px 16px; background: #fff; border: 2px solid #1d7a2d; border-radius: 0 0 8px 0; font-weight: 600; z-index: 20; }
+    .pular-conteudo:focus { left: 0; }
+    .sumario-flutuante { position: fixed; right: 18px; bottom: 18px; padding: 10px 16px; border: 2px solid #1d7a2d; border-radius: 999px; background: #fff; color: #14532d; font-weight: 700; font-size: 0.95rem; text-decoration: none; z-index: 10; }
+    .sumario-flutuante:hover, .sumario-flutuante:focus { background: #1d7a2d; color: #fff; }
+    button:focus-visible, input:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+    @media (max-width: 640px) { .sumario-flutuante { right: 10px; bottom: 10px; padding: 6px 12px; font-size: 0.85rem; } body { padding-bottom: 64px; } }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+    @media print { .pular-conteudo, .sumario-flutuante { display: none !important; } main p, main li, main blockquote { max-width: none; } }
+
     @media print {
       .diagram-expand, .diagram-dialog { display: none; }
       body {
@@ -361,6 +385,7 @@
   </style>
 </head>
 <body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
   <div class="page">
     <section class="hero">
       <div class="hero-top">
@@ -373,18 +398,19 @@
         <div class="meta-card"><strong>Curso</strong>Ensino Médio Integrado — Técnico em Informática</div>
       </div>
     </section>
-    <main>
+    <main id="conteudo">
       <h1 id="guia-de-interface--crud-na-tela-com-fetch">Guia de interface — CRUD na tela com fetch</h1>
 <p><strong>Disciplina:</strong> Programação III</p>
 <p><strong>Curso:</strong> Ensino Médio Integrado — Técnico em Informática</p>
 <p><strong>Professor:</strong> Elder Francisco Fontana Bernardi</p>
 <p><strong>Instituição:</strong> IFSul — Campus Passo Fundo</p>
-<p><strong>Versão 2 · 27/10/2026</strong></p>
-<p>Este guia mostra, num exemplo completo e pronto para rodar, como uma página HTML conversa com uma API Express usando <code>fetch</code>: listar, cadastrar, editar e excluir registros sem recarregar a página. No fim, ele indica como aplicar cada padrão às músicas do projeto, sem entregar o código das músicas.</p>
+<p><strong>Versão 3 · 10/11/2026.</strong> Revisão de linguagem. O código do exemplo e o conteúdo técnico são os mesmos da versão 2.</p>
+<p><a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">Página do trabalho</a> · <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/enunciado.html">Enunciado</a></p>
+<p>Este guia traz um exemplo completo, pronto para rodar. O exemplo mostra como uma página HTML troca dados com uma API Express usando <code>fetch</code>. A página lista, cadastra, edita e exclui registros sem recarregar. No fim, o guia indica como aplicar cada padrão às músicas do projeto. O guia não entrega o código das músicas.</p>
 <nav class="sumario-auto"><h2 id="sumario-auto">Sumário</h2><ol><li><a href="#para-que-serve">Para que serve</a></li><li><a href="#rodar-o-exemplo">Rodar o exemplo</a></li><li><a href="#padrão-1--html-e-javascript-se-encontram-pelos-ids">Padrão 1 — HTML e JavaScript se encontram pelos IDs</a></li><li><a href="#padrão-2--listar-e-desenhar">Padrão 2 — Listar e desenhar</a></li><li><a href="#padrão-3--cadastrar">Padrão 3 — Cadastrar</a></li><li><a href="#padrão-4--erro-http--falha-de-conexão">Padrão 4 — Erro HTTP × falha de conexão</a></li><li><a href="#padrão-5--selecionar-e-editar">Padrão 5 — Selecionar e editar</a></li><li><a href="#padrão-6--excluir-com-confirmação">Padrão 6 — Excluir com confirmação</a></li><li><a href="#padrão-7--evitar-envio-duplicado">Padrão 7 — Evitar envio duplicado</a></li><li><a href="#conferir-na-aba-rede-devtools">Conferir na aba Rede (DevTools)</a></li><li><a href="#aplicando-às-músicas-sem-código">Aplicando às músicas (sem código)</a></li><li><a href="#se-deu-errado">Se deu errado</a></li></ol></nav>
 <h2 id="para-que-serve">Para que serve</h2>
-<p>No projeto integrador, &quot;O repertório da turma&quot;, os requisitos R2 (cadastrar), R3 (editar), R4 (excluir) e R5 (validar e informar) acontecem <strong>na tela</strong>: a pessoa digita, clica e vê o resultado. A API de músicas já responde; falta a parte da página que chama a API, interpreta a resposta e atualiza o que aparece.</p>
-<p>O guia usa um exemplo menor, o <strong>Mural de recados</strong>, em que cada recado tem só um texto. Com um campo só, dá para ver cada padrão sem o ruído das músicas. Depois de ler o mural, vocês aplicam os mesmos padrões ao catálogo, com duas diferenças que a seção &quot;Aplicando às músicas&quot; explica.</p>
+<p>No projeto integrador, &quot;O repertório da turma&quot;, quatro requisitos acontecem <strong>na tela</strong>: R2 (cadastrar), R3 (editar), R4 (excluir) e R5 (validar e informar). Na tela, a pessoa digita, clica e vê o resultado. A API de músicas já responde. Falta a parte da página que chama a API, interpreta a resposta e atualiza o que aparece.</p>
+<p>O guia usa um exemplo menor, o <strong>Mural de recados</strong>, em que cada recado tem só um texto. Com um campo só, o código de cada padrão fica curto e mais fácil de ler. As músicas têm mais campos. Depois de ler o mural, vocês aplicam os mesmos padrões ao catálogo de músicas, com duas diferenças que a seção &quot;Aplicando às músicas&quot; explica.</p>
 <p>O que o guia entrega e o que não entrega:</p>
 <table>
 <thead>
@@ -411,14 +437,26 @@
 </tr>
 </tbody></table>
 <blockquote>
-<p><strong>Para quem é cada trilha.</strong> Quem usa a base de retomada (o projeto que acompanha o Roteiro de retomada, disponível no Classroom da disciplina) e quem seguiu o &quot;Guia passo a passo do Supabase&quot; (disponível no Classroom da disciplina) chegam à mesma tela por caminhos diferentes. A seção &quot;Aplicando às músicas&quot; tem uma parte para cada caso.</p>
+<p><strong>Para quem é cada trilha.</strong> Há dois pontos de partida possíveis:</p>
+<ul>
+<li>a base de retomada, que é o projeto que acompanha o Roteiro de retomada (disponível no Classroom da disciplina);</li>
+<li>o projeto de quem seguiu o &quot;Guia passo a passo do Supabase&quot; (disponível no Classroom da disciplina).</li>
+</ul>
+<p>Nos dois casos, a tela final é a mesma. A seção &quot;Aplicando às músicas&quot; tem uma parte para cada caso.</p>
 </blockquote>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="rodar-o-exemplo">Rodar o exemplo</h2>
-<p>O mural está na pasta <code>mural_recados</code>, dentro do pacote de materiais de apoio, disponível no Classroom da disciplina. Ele também pode ser baixado sozinho, em <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/mural_recados.zip">mural_recados.zip</a>, na página do trabalho. Descompactem o pacote, abram a pasta <code>mural_recados</code> no VS Code e, no terminal integrado:</p>
+<p>O mural está na pasta <code>mural_recados</code>. Essa pasta fica dentro do pacote de materiais de apoio, disponível no Classroom da disciplina. Vocês também podem baixar só o mural em <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/mural_recados.zip">mural_recados.zip</a>, na página do trabalho.</p>
+<p>Para rodar:</p>
+<ol>
+<li>Descompactem o pacote.</li>
+<li>Abram a pasta <code>mural_recados</code> no VS Code.</li>
+<li>Abram o terminal integrado.</li>
+<li>Digitem no terminal os dois comandos abaixo, nesta ordem:</li>
+</ol>
 <pre><code class="hljs language-bash">npm install
 npm start</code></pre><p>O terminal deve mostrar <code>Mural no ar: http://localhost:3001</code>. Abram esse endereço no navegador. A página lista um recado inicial (&quot;Ensaio do karaokê na sexta.&quot;) e já aceita cadastrar, editar e excluir.</p>
-<p>Os recados ficam num array na memória do servidor. Se vocês pararem o servidor e subirem de novo, a lista volta ao recado inicial. Isso é esperado: o mural ensina a tela, não a persistência. As músicas do projeto, essas sim, ficam no banco.</p>
+<p>Os recados ficam num array na memória do servidor. Se vocês pararem o servidor e iniciarem de novo, a lista volta a ter só o recado inicial. Isso é esperado. O mural serve para ensinar a tela. Ele não ensina a persistência. As músicas do projeto ficam gravadas no banco.</p>
 <h3 id="árvore-de-arquivos">Árvore de arquivos</h3>
 <pre><code class="hljs language-text">mural_recados/
 ├── package.json
@@ -456,9 +494,15 @@ npm start</code></pre><p>O terminal deve mostrar <code>Mural no ar: http://local
 <td>Declara a dependência (<code>express</code>) e o comando <code>npm start</code>.</td>
 </tr>
 </tbody></table>
-<p>O caminho de uma ação, do clique ao resultado: <code>index.html</code> mostra o botão, <code>mural.js</code> trata o clique e chama <code>fetch(&#39;/api/recados&#39;)</code>, <code>app.js</code> recebe a requisição, altera o array e responde, e <code>mural.js</code> redesenha a lista com a resposta.</p>
+<p>A sequência de uma ação, do clique ao resultado:</p>
+<ol>
+<li><code>index.html</code> mostra o botão.</li>
+<li><code>mural.js</code> trata o clique e chama <code>fetch(&#39;/api/recados&#39;)</code>.</li>
+<li><code>app.js</code> recebe a requisição, altera o array e responde.</li>
+<li><code>mural.js</code> redesenha a lista com a resposta.</li>
+</ol>
 <h3 id="os-cinco-arquivos-por-inteiro">Os cinco arquivos, por inteiro</h3>
-<p>Os arquivos abaixo são exatamente os do pacote. Leiam cada um uma vez antes de seguir para os padrões; as seções seguintes voltam a trechos específicos.</p>
+<p>Os arquivos abaixo são iguais aos do pacote. Leiam cada arquivo uma vez antes de seguir para os padrões. As seções seguintes explicam trechos específicos desses arquivos.</p>
 <!-- arquivo: package.json | etapa: 1 -->
 <p><strong>Arquivo <code>package.json</code></strong></p>
 <pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
@@ -535,10 +579,14 @@ app.<span class="hljs-title function_">listen</span>(<span class="hljs-variable 
 });</code></pre><p>Pontos do <code>app.js</code> que importam para a tela:</p>
 <ul>
 <li><code>express.json()</code> converte o corpo JSON que o <code>fetch</code> envia em <code>req.body</code>. Sem essa linha, <code>req.body</code> chega vazio.</li>
-<li><code>express.static(...)</code> serve a pasta <code>public</code>. É por isso que <code>http://localhost:3001</code> abre o <code>index.html</code> sem rota própria.</li>
-<li>Os status seguem o contrato que as músicas também seguem: <code>200</code> na leitura, edição e exclusão; <code>201</code> no cadastro; <code>400</code> quando o texto falta; <code>404</code> quando o recado não existe. Todo erro vem como <code>{ erro: &#39;...&#39; }</code>. É esse <code>erro</code> que a tela mostra.</li>
-<li><code>lerTexto</code> devolve <code>null</code> para texto ausente, que não seja <code>string</code> ou que fique vazio depois do <code>trim</code>. A API valida de novo o que a tela já validou: a tela é uma conveniência, a API é a garantia.</li>
-<li>O fim do arquivo usa <code>app.listen(PORT, (erro) =&gt; {...})</code>. No Express 5, o segundo argumento recebe o erro de inicialização. O caso mais comum é <code>EADDRINUSE</code>: a porta 3001 já está ocupada, em geral por outro <code>npm start</code> esquecido num terminal. Em vez de falhar em silêncio, o programa imprime a mensagem e encerra com <code>process.exit(1)</code>. Para resolver, fechem o outro processo ou rodem com outra porta (<code>PORT=3002 npm start</code> no Linux e no macOS; no PowerShell, <code>$env:PORT=3002; npm start</code>).</li>
+<li><code>express.static(...)</code> serve a pasta <code>public</code>. Por isso, o endereço <code>http://localhost:3001</code> abre o <code>index.html</code>, mesmo sem uma rota escrita para ele.</li>
+<li>Os status seguem o contrato que as músicas também seguem: <code>200</code> na leitura, edição e exclusão; <code>201</code> no cadastro; <code>400</code> quando o texto falta; <code>404</code> quando o recado não existe. Todo erro vem como <code>{ erro: &#39;...&#39; }</code>. A tela mostra esse <code>erro</code>.</li>
+<li><code>lerTexto</code> devolve <code>null</code> em três casos: o texto não veio, o texto não é <code>string</code>, ou o texto fica vazio depois do <code>trim</code>. A API valida de novo o que a tela já validou. A validação da tela é uma comodidade para quem digita. A validação da API é a garantia.</li>
+<li>O fim do arquivo usa <code>app.listen(PORT, (erro) =&gt; {...})</code>. No Express 5, o segundo argumento recebe o erro de inicialização. O caso mais comum é <code>EADDRINUSE</code>: a porta 3001 já está ocupada. Em geral, quem ocupa a porta é outro <code>npm start</code> que ficou rodando em outro terminal. Quando há erro de inicialização, o programa imprime a mensagem e encerra com <code>process.exit(1)</code>. Para resolver, escolham uma das opções:<ul>
+<li>Fechem o outro processo.</li>
+<li>Rodem com outra porta. No Linux e no macOS: <code>PORT=3002 npm start</code>. No PowerShell: <code>$env:PORT=3002; npm start</code>.</li>
+</ul>
+</li>
 </ul>
 <!-- arquivo: public/index.html | etapa: 1 -->
 <p><strong>Arquivo <code>public/index.html</code></strong></p>
@@ -593,7 +641,11 @@ app.<span class="hljs-title function_">listen</span>(<span class="hljs-variable 
 <span class="hljs-selector-id">#mensagem</span><span class="hljs-selector-class">.erro</span> { <span class="hljs-attribute">color</span>: <span class="hljs-number">#b00020</span>; <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">600</span>; }
 <span class="hljs-selector-tag">ul</span> { <span class="hljs-attribute">list-style</span>: none; <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>; }
 <span class="hljs-selector-tag">li</span> <span class="hljs-selector-tag">button</span> { <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>; <span class="hljs-attribute">text-align</span>: left; <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">6px</span>; <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#1f2933</span>; <span class="hljs-attribute">border-color</span>: <span class="hljs-number">#d9e2e8</span>; }
-<span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.selecionado</span> <span class="hljs-selector-tag">button</span> { <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#1d7a2d</span>; <span class="hljs-attribute">background</span>: <span class="hljs-number">#e6f4ed</span>; }</code></pre><p>O CSS não participa da lógica. Duas linhas importam para os padrões: <code>#mensagem.sucesso</code> e <code>#mensagem.erro</code>, que pintam a mensagem de verde ou de vermelho conforme a classe que o JavaScript coloca, e <code>li.selecionado button</code>, que destaca o recado em edição.</p>
+<span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.selecionado</span> <span class="hljs-selector-tag">button</span> { <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#1d7a2d</span>; <span class="hljs-attribute">background</span>: <span class="hljs-number">#e6f4ed</span>; }</code></pre><p>O CSS não participa da lógica. Duas partes do CSS importam para os padrões:</p>
+<ul>
+<li><code>#mensagem.sucesso</code> e <code>#mensagem.erro</code> pintam a mensagem de verde ou de vermelho, conforme a classe que o JavaScript coloca.</li>
+<li><code>li.selecionado button</code> destaca o recado em edição.</li>
+</ul>
 <!-- arquivo: public/mural.js | etapa: 1 -->
 <p><strong>Arquivo <code>public/mural.js</code></strong></p>
 <pre><code class="hljs language-javascript"><span class="hljs-comment">// public/mural.js — tela do mural: lista, cadastra, edita e exclui recados pela API.</span>
@@ -735,8 +787,8 @@ botaoExcluir.<span class="hljs-title function_">addEventListener</span>(<span cl
 
 <span class="hljs-title function_">carregarRecados</span>().<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">erro</span>) =&gt;</span> <span class="hljs-title function_">mostrarMensagem</span>(erro.<span class="hljs-property">message</span>, <span class="hljs-literal">true</span>));</code></pre><p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="padrão-1--html-e-javascript-se-encontram-pelos-ids">Padrão 1 — HTML e JavaScript se encontram pelos IDs</h2>
-<p>O JavaScript não &quot;enxerga&quot; o HTML por posição nem por aparência. Ele procura cada elemento por um <strong>ID</strong>, com <code>document.getElementById</code>, e guarda o resultado numa constante. Se o ID do HTML e o texto procurado no JavaScript não forem idênticos, a busca devolve <code>null</code> e a primeira linha que usar a constante quebra com <code>Cannot read properties of null</code>.</p>
-<p>As primeiras linhas de <code>mural.js</code> fazem esse encontro:</p>
+<p>O JavaScript não localiza os elementos do HTML pela posição nem pela aparência. Ele procura cada elemento por um <strong>ID</strong>, com <code>document.getElementById</code>, e guarda o resultado numa constante. O ID escrito no HTML e o texto procurado no JavaScript precisam ser idênticos. Se forem diferentes, a busca devolve <code>null</code>. Depois, a primeira linha que usar a constante falha com o erro <code>Cannot read properties of null</code>.</p>
+<p>As primeiras linhas de <code>mural.js</code> fazem essa busca para cada elemento:</p>
 <table>
 <thead>
 <tr>
@@ -773,12 +825,12 @@ botaoExcluir.<span class="hljs-title function_">addEventListener</span>(<span cl
 <tr>
 <td><code>excluir</code></td>
 <td><code>botaoExcluir</code></td>
-<td>Começa desabilitado; só vale com um recado selecionado.</td>
+<td>Começa desabilitado; só fica habilitado com um recado selecionado.</td>
 </tr>
 <tr>
 <td><code>mensagem</code></td>
 <td><code>mensagem</code></td>
-<td>Onde sucesso e erro aparecem; tem <code>role=&quot;status&quot;</code> para leitores de tela.</td>
+<td>Onde as mensagens de sucesso e de erro aparecem; tem <code>role=&quot;status&quot;</code> para leitores de tela.</td>
 </tr>
 <tr>
 <td><code>lista-recados</code></td>
@@ -786,33 +838,38 @@ botaoExcluir.<span class="hljs-title function_">addEventListener</span>(<span cl
 <td>O <code>&lt;ul&gt;</code> que a função de listar preenche.</td>
 </tr>
 </tbody></table>
-<p><strong>A ordem do <code>&lt;script&gt;</code> importa.</strong> No <code>index.html</code>, a tag <code>&lt;script src=&quot;mural.js&quot;&gt;</code> fica no <strong>fim do <code>body</code></strong>, depois de todos os elementos. O navegador lê o HTML de cima para baixo: se o script viesse no <code>head</code>, ele rodaria antes de o formulário existir, e todos os <code>getElementById</code> devolveriam <code>null</code>.</p>
-<p><strong>Como conferir.</strong> Abram o console do navegador (F12, aba Console) e digitem <code>document.getElementById(&#39;texto&#39;)</code>. Se aparecer o elemento, o ID existe; se aparecer <code>null</code>, há diferença entre HTML e JavaScript (maiúscula, hífen, letra trocada).</p>
+<p><strong>A ordem do <code>&lt;script&gt;</code> importa.</strong> No <code>index.html</code>, a tag <code>&lt;script src=&quot;mural.js&quot;&gt;</code> fica no <strong>fim do <code>body</code></strong>, depois de todos os elementos. O navegador lê o HTML de cima para baixo. Se o script estivesse no <code>head</code>, ele rodaria antes de o formulário existir. Nesse caso, todos os <code>getElementById</code> devolveriam <code>null</code>.</p>
+<p><strong>Como conferir.</strong></p>
+<ol>
+<li>Abram o console do navegador: apertem F12 e escolham a aba Console.</li>
+<li>Digitem <code>document.getElementById(&#39;texto&#39;)</code> e apertem Enter.</li>
+<li>Leiam o resultado. Se aparecer o elemento, o ID existe. Se aparecer <code>null</code>, o ID do HTML e o ID do JavaScript estão diferentes. Procurem diferença de maiúscula, de hífen ou de letra trocada.</li>
+</ol>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="padrão-2--listar-e-desenhar">Padrão 2 — Listar e desenhar</h2>
 <p>A função <code>carregarRecados</code> faz três coisas, sempre nesta ordem: <strong>buscar</strong> os dados na API, <strong>limpar</strong> a lista antiga e <strong>desenhar</strong> um item para cada registro.</p>
 <pre><code class="hljs language-text">buscar:   const recados = await chamarApi(&#x27;/api/recados&#x27;);
 limpar:   lista.innerHTML = &#x27;&#x27;;
-desenhar: para cada recado, criar &lt;li&gt; + &lt;button&gt;, preencher, anexar à lista</code></pre><p>Pontos que valem atenção:</p>
+desenhar: para cada recado, criar &lt;li&gt; + &lt;button&gt;, preencher, anexar à lista</code></pre><p>Pontos importantes:</p>
 <ul>
 <li>A função é <code>async</code> porque <code>fetch</code> é assíncrono. O <code>await</code> faz a função esperar a resposta antes de seguir.</li>
-<li><code>lista.innerHTML = &#39;&#39;</code> apaga os itens antigos. Sem isso, cada chamada acrescentaria a lista inteira de novo ao final da anterior.</li>
+<li><code>lista.innerHTML = &#39;&#39;</code> apaga os itens antigos. Sem essa linha, cada chamada acrescentaria a lista inteira de novo, depois dos itens antigos.</li>
 <li>Cada item é criado com <code>document.createElement</code> e preenchido com <strong><code>textContent</code></strong>, não com <code>innerHTML</code>.</li>
 </ul>
 <p><strong>Por que <code>textContent</code> e não <code>innerHTML</code> para dados.</strong> O <code>innerHTML</code> interpreta o texto como HTML. O <code>textContent</code> mostra o texto como texto. Para dados que vêm de uma pessoa (o recado, o nome de uma música), só o <code>textContent</code> é seguro.</p>
-<p><strong>Teste do negrito.</strong> Cadastrem o recado <code>&lt;b&gt;negrito&lt;/b&gt;</code>. Com <code>textContent</code>, a lista mostra exatamente <code>&lt;b&gt;negrito&lt;/b&gt;</code>, com os sinais de menor e maior. Se vocês trocassem a linha por <code>botao.innerHTML = recado.texto</code>, a lista mostraria a palavra &quot;negrito&quot; em negrito, porque o navegador trataria o texto como marcação. Com um texto como <code>&lt;img src=x onerror=...&gt;</code>, a mesma troca executaria código de quem digitou. Isso se chama injeção de HTML (XSS), e o <code>textContent</code> evita o problema sem esforço.</p>
-<p><strong>Observação sobre <code>selecionarRecado</code>.</strong> Cada clique num recado chama <code>carregarRecados()</code> de novo, só para redesenhar qual item está destacado. Funciona, mas gasta uma requisição por clique. Uma alternativa mais simples seria trocar a classe <code>selecionado</code> direto nos elementos da lista, sem ir à API. O mural mantém o recarregamento porque ele mostra, num único lugar, como a lista é sempre desenhada a partir do estado (<code>idEmEdicao</code>). Vocês podem escolher outro caminho nas músicas, desde que a lista e o destaque não fiquem fora de sincronia.</p>
+<p><strong>Teste do negrito.</strong> Cadastrem o recado <code>&lt;b&gt;negrito&lt;/b&gt;</code>. Com <code>textContent</code>, a lista mostra exatamente <code>&lt;b&gt;negrito&lt;/b&gt;</code>, com os sinais de menor e maior. Se vocês trocassem a linha por <code>botao.innerHTML = recado.texto</code>, a lista mostraria a palavra &quot;negrito&quot; em negrito. Isso aconteceria porque o navegador trataria o texto como marcação. Com um texto como <code>&lt;img src=x onerror=...&gt;</code>, a mesma troca faria o navegador executar código escrito por quem digitou o recado. Esse problema se chama injeção de HTML (XSS). O <code>textContent</code> evita o problema, e vocês não precisam escrever código a mais.</p>
+<p><strong>Observação sobre <code>selecionarRecado</code>.</strong> Cada clique num recado chama <code>carregarRecados()</code> de novo. O único objetivo é redesenhar o destaque do item selecionado. Isso funciona, mas gasta uma requisição por clique. Uma alternativa mais simples seria trocar a classe <code>selecionado</code> direto nos elementos da lista, sem chamar a API. O mural mantém o recarregamento por um motivo: assim, um único trecho de código mostra como a lista é sempre desenhada a partir do estado (<code>idEmEdicao</code>). Nas músicas, vocês podem escolher outra solução. A condição é que a lista mostrada e o item destacado correspondam sempre ao estado atual: os dados e o item selecionado.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="padrão-3--cadastrar">Padrão 3 — Cadastrar</h2>
-<p>O cadastro é o caso base: <code>salvarRecado</code>, quando <code>idEmEdicao</code> é <code>null</code>, envia um <code>POST</code>. O caminho, linha a linha:</p>
+<p>O cadastro é o caso básico. Quando <code>idEmEdicao</code> é <code>null</code>, <code>salvarRecado</code> envia um <code>POST</code>. A sequência, linha a linha:</p>
 <ol>
-<li><p><strong><code>evento.preventDefault()</code></strong> é a primeira linha. O <code>submit</code> de um formulário recarrega a página por padrão. Sem esta linha, a página recarrega antes de a resposta da API chegar, a mensagem some e a lista é redesenhada do zero.</p>
+<li><p><strong><code>evento.preventDefault()</code></strong> é a primeira linha. Se o código não impedir, o <code>submit</code> de um formulário recarrega a página. Sem esta linha, acontecem três coisas: a página recarrega antes de a resposta da API chegar, a mensagem some e a lista é redesenhada desde o início.</p>
 </li>
-<li><p><strong><code>campoTexto.value.trim()</code></strong> lê o texto e tira os espaços das pontas. Um texto só com espaços vira vazio.</p>
+<li><p><strong><code>campoTexto.value.trim()</code></strong> lê o texto e tira os espaços do início e do fim. Um texto só com espaços fica vazio.</p>
 </li>
-<li><p><strong>Validação antes de enviar.</strong> Se o texto estiver vazio, a função mostra a mensagem de erro, devolve o foco ao campo com <code>focus()</code> e termina com <code>return</code>. Nenhuma requisição é feita. Isso atende ao R5 no lado da tela.</p>
+<li><p><strong>Validação antes de enviar.</strong> Se o texto estiver vazio, a função mostra a mensagem de erro, coloca o foco no campo com <code>focus()</code> e termina com <code>return</code>. A função não faz nenhuma requisição. Isso atende ao R5 no lado da tela.</p>
 </li>
-<li><p><strong>O <code>fetch</code> do POST</strong> leva três opções:</p>
+<li><p><strong>O <code>fetch</code> do POST</strong> recebe três opções:</p>
 <table>
 <thead>
 <tr>
@@ -838,21 +895,32 @@ desenhar: para cada recado, criar &lt;li&gt; + &lt;button&gt;, preencher, anexar
 </tr>
 </tbody></table>
 </li>
-<li><p><strong>Status <code>201</code>.</strong> A API responde <code>201 Created</code> com o recado criado. Quem decide se deu certo é <code>response.ok</code> (veja o Padrão 4), que vale para qualquer status de <code>200</code> a <code>299</code>.</p>
+<li><p><strong>Status <code>201</code>.</strong> A API responde <code>201 Created</code> com o recado criado. O código sabe se deu certo por <code>response.ok</code> (vejam o Padrão 4). O <code>response.ok</code> é <code>true</code> para qualquer status de <code>200</code> a <code>299</code>.</p>
 </li>
-<li><p><strong>Ler o <code>id</code> da resposta.</strong> O recado devolvido traz o <code>id</code> que o servidor atribuiu. O mural usa esse <code>id</code> na mensagem: &quot;Recado cadastrado (id 2).&quot; Esse número é a prova de que o registro foi criado pela API, não só desenhado na tela. Nas músicas, é o <code>id</code> que o R2 pede que vocês anotem.</p>
+<li><p><strong>Ler o <code>id</code> da resposta.</strong> O recado devolvido traz o <code>id</code> que o servidor atribuiu. O mural usa esse <code>id</code> na mensagem: &quot;Recado cadastrado (id 2).&quot; Esse número prova que a API criou o registro. A tela não desenhou o item sozinha. Nas músicas, o R2 pede que vocês anotem esse <code>id</code>.</p>
 </li>
 <li><p><strong>Voltar ao cadastro e recarregar.</strong> <code>voltarParaCadastro()</code> limpa o formulário e <code>await carregarRecados()</code> redesenha a lista com o novo registro.</p>
 </li>
 </ol>
-<p><strong>Dois detalhes de ordem.</strong> A mensagem de sucesso só é escrita <strong>depois</strong> de <code>chamarApi</code> retornar sem lançar erro. E a mensagem vem <strong>depois</strong> do recarregamento da lista. Por isso, se a gravação funcionou mas o recarregamento falhou (queda de conexão entre as duas chamadas), a tela mostra a mensagem de falha de conexão, embora o recado tenha sido gravado. A mensagem não está errada sobre o que falhou (a atualização da lista), mas pode confundir. Quando uma mensagem de erro aparece logo depois de um salvamento, abram a aba Rede e leiam a ordem das requisições: se o <code>POST</code> aparece com <code>201</code>, o registro existe e só a lista não atualizou.</p>
+<p><strong>Dois detalhes de ordem.</strong></p>
+<ol>
+<li>A função só escreve a mensagem de sucesso <strong>depois</strong> de <code>chamarApi</code> retornar sem lançar erro.</li>
+<li>A função escreve a mensagem <strong>depois</strong> de recarregar a lista.</li>
+</ol>
+<p>Consequência do segundo detalhe: a gravação pode funcionar e o recarregamento da lista pode falhar. Isso acontece se a conexão cair entre as duas chamadas. Nesse caso, a tela mostra a mensagem de falha de conexão, mas o recado foi gravado. A mensagem informa corretamente o que falhou: a atualização da lista. Mesmo assim, ela pode confundir.</p>
+<p>Se uma mensagem de erro aparecer logo depois de um salvamento, façam assim:</p>
+<ol>
+<li>Abram a aba Rede.</li>
+<li>Leiam a ordem das requisições.</li>
+<li>Se o <code>POST</code> aparece com <code>201</code>, o registro existe. Só a lista não atualizou.</li>
+</ol>
 <blockquote>
 <p><strong>Pergunte ao agente.</strong> <em>&quot;Explique o que acontece se eu esquecer o evento.preventDefault() no submit. Antes de responder, peça que eu preveja. Use como fonte o guia_interface_crud.md (Padrão 3), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.md</a>.&quot;</em></p>
 </blockquote>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="padrão-4--erro-http--falha-de-conexão">Padrão 4 — Erro HTTP × falha de conexão</h2>
-<p>O <code>fetch</code> tem uma regra que surpreende quem vem de outras linguagens: <strong>ele só lança exceção quando não consegue falar com o servidor.</strong> Se o servidor respondeu, mesmo com <code>400</code>, <code>404</code> ou <code>500</code>, o <code>fetch</code> termina normalmente e entrega uma resposta cujo <code>response.ok</code> é <code>false</code>. Quem confere o status é o seu código.</p>
-<p>A função <code>chamarApi</code> junta os dois casos num só: lança um <code>Error</code> com uma mensagem que a tela pode mostrar. Linha a linha:</p>
+<p>O <code>fetch</code> tem uma regra que surpreende quem vem de outras linguagens: <strong>ele só lança exceção quando não recebe resposta do servidor.</strong> Se o servidor respondeu, mesmo com <code>400</code>, <code>404</code> ou <code>500</code>, o <code>fetch</code> termina normalmente. Ele entrega uma resposta em que <code>response.ok</code> é <code>false</code>. O código de vocês é que precisa conferir o status.</p>
+<p>A função <code>chamarApi</code> trata os dois casos do mesmo jeito: ela lança um <code>Error</code> com uma mensagem que a tela pode mostrar. Linha a linha:</p>
 <pre><code class="hljs language-text">async function chamarApi(caminho, opcoes) {
     let resposta;                               // declarada fora do try para valer depois dele
     try {
@@ -868,8 +936,8 @@ desenhar: para cada recado, criar &lt;li&gt; + &lt;button&gt;, preencher, anexar
 }</code></pre><ul>
 <li>O <code>try/catch</code> em volta do <code>fetch</code> captura apenas a <strong>falha de conexão</strong>.</li>
 <li><code>resposta.json().catch(() =&gt; null)</code> evita um segundo erro quando o corpo da resposta não é JSON (por exemplo, uma página de erro em HTML). Nesse caso, <code>dados</code> fica <code>null</code>.</li>
-<li><code>dados?.erro</code> usa o campo <code>erro</code> que a API manda. Se ele não existir, a mensagem cai no texto genérico com o status.</li>
-<li>Quem chama <code>chamarApi</code> usa um <code>try/catch</code> só, e trata os dois casos do mesmo jeito: <code>mostrarMensagem(erro.message, true)</code>.</li>
+<li><code>dados?.erro</code> usa o campo <code>erro</code> que a API manda. Se ele não existir, a mensagem usa o texto genérico com o status.</li>
+<li>A função que chama <code>chamarApi</code> usa um único <code>try/catch</code> e trata os dois casos do mesmo jeito: <code>mostrarMensagem(erro.message, true)</code>.</li>
 </ul>
 <h3 id="situação-fetch-e-tela">Situação, <code>fetch</code> e tela</h3>
 <table>
@@ -881,7 +949,7 @@ desenhar: para cada recado, criar &lt;li&gt; + &lt;button&gt;, preencher, anexar
 </tr>
 </thead>
 <tbody><tr>
-<td><code>400</code> — texto vazio que passou pela tela</td>
+<td><code>400</code> — um texto vazio chegou à API apesar da validação da tela</td>
 <td>Termina normal; <code>response.ok</code> é <code>false</code></td>
 <td>A mensagem da API: &quot;Escreva o texto do recado&quot;, em vermelho</td>
 </tr>
@@ -906,13 +974,13 @@ desenhar: para cada recado, criar &lt;li&gt; + &lt;button&gt;, preencher, anexar
 <td>Mensagem de sucesso, em verde</td>
 </tr>
 </tbody></table>
-<p><strong>A regra:</strong> a tela só anuncia sucesso depois da resposta <code>ok</code>. Na prática, a linha <code>mostrarMensagem(&#39;Recado cadastrado...&#39;, false)</code> fica <strong>depois</strong> do <code>await chamarApi(...)</code>, nunca antes. Se ela viesse antes, uma queda de conexão deixaria a tela dizendo &quot;cadastrado&quot; para um registro que não existe. É exatamente o erro que o R5 quer evitar.</p>
+<p><strong>A regra:</strong> a tela só anuncia sucesso depois da resposta <code>ok</code>. No código, a linha <code>mostrarMensagem(&#39;Recado cadastrado...&#39;, false)</code> fica <strong>depois</strong> do <code>await chamarApi(...)</code>, nunca antes. Se a linha ficasse antes, uma queda de conexão faria a tela dizer &quot;cadastrado&quot; para um registro que não existe. Esse é o erro que o R5 pede para evitar.</p>
 <blockquote>
 <p><strong>Pergunte ao agente.</strong> <em>&quot;Qual a diferença entre a resposta ter response.ok falso e o fetch lançar uma exceção? Dê um exemplo de cada situação no meu projeto. Use como fonte o guia_interface_crud.md (Padrão 4), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.md</a>.&quot;</em></p>
 </blockquote>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="padrão-5--selecionar-e-editar">Padrão 5 — Selecionar e editar</h2>
-<p>Editar não é uma tela nova. É o <strong>mesmo formulário</strong> em outro modo. Uma única variável de estado, <code>idEmEdicao</code>, diz em qual modo ele está:</p>
+<p>A edição não usa uma tela nova. Ela usa o <strong>mesmo formulário</strong>, em outro modo. Uma única variável de estado, <code>idEmEdicao</code>, indica o modo atual do formulário:</p>
 <table>
 <thead>
 <tr>
@@ -941,20 +1009,20 @@ desenhar: para cada recado, criar &lt;li&gt; + &lt;button&gt;, preencher, anexar
 <td>habilitado</td>
 </tr>
 </tbody></table>
-<p>As três funções que mexem nesse estado:</p>
+<p>As três funções que usam esse estado:</p>
 <ul>
-<li><p><strong><code>selecionarRecado(recado)</code></strong> entra no modo edição. Guarda o <code>id</code>, copia o texto para o campo, troca título e botão, mostra &quot;Cancelar edição&quot; e habilita &quot;Excluir selecionado&quot;. Ao final, recarrega a lista para redesenhar o destaque (a observação do Padrão 2).</p>
+<li><p><strong><code>selecionarRecado(recado)</code></strong> coloca o formulário no modo edição. Ela guarda o <code>id</code>, copia o texto para o campo, troca o título e o texto do botão, mostra &quot;Cancelar edição&quot; e habilita &quot;Excluir selecionado&quot;. No fim, ela recarrega a lista para redesenhar o destaque (vejam a observação do Padrão 2).</p>
 </li>
-<li><p><strong><code>voltarParaCadastro()</code></strong> faz o caminho inverso: <code>idEmEdicao = null</code>, <code>formulario.reset()</code> e os textos originais. É usada depois de salvar, depois de excluir e ao cancelar.</p>
+<li><p><strong><code>voltarParaCadastro()</code></strong> desfaz essas mudanças: <code>idEmEdicao = null</code>, <code>formulario.reset()</code> e os textos originais. O mural chama essa função depois de salvar, depois de excluir e ao cancelar.</p>
 </li>
-<li><p><strong><code>salvarRecado</code></strong> decide sozinha entre criar e alterar:</p>
+<li><p><strong><code>salvarRecado</code></strong> escolhe entre criar e alterar:</p>
 <pre><code class="hljs language-text">const editando = idEmEdicao !== null;
 const caminho  = editando ? &#x27;/api/recados/&#x27; + idEmEdicao : &#x27;/api/recados&#x27;;
-method: editando ? &#x27;PUT&#x27; : &#x27;POST&#x27;</code></pre><p>O mesmo <code>submit</code> serve aos dois modos. O que muda é o método (<code>PUT</code> ou <code>POST</code>) e o endereço (com ou sem <code>/id</code>). É por isso que a variável <code>idEmEdicao</code> precisa estar certa na hora de salvar: se ela ficar <code>null</code> no modo edição, o <code>submit</code> cria um registro novo em vez de alterar o existente.</p>
+method: editando ? &#x27;PUT&#x27; : &#x27;POST&#x27;</code></pre><p>O mesmo <code>submit</code> serve aos dois modos. O que muda é o método (<code>PUT</code> ou <code>POST</code>) e o endereço (com ou sem <code>/id</code>). Por isso, a variável <code>idEmEdicao</code> precisa ter o valor certo na hora de salvar. Se ela estiver <code>null</code> no modo edição, o <code>submit</code> cria um registro novo em vez de alterar o existente.</p>
 </li>
 </ul>
-<p>O botão <strong>Cancelar edição</strong> chama <code>voltarParaCadastro()</code> e informa &quot;Edição cancelada.&quot; Nada é enviado à API.</p>
-<p><strong>Com a API fora do ar, o texto não se perde.</strong> No <code>catch</code> de <code>salvarRecado</code>, a função não chama <code>voltarParaCadastro()</code>. O texto digitado continua no campo e o modo de edição continua ativo, para a pessoa tentar de novo.</p>
+<p>O botão <strong>Cancelar edição</strong> chama <code>voltarParaCadastro()</code> e informa &quot;Edição cancelada.&quot; O botão não envia nada à API.</p>
+<p><strong>Com a API parada, o texto digitado continua no campo.</strong> No <code>catch</code> de <code>salvarRecado</code>, a função não chama <code>voltarParaCadastro()</code>. O texto digitado continua no campo e o modo edição continua ativo. Assim, a pessoa pode tentar de novo.</p>
 <blockquote>
 <p><strong>Pergunte ao agente.</strong> <em>&quot;Estou no modo edição e, ao salvar, é criada uma música nova em vez de alterar a existente. Que perguntas devo me fazer para achar o erro? Use como fonte o guia_interface_crud.md (Padrão 5 e &quot;Aplicando às músicas&quot;), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.md</a>.&quot;</em></p>
 </blockquote>
@@ -962,22 +1030,38 @@ method: editando ? &#x27;PUT&#x27; : &#x27;POST&#x27;</code></pre><p>O mesmo <co
 <h2 id="padrão-6--excluir-com-confirmação">Padrão 6 — Excluir com confirmação</h2>
 <p><code>excluirRecado</code> segue uma ordem fixa:</p>
 <ol>
-<li><strong>Exigir seleção.</strong> Sem <code>idEmEdicao</code>, a função termina na primeira linha. O botão já fica desabilitado, e esta verificação é a segunda barreira.</li>
-<li><strong>Confirmar.</strong> <code>window.confirm(&#39;Excluir o recado N?&#39;)</code> abre uma caixa com OK e Cancelar e devolve <code>true</code> ou <code>false</code>. Se for <code>false</code>, a função mostra &quot;Exclusão cancelada.&quot; e termina <strong>sem enviar nada</strong>. Esse é o comportamento que o R4 pede: cancelar mantém o registro.</li>
-<li><strong>Enviar o <code>DELETE</code></strong> para <code>/api/recados/</code> + o <code>id</code>. Não há corpo.</li>
-<li><strong>Atualizar.</strong> Depois de uma resposta <code>ok</code>, <code>voltarParaCadastro()</code> zera a seleção, <code>await carregarRecados()</code> redesenha a lista sem o registro e a mensagem usa o que a API devolveu: <code>resultado.recado.id</code>. A API responde <code>{ mensagem, recado }</code>; para as músicas, o contrato é <code>{ mensagem, musica }</code>.</li>
+<li><p><strong>Exigir seleção.</strong> Se <code>idEmEdicao</code> for <code>null</code>, a função termina na primeira linha. Sem seleção, o botão Excluir já fica desabilitado. Esta verificação é uma segunda proteção, dentro da função.</p>
+</li>
+<li><p><strong>Confirmar.</strong> <code>window.confirm(&#39;Excluir o recado N?&#39;)</code> abre uma caixa com OK e Cancelar e devolve <code>true</code> ou <code>false</code>. Se for <code>false</code>, a função mostra &quot;Exclusão cancelada.&quot; e termina <strong>sem enviar nada</strong>. Esse é o comportamento que o R4 pede: cancelar mantém o registro.</p>
+</li>
+<li><p><strong>Enviar o <code>DELETE</code></strong> para <code>/api/recados/</code> + o <code>id</code>. A requisição não tem corpo.</p>
+</li>
+<li><p><strong>Atualizar.</strong> Depois de uma resposta <code>ok</code>, acontecem três coisas, nesta ordem:</p>
+<ul>
+<li><code>voltarParaCadastro()</code> limpa a seleção.</li>
+<li><code>await carregarRecados()</code> redesenha a lista sem o registro.</li>
+<li>A mensagem usa o que a API devolveu: <code>resultado.recado.id</code>.</li>
+</ul>
+<p>A API do mural responde <code>{ mensagem, recado }</code>. Para as músicas, o contrato é <code>{ mensagem, musica }</code>.</p>
+</li>
 </ol>
-<p><strong>Observação sobre o foco.</strong> Durante a exclusão, <code>definirOcupado(true)</code> desabilita o botão Excluir, e no <code>finally</code> ele continua desabilitado (porque <code>voltarParaCadastro()</code> já zerou a seleção). O botão que tinha o foco deixou de aceitar foco, e quem navega pelo teclado perde a posição na página. O mural não corrige isso. Se vocês quiserem tratar, o caminho é mandar o foco para o campo de texto depois de excluir. Vale a pena fazer nas músicas se o tempo permitir; não é exigido pelos requisitos.</p>
+<p><strong>Observação sobre o foco.</strong> A correção descrita aqui é opcional. Os requisitos não exigem.</p>
+<ul>
+<li>Durante a exclusão, <code>definirOcupado(true)</code> desabilita o botão Excluir.</li>
+<li>No <code>finally</code>, o botão continua desabilitado, porque <code>voltarParaCadastro()</code> já limpou a seleção.</li>
+<li>O botão que tinha o foco deixou de aceitar foco. Por isso, quem navega pelo teclado perde a posição na página.</li>
+</ul>
+<p>O mural não corrige esse problema. Se vocês quiserem corrigir, mandem o foco para o campo de texto depois de excluir. Se houver tempo, vocês podem fazer essa correção nas músicas.</p>
 <blockquote>
 <p><strong>Pergunte ao agente.</strong> <em>&quot;Revise a minha função de exclusão (colada abaixo). Aponte a linha do problema e explique, sem reescrever a função. Use como fonte o guia_interface_crud.md (Padrão 6), na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.md">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.md</a>.&quot;</em></p>
 </blockquote>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="padrão-7--evitar-envio-duplicado">Padrão 7 — Evitar envio duplicado</h2>
-<p>Se a pessoa clicar duas vezes em &quot;Cadastrar&quot; antes de a resposta chegar, duas requisições partem e dois registros são criados. A defesa é desabilitar os botões enquanto a requisição está em andamento.</p>
+<p>Se a pessoa clicar duas vezes em &quot;Cadastrar&quot; antes de a resposta chegar, a página envia duas requisições e a API cria dois registros. Para evitar isso, o mural desabilita os botões enquanto a requisição está em andamento.</p>
 <p><code>definirOcupado(ocupado)</code> faz isso em um lugar só:</p>
 <pre><code class="hljs language-text">botaoSalvar.disabled   = ocupado;
 botaoCancelar.disabled = ocupado;
-botaoExcluir.disabled  = ocupado || idEmEdicao === null;</code></pre><p>A última linha tem uma sutileza: ao terminar (<code>ocupado</code> igual a <code>false</code>), o botão Excluir só volta a ficar habilitado se ainda houver um recado selecionado.</p>
+botaoExcluir.disabled  = ocupado || idEmEdicao === null;</code></pre><p>A última linha tem uma condição a mais. Quando a requisição termina (<code>ocupado</code> igual a <code>false</code>), o botão Excluir só volta a ficar habilitado se ainda houver um recado selecionado.</p>
 <p>O padrão fica completo com o <code>finally</code>:</p>
 <pre><code class="hljs language-text">definirOcupado(true);
 try {
@@ -986,12 +1070,19 @@ try {
     mostrarMensagem(erro.message, true);
 } finally {
     definirOcupado(false);     // roda com sucesso OU com erro
-}</code></pre><p>O <code>finally</code> roda sempre, inclusive quando o <code>catch</code> é executado. Se a liberação estivesse só no fim do <code>try</code>, um erro de rede deixaria os botões desabilitados para sempre e a pessoa teria de recarregar a página. É esse o sintoma &quot;o botão Excluir continua desabilitado&quot; da seção &quot;Se deu errado&quot;.</p>
+}</code></pre><p>O <code>finally</code> roda sempre, inclusive quando o <code>catch</code> é executado. Se o <code>definirOcupado(false)</code> estivesse só no fim do <code>try</code>, um erro de rede deixaria os botões desabilitados até a pessoa recarregar a página. Esse é o sintoma &quot;o botão Excluir continua desabilitado&quot; da seção &quot;Se deu errado&quot;.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="conferir-na-aba-rede-devtools">Conferir na aba Rede (DevTools)</h2>
-<p>A tela mostra o que o JavaScript decidiu mostrar. A aba <strong>Rede</strong> (em inglês, <em>Network</em>) mostra o que realmente aconteceu entre o navegador e a API. É a fonte da evidência para o Percurso para testar e demonstrar.</p>
-<p><strong>Abrir.</strong> Com a página do mural aberta, apertem F12 e escolham a aba Rede. Marquem o filtro <strong>Fetch/XHR</strong> para ver só as chamadas à API. Recarreguem a página (F5) para a lista de requisições começar do zero.</p>
-<p><strong>O que ler em cada requisição.</strong> Cliquem numa linha da lista:</p>
+<p>A tela mostra o que o código JavaScript mandou mostrar. A aba <strong>Rede</strong> (em inglês, <em>Network</em>) mostra as requisições e as respostas que realmente passaram entre o navegador e a API. Usem a aba Rede para obter a evidência do Percurso para testar e demonstrar.</p>
+<p><strong>Abrir.</strong></p>
+<ol>
+<li>Abram a página do mural no navegador.</li>
+<li>Apertem F12.</li>
+<li>Escolham a aba Rede.</li>
+<li>Marquem o filtro <strong>Fetch/XHR</strong>. Com esse filtro, a aba mostra só as chamadas à API.</li>
+<li>Recarreguem a página (F5). Assim, a lista de requisições recomeça a partir desse recarregamento.</li>
+</ol>
+<p><strong>O que ler em cada requisição.</strong> Cliquem numa linha da lista de requisições. A tabela abaixo mostra onde olhar:</p>
 <table>
 <thead>
 <tr>
@@ -1020,18 +1111,24 @@ try {
 <td>O que a API devolveu, como texto JSON</td>
 </tr>
 </tbody></table>
-<p><strong>Onde ver o <code>id</code> criado (evidência do R2).</strong> Cadastrem um recado e procurem a requisição <code>POST</code> para <code>/api/recados</code>. Na aba Resposta, o JSON traz <code>id</code> e <code>texto</code>. Esse <code>id</code>, junto com o status <code>201</code>, mostra que a API criou o registro. Anotem o <code>id</code>: o Percurso pede que vocês consultem o registro de novo depois.</p>
+<p><strong>Onde ver o <code>id</code> criado (evidência do R2).</strong></p>
+<ol>
+<li>Cadastrem um recado.</li>
+<li>Na aba Rede, procurem a requisição <code>POST</code> para <code>/api/recados</code> e cliquem nela.</li>
+<li>Abram a aba Resposta. O JSON traz <code>id</code> e <code>texto</code>. Esse <code>id</code>, junto com o status <code>201</code>, mostra que a API criou o registro.</li>
+<li>Anotem o <code>id</code>. O Percurso pede que vocês consultem o registro de novo depois.</li>
+</ol>
 <p><strong>Falha controlada (R5).</strong></p>
 <ol>
-<li>Com a página aberta e funcionando, voltem ao terminal onde o <code>npm start</code> roda e apertem <code>Ctrl+C</code>. O servidor para; a página continua aberta.</li>
+<li>Com a página aberta e funcionando, voltem ao terminal onde o <code>npm start</code> roda e apertem <code>Ctrl+C</code>. O servidor para. A página continua aberta.</li>
 <li>Na página, digitem um recado e cliquem em &quot;Cadastrar&quot;.</li>
 <li>Leiam a mensagem. Ela deve ser a de falha de conexão (&quot;Sem conexão com o servidor...&quot;) e <strong>não</strong> pode dizer que o recado foi cadastrado. Na aba Rede, a requisição aparece em vermelho, sem status.</li>
-<li>Reiniciem com <code>npm start</code>, recarreguem a página e confiram a lista. Como os recados vivem na memória, só o recado inicial volta.</li>
+<li>Reiniciem com <code>npm start</code>, recarreguem a página e confiram a lista. Como os recados ficam na memória, só o recado inicial volta.</li>
 </ol>
 <p>Esse é o mesmo teste da &quot;Falha controlada local&quot; do enunciado do projeto. Nas músicas, a diferença é que a lista volta com os dados do banco.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="aplicando-às-músicas-sem-código">Aplicando às músicas (sem código)</h2>
-<p>Esta seção diz <strong>o que muda</strong> do mural para o catálogo e <strong>o que conferir</strong> em cada requisito. Ela não traz o código das músicas: a escrita é de vocês, com os padrões acima.</p>
+<p>Esta seção diz <strong>o que muda</strong> do mural para o catálogo e <strong>o que conferir</strong> em cada requisito. Ela não traz o código das músicas. Vocês escrevem esse código, usando os padrões acima.</p>
 <h3 id="o-que-muda-do-mural-para-as-músicas">O que muda do mural para as músicas</h3>
 <table>
 <thead>
@@ -1083,7 +1180,7 @@ try {
 </tr>
 </tbody></table>
 <h3 id="checklist-por-requisito">Checklist por requisito</h3>
-<p>Os testes abaixo vêm do &quot;Percurso para testar e demonstrar&quot; do enunciado de &quot;O repertório da turma&quot;. Em todos, usem uma música de teste sem partes e preservem a música que o player usa na demonstração.</p>
+<p>Os testes abaixo vêm do &quot;Percurso para testar e demonstrar&quot; do enunciado de &quot;O repertório da turma&quot;. Em todos os testes, usem uma música de teste sem partes. Preservem a música que o player usa na demonstração: ela precisa continuar cadastrada e tocando.</p>
 <table>
 <thead>
 <tr>
@@ -1114,7 +1211,7 @@ try {
 </tr>
 </tbody></table>
 <h3 id="quem-usa-a-base-de-retomada">Quem usa a base de retomada</h3>
-<p>Quem usa a base de retomada (disponível no Classroom da disciplina e em <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip">base_retomada.zip</a>) não escreve a página inteira. Todo o trabalho acontece em <strong><code>public/admin.js</code></strong>, que já está ligado ao HTML e traz comentários <code>TODO</code> para cadastro, edição e exclusão. O <code>catalogo.js</code> já oferece:</p>
+<p>A base de retomada está disponível no Classroom da disciplina e em <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip">base_retomada.zip</a>. Quem usa a base de retomada não escreve a página inteira. Todo o código de vocês fica em <strong><code>public/admin.js</code></strong>. Esse arquivo já está ligado ao HTML e traz comentários <code>TODO</code> para cadastro, edição e exclusão. O <code>catalogo.js</code> já oferece os itens da tabela abaixo:</p>
 <table>
 <thead>
 <tr>
@@ -1152,17 +1249,30 @@ try {
 </tr>
 </tbody></table>
 <p>Os IDs do formulário da base: <code>formulario-musica</code>, <code>nome</code>, <code>artista</code>, <code>salvar-musica</code>, <code>excluir-musica</code>, <code>nova-musica</code>, <code>titulo-formulario</code> e <code>estado-formulario</code>.</p>
-<p>Na correspondência com os padrões: o <code>idEmEdicao</code> do mural é o ID da música selecionada; o <code>voltarParaCadastro</code> tem o papel de preparar um novo cadastro (limpar seleção e campos); o <code>definirOcupado</code> combina a trava dos botões do formulário com <code>definirCatalogoOcupado</code>. Os controles de escrita vêm desabilitados no HTML: habilitar o botão não basta, é preciso integrar a operação e tratar a resposta.</p>
+<p>Correspondência entre os padrões do mural e a base:</p>
+<ul>
+<li>O <code>idEmEdicao</code> do mural corresponde ao ID da música selecionada.</li>
+<li>O <code>voltarParaCadastro</code> corresponde a preparar um novo cadastro: limpar a seleção e os campos.</li>
+<li>O <code>definirOcupado</code> corresponde a duas ações juntas: a trava dos botões do formulário e o <code>definirCatalogoOcupado</code>.</li>
+</ul>
+<p>Os controles de escrita vêm desabilitados no HTML. Habilitar o botão não basta. Vocês precisam integrar a operação e tratar a resposta.</p>
 <blockquote>
-<p><strong>Cuidado ao aproveitar o código do mural.</strong> O <code>admin.js</code> divide o escopo global com o <code>catalogo.js</code> (na base) ou com o <code>player.js</code> (no projeto do Guia passo a passo do Supabase): o que um arquivo declara no nível de cima vale para todos os scripts da página. Se vocês copiarem a <code>mostrarMensagem(texto, erro)</code> do mural para o <code>admin.js</code> da base, ela substitui a <code>mostrarMensagem(id, texto, erro)</code> do <code>catalogo.js</code> e quebra as mensagens do catálogo. Repetir um <code>const</code> ou <code>let</code> de nível superior que já existe no outro arquivo dá o erro <code>Identifier &#39;…&#39; has already been declared</code> no console, e o <code>admin.js</code> inteiro deixa de rodar. Usem as funções que a base já oferece e escolham nomes novos para o que for de vocês.</p>
+<p><strong>Cuidado ao aproveitar o código do mural.</strong> O <code>admin.js</code> divide o escopo global com outro arquivo: o <code>catalogo.js</code> (na base) ou o <code>player.js</code> (no projeto do Guia passo a passo do Supabase). Por isso, o que um arquivo declara no nível superior vale para todos os scripts da página.</p>
+<p>Dois problemas que isso causa:</p>
+<ul>
+<li>Se vocês copiarem a <code>mostrarMensagem(texto, erro)</code> do mural para o <code>admin.js</code> da base, ela substitui a <code>mostrarMensagem(id, texto, erro)</code> do <code>catalogo.js</code>. As mensagens do catálogo param de funcionar.</li>
+<li>Se vocês repetirem um <code>const</code> ou <code>let</code> de nível superior que já existe no outro arquivo, o console mostra o erro <code>Identifier &#39;…&#39; has already been declared</code>. O <code>admin.js</code> inteiro deixa de rodar.</li>
+</ul>
+<p>Usem as funções que a base já oferece. Escolham nomes novos para o que vocês criarem.</p>
 </blockquote>
 <h3 id="quem-seguiu-o-guia-passo-a-passo-do-supabase">Quem seguiu o Guia passo a passo do Supabase</h3>
-<p>Quem seguiu o &quot;Guia passo a passo do Supabase&quot; tem a página em <code>public/index.html</code> e o código em <code>public/player.js</code> (IDs <code>listaMusicas</code>, <code>nomeMusica</code>, <code>artista</code>, <code>tag</code>, <code>letra</code>, <code>contador</code>, <code>btnTocar</code> e <code>mensagem</code>). O caminho para as operações de escrita:</p>
+<p>Quem seguiu o &quot;Guia passo a passo do Supabase&quot; tem a página em <code>public/index.html</code> e o código em <code>public/player.js</code>. Os IDs do player são <code>listaMusicas</code>, <code>nomeMusica</code>, <code>artista</code>, <code>tag</code>, <code>letra</code>, <code>contador</code>, <code>btnTocar</code> e <code>mensagem</code>. Para fazer as operações de escrita, sigam estes passos:</p>
 <ol>
-<li>Acrescentar ao <code>public/index.html</code> um <code>&lt;form&gt;</code> com os campos <code>nome</code> e <code>artista</code>, um elemento de mensagem e os botões (cadastrar, cancelar edição e excluir). Cuidado com os IDs: <code>artista</code> e <code>mensagem</code> <strong>já existem</strong> no player, e dois elementos com o mesmo ID quebram o <code>getElementById</code>. Escolham nomes novos para o formulário.</li>
-<li>Criar o arquivo <code>public/admin.js</code> e incluí-lo no <code>index.html</code> <strong>depois</strong> do <code>player.js</code>, ambos no fim do <code>body</code>. O cuidado com o escopo global da seção anterior vale aqui: nada de repetir no <code>admin.js</code> um nome declarado no nível de cima do <code>player.js</code>.</li>
-<li>Para recarregar a lista depois de cada operação, chamar <code>carregarPlaylist()</code>, a função do <code>player.js</code> que desenha a lista.</li>
-<li>Aplicar os Padrões 3 a 7 com o mesmo formato de chamada do mural, trocando <code>/api/recados</code> por <code>/api/musicas</code>.</li>
+<li>Acrescentem ao <code>public/index.html</code> um <code>&lt;form&gt;</code> com os campos <code>nome</code> e <code>artista</code>, um elemento de mensagem e os botões (cadastrar, cancelar edição e excluir). Cuidado com os IDs: <code>artista</code> e <code>mensagem</code> <strong>já existem</strong> no player. Dois elementos com o mesmo ID quebram o <code>getElementById</code>. Escolham IDs novos para os elementos do formulário.</li>
+<li>Criem o arquivo <code>public/admin.js</code>.</li>
+<li>Incluam o <code>public/admin.js</code> no <code>index.html</code> <strong>depois</strong> do <code>player.js</code>, os dois no fim do <code>body</code>. O cuidado com o escopo global, explicado na seção anterior, vale aqui também: não repitam no <code>admin.js</code> um nome declarado no nível superior do <code>player.js</code>.</li>
+<li>Para recarregar a lista depois de cada operação, chamem <code>carregarPlaylist()</code>. Essa é a função do <code>player.js</code> que desenha a lista.</li>
+<li>Apliquem os Padrões 3 a 7 com o mesmo formato de chamada do mural. Troquem <code>/api/recados</code> por <code>/api/musicas</code>.</li>
 </ol>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="se-deu-errado">Se deu errado</h2>
@@ -1177,47 +1287,47 @@ try {
 <tbody><tr>
 <td>A página recarrega ao salvar e a mensagem some</td>
 <td>Faltou <code>evento.preventDefault()</code> no <code>submit</code>, ou o listener foi ligado ao botão em vez de ao formulário</td>
-<td>Conferir a primeira linha da função do <code>submit</code> e <code>formulario.addEventListener(&#39;submit&#39;, ...)</code> (Padrão 3)</td>
+<td>Confiram a primeira linha da função do <code>submit</code> e <code>formulario.addEventListener(&#39;submit&#39;, ...)</code> (Padrão 3)</td>
 </tr>
 <tr>
 <td>A tela diz &quot;cadastrado&quot; com o servidor parado</td>
 <td>A mensagem de sucesso é escrita antes da resposta, ou o <code>fetch</code> é chamado sem tratar a exceção</td>
-<td>Conferir que o sucesso só é escrito depois do <code>await</code> que retornou sem lançar erro (Padrão 4)</td>
+<td>Confiram se o código só escreve a mensagem de sucesso depois do <code>await</code> que retornou sem lançar erro (Padrão 4)</td>
 </tr>
 <tr>
 <td>O campo artista mostra <code>[object Object]</code></td>
 <td>O campo recebeu o objeto <code>artista</code> em vez de <code>artista.nome</code></td>
-<td>Preencher com <code>musica.artista.nome</code> (a tabela &quot;O que muda&quot;)</td>
+<td>Preencham o campo com <code>musica.artista.nome</code> (vejam a tabela &quot;O que muda&quot;)</td>
 </tr>
 <tr>
 <td>A lista não atualiza depois de salvar</td>
 <td>Faltou chamar (ou esperar) o recarregamento da lista depois do salvamento</td>
-<td>Chamar a função de listar com <code>await</code> depois da operação. Conferir na aba Rede se o <code>GET</code> saiu depois do <code>POST</code></td>
+<td>Chamem a função de listar com <code>await</code> depois da operação. Confiram na aba Rede se o <code>GET</code> saiu depois do <code>POST</code></td>
 </tr>
 <tr>
 <td>O botão Excluir continua desabilitado</td>
-<td>O <code>definirOcupado(false)</code> não roda em caso de erro, ou a seleção foi zerada</td>
-<td>Colocar a liberação dentro do <code>finally</code> (Padrão 7) e conferir o estado da seleção</td>
+<td>O <code>definirOcupado(false)</code> não roda em caso de erro, ou a seleção foi limpa</td>
+<td>Coloquem o <code>definirOcupado(false)</code> dentro do <code>finally</code> (Padrão 7) e confiram o estado da seleção</td>
 </tr>
 <tr>
 <td><code>Cannot read properties of null</code> na primeira linha</td>
 <td>ID do JavaScript diferente do ID do HTML, ou <code>&lt;script&gt;</code> antes dos elementos</td>
-<td>Conferir o ID no console com <code>getElementById</code> e a posição do <code>&lt;script&gt;</code> (Padrão 1)</td>
+<td>Confiram o ID no console com <code>getElementById</code> e a posição do <code>&lt;script&gt;</code> (Padrão 1)</td>
 </tr>
 <tr>
 <td>A API responde <code>400</code> mesmo com o campo preenchido</td>
 <td>Faltou o cabeçalho <code>Content-Type: application/json</code> ou o <code>JSON.stringify</code></td>
-<td>Conferir a aba Rede, aba Carga: o corpo deve ser um JSON com os campos</td>
+<td>Abram a aba Rede e, na requisição, a aba Carga. O corpo deve ser um JSON com os campos</td>
 </tr>
 <tr>
 <td>No console: <code>Identifier &#39;…&#39; has already been declared</code>, e nenhum botão do formulário responde</td>
 <td>Um <code>const</code>, <code>let</code> ou função de nível superior do <code>admin.js</code> repete um nome do <code>catalogo.js</code> ou do <code>player.js</code></td>
-<td>Renomear o que é de vocês no <code>admin.js</code> (seção &quot;Quem usa a base de retomada&quot;)</td>
+<td>Renomeiem o que vocês criaram no <code>admin.js</code> (seção &quot;Quem usa a base de retomada&quot;)</td>
 </tr>
 <tr>
-<td><code>EADDRINUSE</code> ao subir o servidor</td>
+<td><code>EADDRINUSE</code> ao iniciar o servidor</td>
 <td>A porta já está ocupada por outro <code>npm start</code></td>
-<td>Fechar o outro processo ou usar outra porta (seção &quot;Os cinco arquivos&quot;)</td>
+<td>Fechem o outro processo ou usem outra porta (seção &quot;Os cinco arquivos&quot;)</td>
 </tr>
 </tbody></table>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
@@ -1227,6 +1337,7 @@ try {
       <span>IFSul — Campus Passo Fundo · Programação III</span>
     </footer>
   </div>
+  <a class="sumario-flutuante" href="#sumario-auto">↑ Sumário</a>
   <dialog class="diagram-dialog" aria-label="Diagrama ampliado">
     <button type="button" class="diagram-close">Fechar diagrama</button>
     <p>Use a rolagem para explorar o diagrama. Pressione Esc para fechar.</p>
@@ -1251,6 +1362,21 @@ try {
         diagramScroll.scrollTo(0, 0);
       });
     });
+    
+    // Listas de tarefas: clicáveis, com a marcação guardada neste navegador (por página).
+    document.querySelectorAll('main li.tarefa input[type="checkbox"]').forEach((caixa, indice) => {
+      const chave = 'tarefa:' + location.pathname + ':' + indice;
+      const item = caixa.closest('li');
+      caixa.disabled = false;
+      caixa.setAttribute('aria-label', 'Marcar como feito: ' + item.textContent.trim().slice(0, 120));
+      try { caixa.checked = localStorage.getItem(chave) === '1'; } catch (erro) { /* sem armazenamento: só marca na tela */ }
+      item.classList.toggle('feita', caixa.checked);
+      caixa.addEventListener('change', () => {
+        item.classList.toggle('feita', caixa.checked);
+        try { caixa.checked ? localStorage.setItem(chave, '1') : localStorage.removeItem(chave); } catch (erro) { /* idem */ }
+      });
+    });
+
   </script>
 </body>
 </html>

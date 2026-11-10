@@ -1,11 +1,26 @@
 # Ficha de acompanhamento — Integrador de Programação III
 
-**Versão de aplicação · 20/10/2026.**  
+**Versão 3 · 10/11/2026.** Substitui a versão de aplicação de 20/10/2026. Os aceites, as datas e o checklist não mudaram.  
 **IFSul — Campus Passo Fundo · Ensino Médio Integrado — Técnico em Informática**  
 **Professor:** Élder F. F. Bernardi · **Turma:** __________ · **Ano:** 2026
 **Tutor da atividade:** Prof. Leonardo Constantin  
 
+[Página do trabalho](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/) · [Enunciado](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/enunciado.html)
+
 ## Como usar
+
+A ficha é um apoio opcional para organizar os registros de cada marco. Os registros exigidos ficam no README do projeto. A ficha só ajuda a organizá-los.
+
+**Para a dupla:**
+
+1. Preencham a seção "Identificação da dupla".
+2. Em cada encontro, anotem em uma linha da seção "Registro coletivo — preencher um por encontro" a data, o teste, o resultado e o próximo passo. O estado, o apoio oferecido e o encaminhamento são anotados pelo professor.
+3. Para saber o que mostrar em cada encontro, leiam no Enunciado a seção "Quatro encontros para desenvolver". A tabela "Aceites e atividades por marco", nesta ficha, traz os mesmos marcos em forma resumida. Nesta ficha, "Final" é o encontro da apresentação.
+4. Antes da apresentação, marquem a seção "Checklist de conferência final".
+
+As seções "Visão da turma — 14 duplas" e "Registro individual — duas observações por pessoa" são de uso do professor. O trecho "Síntese docente por dimensão", no fim da ficha, também.
+
+**Para o professor:**
 
 Imprimir/copiar uma ficha por dupla; manter a visão da turma na tabela abaixo.
 Registrar uma evidência curta: demonstração observada, ID/data do teste,
@@ -20,6 +35,8 @@ Apresentação final: 150 min adicionais. Tempos internos abaixo são propostas.
 Setup essencial e apoio para integração devem ocorrer em aula.
 
 ## Visão da turma — 14 duplas
+
+**Quem usa esta seção:** o professor.
 
 | Dupla | Integrantes | M1 | M2 | M3 | M4 | Individual A | Individual B | Final / pendência |
 |---|---|---|---|---|---|---|---|---|
@@ -40,6 +57,8 @@ Setup essencial e apoio para integração devem ocorrer em aula.
 
 ## Identificação da dupla
 
+**Quem preenche esta seção:** a dupla.
+
 **Dupla nº:** ______ · **Turma:** ______  
 **Pessoa A:** __________________________________________  
 **Pessoa B:** __________________________________________  
@@ -51,6 +70,8 @@ Setup essencial e apoio para integração devem ocorrer em aula.
 **Primeiro apoio necessário:** ___________________________________________
 
 ## Aceites e atividades por marco
+
+**Quem usa esta seção:** a dupla e o professor, para consulta. "Aceite" é o que se observa em cada marco. Aceite não é nota nem desconto.
 
 | Marco / datas de 2026 | Aceite observável | Extraclasse proposta — até 60 min |
 |---|---|---|
@@ -64,12 +85,14 @@ Extraclasse consolida revisão, testes e documentação do que foi orientado.
 Se houver dificuldade de acesso, registrar e organizar apoio com o professor;
 não transformar impedimento em obrigação silenciosa além da hora prevista.
 
-**Proposta para cada encontro de desenvolvimento:** abertura/retomada 10min,
+**Uso do professor — proposta para cada encontro de desenvolvimento:** abertura/retomada 10min,
 trabalho orientado 100min, demonstrações/observações 25min e registro/próximo passo 15min.
 Observações individuais podem ocorrer durante o trabalho orientado.
 Adaptar a divisão à necessidade de setup e ao diagnóstico, sem criar encontro extra.
 
 ## Registro coletivo — preencher um por encontro
+
+**Quem preenche esta seção:** a dupla anota a data, o teste, o resultado e o próximo passo. O professor anota o estado, o apoio oferecido e o encaminhamento.
 
 | Marco | Data real / estado | Evidência (teste, ID, resultado, observador) | Primeira quebra / apoio oferecido | Próximo passo e momento da retomada |
 |---|---|---|---|---|
@@ -85,6 +108,8 @@ Adaptar a divisão à necessidade de setup e ao diagnóstico, sem criar encontro
 **Verificação a retomar e encaminhamento docente:** ______________________
 
 ## Registro individual — duas observações por pessoa
+
+**Quem usa esta seção:** o professor.
 
 Distribuir preferencialmente entre encontros 2–4; complementar no final.
 Em cada observação, permitir consulta ao código/material e registrar forma de
@@ -104,6 +129,8 @@ B conduziu interface em ____ e API/DAO em ____. Evidência: ________________
 
 ## Checklist de conferência final
 
+**Quem preenche esta seção:** a dupla.
+
 - [ ] R1: lista e detalhe mostram nome/artista vindos da API.
 - [ ] R2: cadastro na interface gera ID e aparece em nova consulta.
 - [ ] R3: edição conserva o ID e os dados depois de recarregar.
@@ -113,7 +140,7 @@ B conduziu interface em ____ e API/DAO em ____. Evidência: ________________
 - [ ] R7: URL pública com banco; registro conferido após reinício do serviço.
 - [ ] R8: README sem segredos e evidências dos dois integrantes.
 
-**Proposta para apresentação:** `14 × (4min demonstração + 2 × 2min individual + 1min transição) = 126min`;
+**Uso do professor — proposta para apresentação:** `14 × (4min demonstração + 2 × 2min individual + 1min transição) = 126min`;
 24min para abertura/imprevistos em 150min.
 Usar registros prévios para completar evidências; o tempo interno não é regra
 aprovada de pontuação nem prova de domínio por rapidez.

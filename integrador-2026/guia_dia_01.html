@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programação III - Material Didático</title>
+  <title>Guia do dia 1 — Repositório, Supabase e Render · Programação III</title>
   <style>
     
 
@@ -317,6 +317,30 @@
       }
     }
 
+    
+    /* --leitura-acessivel */
+    body { background: #faf8f4; font-size: 17px; line-height: 1.8; }
+    .page { box-shadow: none; }
+    .hero { padding: 16px 32px 12px; }
+    .hero h1 { font-size: 1.25rem; }
+    .hero .meta { margin-top: 10px; }
+    main p, main li, main blockquote { max-width: 75ch; }
+    main td p, main td li { max-width: none; }
+    main h2 { margin-top: 3rem; }
+    main li { margin: 0.35rem 0; }
+    main li.tarefa { list-style: none; margin-left: -1.4em; }
+    main li.tarefa > p { display: inline; }
+    main li.tarefa input[type="checkbox"] { display: inline-block; width: 1.15em; height: 1.15em; margin-right: 0.5em; vertical-align: -0.15em; accent-color: #1d7a2d; }
+    main li.tarefa.feita { color: #4b5a63; }
+    .pular-conteudo { position: absolute; left: -9999px; top: 0; padding: 10px 16px; background: #fff; border: 2px solid #1d7a2d; border-radius: 0 0 8px 0; font-weight: 600; z-index: 20; }
+    .pular-conteudo:focus { left: 0; }
+    .sumario-flutuante { position: fixed; right: 18px; bottom: 18px; padding: 10px 16px; border: 2px solid #1d7a2d; border-radius: 999px; background: #fff; color: #14532d; font-weight: 700; font-size: 0.95rem; text-decoration: none; z-index: 10; }
+    .sumario-flutuante:hover, .sumario-flutuante:focus { background: #1d7a2d; color: #fff; }
+    button:focus-visible, input:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+    @media (max-width: 640px) { .sumario-flutuante { right: 10px; bottom: 10px; padding: 6px 12px; font-size: 0.85rem; } body { padding-bottom: 64px; } }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+    @media print { .pular-conteudo, .sumario-flutuante { display: none !important; } main p, main li, main blockquote { max-width: none; } }
+
     @media print {
       .diagram-expand, .diagram-dialog { display: none; }
       body {
@@ -361,6 +385,7 @@
   </style>
 </head>
 <body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
   <div class="page">
     <section class="hero">
       <div class="hero-top">
@@ -369,37 +394,43 @@
       </div>
       <h1>Programação III</h1>
       <div class="meta">
-        <div class="meta-card"><strong>Professor</strong>Élder F. F. Bernardi · **Tutor da atividade:** Prof. Leonardo Constantin</div>
+        <div class="meta-card"><strong>Professor</strong>Élder F. F. Bernardi</div>
         <div class="meta-card"><strong>Curso</strong>Ensino Médio Integrado - Técnico em Informática</div>
       </div>
     </section>
-    <main>
+    <main id="conteudo">
       <h1 id="guia-do-dia-1--repositório-supabase-e-render">Guia do dia 1 — Repositório, Supabase e Render</h1>
-<p><strong>Trabalho integrador 2026 — O repertório da turma · Programação III</strong><br><strong>Professor:</strong> Élder F. F. Bernardi · <strong>Tutor da atividade:</strong> Prof. Leonardo Constantin</p>
-<p>Hoje vocês <strong>não vão programar</strong>. Hoje é só deixar tudo funcionando:</p>
+<p><strong>Trabalho integrador 2026 — O repertório da turma · Programação III</strong><br><strong>Professor:</strong> Élder F. F. Bernardi · <strong>Tutor da atividade:</strong> Prof. Leonardo Constantin<br><strong>Versão de 10/11/2026.</strong> Os passos são os mesmos da versão anterior. Mudaram a forma de marcar cada passo e a redação de algumas frases.</p>
+<p><a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">Página do trabalho</a> · <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/enunciado.html">Enunciado</a></p>
+<p>Este guia é do primeiro encontro (marco M1). Neste encontro vocês <strong>não vão programar</strong>. Vocês deixam três coisas funcionando:</p>
 <ol>
 <li>o projeto no computador e no GitHub da dupla;</li>
 <li>o banco de dados (Supabase);</li>
-<li>o site no ar (Render).</li>
+<li>o site publicado na internet (Render).</li>
 </ol>
+<p>Se a dupla não terminou este guia no primeiro encontro, continuem do passo em que pararam.</p>
 <p><strong>Como usar este guia</strong></p>
 <ul>
-<li>Façam <strong>um passo por vez</strong>, na ordem. Marquem o ☐ quando terminar.</li>
-<li>Travou? Cliquem no link <strong>Ajuda</strong> do passo. Ele abre a explicação completa.</li>
-<li>Continua travado depois de 10 minutos? <strong>Chamem o professor.</strong> Não fiquem parados.</li>
+<li>Façam <strong>um passo por vez</strong>, na ordem.</li>
+<li>Cada passo termina com uma caixa de marcação. Marquem a caixa quando o passo estiver pronto. Na página HTML, é só clicar: o navegador guarda a marcação neste computador.</li>
+<li>Não funcionou? Cliquem no link <strong>Ajuda</strong> do passo. Ele abre a explicação completa.</li>
+<li>Se continuar sem funcionar depois de 10 minutos, <strong>chamem o professor</strong>. Não esperem mais que isso.</li>
 </ul>
 <hr>
 <nav class="sumario-auto"><h2 id="sumario-auto">Sumário</h2><ol><li><a href="#parte-1--o-projeto">Parte 1 — O projeto</a></li><li><a href="#parte-2--o-banco-supabase">Parte 2 — O banco (Supabase)</a></li><li><a href="#parte-3--o-site-no-ar-render">Parte 3 — O site no ar (Render)</a></li><li><a href="#antes-de-sair">Antes de sair</a></li></ol></nav>
 <h2 id="parte-1--o-projeto">Parte 1 — O projeto</h2>
-<h3 id="-passo-1--conferir-o-node">☐ Passo 1 — Conferir o Node</h3>
+<h3 id="passo-1--conferir-o-node">Passo 1 — Conferir o Node</h3>
 <p>No terminal do VS Code:</p>
 <pre><code class="hljs language-bash">node --version</code></pre><p><strong>Deu certo se:</strong> aparece <code>v22</code> ou um número maior.<br><strong>Ajuda:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#etapa-0--antes-de-come%C3%A7ar">Guia do Supabase, Etapa 0</a></p>
-<h3 id="-passo-2--o-projeto-de-vocês-roda">☐ Passo 2 — O projeto de vocês roda?</h3>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 1 pronto.</li>
+</ul>
+<h3 id="passo-2--o-projeto-de-vocês-roda">Passo 2 — O projeto de vocês roda?</h3>
 <p>Abram a pasta do projeto no VS Code e rodem:</p>
 <pre><code class="hljs language-bash">npm install
 npm start</code></pre><p>Abram <code>http://localhost:3000</code> no navegador.</p>
 <ul>
-<li><strong>Abriu a página do karaokê?</strong> Ótimo. Vão para o passo 3.</li>
+<li><strong>Abriu a página do karaokê?</strong> Vão para o passo 3.</li>
 <li><strong>Deu erro, ou vocês não acham o projeto?</strong> Usem a <strong>base de retomada</strong>. Ela é um projeto pronto para começar, e <strong>não tira nota</strong>:<ol>
 <li>Baixem a <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip">base_retomada.zip</a> e descompactem.</li>
 <li>Abram a pasta <code>base_retomada</code> no VS Code.</li>
@@ -409,7 +440,11 @@ npm start</code></pre><p>Abram <code>http://localhost:3000</code> no navegador.<
 </li>
 </ul>
 <p><strong>Ajuda:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/roteiro_retomada.html#1-preparar-e-executar">Roteiro de retomada, 1. Preparar e executar</a></p>
-<h3 id="-passo-3--o-projeto-está-no-github-da-dupla">☐ Passo 3 — O projeto está no GitHub da dupla?</h3>
+<p>Se o servidor ficou rodando, parem o servidor antes de ir para o passo 3: cliquem no terminal e apertem <code>Ctrl+C</code>.</p>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 2 pronto.</li>
+</ul>
+<h3 id="passo-3--o-projeto-está-no-github-da-dupla">Passo 3 — O projeto está no GitHub da dupla?</h3>
 <pre><code class="hljs language-bash">git remote -v</code></pre><p>Olhem o endereço que aparece:</p>
 <table>
 <thead>
@@ -431,17 +466,24 @@ npm start</code></pre><p>Abram <code>http://localhost:3000</code> no navegador.<
 <td>O projeto ainda não está no GitHub. Criem o repositório: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#35-caso-especial-o-projeto-ainda-n%C3%A3o-est%C3%A1-no-github">Ajuda</a></td>
 </tr>
 </tbody></table>
-<h3 id="-passo-4--os-dois-têm-acesso">☐ Passo 4 — Os dois têm acesso?</h3>
+<p><strong>Deu certo se:</strong> <code>git remote -v</code> mostra um endereço com o usuário de vocês.</p>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 3 pronto.</li>
+</ul>
+<h3 id="passo-4--os-dois-têm-acesso">Passo 4 — Os dois têm acesso?</h3>
 <ol>
 <li>Quem criou o repositório abre ele no GitHub: <strong>Settings → Collaborators → Add people</strong> e adiciona o colega.</li>
 <li>O colega aceita o convite (chega por e-mail).</li>
-<li>O colega baixa o projeto no computador dele com <code>git clone</code>.</li>
+<li>O colega baixa o projeto no computador dele com <code>git clone</code> seguido do endereço do repositório. O endereço aparece no botão verde <strong>Code</strong>, no GitHub.</li>
 </ol>
 <p><strong>Deu certo se:</strong> os dois abrem o projeto no próprio computador.<br><strong>Ajuda:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#15-o-reposit%C3%B3rio-da-dupla-no-github">Guia do Supabase, 1.5</a> e <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#16-a-outra-pessoa-da-dupla">1.6</a></p>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 4 pronto.</li>
+</ul>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="parte-2--o-banco-supabase">Parte 2 — O banco (Supabase)</h2>
-<h3 id="-passo-5--abrir-o-projeto-no-supabase">☐ Passo 5 — Abrir o projeto no Supabase</h3>
+<h3 id="passo-5--abrir-o-projeto-no-supabase">Passo 5 — Abrir o projeto no Supabase</h3>
 <p>Entrem em <a href="https://supabase.com/dashboard">supabase.com/dashboard</a> com a conta do GitHub.</p>
 <table>
 <thead>
@@ -456,14 +498,17 @@ npm start</code></pre><p>Abram <code>http://localhost:3000</code> no navegador.<
 </tr>
 <tr>
 <td>O projeto está <strong>pausado</strong></td>
-<td>Cliquem em <strong>Restore</strong> e esperem alguns minutos.</td>
+<td>Cliquem em <strong>Restore</strong> e esperem alguns minutos. Quando o projeto voltar a funcionar, vão para o passo 6.</td>
 </tr>
 <tr>
 <td>Não tem projeto nenhum</td>
 <td>Criem um novo: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#43-caminho-4a--projeto-novo">Ajuda</a></td>
 </tr>
 </tbody></table>
-<h3 id="-passo-6--preparar-as-tabelas">☐ Passo 6 — Preparar as tabelas</h3>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 5 pronto.</li>
+</ul>
+<h3 id="passo-6--preparar-as-tabelas">Passo 6 — Preparar as tabelas</h3>
 <p>No Supabase, abram o <strong>SQL Editor</strong>. Os arquivos estão na pasta <code>sql/</code> do projeto (ou nos <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/index.html#downloads">Downloads</a>). Para cada arquivo: copiem tudo, colem no editor e cliquem em <strong>Run</strong>.</p>
 <p><strong>Projeto novo</strong> (criado hoje):</p>
 <ol>
@@ -479,10 +524,16 @@ npm start</code></pre><p>Abram <code>http://localhost:3000</code> no navegador.<
 </ol>
 <p><strong>Atenção:</strong> no projeto antigo, <strong>não</strong> rodem o <code>schema.sql</code>.</p>
 <p><strong>Ajuda:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#43-caminho-4a--projeto-novo">projeto novo</a> · <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#44-caminho-4b--projeto-da-unidade-3">projeto antigo</a></p>
-<h3 id="-passo-7--conferir-a-música-de-exemplo">☐ Passo 7 — Conferir a música de exemplo</h3>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 6 pronto.</li>
+</ul>
+<h3 id="passo-7--conferir-a-música-de-exemplo">Passo 7 — Conferir a música de exemplo</h3>
 <p>No Supabase, abram o <strong>Table Editor</strong> e cliquem na tabela <code>musicas</code>.</p>
 <p><strong>Deu certo se:</strong> aparece a música <code>Encontro da turma</code>.<br><strong>Ajuda:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#45-conferir-no-table-editor">Guia do Supabase, 4.5</a></p>
-<h3 id="-passo-8--criar-o-arquivo-env">☐ Passo 8 — Criar o arquivo <code>.env</code></h3>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 7 pronto.</li>
+</ul>
+<h3 id="passo-8--criar-o-arquivo-env">Passo 8 — Criar o arquivo <code>.env</code></h3>
 <p>O <code>.env</code> guarda o endereço e a senha do banco.</p>
 <ol>
 <li>No VS Code, façam uma cópia do arquivo <code>.env.example</code> e deem o nome <code>.env</code>.</li>
@@ -490,24 +541,36 @@ npm start</code></pre><p>Abram <code>http://localhost:3000</code> no navegador.<
 <li>Colem os dois valores no <code>.env</code> e salvem.</li>
 </ol>
 <blockquote>
-<p><strong>A secret key é como uma senha.</strong> Não mandem para ninguém: nem no grupo, nem em print, nem para a IA.</p>
+<p><strong>A secret key é uma senha.</strong> Não enviem a secret key para ninguém: nem em grupo de mensagens, nem em captura de tela, nem para a IA.</p>
 </blockquote>
 <p><strong>Ajuda:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#54-onde-achar-a-url-e-a-secret-key">onde achar a URL e a chave</a> · <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#55-preencher-o-env">como preencher</a></p>
-<h3 id="-passo-9--testar">☐ Passo 9 — Testar</h3>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 8 pronto.</li>
+</ul>
+<h3 id="passo-9--testar">Passo 9 — Testar</h3>
 <pre><code class="hljs language-bash">npm start</code></pre><p>Abram <code>http://localhost:3000</code>.</p>
 <p><strong>Deu certo se:</strong> a música <code>Encontro da turma</code> aparece na lista.<br><strong>Não apareceu?</strong> Vejam os <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#socorro--erros-comuns">erros comuns</a> ou chamem o professor. Se o projeto de vocês ainda não usa o banco, é normal: mostrem ao professor em que etapa do <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#sum%C3%A1rio">Guia do Supabase</a> vocês pararam.</p>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 9 pronto.</li>
+</ul>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="parte-3--o-site-no-ar-render">Parte 3 — O site no ar (Render)</h2>
-<h3 id="-passo-10--enviar-o-projeto-para-o-github">☐ Passo 10 — Enviar o projeto para o GitHub</h3>
+<h3 id="passo-10--enviar-o-projeto-para-o-github">Passo 10 — Enviar o projeto para o GitHub</h3>
 <pre><code class="hljs language-bash">git add .
 git commit -m <span class="hljs-string">&quot;Projeto pronto para publicar&quot;</span>
 git push</code></pre><p>Depois, abram o repositório no site do GitHub.</p>
 <p><strong>Deu certo se:</strong> os arquivos estão lá e o <code>.env</code> <strong>não</strong> aparece.<br><strong>O <code>.env</code> apareceu?</strong> Parem e chamem o professor.<br><strong>Ajuda:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#33-a-confer%C3%AAncia-que-salva-a-nota">Guia de deploy, Etapa 3.3</a></p>
-<h3 id="-passo-11--entrar-na-render">☐ Passo 11 — Entrar na Render</h3>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 10 pronto.</li>
+</ul>
+<h3 id="passo-11--entrar-na-render">Passo 11 — Entrar na Render</h3>
 <p>Entrem em <a href="https://render.com">render.com</a> e escolham entrar <strong>com o GitHub</strong>.</p>
-<p><strong>Pediu cartão de crédito?</strong> Parem e chamem o professor. O trabalho é gratuito.<br><strong>Ajuda:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#etapa-4--criando-a-conta-na-render">Guia de deploy, Etapa 4</a></p>
-<h3 id="-passo-12--criar-o-serviço">☐ Passo 12 — Criar o serviço</h3>
+<p><strong>Pediu cartão de crédito?</strong> Parem e chamem o professor. Vocês não precisam pagar nada neste trabalho.<br><strong>Ajuda:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#etapa-4--criando-a-conta-na-render">Guia de deploy, Etapa 4</a></p>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 11 pronto.</li>
+</ul>
+<h3 id="passo-12--criar-o-serviço">Passo 12 — Criar o serviço</h3>
 <p>Cliquem em <strong>+ New → Web Service</strong> e escolham o repositório <strong>da dupla</strong>. Preencham assim:</p>
 <table>
 <thead>
@@ -531,7 +594,10 @@ git push</code></pre><p>Depois, abram o repositório no site do GitHub.</p>
 </tbody></table>
 <p><strong>Ainda não cliquem no botão final.</strong> Façam antes o passo 13.</p>
 <p><strong>Ajuda:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#52-preenchendo-o-formul%C3%A1rio">Guia de deploy, Etapa 5.2</a></p>
-<h3 id="-passo-13--colocar-a-url-e-a-chave-do-banco">☐ Passo 13 — Colocar a URL e a chave do banco</h3>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 12 pronto.</li>
+</ul>
+<h3 id="passo-13--colocar-a-url-e-a-chave-do-banco">Passo 13 — Colocar a URL e a chave do banco</h3>
 <p>No fim do mesmo formulário, em <strong>Environment Variables</strong>, criem <strong>duas</strong> variáveis. Os valores são os mesmos do <code>.env</code>:</p>
 <table>
 <thead>
@@ -551,27 +617,38 @@ git push</code></pre><p>Depois, abram o repositório no site do GitHub.</p>
 </tbody></table>
 <p>Só essas duas. Não criem <code>PORT</code>.</p>
 <p><strong>Ajuda:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#62-como-resolver">Guia de deploy, Etapa 6.2</a></p>
-<h3 id="-passo-14--publicar-e-testar">☐ Passo 14 — Publicar e testar</h3>
+<p><strong>Deu certo se:</strong> aparecem duas variáveis na lista, e só duas.</p>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 13 pronto.</li>
+</ul>
+<h3 id="passo-14--publicar-e-testar">Passo 14 — Publicar e testar</h3>
 <ol>
 <li>Cliquem em <strong>Deploy web service</strong>.</li>
 <li>Esperem de 2 a 5 minutos, até aparecer <code>Your service is live</code>.</li>
 <li>Cliquem no endereço que termina em <code>.onrender.com</code>.</li>
 </ol>
 <p><strong>Deu certo se:</strong> a página abre e mostra a lista de músicas.<br><strong>Deu erro?</strong> Vejam a <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#etapa-10--socorro-erros-mais-comuns">tabela de erros</a>. Se o projeto não é a base de retomada, confiram também a <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#etapa-2--duas-mudan%C3%A7as-no-c%C3%B3digo">Etapa 2 do guia de deploy</a>.</p>
-<h3 id="-passo-15--guardar-o-endereço">☐ Passo 15 — Guardar o endereço</h3>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 14 pronto.</li>
+</ul>
+<h3 id="passo-15--guardar-o-endereço">Passo 15 — Guardar o endereço</h3>
 <p>Colem o endereço do site no <code>README.md</code> do projeto e enviem:</p>
 <pre><code class="hljs language-bash">git add .
 git commit -m <span class="hljs-string">&quot;Endereço do site no README&quot;</span>
-git push</code></pre><p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
+git push</code></pre><p><strong>Deu certo se:</strong> o endereço aparece no README, no site do GitHub.</p>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> Passo 15 pronto.</li>
+</ul>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <hr>
 <h2 id="antes-de-sair">Antes de sair</h2>
 <ul>
-<li>☐ O projeto abre no computador dos dois.</li>
-<li>☐ A música <code>Encontro da turma</code> aparece em <code>localhost:3000</code>.</li>
-<li>☐ O site abre no endereço da Render.</li>
-<li>☐ O endereço está no README.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> O projeto abre no computador dos dois.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> A música <code>Encontro da turma</code> aparece em <code>localhost:3000</code>.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> O site abre no endereço da Render.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> O endereço está no README.</li>
 </ul>
-<p><strong>Não deu tempo de terminar?</strong> Tudo bem. Anotem no README em qual passo pararam e qual foi o erro, e avisem o professor. No próximo encontro vocês continuam desse passo.</p>
+<p><strong>Não deu tempo de terminar?</strong> Anotem no README em qual passo pararam e qual foi o erro, e avisem o professor. No próximo encontro vocês continuam desse passo.</p>
 <p><strong>Próximo encontro:</strong> cadastrar uma música pela tela. Quem quiser adiantar a leitura: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.html">Guia de interface — CRUD na tela com fetch</a>.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 
@@ -580,6 +657,7 @@ git push</code></pre><p class="voltar-indice"><a href="#sumario-auto">↑ Voltar
       <span>IFSul - Campus Passo Fundo · Programação III</span>
     </footer>
   </div>
+  <a class="sumario-flutuante" href="#sumario-auto">↑ Sumário</a>
   <dialog class="diagram-dialog" aria-label="Diagrama ampliado">
     <button type="button" class="diagram-close">Fechar diagrama</button>
     <p>Use a rolagem para explorar o diagrama. Pressione Esc para fechar.</p>
@@ -604,6 +682,21 @@ git push</code></pre><p class="voltar-indice"><a href="#sumario-auto">↑ Voltar
         diagramScroll.scrollTo(0, 0);
       });
     });
+    
+    // Listas de tarefas: clicáveis, com a marcação guardada neste navegador (por página).
+    document.querySelectorAll('main li.tarefa input[type="checkbox"]').forEach((caixa, indice) => {
+      const chave = 'tarefa:' + location.pathname + ':' + indice;
+      const item = caixa.closest('li');
+      caixa.disabled = false;
+      caixa.setAttribute('aria-label', 'Marcar como feito: ' + item.textContent.trim().slice(0, 120));
+      try { caixa.checked = localStorage.getItem(chave) === '1'; } catch (erro) { /* sem armazenamento: só marca na tela */ }
+      item.classList.toggle('feita', caixa.checked);
+      caixa.addEventListener('change', () => {
+        item.classList.toggle('feita', caixa.checked);
+        try { caixa.checked ? localStorage.setItem(chave, '1') : localStorage.removeItem(chave); } catch (erro) { /* idem */ }
+      });
+    });
+
   </script>
 </body>
 </html>

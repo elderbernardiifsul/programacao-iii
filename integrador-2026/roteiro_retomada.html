@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programação III - Material Didático</title>
+  <title>Roteiro de retomada — Catálogo do karaokê · Programação III</title>
   <style>
     
 
@@ -317,6 +317,30 @@
       }
     }
 
+    
+    /* --leitura-acessivel */
+    body { background: #faf8f4; font-size: 17px; line-height: 1.8; }
+    .page { box-shadow: none; }
+    .hero { padding: 16px 32px 12px; }
+    .hero h1 { font-size: 1.25rem; }
+    .hero .meta { margin-top: 10px; }
+    main p, main li, main blockquote { max-width: 75ch; }
+    main td p, main td li { max-width: none; }
+    main h2 { margin-top: 3rem; }
+    main li { margin: 0.35rem 0; }
+    main li.tarefa { list-style: none; margin-left: -1.4em; }
+    main li.tarefa > p { display: inline; }
+    main li.tarefa input[type="checkbox"] { display: inline-block; width: 1.15em; height: 1.15em; margin-right: 0.5em; vertical-align: -0.15em; accent-color: #1d7a2d; }
+    main li.tarefa.feita { color: #4b5a63; }
+    .pular-conteudo { position: absolute; left: -9999px; top: 0; padding: 10px 16px; background: #fff; border: 2px solid #1d7a2d; border-radius: 0 0 8px 0; font-weight: 600; z-index: 20; }
+    .pular-conteudo:focus { left: 0; }
+    .sumario-flutuante { position: fixed; right: 18px; bottom: 18px; padding: 10px 16px; border: 2px solid #1d7a2d; border-radius: 999px; background: #fff; color: #14532d; font-weight: 700; font-size: 0.95rem; text-decoration: none; z-index: 10; }
+    .sumario-flutuante:hover, .sumario-flutuante:focus { background: #1d7a2d; color: #fff; }
+    button:focus-visible, input:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+    @media (max-width: 640px) { .sumario-flutuante { right: 10px; bottom: 10px; padding: 6px 12px; font-size: 0.85rem; } body { padding-bottom: 64px; } }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+    @media print { .pular-conteudo, .sumario-flutuante { display: none !important; } main p, main li, main blockquote { max-width: none; } }
+
     @media print {
       .diagram-expand, .diagram-dialog { display: none; }
       body {
@@ -361,6 +385,7 @@
   </style>
 </head>
 <body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
   <div class="page">
     <section class="hero">
       <div class="hero-top">
@@ -369,39 +394,123 @@
       </div>
       <h1>Programação III</h1>
       <div class="meta">
-        <div class="meta-card"><strong>Professor</strong>Élder F. F. Bernardi · **Modalidade:** duplas</div>
+        <div class="meta-card"><strong>Professor</strong>Élder F. F. Bernardi</div>
         <div class="meta-card"><strong>Curso</strong>Ensino Médio Integrado - Técnico em Informática</div>
       </div>
     </section>
-    <main>
+    <main id="conteudo">
       <h1 id="roteiro-de-retomada--catálogo-do-karaokê">Roteiro de retomada — Catálogo do karaokê</h1>
-<p><strong>Versão 2 · 27/10/2026</strong> (substitui a versão de entrega de 20/10/2026; tarefas e aceites não mudaram).<br><strong>Programação III · Ensino Médio Integrado — Técnico em Informática · IFSul — Campus Passo Fundo</strong><br><strong>Professor:</strong> Élder F. F. Bernardi · <strong>Modalidade:</strong> duplas
+<p><strong>Versão 3 · 10/11/2026</strong> (substitui a versão 2, de 27/10/2026; tarefas e aceites não mudaram).<br><strong>Programação III · Ensino Médio Integrado — Técnico em Informática · IFSul — Campus Passo Fundo</strong><br><strong>Professor:</strong> Élder F. F. Bernardi · <strong>Modalidade:</strong> duplas
 <strong>Tutor da atividade:</strong> Prof. Leonardo Constantin  </p>
 <p><strong>Organização:</strong> 14 duplas por turma, 150min em aula e 1h extraclasse
 por encontro. Quatro encontros: 600 + até 240min = 14h de desenvolvimento;
 apresentação em outro encontro de 150min. Setup essencial acompanhado em aula.</p>
-<nav class="sumario-auto"><h2 id="sumario-auto">Sumário</h2><ol><li><a href="#para-que-serve-esta-base">Para que serve esta base</a></li><li><a href="#1-preparar-e-executar">1. Preparar e executar</a></li><li><a href="#2-encontrar-cada-responsabilidade">2. Encontrar cada responsabilidade</a></li><li><a href="#3-conferir-o-contrato-antes-de-programar">3. Conferir o contrato antes de programar</a></li><li><a href="#4-integrar-cadastro--r2-e-r5">4. Integrar cadastro — R2 e R5</a></li><li><a href="#5-integrar-edição--r3-e-r5">5. Integrar edição — R3 e R5</a></li><li><a href="#6-integrar-exclusão--r4-e-r5">6. Integrar exclusão — R4 e R5</a></li><li><a href="#7-conferir-o-núcleo-e-publicar--r1-r6-r7-e-r8">7. Conferir o núcleo e publicar — R1, R6, R7 e R8</a></li><li><a href="#8-consolidar-entre-encontros--proposta-de-até-60min">8. Consolidar entre encontros — proposta de até 60min</a></li></ol></nav>
+<p><a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">Página do trabalho</a> · <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/enunciado.html">Enunciado</a></p>
+<nav class="sumario-auto"><h2 id="sumario-auto">Sumário</h2><ol><li><a href="#como-usar-este-roteiro">Como usar este roteiro</a></li><li><a href="#para-que-serve-esta-base">Para que serve esta base</a></li><li><a href="#1-preparar-e-executar">1. Preparar e executar</a></li><li><a href="#2-encontrar-cada-responsabilidade">2. Encontrar cada responsabilidade</a></li><li><a href="#3-conferir-o-contrato-antes-de-programar">3. Conferir o contrato antes de programar</a></li><li><a href="#4-integrar-cadastro--r2-e-r5">4. Integrar cadastro — R2 e R5</a></li><li><a href="#5-integrar-edição--r3-e-r5">5. Integrar edição — R3 e R5</a></li><li><a href="#6-integrar-exclusão--r4-e-r5">6. Integrar exclusão — R4 e R5</a></li><li><a href="#7-conferir-o-núcleo-e-publicar--r1-r6-r7-e-r8">7. Conferir o núcleo e publicar — R1, R6, R7 e R8</a></li><li><a href="#8-consolidar-entre-encontros--proposta-de-até-60min">8. Consolidar entre encontros — proposta de até 60min</a></li></ol></nav>
+<h2 id="como-usar-este-roteiro">Como usar este roteiro</h2>
+<p>Este roteiro é para a dupla que usa a <strong>base de retomada</strong>. Quem usa projeto próprio pode consultar as seções 3, 7 e 8.</p>
+<ol>
+<li>Sigam as seções 1 a 6 na ordem.</li>
+<li>A publicação, que está na seção 7, começa no primeiro encontro. Não esperem terminar a seção 6 para iniciar a publicação.</li>
+<li>As seções 4, 5 e 6 terminam com um <strong>Aceite</strong>. O aceite diz o que conferir quando a tarefa está pronta. Confiram o aceite antes de seguir.</li>
+<li>A seção 8 é para o trabalho extraclasse.</li>
+<li>Se um passo falhar, registrem a mensagem de erro e peçam apoio em aula.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Seção</th>
+<th>O que vocês fazem</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Instalam a base, preparam o banco e executam.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Leem os arquivos e descobrem a função de cada um.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Conferem o formato das requisições e das respostas da API.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Integram o cadastro.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Integram a edição.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Integram a exclusão.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Conferem o núcleo e publicam.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Revisam, testam e documentam entre os encontros.</td>
+</tr>
+</tbody></table>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="para-que-serve-esta-base">Para que serve esta base</h2>
-<p>A base de retomada disponibilizada pelo professor no Classroom (também em <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip">base_retomada.zip</a>, na página do trabalho) é opcional e não reduz a nota.
-Ela permite retomar a integração sem reconstruir toda a infraestrutura.
-Leitura, listagem, player, API e DAOs já vêm preparados, junto com um <code>AGENTS.md</code> que orienta o agente de IA a agir como tutor.
-As tarefas da dupla são integrar <strong>cadastro, edição e exclusão na interface</strong>,
-tratar respostas e atualizar a lista. O núcleo e a compreensão exigidos
-são os mesmos para quem usa projeto próprio.</p>
+<p>A base de retomada é opcional e não reduz a nota.
+Ela está no Classroom da disciplina e em <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip">base_retomada.zip</a>, na página do trabalho.</p>
+<ul>
+<li>A base permite retomar a integração sem reconstruir toda a infraestrutura.</li>
+<li>Já vêm preparados: leitura, listagem, player, API e DAOs.</li>
+<li>A base traz um <code>AGENTS.md</code>, que orienta o agente de IA a agir como tutor.</li>
+</ul>
+<p>As tarefas da dupla são:</p>
+<ul>
+<li>integrar <strong>cadastro, edição e exclusão na interface</strong>;</li>
+<li>tratar respostas;</li>
+<li>atualizar a lista.</li>
+</ul>
+<p>O núcleo e a compreensão exigidos são os mesmos para quem usa projeto próprio.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="1-preparar-e-executar">1. Preparar e executar</h2>
 <ol>
 <li>Abram a pasta <code>base_retomada</code> no editor e confiram o README.</li>
 <li>Usem <strong>Node.js 22 ou superior</strong>, compatível com as dependências fixadas na base.</li>
 <li>Executem <code>npm ci</code> para instalar as dependências declaradas.</li>
-<li>A partir de <code>.env.example</code>, configurem no servidor <code>SUPABASE_URL</code> e <code>SUPABASE_SECRET_KEY</code>, com orientação do professor.</li>
-<li>Preparem um banco de demonstração separado, nesta ordem. Primeiro, as tabelas: se as da atividade anterior já existem, não as recriem; rodem <code>sql/diagnostico.sql</code> no SQL Editor e, se alguma linha vier <code>ajustar</code>, rodem <code>sql/ajustes.sql</code> (não apaga dados) e depois o diagnóstico de novo. Sigam quando não houver nenhuma linha <code>ajustar</code> ou <code>criar</code>; linhas <code>conferir</code> de coluna que aceita vazio não impedem. Se as tabelas ainda não existem, apliquem <code>sql/schema.sql</code>. Só depois incluam a amostra com <code>sql/seed.sql</code>, conforme o README. O seed desta base é aditivo, não apaga o catálogo; não o substituam por scripts antigos de restauração que removem dados. O passo a passo está na etapa 4 do &quot;Guia passo a passo do Supabase&quot;, disponível no Classroom da disciplina.</li>
-<li>Com ambiente e banco preparados, executem <code>npm start</code>. Abram a URL indicada pelo servidor e confirmem lista, seleção e reprodução da música de exemplo.</li>
+<li>A partir de <code>.env.example</code>, configurem no servidor <code>SUPABASE_URL</code> e <code>SUPABASE_SECRET_KEY</code>, com orientação do professor. No computador de vocês, esses valores ficam no arquivo <code>.env</code>. O <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_dia_01.html">Guia do dia 1</a>, no passo 8, mostra como criar esse arquivo.</li>
+<li>Preparem um banco de demonstração separado. Sigam o quadro &quot;Preparar o banco&quot;, logo abaixo.</li>
+<li>Com ambiente e banco preparados, executem <code>npm start</code>.</li>
+<li>Abram a URL indicada pelo servidor.</li>
+<li>Confirmem lista, seleção e reprodução da música de exemplo.</li>
 </ol>
-<p>Os valores reais das variáveis são secretos: não enviar ao Git, ao navegador,
-a capturas ou a mensagens. A interface usa a API na mesma origem, como
-<code>/api/musicas</code>; não precisa de CORS nem de chave de banco no JavaScript público.
-Se a leitura falhar, registrem a mensagem e o ponto do fluxo antes de continuar.</p>
+<h3 id="preparar-o-banco">Preparar o banco</h3>
+<p>Façam nesta ordem: primeiro as tabelas, depois a amostra. Os arquivos são rodados no SQL Editor do Supabase.</p>
+<p><strong>Primeiro, as tabelas.</strong> Escolham o caso de vocês:</p>
+<p><strong>Caso A — as tabelas da atividade anterior já existem.</strong> Não as recriem.</p>
+<ol>
+<li>Rodem <code>sql/diagnostico.sql</code>.</li>
+<li>Se alguma linha vier <code>ajustar</code>, rodem <code>sql/ajustes.sql</code>. Ele não apaga dados.</li>
+<li>Depois do <code>sql/ajustes.sql</code>, rodem o diagnóstico de novo.</li>
+<li>Sigam quando não houver nenhuma linha <code>ajustar</code> ou <code>criar</code>. Linhas <code>conferir</code> de coluna que aceita vazio não impedem.</li>
+<li>Se aparecer uma linha <code>criar</code>, chamem o professor.</li>
+</ol>
+<p><strong>Caso B — as tabelas ainda não existem.</strong></p>
+<ol>
+<li>Rodem <code>sql/schema.sql</code>.</li>
+</ol>
+<p><strong>Só depois, a amostra.</strong></p>
+<ol>
+<li>Incluam a amostra com <code>sql/seed.sql</code>, conforme o README.</li>
+</ol>
+<p>O seed desta base é aditivo, não apaga o catálogo. Não o substituam por scripts antigos de restauração que removem dados.</p>
+<p>O passo a passo está na <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#etapa-4--o-banco-no-supabase">etapa 4 do Guia passo a passo do Supabase</a>.</p>
+<h3 id="cuidados">Cuidados</h3>
+<ul>
+<li>Os valores reais das variáveis são secretos. Não os enviem ao Git, ao navegador, a capturas ou a mensagens.</li>
+<li>A interface usa a API na mesma origem, como <code>/api/musicas</code>. Por isso, ela não precisa de CORS nem de chave de banco no JavaScript público.</li>
+<li>Se a leitura falhar, registrem a mensagem e o ponto do fluxo antes de continuar.</li>
+</ul>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="2-encontrar-cada-responsabilidade">2. Encontrar cada responsabilidade</h2>
 <table>
@@ -452,8 +561,13 @@ Se a leitura falhar, registrem a mensagem e o ponto do fluxo antes de continuar.
 <td>Pontos de integração a completar: cadastro, edição, exclusão e feedback.</td>
 </tr>
 </tbody></table>
-<p>Uma pessoa acompanha o clique até a rota; a outra acompanha a rota até o
-DAO e o banco. Depois troquem e expliquem o caminho de volta à tela.</p>
+<p>Para ler o código em dupla:</p>
+<ol>
+<li>Uma pessoa acompanha o clique até a rota.</li>
+<li>A outra acompanha a rota até o DAO e o banco.</li>
+<li>Depois, troquem.</li>
+<li>Expliquem o caminho de volta à tela.</li>
+</ol>
 <h3 id="se-vocês-vieram-do-repositório-da-aula">Se vocês vieram do repositório da aula</h3>
 <p>A base tem os mesmos arquivos do repositório da aula, mas alguns ficam em outras pastas. O código dos DAOs é o mesmo; só mudam os caminhos dos <code>require</code>.</p>
 <table>
@@ -490,9 +604,11 @@ DAO e o banco. Depois troquem e expliquem o caminho de volta à tela.</p>
 <td><code>sql/</code></td>
 </tr>
 </tbody></table>
-<p>Exemplo: o <code>MusicaDAO.js</code> importa o cliente com <code>require(&#39;../supabaseClient&#39;)</code> no repositório da aula e com <code>require(&#39;../../supabaseClient&#39;)</code> na base. O &quot;Guia passo a passo do Supabase&quot;, disponível no Classroom da disciplina, traz no Anexo a tabela completa de <code>require</code> e como calcular o caminho em projeto próprio.</p>
+<p>Exemplo: o <code>MusicaDAO.js</code> importa o cliente com <code>require(&#39;../supabaseClient&#39;)</code> no repositório da aula e com <code>require(&#39;../../supabaseClient&#39;)</code> na base.</p>
+<p>O <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#anexo--correspond%C3%AAncia-de-estruturas">Guia passo a passo do Supabase</a> traz no Anexo a tabela completa de <code>require</code> e como calcular o caminho em projeto próprio.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="3-conferir-o-contrato-antes-de-programar">3. Conferir o contrato antes de programar</h2>
+<p>Contrato é o formato combinado das requisições e das respostas da API.</p>
 <table>
 <thead>
 <tr>
@@ -521,48 +637,76 @@ DAO e o banco. Depois troquem e expliquem o caminho de volta à tela.</p>
 <td><code>DELETE /api/musicas/:id</code>: ID da música escolhida no caminho da URL.</td>
 </tr>
 </tbody></table>
-<p><strong>Atenção:</strong> no envio, <code>artista</code> é uma <strong>string</strong>; na resposta de música,
-<code>artista</code> é um <strong>objeto</strong> com <code>id</code> e <code>nome</code>. Para preencher um campo de texto,
-localizem o nome dentro do objeto. Não enviem o objeto inteiro no POST/PUT.
-Leiam a rota e a resposta real para conferir status e mensagem de erro.</p>
+<p><strong>Atenção:</strong></p>
+<ul>
+<li>No envio, <code>artista</code> é uma <strong>string</strong>.</li>
+<li>Na resposta de música, <code>artista</code> é um <strong>objeto</strong> com <code>id</code> e <code>nome</code>.</li>
+<li>Para preencher um campo de texto, localizem o nome dentro do objeto.</li>
+<li>Não enviem o objeto inteiro no POST/PUT.</li>
+<li>Leiam a rota e a resposta real para conferir status e mensagem de erro.</li>
+</ul>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="4-integrar-cadastro--r2-e-r5">4. Integrar cadastro — R2 e R5</h2>
 <ol>
 <li>Em <code>admin.js</code>, localizem a tarefa do formulário e os campos existentes no HTML.</li>
-<li>Leiam nome/artista, verifiquem os obrigatórios e impeçam recarregamento involuntário do formulário.</li>
-<li>Planejem um POST com corpo JSON e o cabeçalho correspondente; aguardem a resposta.</li>
-<li>Separem resposta de sucesso de erro HTTP/falha de conexão. Só anunciem cadastro após confirmação.</li>
-<li>Reutilizem a atualização da lista já fornecida; anotem ID e resultado de uma nova consulta.</li>
+<li>Leiam nome/artista.</li>
+<li>Verifiquem os obrigatórios.</li>
+<li>Impeçam recarregamento involuntário do formulário.</li>
+<li>Planejem um POST com corpo JSON e o cabeçalho correspondente.</li>
+<li>Aguardem a resposta.</li>
+<li>Separem resposta de sucesso de erro HTTP/falha de conexão.</li>
+<li>Só anunciem cadastro após confirmação.</li>
+<li>Reutilizem a atualização da lista já fornecida.</li>
+<li>Anotem ID e resultado de uma nova consulta.</li>
 </ol>
 <blockquote>
 <p><strong>Pergunte ao agente.</strong> <em>&quot;Explique o que acontece se eu esquecer o evento.preventDefault() no submit do formulário. Antes de responder, peça que eu preveja.&quot;</em> Depois: <em>&quot;Qual a diferença entre a resposta ter response.ok falso e o fetch lançar uma exceção? Dê um exemplo de cada situação no meu projeto. Use como fonte a seção 4 do roteiro_retomada.md e os Padrões 3 e 4 do guia_interface_crud.md, na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/</a>.&quot;</em></p>
 </blockquote>
-<p><strong>Aceite:</strong> registro aparece após recarregar a página e permanece após reiniciar
-o servidor. Nome ou artista vazio não gera cadastro válido. Troquem a condução.</p>
+<p><strong>Aceite:</strong></p>
+<ul>
+<li>O registro aparece após recarregar a página.</li>
+<li>O registro permanece após reiniciar o servidor.</li>
+<li>Nome ou artista vazio não gera cadastro válido.</li>
+</ul>
+<p>Depois do aceite, troquem a condução.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="5-integrar-edição--r3-e-r5">5. Integrar edição — R3 e R5</h2>
 <ol>
 <li>Localizem como guardar o ID selecionado e preencher nome e <code>artista.nome</code>.</li>
-<li>Diferenciem o estado de edição do cadastro e permitam cancelar a edição.</li>
-<li>Enviem PUT ao ID selecionado, confiram a resposta e atualizem a lista.</li>
+<li>Diferenciem o estado de edição do cadastro.</li>
+<li>Permitam cancelar a edição.</li>
+<li>Enviem PUT ao ID selecionado.</li>
+<li>Confiram a resposta.</li>
+<li>Atualizem a lista.</li>
 </ol>
 <blockquote>
 <p><strong>Pergunte ao agente.</strong> <em>&quot;Estou no modo edição e, ao salvar, é criada uma música nova em vez de alterar a existente. Que perguntas devo me fazer para achar o erro? Use como fonte a seção 5 do roteiro_retomada.md e o Padrão 5 do guia_interface_crud.md, na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/</a>.&quot;</em></p>
 </blockquote>
-<p><strong>Aceite:</strong> o mesmo ID passa a ter o novo nome/artista após nova consulta;
-editar não cria outra música. Expliquem onde ID e campos entram na requisição.</p>
+<p><strong>Aceite:</strong></p>
+<ul>
+<li>O mesmo ID passa a ter o novo nome/artista após nova consulta.</li>
+<li>Editar não cria outra música.</li>
+</ul>
+<p>Expliquem onde ID e campos entram na requisição.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="6-integrar-exclusão--r4-e-r5">6. Integrar exclusão — R4 e R5</h2>
 <ol>
-<li>Identifiquem o registro e peçam confirmação simples antes do DELETE.</li>
-<li>Aguardem resposta, mostrem erro quando houver e atualizem lista/seleção após sucesso.</li>
+<li>Identifiquem o registro.</li>
+<li>Peçam confirmação simples antes do DELETE.</li>
+<li>Aguardem resposta.</li>
+<li>Mostrem erro quando houver.</li>
+<li>Atualizem lista/seleção após sucesso.</li>
 <li>Testem cancelamento e exclusão usando uma música criada para teste.</li>
 </ol>
 <blockquote>
 <p><strong>Pergunte ao agente.</strong> <em>&quot;Revise a minha função de exclusão (colada abaixo). Aponte a linha do problema e explique, sem reescrever a função. Use como fonte a seção 6 do roteiro_retomada.md e o Padrão 6 do guia_interface_crud.md, na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/</a>.&quot;</em></p>
 </blockquote>
-<p><strong>Aceite:</strong> cancelar preserva o dado; confirmar remove o registro em nova consulta.
-Preservem a música do seed usada para demonstrar o player.</p>
+<p><strong>Aceite:</strong></p>
+<ul>
+<li>Cancelar preserva o dado.</li>
+<li>Confirmar remove o registro em nova consulta.</li>
+</ul>
+<p>Preservem a música do seed usada para demonstrar o player.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="7-conferir-o-núcleo-e-publicar--r1-r6-r7-e-r8">7. Conferir o núcleo e publicar — R1, R6, R7 e R8</h2>
 <ul>
@@ -572,11 +716,18 @@ Preservem a música do seed usada para demonstrar o player.</p>
 <li>Registrem ID antes/depois de reiniciar o serviço; expliquem por que uma lista local não comprova persistência.</li>
 <li>Completem README com execução, URL, variáveis sem valores e uma decisão; registrem um teste por marco.</li>
 </ul>
-<p>Para a interface com <code>fetch</code>, consultem o &quot;Guia de interface — CRUD na tela com fetch&quot;, disponível no Classroom da disciplina. Para a publicação, o &quot;Guia de deploy na Render&quot;, também disponível no Classroom da disciplina, traz o passo a passo. Todos os guias e arquivos para baixar estão também na página do trabalho: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/</a>.</p>
-<p>Cada pessoa acompanha uma operação e realiza ou prevê uma pequena alteração
-equivalente com consulta. Podem explicar oralmente, apontando o código ou por
-anotação/desenho acompanhado de demonstração. Se travar, registrem o primeiro
-ponto que falhou e peçam apoio em aula. O trabalho essencial tem espaço em aula.</p>
+<p><strong>Materiais para esta seção:</strong></p>
+<ul>
+<li>Interface com <code>fetch</code>: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.html">Guia de interface — CRUD na tela com fetch</a>.</li>
+<li>Publicação: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html">Guia de deploy na Render</a>, que traz o passo a passo.</li>
+<li>Todos os guias e arquivos para baixar: <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">página do trabalho</a> e Classroom da disciplina.</li>
+</ul>
+<p><strong>Verificação individual:</strong></p>
+<ul>
+<li>Cada pessoa acompanha uma operação e realiza ou prevê uma pequena alteração equivalente, com consulta.</li>
+<li>Vocês podem explicar oralmente, apontando o código ou por anotação ou desenho acompanhado de demonstração.</li>
+</ul>
+<p><strong>Se algo não funcionar:</strong> registrem o primeiro ponto que falhou e peçam apoio em aula. O trabalho essencial tem espaço em aula.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="8-consolidar-entre-encontros--proposta-de-até-60min">8. Consolidar entre encontros — proposta de até 60min</h2>
 <table>
@@ -603,8 +754,11 @@ ponto que falhou e peçam apoio em aula. O trabalho essencial tem espaço em aul
 <td>Revisar README (20min), ensaiar percurso (20min), organizar evidências (20min).</td>
 </tr>
 </tbody></table>
-<p>Se houver impedimento de acesso, registrem para organizar apoio com o professor;
-não ampliem a tarefa além da hora prevista. Não é necessário adicionar extras.</p>
+<ul>
+<li>Se houver impedimento de acesso, registrem para organizar apoio com o professor.</li>
+<li>Não ampliem a tarefa além da hora prevista.</li>
+<li>Não é necessário adicionar extras.</li>
+</ul>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 
     </main>
@@ -612,6 +766,7 @@ não ampliem a tarefa além da hora prevista. Não é necessário adicionar extr
       <span>IFSul - Campus Passo Fundo · Programação III</span>
     </footer>
   </div>
+  <a class="sumario-flutuante" href="#sumario-auto">↑ Sumário</a>
   <dialog class="diagram-dialog" aria-label="Diagrama ampliado">
     <button type="button" class="diagram-close">Fechar diagrama</button>
     <p>Use a rolagem para explorar o diagrama. Pressione Esc para fechar.</p>
@@ -636,6 +791,21 @@ não ampliem a tarefa além da hora prevista. Não é necessário adicionar extr
         diagramScroll.scrollTo(0, 0);
       });
     });
+    
+    // Listas de tarefas: clicáveis, com a marcação guardada neste navegador (por página).
+    document.querySelectorAll('main li.tarefa input[type="checkbox"]').forEach((caixa, indice) => {
+      const chave = 'tarefa:' + location.pathname + ':' + indice;
+      const item = caixa.closest('li');
+      caixa.disabled = false;
+      caixa.setAttribute('aria-label', 'Marcar como feito: ' + item.textContent.trim().slice(0, 120));
+      try { caixa.checked = localStorage.getItem(chave) === '1'; } catch (erro) { /* sem armazenamento: só marca na tela */ }
+      item.classList.toggle('feita', caixa.checked);
+      caixa.addEventListener('change', () => {
+        item.classList.toggle('feita', caixa.checked);
+        try { caixa.checked ? localStorage.setItem(chave, '1') : localStorage.removeItem(chave); } catch (erro) { /* idem */ }
+      });
+    });
+
   </script>
 </body>
 </html>

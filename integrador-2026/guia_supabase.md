@@ -8,15 +8,17 @@
 
 **Instituição:** IFSul — Campus Passo Fundo
 
-**Versão 2 · 27/10/2026**
+**Versão 3 · 10/11/2026.** Revisão de linguagem. O código, os comandos e o conteúdo técnico são os mesmos da versão 2.
 
-Este guia parte do repositório da aula de Node.js e chega a um karaokê web que guarda as músicas num banco de dados de verdade, no Supabase. O caminho está dividido em etapas curtas. Cada etapa diz quais arquivos criar ou alterar, onde eles ficam, quem usa cada um e como testar antes de seguir.
+[Página do trabalho](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/) · [Enunciado](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/enunciado.html)
+
+Este guia começa no repositório da aula de Node.js e termina com um karaokê web que guarda as músicas num banco de dados, no Supabase. O trabalho está dividido em etapas curtas. Cada etapa diz quais arquivos criar ou alterar, onde eles ficam, quem usa cada um e como testar antes de seguir.
 
 ## Como usar este guia
 
 ### De onde vocês partem e aonde chegam
 
-**Ponto de partida:** o repositório da aula, [elderbernardiifsul/aula-nodejs-1-T1](https://github.com/elderbernardiifsul/aula-nodejs-1-T1), num commit fixo. É o projeto das aulas de Express e DAO no ponto em que a Atividade 5 começa: o DAO guarda as músicas na memória e o player do navegador ainda tem partes por fazer. Os dois últimos commits desse ponto mexem só no arquivo `AGENTS.md`, explicado na etapa 0.
+**Ponto de partida:** o repositório da aula, [elderbernardiifsul/aula-nodejs-1-T1](https://github.com/elderbernardiifsul/aula-nodejs-1-T1), num commit fixo. É o projeto das aulas de Express e DAO no ponto em que a Atividade 5 começa: o DAO guarda as músicas na memória e o player do navegador ainda tem partes por fazer. Os dois últimos commits desse ponto alteram só o arquivo `AGENTS.md`, explicado na etapa 0.
 
 **Resultado, ao fim da etapa 13:**
 
@@ -30,12 +32,12 @@ Este guia parte do repositório da aula de Node.js e chega a um karaokê web que
 | Situação da dupla | O que ler |
 |---|---|
 | Vai começar pelo repositório da aula | Todas as etapas, na ordem, da 0 à 13. |
-| Usa a base de retomada (o projeto que acompanha o Roteiro de retomada, disponível no Classroom da disciplina e em [base_retomada.zip](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip)) | A seção 3.5 (criem o `testes/musicas.http`, que a base não traz; o contrato da API é o mesmo), as etapas 4 (o banco), 5 (ligar o Node ao Supabase) e 12 (provar a persistência), e o anexo. Na etapa 5, a base já traz prontos os itens das seções 5.1 a 5.3 e 5.6 (`.gitignore`, dependências, `.env.example` e `supabaseClient.js`): façam a cópia do `.env.example` para `.env` (fim da 5.3) e as seções 5.4, 5.5 e 5.7. A base já traz API, DAOs e player prontos, numa estrutura de pastas um pouco diferente. |
+| Usa a base de retomada (o projeto que acompanha o Roteiro de retomada, disponível no Classroom da disciplina e em [base_retomada.zip](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip)) | A seção 3.5, a etapa 4 (o banco), a etapa 5 (ligar o Node ao Supabase), a etapa 12 (provar a persistência) e o anexo. Na seção 3.5, criem o `testes/musicas.http`, que a base não traz. O contrato da API é o mesmo. Na etapa 5, a base já traz prontos os itens das seções 5.1 a 5.3 e 5.6 (`.gitignore`, dependências, `.env.example` e `supabaseClient.js`). Por isso, na etapa 5, façam só isto: copiem o `.env.example` para `.env` (fim da seção 5.3) e sigam as seções 5.4, 5.5 e 5.7. A base já traz API, DAOs e player prontos, numa estrutura de pastas um pouco diferente. |
 | Vai aplicar o guia ao projeto que a dupla já tem | As etapas na ordem, comparando cada arquivo do guia com o de vocês. O anexo mostra os caminhos de `require` quando as pastas são diferentes. |
 
 ### Como cada etapa está organizada
 
-As etapas 2 a 12 seguem esta ordem. As etapas 0 e 1 têm só as seções que fazem sentido para elas (por exemplo, não têm "Commit sugerido"):
+As etapas 2 a 12 seguem esta ordem. As etapas 0 e 1 têm só uma parte dessas seções (por exemplo, não têm "Commit sugerido"):
 
 1. **Objetivo**, em uma frase.
 2. **Árvore de pastas** do projeto, com os arquivos novos e alterados marcados.
@@ -69,13 +71,23 @@ A pasta `node_modules/` não aparece nas árvores, e algumas árvores mostram s�
 
 ### Os três tipos de bloco
 
-**Arquivo completo.** O título traz o caminho do arquivo e diz se ele é novo ou se substitui o anterior inteiro. Abram (ou criem) o arquivo nesse caminho, apaguem o que houver nele e colem o bloco inteiro, da primeira à última linha.
+**Arquivo completo.** O título traz o caminho do arquivo e diz se ele é novo ou se substitui o anterior inteiro. Façam assim:
 
-**Troca de trecho.** O título traz o caminho do arquivo e vem seguido de dois blocos, "Antes" e "Depois". Procurem no arquivo o trecho do bloco "Antes" (no VS Code, `Ctrl+F`), selecionem exatamente esse trecho e colem no lugar dele o bloco "Depois". O resto do arquivo não muda. Se a busca não encontrar o trecho, o arquivo de vocês está diferente do esperado: confiram as etapas anteriores antes de continuar.
+1. Abram o arquivo nesse caminho. Se ele ainda não existir, criem.
+2. Apaguem tudo o que houver nele.
+3. Colem o bloco inteiro, da primeira à última linha.
 
-**Comandos.** Blocos `bash` são comandos para o terminal. No VS Code, o terminal abre pelo menu **Terminal → New Terminal**, já na pasta que está aberta no editor. Digitem ou colem uma linha por vez e esperem cada comando terminar antes do próximo. Os comandos deste guia funcionam no PowerShell do Windows, no Git Bash e no terminal do Linux; quando houver diferença, o guia mostra as duas formas.
+**Troca de trecho.** O título traz o caminho do arquivo e vem seguido de dois blocos, "Antes" e "Depois". Façam assim:
 
-As saídas esperadas aparecem em blocos de texto logo depois dos comandos. Números de versão, tempos e quantidades de pacotes podem variar; o guia diz o que precisa bater.
+1. Procurem no arquivo o trecho do bloco "Antes" (no VS Code, `Ctrl+F`).
+2. Selecionem exatamente esse trecho.
+3. Colem no lugar dele o bloco "Depois".
+
+O resto do arquivo não muda. Se a busca não encontrar o trecho, o arquivo de vocês está diferente do esperado. Nesse caso, revejam as etapas anteriores antes de continuar.
+
+**Comandos.** Blocos `bash` são comandos para o terminal. No VS Code, o terminal abre pelo menu **Terminal → New Terminal**, já na pasta que está aberta no editor. Digitem ou colem uma linha por vez. Esperem cada comando terminar antes de rodar o próximo. Os comandos deste guia funcionam no PowerShell do Windows, no Git Bash e no terminal do Linux. Quando houver diferença, o guia mostra as duas formas.
+
+As saídas esperadas aparecem em blocos de texto logo depois dos comandos. Números de versão, tempos e quantidades de pacotes podem variar. O guia diz o que precisa ser igual.
 
 ### O que este guia não traz
 
@@ -83,7 +95,7 @@ Os formulários de cadastro, edição e exclusão de músicas na tela não estã
 
 ### Ritmo de trabalho
 
-Leiam a etapa inteira antes de começar a digitar. Cada etapa termina com um teste e um commit: se o teste falhar, não avancem; usem o "Se deu errado" da etapa ou a seção Socorro. Dá para parar no fim de qualquer etapa e continuar na aula seguinte.
+Leiam a etapa inteira antes de começar a digitar. Cada etapa termina com um teste e um commit. Se o teste falhar, não avancem para a etapa seguinte. Usem a seção "Se deu errado" da etapa ou a seção Socorro. Vocês podem parar no fim de qualquer etapa e continuar na aula seguinte.
 
 ---
 
@@ -143,13 +155,20 @@ Nesta etapa ainda não existe projeto no computador: nada é criado nem alterado
 |---|---|---|---|
 | Node.js 22 ou superior | executa o servidor; traz junto o `npm`, que instala as bibliotecas | `node --version` | `v22.` seguido de mais números, ou um número maior que 22 |
 | npm | instala as bibliotecas do projeto (vem com o Node.js) | `npm --version` | `10.` ou maior |
-| Git | guarda o histórico do projeto e conversa com o GitHub | `git --version` | `git version 2.` seguido de mais números |
+| Git | guarda o histórico do projeto e se comunica com o GitHub | `git --version` | `git version 2.` seguido de mais números |
 | VS Code | editor do projeto | `code --version` | a primeira linha é a versão, como `1.105.1` |
 | Extensão REST Client (autor: Huachao Mao) | executa os arquivos `.http` de teste dentro do VS Code | `code --list-extensions` | a lista contém `humao.rest-client` |
 | Conta no GitHub | guarda o repositório da dupla | entrar em [github.com](https://github.com) | o nome de usuário de vocês aparece no canto superior direito |
 | Conta no Supabase | hospeda o banco de dados do projeto | entrar em [supabase.com/dashboard](https://supabase.com/dashboard) com **Continue with GitHub** | o painel com a lista de projetos, que pode estar vazia |
 
-Onde instalar o que faltar: Node.js em [nodejs.org](https://nodejs.org) (versão LTS); Git em [git-scm.com](https://git-scm.com); VS Code em [code.visualstudio.com](https://code.visualstudio.com); a extensão REST Client pelo painel de extensões do VS Code (`Ctrl+Shift+X`, buscar "REST Client", botão **Install**). Depois de instalar o Node ou o Git, fechem e abram o VS Code de novo: o terminal só enxerga os programas que já estavam instalados quando ele abriu.
+Onde instalar o que faltar:
+
+- Node.js: em [nodejs.org](https://nodejs.org) (versão LTS).
+- Git: em [git-scm.com](https://git-scm.com).
+- VS Code: em [code.visualstudio.com](https://code.visualstudio.com).
+- Extensão REST Client: no painel de extensões do VS Code. Apertem `Ctrl+Shift+X`, busquem "REST Client" e cliquem no botão **Install**.
+
+Depois de instalar o Node ou o Git, fechem e abram o VS Code de novo. O terminal só reconhece os programas que já estavam instalados quando ele abriu.
 
 ### Identidade no Git
 
@@ -160,7 +179,7 @@ git config --global user.name "Nome Sobrenome"
 git config --global user.email "email-da-conta@exemplo.com"
 ```
 
-Em computador compartilhado do laboratório, confiram no início de cada aula com `git config user.name`: o nome que aparecer é o que vai ficar nos commits.
+Em computador compartilhado do laboratório, rodem `git config user.name` no início de cada aula. O nome que aparecer é o que vai ficar nos commits.
 
 ### Teste agora
 
@@ -180,13 +199,13 @@ git version 2.47.1
 Nome Sobrenome
 ```
 
-No Windows, a terceira linha costuma terminar com `.windows.1`. O que precisa bater: o primeiro número do Node é 22 ou maior, e a última linha é o nome de quem está usando o computador.
+No Windows, a terceira linha costuma terminar com `.windows.1`. Confiram duas coisas: o primeiro número do Node é 22 ou maior, e a última linha é o nome de quem está usando o computador.
 
 ### Se deu errado
 
 | Sintoma | Causa provável | O que fazer |
 |---|---|---|
-| `node`, `git` ou `code` "não é reconhecido" (Windows) ou `command not found` (Linux) | programa não instalado, ou terminal aberto antes da instalação | instalem; depois fechem e abram o VS Code |
+| `node`, `git` ou `code` "não é reconhecido" (Windows) ou `command not found` (Linux) | programa não instalado, ou terminal aberto antes da instalação | instalem o programa; depois fechem e abram o VS Code |
 | `node --version` mostra `v18` ou `v20` | versão antiga do Node | instalem a versão LTS de [nodejs.org](https://nodejs.org); ela substitui a antiga |
 | `git config user.name` não mostra nada, ou mostra o nome de outra pessoa | identidade do Git não configurada neste computador | rodem os dois comandos de "Identidade no Git" com os dados de vocês |
 | No PowerShell, o `npm` responde que "a execução de scripts foi desabilitada neste sistema" | política do Windows que bloqueia o script do npm | rodem uma vez o comando abaixo e confirmem; ou troquem o terminal para **Command Prompt** (seta ao lado do `+` no painel do terminal) |
@@ -197,9 +216,9 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 
 ### O agente como tutor
 
-Agentes de IA são ferramentas que leem os arquivos do projeto, executam comandos e alteram código a partir de pedidos escritos. Neste trabalho, o uso deles é permitido, com um papel definido: **tutor**. O agente explica, faz perguntas, aponta onde olhar e revisa o que vocês escreveram, mas não entrega pronto o código das partes avaliadas. Cada um de vocês vai precisar explicar o próprio código, e é para isso que o tutor trabalha.
+Agentes de IA são ferramentas que leem os arquivos do projeto, executam comandos e alteram código a partir de pedidos escritos. Neste trabalho, o uso deles é permitido, com um papel definido: **tutor**. O agente explica, faz perguntas, aponta onde olhar e revisa o que vocês escreveram, mas não entrega pronto o código das partes avaliadas. Cada um de vocês vai precisar explicar o próprio código. O tutor ajuda vocês a conseguir isso.
 
-Esse papel está escrito no arquivo `AGENTS.md`, na raiz do projeto. É um texto para o agente, não para vocês: ele descreve o projeto (camadas, pastas, contrato da API), define como o agente deve ajudar, quais cuidados deve ter com as chaves do banco e em qual documento da página do trabalho está cada parte. As ferramentas mais usadas leem esse arquivo antes de responder:
+Esse papel está escrito no arquivo `AGENTS.md`, na raiz do projeto. Esse texto é escrito para o agente, e não para vocês. Ele descreve o projeto (camadas, pastas, contrato da API) e define como o agente deve ajudar. Também diz quais cuidados o agente deve ter com as chaves do banco e em qual documento da página do trabalho está cada parte. As ferramentas mais usadas leem esse arquivo antes de responder:
 
 | Ferramenta | Como lê o `AGENTS.md` |
 |---|---|
@@ -208,7 +227,7 @@ Esse papel está escrito no arquivo `AGENTS.md`, na raiz do projeto. É um texto
 | Gemini CLI | lê o `GEMINI.md`; para usar o `AGENTS.md`, criem o arquivo `.gemini/settings.json` mostrado abaixo |
 | Claude Code | lê o `CLAUDE.md`; criem na raiz um `CLAUDE.md` com a linha `@AGENTS.md`, mostrado abaixo |
 
-Para que o agente encontre o arquivo, abram no VS Code a pasta do projeto (`nosso-karaoke`, criada na etapa 1), e não a pasta de cima. Os dois arquivos abaixo são opcionais e só servem a quem usa a ferramenta correspondente; criem depois da etapa 1, quando o projeto já estiver no computador.
+Para que o agente encontre o arquivo, abram no VS Code a pasta do projeto (`nosso-karaoke`, criada na etapa 1), e não a pasta que a contém. Os dois arquivos abaixo são opcionais. Cada um só serve a quem usa a ferramenta correspondente. Se forem usar, criem o arquivo depois da etapa 1, quando o projeto já estiver no computador.
 
 Para o Gemini CLI, o arquivo `.gemini/settings.json` (pasta `.gemini` na raiz do projeto):
 
@@ -325,11 +344,11 @@ O trabalho pede um registro breve no README. Ao fim de uma sessão útil, sugira
 Na prática, peçam explicação, diagnóstico e revisão. Quando o pedido for a solução de uma parte avaliada, o agente oferece o próximo nível de ajuda (pergunta, conceito, pseudocódigo, trecho com lacunas), como está no próprio arquivo. A partir da etapa 3, os quadros **Pergunte ao agente** trazem perguntas prontas nesse formato. Cada pergunta termina indicando a fonte: o documento e a seção na página do trabalho, https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/, onde estão os mesmos materiais do Classroom. Assim o agente responde a partir do material da disciplina, e vocês conseguem conferir a resposta no mesmo lugar.
 
 > [!CAUTION]
-> Nunca colem na conversa com o agente o conteúdo do `.env`, chaves ou senhas. Se isso acontecer, a chave precisa ser trocada no painel do Supabase (em **Project Settings → API Keys**; a etapa 5 mostra o caminho completo).
+> Nunca colem na conversa com o agente o conteúdo do `.env`, chaves ou senhas. Se isso acontecer, troquem a chave no painel do Supabase (em **Project Settings → API Keys**; a etapa 5 mostra o caminho completo).
 
 ### Registro do uso de IA no README
 
-O trabalho pede um registro breve do uso de IA no `README.md` do projeto. Ao fim de uma sessão útil, o agente sugere a linha modelo do `AGENTS.md`; vocês completam e acrescentam numa seção própria, no fim do README:
+O trabalho pede um registro breve do uso de IA no `README.md` do projeto. Ao fim de uma sessão útil, o agente sugere a linha modelo do `AGENTS.md`. Completem essa linha e acrescentem numa seção própria, no fim do README:
 
 ```markdown
 ## Uso de IA
@@ -380,17 +399,17 @@ Switched to a new branch 'nosso-karaoke'
 added 86 packages, and audited 87 packages in 2s
 ```
 
-O Git pode mostrar as mesmas mensagens em português ("Clonando em...", "Alternado para um novo ramo..."). O `npm install` pode terminar com um aviso de vulnerabilidades (`vulnerabilities`) em pacotes usados pelo Express. Esse aviso não é erro e não impede o projeto de rodar; atualizar dependências fica fora deste guia.
+O Git pode mostrar as mesmas mensagens em português ("Clonando em...", "Alternado para um novo ramo..."). O `npm install` pode terminar com um aviso de vulnerabilidades (`vulnerabilities`) em pacotes usados pelo Express. Esse aviso não é erro e não impede o projeto de rodar. Este guia não trata da atualização de dependências.
 
-> **Entenda — por que um commit fixo.** Cada commit tem um código único, o *hash* (`787185635ed8...`). O `git switch -c nosso-karaoke <hash>` cria um branch que começa nesse commit. Se o repositório da aula receber commits novos depois, o ponto de partida de vocês continua o mesmo, e os trechos "Antes" deste guia continuam batendo com os arquivos de vocês.
+> **Entenda — por que um commit fixo.** Cada commit tem um código único, o *hash* (`787185635ed8...`). O `git switch -c nosso-karaoke <hash>` cria um branch que começa nesse commit. Se o repositório da aula receber commits novos depois, o ponto de partida de vocês continua o mesmo, e os trechos "Antes" deste guia continuam iguais aos arquivos de vocês.
 
-Agora abram o projeto no VS Code. Pelo terminal, ainda dentro da pasta:
+Agora abram o projeto no VS Code. Há duas formas. A primeira é pelo terminal, ainda dentro da pasta:
 
 ```bash
 code .
 ```
 
-Ou pelo menu **File → Open Folder**, escolhendo a pasta `nosso-karaoke`. Daqui em diante, usem o terminal do VS Code (**Terminal → New Terminal**), que já abre na pasta do projeto.
+A segunda é pelo menu **File → Open Folder**: escolham a pasta `nosso-karaoke`. Daqui em diante, usem o terminal do VS Code (**Terminal → New Terminal**), que já abre na pasta do projeto.
 
 ### 1.2 Executar
 
@@ -410,10 +429,10 @@ Servidor inciado.
 ```
 
 - As duas primeiras linhas são o npm avisando que vai rodar o script `start` do `package.json`, que é `node app`.
-- As duas linhas de JSON vêm de um teste do DAO que roda dentro do `app.js` toda vez que o servidor sobe. A etapa 2 tira esse teste.
+- As duas linhas de JSON vêm de um teste do DAO que roda dentro do `app.js` toda vez que o servidor inicia. A etapa 2 remove esse teste.
 - `Servidor inciado.` (escrito assim no código da aula) avisa que o servidor está esperando requisições. O terminal fica ocupado enquanto o servidor roda.
 
-Abram [http://localhost:3000](http://localhost:3000) no navegador. Aparece a página do karaokê: o título **Karaokê**, o quadro **Músicas Disponíveis** vazio e o palco com **Escolha uma música**. A lista está vazia porque o `public/player.js` ainda tem partes por fazer (os comentários `TODO`) e o servidor ainda não tem as rotas `/api/musicas`; a etapa 3 completa os dois.
+Abram [http://localhost:3000](http://localhost:3000) no navegador. Deve aparecer a página do karaokê, com três elementos: o título **Karaokê**, o quadro **Músicas Disponíveis** vazio e o palco com **Escolha uma música**. A lista está vazia por dois motivos: o `public/player.js` ainda tem partes por fazer (os comentários `TODO`), e o servidor ainda não tem as rotas `/api/musicas`. A etapa 3 completa os dois.
 
 Para parar o servidor, cliquem no terminal e apertem `Ctrl+C`. No Command Prompt do Windows, o terminal pergunta se deseja finalizar o arquivo em lotes: respondam `S`.
 
@@ -451,7 +470,7 @@ nosso-karaoke/
 └── README.md                   texto da aula de módulos (require)
 ```
 
-Os arquivos marcados **[legado]** são exercícios de aulas anteriores. Eles não participam do karaokê web e podem ficar onde estão: nenhuma etapa depende deles, e não é preciso apagá-los. Hoje o `app.js` ainda importa o `karaoke/player.js` para as rotas antigas (`/musicas/:id`); na etapa 3, o `app.js` é substituído e deixa de usá-lo.
+Os arquivos marcados **[legado]** são exercícios de aulas anteriores. Eles não fazem parte do karaokê web. Esses arquivos podem ficar onde estão. Nenhuma etapa depende deles, e vocês não precisam apagá-los. Hoje o `app.js` ainda importa o `karaoke/player.js` para as rotas antigas (`/musicas/:id`). Na etapa 3, vocês substituem o `app.js`, e ele deixa de usar o `karaoke/player.js`.
 
 ### 1.4 Quem importa quem
 
@@ -470,7 +489,7 @@ app.js
 └── require('./karaoke/musica')        karaoke/musica.js
 ```
 
-O caminho de um `require` é contado a partir do arquivo que importa, e a extensão `.js` pode ficar de fora. Do `app.js`, que está na raiz, a classe é `./karaoke/musica`. Do `DAO/MusicaDAO.js`, a mesma classe é `../karaoke/musica`: o `..` sobe da pasta `DAO/` para a raiz antes de entrar em `karaoke/`.
+O caminho de um `require` é contado a partir do arquivo que importa, e a extensão `.js` pode ser omitida. Do `app.js`, que está na raiz, a classe é `./karaoke/musica`. Do `DAO/MusicaDAO.js`, a mesma classe é `../karaoke/musica`: o `..` sobe da pasta `DAO/` para a raiz antes de entrar em `karaoke/`.
 
 Os arquivos de `public/` não usam `require`: eles rodam no navegador. O `app.js` entrega a pasta inteira com `express.static('public')`, e o `index.html` carrega o `estilo.css` e o `player.js`.
 
@@ -480,10 +499,11 @@ Hoje o projeto ainda está ligado ao repositório da aula, onde vocês não têm
 
 1. Em [github.com](https://github.com), cliquem no **+** (canto superior direito) → **New repository**.
 2. Em **Repository name**, escolham um nome, por exemplo `nosso-karaoke`.
-3. **Não marquem** "Add a README", nem escolham `.gitignore` ou licença. O repositório precisa nascer vazio; o projeto já tem esses arquivos.
-4. Cliquem em **Create repository**. A página seguinte mostra, em **Quick setup**, o endereço HTTPS do repositório (`https://github.com/<usuario>/<repositorio>.git`). Copiem esse endereço: copiado, ele não tem erro de digitação.
+3. **Não marquem** "Add a README", nem escolham `.gitignore` ou licença. O repositório precisa ser criado vazio, porque o projeto já tem esses arquivos.
+4. Cliquem em **Create repository**. A página seguinte mostra, em **Quick setup**, o endereço HTTPS do repositório (`https://github.com/<usuario>/<repositorio>.git`).
+5. Copiem esse endereço em vez de digitar. Assim ele não fica com erro de digitação.
 
-No terminal do VS Code, dentro do projeto, troquem `<usuario>` e `<repositorio>` pelo endereço copiado (sem os sinais `<` e `>`):
+No terminal do VS Code, dentro do projeto, rodem os três comandos abaixo. Na primeira linha, troquem `<usuario>` e `<repositorio>` pelos dados do endereço copiado (sem os sinais `<` e `>`):
 
 ```bash
 git remote set-url origin https://github.com/<usuario>/<repositorio>.git
@@ -499,7 +519,13 @@ git push -u origin main
 
 No primeiro `git push`, o Git pode abrir uma janela do navegador pedindo login no GitHub. Entrem com a conta de quem criou o repositório.
 
-Por fim, deem acesso à outra pessoa da dupla: no repositório, **Settings → Collaborators → Add people**, com o nome de usuário dela no GitHub. Ela recebe um convite por e-mail (ou nas notificações do GitHub) e precisa aceitar. Sem isso, ela consegue baixar o projeto, mas não consegue enviar commits. Se o repositório for privado, o professor também só vê o código depois de convidado.
+Por fim, deem acesso à outra pessoa da dupla:
+
+1. Na página do repositório, abram **Settings → Collaborators → Add people**.
+2. Informem o nome de usuário dela no GitHub.
+3. Ela recebe um convite por e-mail (ou nas notificações do GitHub) e precisa aceitar.
+
+Sem o convite aceito, ela consegue baixar o projeto, mas não consegue enviar commits. Se o repositório for privado, o professor também só vê o código depois de convidado.
 
 ### 1.6 A outra pessoa da dupla
 
@@ -526,7 +552,7 @@ origin  https://github.com/<usuario>/<repositorio>.git (fetch)
 origin  https://github.com/<usuario>/<repositorio>.git (push)
 ```
 
-Atualizem a página do repositório no GitHub: os arquivos do projeto aparecem no branch `main`, e o último commit é "update: AGENTS.md indica a página do trabalho como fonte".
+Atualizem a página do repositório no GitHub. Os arquivos do projeto devem aparecer no branch `main`, e o último commit deve ser "update: AGENTS.md indica a página do trabalho como fonte".
 
 ### Commit sugerido
 
@@ -538,7 +564,7 @@ Nenhum: o `git push` da seção 1.5 já enviou o ponto de partida.
 |---|---|---|
 | `git` "não é reconhecido" ou `command not found` | Git não instalado, ou terminal aberto antes da instalação | voltem à etapa 0 |
 | `npm start` mostra `Servidor inciado.` e o terminal volta a aceitar comandos logo em seguida, sem ficar ocupado | a porta 3000 já está em uso, quase sempre por outro `npm start` aberto em outro terminal | procurem o outro terminal na lista do painel de terminais do VS Code e apertem `Ctrl+C` nele (ou fechem com o ícone da lixeira); depois rodem `npm start` de novo |
-| `npm install` termina com `npm error code ETIMEDOUT`, `ECONNRESET` ou `ENOTFOUND` | falha de rede ao baixar os pacotes | confiram a conexão e rodem `npm install` de novo; o que já foi baixado fica guardado. Se persistir na rede da escola, chamem o professor |
+| `npm install` termina com `npm error code ETIMEDOUT`, `ECONNRESET` ou `ENOTFOUND` | falha de rede ao baixar os pacotes | confiram se o computador está conectado à internet e rodem `npm install` de novo; o que já foi baixado fica guardado. Se o erro continuar na rede da escola, chamem o professor |
 | `git push` responde `Repository not found` ou `Permission ... denied` | endereço digitado com erro, ou o computador está logado no GitHub com a conta de outra pessoa | copiem de novo o endereço da página do repositório e repitam o `git remote set-url`; em computador compartilhado, removam a credencial antiga do GitHub (no Windows, **Gerenciador de Credenciais → Credenciais do Windows**) e repitam o `git push` |
 
 ---
@@ -556,11 +582,11 @@ nosso-karaoke/
 └── package.json           (alterado)
 ```
 
-A árvore mostra só os arquivos desta etapa. O `package-lock.json` muda sozinho, pelo `npm uninstall`; não editem esse arquivo à mão.
+A árvore mostra só os arquivos desta etapa. O `npm uninstall` altera o `package-lock.json` automaticamente. Não editem esse arquivo manualmente.
 
 ### 2.1 Tirar o pacote `@supabase/server`
 
-O `package.json` da aula lista o pacote `@supabase/server`. É um pacote oficial do Supabase, mas com outro propósito: reúne utilitários de autenticação e de configuração para servidores, e o karaokê não usa nada disso. A biblioteca que conversa com o banco é a `@supabase/supabase-js`, instalada na etapa 5. Os nomes são parecidos, e manter os dois no projeto só gera confusão na hora de importar.
+O `package.json` da aula lista o pacote `@supabase/server`. É um pacote oficial do Supabase, mas tem outro propósito: reúne utilitários de autenticação e de configuração para servidores. O karaokê não usa esses utilitários. A biblioteca que se comunica com o banco é a `@supabase/supabase-js`, instalada na etapa 5. Os nomes são parecidos, e manter os dois no projeto pode causar confusão na hora de importar.
 
 <!-- executar | etapa: 2 -->
 ```bash
@@ -601,11 +627,11 @@ Depois:
     "node": ">=22"
 ```
 
-Atenção às aspas: a linha continua sem vírgula no fim, porque é a última do bloco `engines`.
+Mantenham as aspas. A linha continua sem vírgula no fim, porque é a última do bloco `engines`.
 
 ### 2.3 Tirar o teste do DAO do `app.js`
 
-Na aula, o `app.js` ganhou um bloco que testa o DAO toda vez que o servidor sobe: cadastra a música "3x4", corrige o nome do artista, lista, remove e lista de novo. É dele que vêm as duas linhas de JSON da saída do `npm start`. A partir da etapa 3, quem usa o DAO são as rotas, e esse teste só polui a saída do terminal.
+Na aula, o `app.js` recebeu um bloco que testa o DAO toda vez que o servidor inicia: cadastra a música "3x4", corrige o nome do artista, lista, remove e lista de novo. As duas linhas de JSON da saída do `npm start` vêm desse bloco. A partir da etapa 3, quem usa o DAO são as rotas, e esse teste só acrescenta linhas desnecessárias à saída do terminal.
 
 <!-- trocar: app.js | etapa: 2 -->
 **Arquivo `app.js`** — troquem este trecho:
@@ -646,11 +672,11 @@ Depois:
         this.nome = nome;
 ```
 
-O construtor ganha um terceiro parâmetro, `id`; quando ele não vem, o `id` fica `null`. As linhas seguintes do construtor (`this.artista` e `this.partes`) continuam iguais.
+O construtor passa a ter um terceiro parâmetro, `id`. Quando esse parâmetro não é informado, o `id` fica `null`. As linhas seguintes do construtor (`this.artista` e `this.partes`) continuam iguais.
 
 O `DAO/MusicaDAO.js` ainda cria a música sem `id` e preenche o número depois (`novaMusica.id = this.proximoId++`). Isso continua funcionando, porque o construtor aceita o `id` ausente. Na etapa 3, o DAO passa a entregar o `id` direto ao construtor.
 
-> **Entenda — por que o `id` virou parâmetro.** A API encontra cada música pelo `id` (`/api/musicas/3`), então o `id` faz parte da identidade do objeto, e não é um detalhe acrescentado depois. No banco, quem gera esse número é o próprio banco: a coluna `id` é a **chave primária** da tabela `musicas`, preenchida automaticamente. O DAO lê o número pronto e o entrega ao construtor. Uma música que ainda não foi gravada não tem `id`, e o construtor deixa `null`. Mais detalhes na Parte II, seção "O mínimo de banco relacional".
+> **Entenda — por que o `id` virou parâmetro.** A API encontra cada música pelo `id` (`/api/musicas/3`), então o `id` faz parte da identidade do objeto. Por isso ele é recebido no construtor, e não preenchido depois. No banco, quem gera esse número é o próprio banco: a coluna `id` é a **chave primária** da tabela `musicas`, preenchida automaticamente. O DAO lê o número pronto e o entrega ao construtor. Uma música que ainda não foi gravada não tem `id`, e o construtor deixa `null`. Mais detalhes na Parte II, seção "O mínimo de banco relacional".
 
 ### Quem usa / o que usa
 
@@ -662,13 +688,13 @@ O `DAO/MusicaDAO.js` ainda cria a música sem `id` e preenche o número depois (
 
 ### Teste agora
 
-Primeiro, a classe `Musica` com `id`. No terminal, dentro do projeto:
+Primeiro, testem a classe `Musica` com `id`. No terminal, dentro do projeto, rodem:
 
 ```bash
 node -e "const { Musica } = require('./karaoke/musica'); console.log(new Musica('Asa Branca', 'Luiz Gonzaga', 7))"
 ```
 
-Saída esperada (o Node pode mostrar tudo numa linha só; o que importa é o `id: 7`):
+Saída esperada (o Node pode mostrar tudo numa linha só; o que precisa aparecer é o `id: 7`):
 
 ```text
 Musica {
@@ -679,7 +705,7 @@ Musica {
 }
 ```
 
-Depois, o servidor:
+Depois, iniciem o servidor:
 
 ```bash
 npm start
@@ -694,11 +720,13 @@ Saída esperada, agora sem as linhas de JSON:
 Servidor inciado.
 ```
 
-A página em [http://localhost:3000](http://localhost:3000) continua abrindo como na etapa 1. Parem o servidor com `Ctrl+C` e confiram quais arquivos mudaram:
+Abram [http://localhost:3000](http://localhost:3000). A página deve abrir como na etapa 1. Depois, parem o servidor com `Ctrl+C` e rodem o comando abaixo para ver quais arquivos mudaram:
 
 ```bash
 git status --short
 ```
+
+Saída esperada:
 
 ```text
  M app.js
@@ -720,15 +748,15 @@ git push
 | Sintoma | Causa provável | O que fazer |
 |---|---|---|
 | O `Ctrl+F` não encontra o trecho "Antes" | arquivo errado, ou a troca já foi feita | confiram o caminho no título (`karaoke/musica.js`, não `DAO/MusicaDAO.js`); busquem só a primeira linha do trecho, como `constructor(nome, artista)`; se o construtor já tem `id`, a troca está feita |
-| `npm uninstall` responde `up to date` e o `package.json` do projeto ainda tem `@supabase/server` | o terminal estava aberto em outra pasta, que não é a do projeto, e o npm não encontrou o `package.json` certo | abram o terminal na pasta do projeto (a que tem o `package.json` e o `app.js`) e repitam; se o npm tiver criado `package-lock.json` ou `node_modules` na outra pasta, apaguem esses itens de lá |
-| `npm start` mostra `npm error code EJSONPARSE` | uma vírgula ou aspa sumiu na troca do `package.json` | comparem a linha do `"node"` com o bloco "Depois": aspas duplas e nenhuma vírgula no fim |
+| `npm uninstall` responde `up to date` e o `package.json` do projeto ainda tem `@supabase/server` | o terminal estava aberto em outra pasta, que não é a do projeto, e o npm não encontrou o `package.json` certo | abram o terminal na pasta do projeto (a que tem o `package.json` e o `app.js`) e repitam o comando; se o npm tiver criado `package-lock.json` ou `node_modules` na outra pasta, apaguem esses itens de lá |
+| `npm start` mostra `npm error code EJSONPARSE` | uma vírgula ou aspa foi apagada na troca do `package.json` | comparem a linha do `"node"` com o bloco "Depois": aspas duplas e nenhuma vírgula no fim |
 | O teste com `node -e` mostra `id: null` | a primeira linha do construtor não recebeu o `id` | confiram se ficou `constructor(nome, artista, id)` |
 
 ---
 
 ## Etapa 3 — API CRUD com DAO em memória e player
 
-**Objetivo:** terminar o que a Atividade 5 deixou pela metade: as rotas `/api/musicas` usando o DAO e o player da página tocando as músicas. Os dados ainda ficam na memória do servidor; o banco entra a partir da etapa 4.
+**Objetivo:** terminar o que a Atividade 5 deixou incompleto: as rotas `/api/musicas` usando o DAO e o player da página tocando as músicas. Os dados ainda ficam na memória do servidor. O trabalho com o banco começa na etapa 4.
 
 ```text
 nosso-karaoke/
@@ -742,19 +770,23 @@ nosso-karaoke/
 └── app.js                     (alterado)
 ```
 
-Os cinco arquivos aparecem completos, e cada um substitui o que já existe (o `testes/musicas.http` é novo). Podem copiar o conteúdo inteiro por cima do arquivo atual: não há trechos para procurar.
+Os cinco arquivos aparecem completos. Cada um substitui o arquivo que já existe, menos o `testes/musicas.http`, que é novo. Em cada arquivo, apaguem o conteúdo atual e colem o bloco inteiro do guia. Nesta etapa não há trechos para procurar.
 
-Antes do código, o caminho de uma requisição, que explica por que são cinco arquivos:
+Antes do código, vejam o caminho de uma requisição. Ele explica por que são cinco arquivos:
 
 ```text
 navegador (player.js) --fetch--> app.js (rota) --chama--> MusicaDAO.js (array) --usa--> Musica e Parte
 ```
 
-O `player.js` roda no navegador e pede dados à API com `fetch`. O `app.js` recebe o pedido e escolhe a rota. A rota nunca mexe nos dados: ela chama o DAO. O DAO guarda as músicas (agora num array) e devolve o resultado. Na etapa 9 o array dá lugar ao banco, e só o DAO muda.
+O `player.js` roda no navegador e pede dados à API com `fetch`. O `app.js` recebe o pedido e escolhe a rota. A rota não altera os dados diretamente: ela chama o DAO. O DAO guarda as músicas (agora num array) e devolve o resultado. Na etapa 9, o banco substitui o array, e só o DAO muda.
 
 ### 3.1 O DAO com ids e dados iniciais
 
-O DAO desta etapa troca três coisas em relação ao da aula. Entrega o `id` direto ao construtor da `Musica` (como a etapa 2 preparou). Começa os ids em 1, como o banco fará. E já nasce com uma música de amostra, **Encontro da turma**, com duas partes, para o player ter o que tocar assim que o servidor sobe.
+O DAO desta etapa muda três coisas em relação ao da aula:
+
+- Entrega o `id` direto ao construtor da `Musica` (como a etapa 2 preparou).
+- Começa os ids em 1, como o banco fará.
+- Já começa com uma música de amostra, **Encontro da turma**, com duas partes. Assim o player tem uma música para tocar logo que o servidor inicia.
 
 <!-- arquivo: DAO/MusicaDAO.js | etapa: 3 -->
 **Arquivo `DAO/MusicaDAO.js`** (substitui o anterior inteiro)
@@ -829,7 +861,7 @@ module.exports = new MusicaDAO();
 
 A última linha exporta uma **instância**, e não a classe: `app.js` e qualquer outro arquivo que faça `require('./DAO/MusicaDAO')` recebem o mesmo objeto, com o mesmo array. Se cada arquivo criasse o próprio DAO, cada um teria a sua lista de músicas.
 
-> **Entenda — por que existe um DAO.** DAO quer dizer *Data Access Object*: o único arquivo que sabe **onde** os dados ficam. As rotas pedem "me dê a música 3" e não sabem se ela vem de um array ou de um banco. Por isso, na etapa 9, trocamos o miolo do DAO e as rotas não mudam. Mais detalhes na Parte II.
+> **Entenda — por que existe um DAO.** DAO quer dizer *Data Access Object*: o único arquivo que sabe **onde** os dados ficam. As rotas pedem "me dê a música 3" e não sabem se ela vem de um array ou de um banco. Por isso, na etapa 9, vocês trocam o código interno do DAO e as rotas não mudam. Mais detalhes na Parte II.
 
 ### 3.2 O `app.js` com as rotas da API
 
@@ -844,7 +876,7 @@ O `app.js` desta etapa deixa de usar o `karaoke/player.js` e as rotas antigas (`
 | `DELETE /api/musicas/:id` | remove a música | `200` com `mensagem` e a música removida, ou `404` |
 | `POST /api/musicas/:id/partes` | acrescenta uma parte (`letra`, `tempoEspera`, `tag`) | `201` com a música, `400` ou `404` |
 
-O `:id` é um parâmetro de caminho: em `/api/musicas/3`, o `req.params.id` vale `"3"` (texto), e o `Number(...)` converte para número antes de procurar no DAO. O código de status diz o resultado: `200` deu certo, `201` criou, `400` o pedido veio errado, `404` não achou. Em todo erro, o corpo da resposta é `{ "erro": "mensagem" }`.
+O `:id` é um parâmetro de caminho. Em `/api/musicas/3`, o `req.params.id` vale `"3"` (texto). O `Number(...)` converte esse texto para número antes de procurar no DAO. O código de status diz o resultado: `200` deu certo, `201` criou, `400` o pedido veio com erro, `404` não encontrou. Em todo erro, o corpo da resposta é `{ "erro": "mensagem" }`.
 
 <!-- arquivo: app.js | etapa: 3 -->
 **Arquivo `app.js`** (substitui o anterior inteiro)
@@ -949,11 +981,15 @@ app.listen(PORT, (erro) => {
 });
 ```
 
-Duas partes merecem atenção. As duas rotas `app.use` perto do fim só rodam quando nenhuma rota anterior respondeu: a primeira devolve `404` em JSON para qualquer `/api/...` que não existe, e a segunda (com quatro parâmetros, `erro, req, res, next`) é o **middleware de erro**, que captura falhas como um JSON mal formado no corpo. E o final do arquivo avisa quando a porta já está ocupada: sem esse `if`, o servidor escreveria "no ar" mesmo sem conseguir subir.
+Observem dois trechos desse arquivo.
+
+Trecho 1: as duas rotas `app.use` perto do fim. Elas só rodam quando nenhuma rota anterior respondeu. A primeira devolve `404` em JSON para qualquer `/api/...` que não existe. A segunda (com quatro parâmetros, `erro, req, res, next`) é o **middleware de erro**, que captura falhas como um JSON mal formado no corpo.
+
+Trecho 2: o final do arquivo, que avisa quando a porta já está ocupada. Sem esse `if`, o servidor escreveria "no ar" mesmo sem conseguir iniciar.
 
 ### 3.3 A página
 
-O `index.html` ganha uma linha: o parágrafo `<p id="mensagem">`, onde o `player.js` mostra avisos (lista vazia, API fora do ar). O resto continua igual; copiem o arquivo inteiro para não perder nada no meio.
+O `index.html` recebe uma linha nova: o parágrafo `<p id="mensagem">`, onde o `player.js` mostra avisos (lista vazia, API sem responder). O resto continua igual. Copiem o arquivo inteiro, para não deixar nenhuma linha de fora.
 
 <!-- arquivo: public/index.html | etapa: 3 -->
 **Arquivo `public/index.html`** (acrescenta o parágrafo `#mensagem`)
@@ -996,7 +1032,11 @@ O `index.html` ganha uma linha: o parágrafo `<p id="mensagem">`, onde o `player
 
 ### 3.4 O player no navegador
 
-O `player.js` substitui o da aula, que tinha partes por fazer (os `TODO`). Ele faz três coisas: `carregarPlaylist` busca a lista em `/api/musicas` e cria um `<li>` por música; `escolherMusica` busca a música completa (com as partes) quando alguém clica num item; `tocar` percorre as partes, mostra a letra de cada uma e espera o `tempoEspera` (em milissegundos) antes de passar para a próxima.
+O `player.js` substitui o da aula, que tinha partes por fazer (os `TODO`). Ele tem três funções:
+
+- `carregarPlaylist` busca a lista em `/api/musicas` e cria um `<li>` por música.
+- `escolherMusica` busca a música completa (com as partes) quando alguém clica num item.
+- `tocar` percorre as partes, mostra a letra de cada uma e espera o `tempoEspera` (em milissegundos) antes de passar para a próxima.
 
 <!-- arquivo: public/player.js | etapa: 3 -->
 **Arquivo `public/player.js`** (substitui o anterior inteiro)
@@ -1089,11 +1129,11 @@ btnTocar.addEventListener('click', tocar);
 carregarPlaylist();
 ```
 
-O `fetch` devolve uma *Promise*, e o `await` espera a resposta chegar sem travar a página. Se a API cair ou responder erro, o `catch` mostra o motivo no parágrafo `#mensagem`, em vez de deixar a página sem explicação.
+O `fetch` devolve uma *Promise*, e o `await` espera a resposta chegar sem travar a página. Se a API parar de responder ou responder com erro, o `catch` mostra o motivo no parágrafo `#mensagem`.
 
 ### 3.5 O arquivo de testes `.http`
 
-Testar a API pelo navegador só funciona para `GET`. Para `POST`, `PUT` e `DELETE`, vocês usam a extensão **REST Client** do VS Code (instalada na etapa 0), que lê um arquivo `.http` e envia as requisições. Cada requisição começa com uma linha `###`, e o texto que diz "espera 404" é só um lembrete do que deve voltar.
+Testar a API pelo navegador só funciona para `GET`. Para `POST`, `PUT` e `DELETE`, vocês usam a extensão **REST Client** do VS Code (instalada na etapa 0), que lê um arquivo `.http` e envia as requisições. Cada requisição começa com uma linha `###`. O texto que diz "espera 404" é só um lembrete do status que a resposta deve ter.
 
 <!-- arquivo: testes/musicas.http | etapa: 3 -->
 **Arquivo `testes/musicas.http`** (novo)
@@ -1172,17 +1212,25 @@ GET {{baseUrl}}/api/nada
 Como usar:
 
 1. Com o servidor rodando (`npm start`), abram o `testes/musicas.http` no VS Code.
-2. Acima de cada `###`, aparece o link **Send Request**. Cliquem nele; a resposta abre numa aba ao lado, com o status (`HTTP/1.1 200 OK`, `201 Created`, `404 Not Found`...) e o corpo em JSON.
+2. Acima de cada `###`, aparece o link **Send Request**. Cliquem nele. A resposta abre numa aba ao lado, com o status (`HTTP/1.1 200 OK`, `201 Created`, `404 Not Found`...) e o corpo em JSON.
 3. Enviem **na ordem**, do 1 ao 11. A requisição 3 tem o nome `# @name criar`, e as seguintes usam `{{criar.response.body.$.id}}`: o id da música que a 3 acabou de criar. Se pularem a 3, o id não existe e as requisições 4, 6, 8, 9 e 10 falham.
-4. Confiram se o status de cada resposta bate com o "espera" do título.
+4. Confiram se o status de cada resposta é igual ao número escrito depois de "espera" no título da requisição.
 
-A requisição 9 remove a música criada, e a 10 tenta remover de novo: a segunda precisa dar `404`, porque a música já não existe. Os testes 2, 5 e 7 mostram a diferença entre os dois erros: `404` é "o que você pediu não existe" (id 999999), e `400` é "o que você mandou está errado" (nome vazio).
+A requisição 9 remove a música criada, e a 10 tenta remover de novo. A 10 precisa dar `404`, porque a música já não existe. Os testes 2, 5 e 7 mostram a diferença entre os dois erros: `404` é "o que você pediu não existe" (id 999999), e `400` é "o que você mandou está errado" (nome vazio).
 
 ### 3.6 Por que o servidor esquece tudo
 
-Com o servidor rodando, enviem a requisição 3 (cria "Música de teste") e abram [http://localhost:3000](http://localhost:3000): a música aparece na lista. Agora parem o servidor com `Ctrl+C`, rodem `npm start` de novo e atualizem a página. A música de teste sumiu, e só a amostra **Encontro da turma** voltou. Para repetir depois disso as requisições que usam a música de teste (4, 6, 8 e 9), enviem a 3 de novo: ela cria outra música, com outro `id`.
+Façam este teste, com o servidor rodando:
 
-Isso acontece porque o array vive na memória do processo do Node. Quando o processo termina, a memória é liberada, e o `MusicaDAO` recria a lista do zero. É o limite deste DAO: qualquer coisa cadastrada se perde no reinício, e o mesmo vale para um serviço publicado, que reinicia a cada nova publicação. Para guardar de forma durável, os dados precisam ficar fora do processo, num banco de dados. É o que as próximas etapas constroem.
+1. Enviem a requisição 3 (cria "Música de teste").
+2. Abram [http://localhost:3000](http://localhost:3000). A música aparece na lista.
+3. Parem o servidor com `Ctrl+C`.
+4. Rodem `npm start` de novo.
+5. Atualizem a página.
+
+A música de teste não está mais na lista. Só a amostra **Encontro da turma** aparece. Para repetir depois disso as requisições que usam a música de teste (4, 6, 8 e 9), enviem a 3 de novo: ela cria outra música, com outro `id`.
+
+Isso acontece porque o array fica na memória do processo do Node. Quando o processo termina, a memória é liberada, e o `MusicaDAO` cria a lista de novo, só com a amostra. Este é o limite deste DAO: tudo o que foi cadastrado se perde quando o servidor reinicia. O mesmo vale para um serviço publicado, que reinicia a cada nova publicação. Para guardar de forma durável, os dados precisam ficar fora do processo, num banco de dados. As próximas etapas fazem isso.
 
 ### Quem usa / o que usa
 
@@ -1212,8 +1260,8 @@ Karaokê no ar: http://localhost:3000
 1. Abram [http://localhost:3000](http://localhost:3000). Em **Músicas Disponíveis** aparece `Encontro da turma — Turma de Programação III`.
 2. Cliquem na música. O palco mostra o nome e o artista, e o botão **Tocar** é liberado.
 3. Cliquem em **Tocar**. A letra "Uma ideia ganha forma na tela." (tag `verso`, "Parte 1 de 2") aparece por cerca de 1 segundo, depois "A turma cria, testa e compartilha." (tag `final`, "Parte 2 de 2"), e por fim **Fim da música.**
-4. No `testes/musicas.http`, enviem as 11 requisições na ordem. Cada resposta precisa ter o status do "espera" do título.
-5. Façam o teste da seção 3.6 (parar, iniciar, atualizar) e confirmem que a música de teste some.
+4. No `testes/musicas.http`, enviem as 11 requisições na ordem. Cada resposta precisa ter o status escrito depois de "espera" no título.
+5. Façam o teste da seção 3.6 (parar, iniciar, atualizar) e confirmem que a música de teste não aparece mais na lista.
 
 ### Commit sugerido
 
@@ -1227,9 +1275,9 @@ git push
 
 | Sintoma | Causa provável | O que fazer |
 |---|---|---|
-| `Error: Cannot find module './DAO/MusicaDAO'` | a pasta ou o arquivo está com outra grafia de maiúsculas (`dao/`, `MusicaDao.js`); no Windows funciona sem querer, mas na Render (Linux) quebra | renomeiem para `DAO/MusicaDAO.js`, exatamente assim |
+| `Error: Cannot find module './DAO/MusicaDAO'` | a pasta ou o arquivo está com outra grafia de maiúsculas (`dao/`, `MusicaDao.js`); no Windows funciona mesmo assim, mas na Render (Linux) dá erro | renomeiem para `DAO/MusicaDAO.js`, exatamente assim |
 | `Não foi possível usar a porta 3000: listen EADDRINUSE...` | a porta 3000 já está em uso, quase sempre por outro `npm start` aberto em outro terminal | achem o outro terminal no painel do VS Code, apertem `Ctrl+C` nele e rodem `npm start` de novo |
-| Na requisição 4 (e 6, 8, 9, 10) a resposta é `404` | o servidor foi reiniciado depois da requisição 3: a música criada ficou na memória e sumiu (é o comportamento da seção 3.6, não um defeito) | enviem a 3 de novo e depois as seguintes, na ordem |
+| Na requisição 4 (e 6, 8, 9, 10) a resposta é `404` | o servidor foi reiniciado depois da requisição 3: a música criada estava na memória e foi apagada (é o comportamento da seção 3.6, não um defeito) | enviem a 3 de novo e depois as seguintes, na ordem |
 | O endereço da requisição 4 (ou 6, 8, 9, 10) aparece como `/api/musicas/undefined` | o REST Client não tem a resposta da requisição 3 neste editor: ela não foi enviada nesta sessão, ou o VS Code foi recarregado | enviem a 3 e depois as seguintes, na ordem |
 | A página abre em branco ou a lista não aparece | erro no `player.js`, ou a API não respondeu | apertem `F12`, abram a aba **Console** e leiam a mensagem em vermelho; o `Não foi possível carregar as músicas: ...` na página mostra o motivo; confiram também se o servidor está rodando |
 | O botão **Tocar** continua desabilitado depois de clicar na música | o clique na música falhou (id sem partes ou erro da API) | leiam a mensagem em `#mensagem` ou no Console; a amostra tem 2 partes, e uma música criada pelo teste 3 não tem nenhuma |
@@ -1251,11 +1299,11 @@ nosso-karaoke/
     └── ajustes.sql        (novo)
 ```
 
-Os quatro arquivos ficam no repositório porque o esquema do banco também é código: com eles, qualquer pessoa da dupla refaz as tabelas do zero. O Supabase não lê a pasta `sql/`. O conteúdo de cada arquivo é copiado e colado no **SQL Editor** do painel, na seção 4.3 ou 4.4.
+Os quatro arquivos ficam no repositório porque o esquema do banco também é código: com eles, qualquer pessoa da dupla consegue criar as tabelas de novo. O Supabase não lê a pasta `sql/`. Vocês copiam o conteúdo de cada arquivo e colam no **SQL Editor** do painel, na seção 4.3 ou 4.4.
 
 ### 4.1 Os quatro arquivos SQL
 
-Criem a pasta `sql/` na raiz do projeto e, dentro dela, os quatro arquivos abaixo. Copiem o conteúdo exatamente como está. Os mesmos arquivos estão para baixar na página do trabalho: [schema.sql](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/sql/schema.sql), [seed.sql](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/sql/seed.sql), [diagnostico.sql](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/sql/diagnostico.sql) e [ajustes.sql](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/sql/ajustes.sql); quem baixar salva os quatro na pasta `sql/`, com esses nomes.
+Criem a pasta `sql/` na raiz do projeto e, dentro dela, os quatro arquivos abaixo. Copiem o conteúdo exatamente como está. Os mesmos arquivos estão para baixar na página do trabalho: [schema.sql](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/sql/schema.sql), [seed.sql](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/sql/seed.sql), [diagnostico.sql](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/sql/diagnostico.sql) e [ajustes.sql](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/sql/ajustes.sql). Se vocês baixarem, salvem os quatro na pasta `sql/`, com esses nomes.
 
 <!-- arquivo: sql/schema.sql | etapa: 4 -->
 **Arquivo `sql/schema.sql`**
@@ -1288,7 +1336,7 @@ alter table partes enable row level security;
 -- O cliente do servidor usa chave secreta. Não há políticas para acesso público direto.
 ```
 
-Cria as três tabelas, com as chaves, o `on delete cascade` entre `partes` e `musicas` e o RLS ligado. **Não apaga nada**; se a tabela já existe, o comando falha e o banco fica como estava.
+Este arquivo cria as três tabelas, com as chaves, o `on delete cascade` entre `partes` e `musicas` e o RLS ligado. **Não apaga nada**; se a tabela já existe, o comando falha e o banco fica como estava.
 
 <!-- arquivo: sql/seed.sql | etapa: 4 -->
 **Arquivo `sql/seed.sql`**
@@ -1314,7 +1362,7 @@ where m.nome = 'Encontro da turma' and a.nome = 'Turma de Programação III'
 commit;
 ```
 
-Insere a música de exemplo (artista, música e duas partes). **Não apaga nada** e pode ser repetido: a amostra não duplica.
+Este arquivo insere a música de exemplo (artista, música e duas partes). **Não apaga nada**. Vocês podem rodar esse arquivo mais de uma vez: a amostra não é duplicada.
 
 <!-- arquivo: sql/diagnostico.sql | etapa: 4 -->
 **Arquivo `sql/diagnostico.sql`**
@@ -1400,7 +1448,7 @@ left join pg_class c on c.oid = to_regclass('public.' || t.nome)
 order by ordem, verificacao;
 ```
 
-Confere se o banco tem as tabelas, colunas e ligações esperadas e mostra uma linha por verificação. **Somente leitura**: não altera nem apaga nada.
+Este arquivo confere se o banco tem as tabelas, colunas e ligações esperadas e mostra uma linha por verificação. **Somente leitura**: não altera nem apaga nada.
 
 <!-- arquivo: sql/ajustes.sql | etapa: 4 -->
 **Arquivo `sql/ajustes.sql`**
@@ -1478,16 +1526,23 @@ alter table public.partes enable row level security;
 commit;
 ```
 
-Corrige o que o diagnóstico marcou como `ajustar`: refaz a ligação `partes → musicas` com `on delete cascade`, cria a ligação `musicas → artistas` se faltar, cria a regra de nome único em `artistas.nome` se faltar e liga o RLS nas três tabelas. **Não apaga dados**; se algo impedir o ajuste, nada é alterado e aparece uma mensagem.
+Este arquivo corrige o que o diagnóstico marcou como `ajustar`:
+
+- refaz a ligação `partes → musicas` com `on delete cascade`;
+- cria a ligação `musicas → artistas` se faltar;
+- cria a regra de nome único em `artistas.nome` se faltar;
+- liga o RLS nas três tabelas.
+
+**Não apaga dados**. Se algo impedir o ajuste, nada é alterado e aparece uma mensagem.
 
 ### 4.2 Qual caminho seguir
 
 | Situação | Caminho |
 |---|---|
-| Nunca usaram o Supabase, ou não acham mais o projeto da Unidade 3 | **4A** — projeto novo (seção 4.3) |
+| Nunca usaram o Supabase, ou não encontram mais o projeto da Unidade 3 | **4A** — projeto novo (seção 4.3) |
 | Têm o projeto da Unidade 3 com as tabelas do karaokê | **4B** — projeto existente (seção 4.4) |
 
-Em dúvida, escolham o 4A: um projeto novo é gratuito, leva poucos minutos e não mexe em nada do que já existe. Cada dupla usa um projeto só; não misturem os dois caminhos.
+Se estiverem em dúvida, escolham o 4A. Um projeto novo é gratuito, leva poucos minutos e não altera nada do que já existe. Cada dupla usa um projeto só. Sigam só um dos dois caminhos.
 
 ### 4.3 Caminho 4A — projeto novo
 
@@ -1496,19 +1551,19 @@ Em dúvida, escolham o 4A: um projeto novo é gratuito, leva poucos minutos e n�
 
 ![Formulário Create a new project do Supabase, com Organization, Project name, Database password, Region e a seção Security.](img/cap_06_novo_projeto.png)
 
-   - **Project name:** `karaoke-<turma>-<dupla>`, por exemplo `karaoke-3info-ana-bia`. O navegador pode preencher o nome e a senha com dados salvos de outro site; conferam o que está nos campos antes de seguir.
-   - **Database password:** cliquem em **Generate a password** e guardem a senha num lugar seguro, fora do código e fora do repositório. O projeto não usa essa senha para falar com a API, mas ela é a única forma de recuperar o acesso direto ao banco.
-   - **Region:** mantenham **Americas**, que cai em East US (N. Virginia). **Need a specific region?** oferece South America (São Paulo), mas não vale a pena: a Render publica o projeto nos Estados Unidos (o Guia de deploy na Render, disponível no Classroom da disciplina, recomenda Ohio), e cada operação da API faz várias chamadas ao banco. Com o banco também nos Estados Unidos, essas chamadas ficam curtas.
+   - **Project name:** `karaoke-<turma>-<dupla>`, por exemplo `karaoke-3info-ana-bia`. O navegador pode preencher o nome e a senha com dados salvos de outro site. Confiram o que está nos campos antes de seguir.
+   - **Database password:** cliquem em **Generate a password** e guardem a senha num lugar seguro, fora do código e fora do repositório. O projeto não usa essa senha para acessar a API, mas ela é a única forma de recuperar o acesso direto ao banco.
+   - **Region:** mantenham **Americas**, que corresponde a East US (N. Virginia). **Need a specific region?** oferece South America (São Paulo), mas este guia recomenda não escolher essa opção. O motivo: a Render publica o projeto nos Estados Unidos (o Guia de deploy na Render, disponível no Classroom da disciplina, recomenda Ohio), e cada operação da API faz várias chamadas ao banco. Com o banco também nos Estados Unidos, essas chamadas demoram menos.
    - **Plano:** se aparecer escolha de plano, mantenham o gratuito.
-   - **Security:** deixem **Enable Data API** e **Automatically expose new tables** marcados. O `supabase-js` fala com o banco pela Data API; sem expor, as tabelas criadas por SQL não ficam acessíveis a ela. **Enable automatic RLS** pode ficar desmarcado, porque o `schema.sql` já liga o RLS.
+   - **Security:** deixem **Enable Data API** e **Automatically expose new tables** marcados. O `supabase-js` acessa o banco pela Data API. Se as tabelas criadas por SQL não forem expostas, a Data API não consegue acessá-las. **Enable automatic RLS** pode ficar desmarcado, porque o `schema.sql` já liga o RLS.
 
 3. Cliquem em **Create new project** e esperem a criação (de alguns segundos a poucos minutos). A página inicial do projeto mostra o nome, o endereço e o status **Healthy**.
 
 ![Página inicial do projeto no Supabase, com o nome, o status Healthy e o botão Connect.](img/cap_01_painel_projeto.png)
 
 4. No menu da esquerda, abram o **SQL Editor** e cliquem em **New query**. Se aparecer o aviso "Snippets no longer save automatically", cliquem em **Understood**: para colar e rodar os arquivos, não é preciso salvar.
-5. Abram o `sql/schema.sql` no VS Code, copiem tudo, colem no SQL Editor e cliquem em **Run** (ou `Ctrl+Enter`). O resultado esperado é `Success. No rows returned`.
-6. Apaguem o conteúdo do editor, colem o `sql/seed.sql` e rodem. O resultado também é `Success. No rows returned`.
+5. Abram o `sql/schema.sql` no VS Code e copiem tudo. Colem no SQL Editor. Cliquem em **Run** (ou apertem `Ctrl+Enter`). O resultado esperado é `Success. No rows returned`.
+6. Apaguem o conteúdo do editor. Colem o conteúdo do `sql/seed.sql` e cliquem em **Run**. O resultado também é `Success. No rows returned`.
 7. Confiram os dados com esta consulta (rodem no SQL Editor; ela só lê):
 
    ```sql
@@ -1521,34 +1576,37 @@ Em dúvida, escolham o 4A: um projeto novo é gratuito, leva poucos minutos e n�
    ```
 
    Resultado esperado: uma linha, `Encontro da turma`, artista `Turma de Programação III`, `2` partes.
-8. Rodem o `sql/diagnostico.sql`. O resultado esperado são 20 linhas, todas com `situacao` igual a `ok`. O painel de resultados rola: arrastem até o fim para ver todas as linhas.
+8. Rodem o `sql/diagnostico.sql`. O resultado esperado são 20 linhas, todas com `situacao` igual a `ok`. O painel de resultados tem rolagem: rolem até o fim para ver todas as linhas.
 
 ![SQL Editor com o diagnostico.sql e o resultado de 20 linhas, todas com situação ok.](img/cap_04_sql_editor.png)
 
-Terminaram o 4A? Vão direto para a seção 4.5.
+Se vocês terminaram o 4A, pulem a seção 4.4 e sigam para a seção 4.5.
 
 ### 4.4 Caminho 4B — projeto da Unidade 3
 
-**Projeto pausado.** O plano gratuito pausa projetos sem uso. Se a página do projeto mostrar que ele está pausado, cliquem no botão de restaurar o projeto (o painel mostra **Restore** ou semelhante) e esperem até o status voltar a **Healthy**, o que pode levar alguns minutos. Isso vale também para a véspera da apresentação final: abram o projeto antes e confirmem que ele não está pausado.
+**Projeto pausado.** O plano gratuito pausa projetos sem uso. Se a página do projeto mostrar que ele está pausado, cliquem no botão de restaurar o projeto (o painel mostra **Restore** ou semelhante). Esperem até o status voltar a **Healthy**, o que pode levar alguns minutos. Façam essa conferência também na véspera da apresentação final: abram o projeto e confirmem que ele não está pausado.
 
 **Diagnóstico.** No **SQL Editor**, colem o `sql/diagnostico.sql` e rodem. Ele não altera nada. Leiam a coluna `situacao` de cada linha e sigam a tabela:
 
 | `situacao` | O que significa | O que fazer |
 |---|---|---|
 | `ok` | está como a aplicação espera | nada |
-| `ajustar` | o banco funciona, mas falta uma ligação ou uma regra | rodar o `sql/ajustes.sql` e depois o diagnóstico de novo |
-| `criar` | falta uma tabela ou uma coluna | ver "Linha `criar` numa coluna de `partes`" abaixo, ou chamar o professor |
-| `conferir` | funciona, mas é diferente do esperado | ler o `detalhe` da linha |
+| `ajustar` | o banco funciona, mas falta uma ligação ou uma regra | rodem o `sql/ajustes.sql` e depois o diagnóstico de novo |
+| `criar` | falta uma tabela ou uma coluna | vejam "Linha `criar` numa coluna de `partes`" abaixo, ou chamem o professor |
+| `conferir` | funciona, mas é diferente do esperado | leiam o `detalhe` da linha |
 
 Num banco montado como o da Unidade 3, o resultado pode trazer `ajustar` na ligação `partes → musicas` (falta o `on delete cascade`) e no nome de artista único, e `conferir` no RLS de `partes`:
 
 ![Resultado do diagnóstico num banco da Unidade 3, com linhas ajustar e conferir.](img/cap_07_diagnostico_ajustar.png)
 
-**Linhas `ajustar`.** Colem o `sql/ajustes.sql` no editor e rodem. O resultado esperado é `Success. No rows returned`. As mensagens do ajuste (`raise notice`) **não aparecem** no SQL Editor; para saber se funcionou, rodem o `sql/diagnostico.sql` de novo. As linhas que eram `ajustar` precisam virar `ok`, e os dados continuam no lugar.
+**Linhas `ajustar`.** Colem o `sql/ajustes.sql` no editor e rodem. O resultado esperado é `Success. No rows returned`. As mensagens do ajuste (`raise notice`) **não aparecem** no SQL Editor. Para saber se funcionou, rodem o `sql/diagnostico.sql` de novo. As linhas que eram `ajustar` precisam mostrar `ok`, e os dados continuam no banco.
 
-**Linha `conferir`.** Leiam o `detalhe`. No caso do RLS de `partes` desligado, o `ajustes.sql` também liga o RLS nas três tabelas; confirmem rodando o diagnóstico de novo. Se o RLS continuar `conferir`, chamem o professor antes de mexer. Se o detalhe for `aceita vazio, mas deveria ser not null` (uma coluna criada sem `not null` na Unidade 3), a aplicação funciona assim: podem seguir. A API já recusa valores vazios antes de gravar; o `ajustes.sql` não muda essas colunas, e a linha continua `conferir`.
+**Linha `conferir`.** Leiam o `detalhe`. Os dois casos previstos são estes:
 
-**Linha `criar` numa coluna de `partes`.** Se a tabela `partes` da Unidade 3 tem outra forma e faltam colunas, o caminho é recriar só essa tabela. Atenção: o bloco abaixo **apaga todas as letras já cadastradas em `partes`**. Só rodem se aceitam perdê-las (o `seed.sql` devolve a música de exemplo). As tabelas `artistas` e `musicas` não são tocadas.
+- O RLS está desligado. No banco da Unidade 3, isso aparece em `partes`. O `ajustes.sql` também liga o RLS nas três tabelas. Rodem o diagnóstico de novo para confirmar. Se o RLS continuar `conferir`, chamem o professor antes de alterar qualquer coisa.
+- O detalhe é `aceita vazio, mas deveria ser not null` (uma coluna criada sem `not null` na Unidade 3). A aplicação funciona assim, e vocês podem seguir. A API já recusa valores vazios antes de gravar. O `ajustes.sql` não muda essas colunas, e a linha continua `conferir`.
+
+**Linha `criar` numa coluna de `partes`.** Se a tabela `partes` da Unidade 3 tem outra estrutura e faltam colunas, a solução é recriar só essa tabela. Atenção: o bloco abaixo **apaga todas as letras já cadastradas em `partes`**. Só rodem o bloco se vocês aceitam perder essas letras (o `seed.sql` grava de novo a música de exemplo). As tabelas `artistas` e `musicas` não são alteradas.
 
 ```sql
 drop table if exists partes;
@@ -1563,17 +1621,22 @@ create table partes (
 alter table partes enable row level security;
 ```
 
-Depois, rodem o diagnóstico de novo. Se `criar` aparecer em `artistas` ou `musicas`, não improvisem: chamem o professor.
+Depois, rodem o diagnóstico de novo. Se `criar` aparecer em `artistas` ou `musicas`, não alterem nada por conta própria: chamem o professor.
 
-**Mensagem "mesmo nome".** Se o `ajustes.sql` parar com `Há artistas com o mesmo nome`, a regra de nome único não pôde ser criada e nada foi alterado. Vejam quais nomes se repetem:
+**Mensagem "mesmo nome".** Se o `ajustes.sql` parar com `Há artistas com o mesmo nome`, a regra de nome único não pôde ser criada e nada foi alterado. Rodem esta consulta para ver quais nomes se repetem:
 
 ```sql
 select nome, count(*) from artistas group by nome having count(*) > 1;
 ```
 
-Fundir artistas repetidos exige decidir a qual deles as músicas passam a pertencer. Isso não é para fazer no improviso: **chamem o professor** com o resultado da consulta.
+Juntar artistas repetidos num só exige decidir a qual deles as músicas passam a pertencer. Não façam essa correção por conta própria: **chamem o professor** e mostrem o resultado da consulta.
 
-**Por fim.** Quando o diagnóstico não tiver nenhuma linha `ajustar` ou `criar` (linhas `conferir` de coluna que aceita vazio podem ficar), rodem o `sql/seed.sql` (resultado `Success. No rows returned`) e a consulta de conferência do passo 7 da seção 4.3. Se a música de exemplo já existia, o `seed.sql` não a duplica.
+**Por fim.** Continuem só quando o diagnóstico não tiver nenhuma linha `ajustar` ou `criar` (linhas `conferir` de coluna que aceita vazio podem ficar). Depois:
+
+1. Rodem o `sql/seed.sql`. O resultado esperado é `Success. No rows returned`.
+2. Rodem a consulta de conferência do passo 7 da seção 4.3.
+
+Se a música de exemplo já existia, o `seed.sql` não a duplica.
 
 ### 4.5 Conferir no Table Editor
 
@@ -1581,9 +1644,9 @@ No menu da esquerda, abram o **Table Editor**. Precisam aparecer as tabelas `art
 
 ![Table Editor do Supabase com as tabelas artistas, musicas e partes e a linha Encontro da turma.](img/cap_05_table_editor.png)
 
-O Table Editor mostra os mesmos dados do SQL Editor, em forma de planilha. Para ler e conferir, qualquer um serve; para criar tabelas e rodar arquivos inteiros, usem o SQL Editor.
+O Table Editor mostra os mesmos dados do SQL Editor, em forma de planilha. Para ler e conferir dados, usem qualquer um dos dois. Para criar tabelas e rodar arquivos inteiros, usem o SQL Editor.
 
-> **Entenda — tabela, chave primária, chave estrangeira e cascade.** Cada tabela guarda um tipo de coisa: artistas, músicas, partes. A **chave primária** (`id`) identifica cada linha, e o banco gera o número sozinho. A **chave estrangeira** (`musica_id` em `partes`) aponta para a linha da outra tabela a que ela pertence. O **`on delete cascade`** diz o que acontece com as partes quando a música é excluída: elas são excluídas junto, em vez de ficarem soltas apontando para uma música que não existe. A Parte II explica isso na seção "O mínimo de banco relacional".
+> **Entenda — tabela, chave primária, chave estrangeira e cascade.** Cada tabela guarda um tipo de coisa: artistas, músicas, partes. A **chave primária** (`id`) identifica cada linha, e o banco gera o número automaticamente. A **chave estrangeira** (`musica_id` em `partes`) aponta para a linha da outra tabela a que ela pertence. O **`on delete cascade`** diz o que acontece com as partes quando a música é excluída: elas são excluídas junto, em vez de ficarem apontando para uma música que não existe. A Parte II explica isso na seção "O mínimo de banco relacional".
 
 ### Quem usa / o que usa
 
@@ -1598,7 +1661,7 @@ O Table Editor mostra os mesmos dados do SQL Editor, em forma de planilha. Para 
 
 Com o banco pronto (4A ou 4B), rodem no SQL Editor o `sql/diagnostico.sql`.
 
-Resultado esperado: 20 linhas, sem nenhuma `ajustar` ou `criar`. No 4A, todas vêm `ok`. No 4B, depois do `ajustes.sql`, as linhas que eram `ajustar` mostram `ok`, os dados que já existiam continuam no banco, e podem sobrar linhas `conferir` com o detalhe `aceita vazio, mas deveria ser not null`, que não impedem de seguir. A consulta de conferência da seção 4.3 devolve uma linha: `Encontro da turma`, `Turma de Programação III`, `2` partes.
+Resultado esperado: 20 linhas, sem nenhuma `ajustar` ou `criar`. No 4A, todas as linhas mostram `ok`. No 4B, depois do `ajustes.sql`, as linhas que eram `ajustar` mostram `ok`, e os dados que já existiam continuam no banco. No 4B, podem continuar linhas `conferir` com o detalhe `aceita vazio, mas deveria ser not null`. Essas linhas não impedem vocês de seguir. A consulta de conferência da seção 4.3 devolve uma linha: `Encontro da turma`, `Turma de Programação III`, `2` partes.
 
 ### Commit sugerido
 
@@ -1614,13 +1677,13 @@ git push
 
 | Sintoma | Causa provável | O que fazer |
 |---|---|---|
-| `relation "artistas" already exists` ao rodar o `schema.sql` | o projeto já tinha as tabelas (é um projeto da Unidade 3) | não rodem o `schema.sql` de novo; sigam o caminho 4B: diagnóstico, ajustes se preciso |
-| `permission denied` ao rodar ou ao abrir uma tabela | vocês estão num projeto ou numa organização que não é de vocês | conferam o nome do projeto no topo do painel e troquem para o projeto da dupla |
+| `relation "artistas" already exists` ao rodar o `schema.sql` | o projeto já tinha as tabelas (é um projeto da Unidade 3) | não rodem o `schema.sql` de novo; sigam o caminho 4B (seção 4.4): rodem o diagnóstico e, se ele indicar, os ajustes |
+| `permission denied` ao rodar ou ao abrir uma tabela | vocês estão num projeto ou numa organização que não é de vocês | confiram o nome do projeto no topo do painel e troquem para o projeto da dupla |
 | A consulta de conferência volta vazia (`No rows returned`) | o `seed.sql` não rodou, ou rodou em outro projeto | rodem o `sql/seed.sql` e repitam a consulta |
-| O `ajustes.sql` mostra `Success` mas não apareceu nenhuma mensagem | as mensagens `raise notice` não aparecem no SQL Editor | rodem o `sql/diagnostico.sql` de novo e confiram se as linhas viraram `ok` |
+| O `ajustes.sql` mostra `Success` mas não apareceu nenhuma mensagem | as mensagens `raise notice` não aparecem no SQL Editor | rodem o `sql/diagnostico.sql` de novo e confiram se as linhas que eram `ajustar` agora mostram `ok` |
 | `there is no unique or exclusion constraint matching the ON CONFLICT specification` ao rodar o `seed.sql` | o `seed.sql` rodou antes do `ajustes.sql` num banco da Unidade 3 em que `artistas.nome` ainda aceita repetição | rodem o `sql/ajustes.sql` e o diagnóstico; depois, repitam o `sql/seed.sql` |
 
-**Aviso ao sair do SQL Editor.** Ao fechar a página, o painel pode perguntar se vocês querem descartar a consulta. Isso não é erro: o SQL Editor não salva sozinho, e o conteúdo está no arquivo do repositório. Para guardar uma consulta no painel, usem **Save** (`Ctrl+S`).
+**Aviso ao sair do SQL Editor.** Ao fechar a página, o painel pode perguntar se vocês querem descartar a consulta. Isso não é erro: o SQL Editor não salva automaticamente, e o conteúdo está no arquivo do repositório. Para guardar uma consulta no painel, usem **Save** (`Ctrl+S`).
 
 > **Pergunte ao agente.** *"Rodei o diagnostico.sql e a linha 'ligação partes → musicas' veio como ajustar. Explique o que é on delete cascade e o que aconteceria se eu excluísse uma música com partes sem ele. Use como fonte o guia_supabase.md (Etapa 4), na página do trabalho: https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md."*
 
@@ -1628,7 +1691,7 @@ git push
 
 ## Etapa 5 — Ligar o Node ao Supabase
 
-**Objetivo:** fazer o servidor Node conversar com o banco da etapa 4. Ao final, um teste de conexão lista no terminal a música de exemplo que está no Supabase. Os DAOs só passam a usar o banco nas etapas 7 a 9; aqui vocês montam e testam a ligação.
+**Objetivo:** conectar o servidor Node ao banco da etapa 4. Ao final, um teste de conexão lista no terminal a música de exemplo que está no Supabase. Os DAOs só passam a usar o banco nas etapas 7 a 9. Nesta etapa, vocês configuram e testam a conexão.
 
 ```text
 nosso-karaoke/
@@ -1643,7 +1706,7 @@ nosso-karaoke/
 
 ### 5.1 Proteger o `.env` antes de criá-lo
 
-O `.env` vai guardar a chave que dá acesso total ao banco. Se ele for para o GitHub, a chave fica pública. Por isso o `.gitignore` precisa listar o `.env` **antes** de o arquivo existir. O `.gitignore` do projeto já deveria ter as duas linhas abaixo; abram o arquivo e confiram. Se faltar alguma, copiem o conteúdo inteiro.
+O `.env` vai guardar a chave que dá acesso total ao banco. Se o `.env` for enviado ao GitHub, a chave fica pública. Por isso o `.gitignore` precisa listar o `.env` **antes** de o arquivo existir. O `.gitignore` do projeto já deve ter as duas linhas abaixo. Abram o arquivo e confiram se as duas estão nele. Se faltar alguma, copiem o conteúdo inteiro do bloco abaixo.
 
 <!-- arquivo: .gitignore | etapa: 5 -->
 **Arquivo `.gitignore`** (confiram: ele precisa ter estas duas linhas ANTES de vocês criarem o `.env`)
@@ -1662,9 +1725,9 @@ No terminal, na pasta do projeto, instalem o cliente do Supabase e o `dotenv`, q
 npm install @supabase/supabase-js@2.117.1 dotenv@18.0.3
 ```
 
-O `package.json` ganha as duas dependências na seção `dependencies`.
+O `package.json` passa a ter as duas dependências na seção `dependencies`.
 
-**Não sigam o passo 1 da janela Connect.** Na seção 5.4, vocês vão abrir a janela Connect do painel, e o passo 1 dela manda rodar `npm install @supabase/server`. Esse é outro pacote oficial do Supabase, para um estilo diferente de servidor. Este projeto usa o `@supabase/supabase-js`, que vocês acabaram de instalar. O `@supabase/server` é o pacote que estava instalado por engano no repositório da aula e foi removido na etapa 2; não o instalem de novo.
+**Não sigam o passo 1 da janela Connect.** Na seção 5.4, vocês vão abrir a janela Connect do painel, e o passo 1 dela diz para rodar `npm install @supabase/server`. Esse é outro pacote oficial do Supabase, para um estilo diferente de servidor. Este projeto usa o `@supabase/supabase-js`, que vocês acabaram de instalar. O `@supabase/server` é o pacote que estava instalado por engano no repositório da aula e foi removido na etapa 2. Não instalem esse pacote de novo.
 
 ### 5.3 O arquivo `.env.example`
 
@@ -1681,7 +1744,7 @@ SUPABASE_SECRET_KEY=sb_secret_SUBSTITUA
 PORT=3000
 ```
 
-Agora criem o `.env` como cópia dele. No terminal do VS Code (Git Bash, macOS ou Linux):
+Agora criem o `.env` como cópia do `.env.example`. Usem só um dos três comandos abaixo, conforme o terminal de vocês. No terminal do VS Code (Git Bash, macOS ou Linux):
 
 <!-- executar | etapa: 5 -->
 ```bash
@@ -1702,7 +1765,7 @@ copy .env.example .env
 
 ### 5.4 Onde achar a URL e a secret key
 
-**A URL do projeto.** Na página inicial do projeto no Supabase, clique no botão verde **Connect**, no topo. Abre a janela **Connect to your project**. Escolham a aba **Server — Build APIs**. O passo 2 dessa aba mostra um bloco de variáveis (um `.env` de exemplo). Vocês só usam duas delas:
+**A URL do projeto.** Na página inicial do projeto no Supabase, cliquem no botão verde **Connect**, no topo. Abre a janela **Connect to your project**. Escolham a aba **Server — Build APIs**. O passo 2 dessa aba mostra um bloco de variáveis (um `.env` de exemplo). Vocês só usam duas delas:
 
 | Variável na janela | Usa neste projeto? | Vai para o `.env` como |
 |---|---|---|
@@ -1713,15 +1776,21 @@ copy .env.example .env
 
 ![Janela Connect do Supabase, aba Server, com as variáveis SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, SUPABASE_SECRET_KEY e SUPABASE_JWKS_URL; os valores estão borrados.](img/cap_02_connect.png)
 
-A `SUPABASE_SECRET_KEY` aparece mascarada. O botão com o desenho de um olho revela o valor, e o botão ao lado copia. Esta janela serve para copiar a URL e para conhecer as variáveis. Ignorem o passo 1 (instalação do `@supabase/server`), como explicado na seção 5.2, o passo 3 (`npx skills add supabase/server`) e o botão **Copy prompt**: os dois também levam ao `@supabase/server`.
+A `SUPABASE_SECRET_KEY` aparece mascarada. O botão com o desenho de um olho revela o valor, e o botão ao lado copia. Esta janela serve para copiar a URL e para conhecer as variáveis. Ignorem três itens dessa janela:
 
-**A secret key.** O caminho é o mesmo no painel inteiro: **Project Settings → API Keys**. Na aba **Publishable and secret API keys**, a seção **Secret keys** lista a chave `default`, mascarada. Usem o olho para revelar e o botão de copiar. O botão **New secret key** cria chaves adicionais; vocês não precisam dele agora. Não usem a aba **Legacy anon, service_role API keys**.
+- o passo 1 (instalação do `@supabase/server`), como explicado na seção 5.2;
+- o passo 3 (`npx skills add supabase/server`);
+- o botão **Copy prompt**.
+
+O passo 3 e o botão **Copy prompt** também usam o `@supabase/server`.
+
+**A secret key.** Em qualquer página do painel, o caminho é o mesmo: **Project Settings → API Keys**. Na aba **Publishable and secret API keys**, a seção **Secret keys** lista a chave `default`, mascarada. Cliquem no botão com o desenho de um olho para revelar a chave. Depois, cliquem no botão de copiar. O botão **New secret key** cria chaves adicionais. Vocês não precisam dele agora. Não usem a aba **Legacy anon, service_role API keys**.
 
 ![Página API Keys do Supabase, com a Publishable key e a seção Secret keys com a chave default mascarada; os valores estão borrados.](img/cap_03_api_keys.png)
 
 ### 5.5 Preencher o `.env`
 
-Abram o `.env` no VS Code e troquem os dois valores. Sem aspas, sem espaços em volta do `=`, sem ponto e vírgula. O exemplo abaixo usa valores **fictícios**; os de vocês são diferentes:
+Abram o `.env` no VS Code. Troquem os valores de `SUPABASE_URL` e de `SUPABASE_SECRET_KEY` pelos valores copiados do painel. Escrevam sem aspas, sem espaços em volta do `=` e sem ponto e vírgula. O exemplo abaixo usa valores **fictícios**; os de vocês são diferentes:
 
 ```bash
 SUPABASE_URL=https://abcdefghijklmnop.supabase.co
@@ -1729,13 +1798,13 @@ SUPABASE_SECRET_KEY=sb_secret_SUBSTITUA_PELA_SUA_CHAVE
 PORT=3000
 ```
 
-`PORT=3000` é a porta em que o servidor escuta no computador de vocês; se a linha faltar, o `app.js` usa 3000 do mesmo jeito. Na Render, quem define a `PORT` é a própria plataforma.
+`PORT=3000` é a porta em que o servidor escuta no computador de vocês. Se a linha faltar, o `app.js` usa 3000 mesmo assim. Na Render, quem define a `PORT` é a própria plataforma.
 
-Salvem o arquivo. Confirmem que o Git não o enxerga: `git status` não pode listar `.env`.
+Salvem o arquivo. Depois, rodem `git status` e confirmem que o Git ignora o arquivo: o `.env` não pode aparecer na lista.
 
 > **Cuidado — se a chave vazar.** A secret key dá acesso total ao banco, sem passar por nenhuma regra. Ela vaza quando vai para o GitHub, é colada numa conversa com o agente de IA, aparece numa captura de tela ou é enviada num grupo. Se isso acontecer, não adianta apagar o arquivo ou a mensagem: a chave continua válida. Troquem a chave:
 >
-> 1. No Supabase, **Project Settings → API Keys**, seção **Secret keys**: criem uma nova chave com **New secret key**.
+> 1. No Supabase, abram **Project Settings → API Keys**. Na seção **Secret keys**, criem uma nova chave com **New secret key**.
 > 2. Excluam a chave que vazou.
 > 3. Atualizem o valor no `.env` da máquina de vocês e, se o projeto já estiver publicado, na variável de ambiente `SUPABASE_SECRET_KEY` da Render.
 > 4. Avisem o professor.
@@ -1816,7 +1885,7 @@ O trecho `artista:artistas(nome)` pede a música junto com o nome do artista lig
 node testes/teste_conexao.js
 ```
 
-Saída esperada (os números podem diferir se vocês já mexeram no banco):
+Saída esperada (os números podem diferir se vocês já alteraram os dados do banco):
 
 ```text
 Conexão funcionando. Músicas no banco: 1
@@ -1827,17 +1896,17 @@ Se aparecer `Falhou:` ou um erro de Node, vão para "Se deu errado".
 
 > **Entenda — variáveis de ambiente.** Uma variável de ambiente é um valor que o programa lê de fora do código. O `dotenv` lê o arquivo `.env` e coloca esses valores em `process.env`. Assim o código é o mesmo na máquina de vocês e na Render; só os valores mudam. A Parte II explica isso na seção "Variáveis de ambiente".
 
-> **Entenda — publishable × secret.** O Supabase oferece dois tipos de chave. A *publishable* pode ir para o navegador, mas só enxerga o que as regras de acesso (RLS) liberarem; como o RLS está ligado e sem políticas, ela não lê nada. A *secret* ignora o RLS e só pode existir no servidor. Este projeto lê e grava pelo servidor, por isso usa a secret. A Parte II explica isso em "As chaves de acesso" e "RLS: a trava que já vem ligada".
+> **Entenda — publishable × secret.** O Supabase oferece dois tipos de chave. A *publishable* pode ir para o navegador, mas só lê o que as regras de acesso (RLS) liberarem. Como o RLS está ligado e sem políticas, ela não lê nada. A *secret* ignora o RLS e só pode ficar no servidor. Este projeto lê e grava pelo servidor, por isso usa a secret. A Parte II explica isso em "As chaves de acesso" e "RLS: a trava que já vem ligada".
 
 ### Commit sugerido
 
-Entram no repositório o `supabaseClient.js`, o `.env.example`, o teste, o `.gitignore` e o `package.json` com o `package-lock.json`. O `.env` não entra.
+Entram no repositório o `supabaseClient.js`, o `.env.example`, o teste, o `.gitignore` e o `package.json` com o `package-lock.json`. O `.env` não entra. Primeiro, rodem:
 
 ```bash
 git status
 ```
 
-Confiram que o `.env` **não** aparece na lista. Só então:
+Confiram que o `.env` **não** aparece na lista. Só depois disso, rodem:
 
 ```bash
 git add .gitignore .env.example supabaseClient.js testes package.json package-lock.json
@@ -1861,7 +1930,7 @@ git push
 
 ## Etapa 6 — Classes
 
-**Objetivo:** preparar as classes do projeto para os dados que vêm do banco. Ao final, existem a classe `Artista`, a classe `Parte` com `id` e `ordem`, e a `Musica` já documentada para guardar um objeto `Artista`. Nada fala com o banco ainda; isso começa na etapa 7.
+**Objetivo:** preparar as classes do projeto para os dados que vêm do banco. Ao final, existem a classe `Artista`, a classe `Parte` com `id` e `ordem`, e a `Musica` já documentada para guardar um objeto `Artista`. Nesta etapa, nenhum arquivo acessa o banco. O acesso começa na etapa 7.
 
 ```text
 nosso-karaoke/
@@ -1881,7 +1950,7 @@ O banco da etapa 4 e as classes do projeto descrevem as mesmas coisas, mas de je
 | Ligação entre coisas | chave estrangeira: a música guarda só o número `artista_id` | objeto dentro de objeto: `musica.artista` é um `Artista`, com `id` e `nome` |
 | Ordem das partes | coluna `ordem` | posição no array `musica.partes` |
 
-O código do player e das rotas usa `tempoEspera` e `musica.artista.nome`. Quem converte de um formato para o outro é o DAO, em um método de mapeamento, e as classes abaixo são o destino dessa conversão.
+O código do player e das rotas usa `tempoEspera` e `musica.artista.nome`. O DAO converte de um formato para o outro, em um método de mapeamento. As classes abaixo são o resultado dessa conversão.
 
 ### 6.2 As classes
 
@@ -1903,7 +1972,7 @@ class Artista {
 module.exports = { Artista };
 ```
 
-A `Parte` ganha dois campos que a etapa 3 não precisava: `id`, definido pelo banco, e `ordem`, a posição da parte na música. Os dois começam nulos e o `ParteDAO` os preenche.
+A `Parte` recebe dois campos novos, que a etapa 3 não usava: `id`, definido pelo banco, e `ordem`, a posição da parte na música. Os dois começam nulos e o `ParteDAO` os preenche.
 
 
 <!-- arquivo: karaoke/parte.js | etapa: 6 -->
@@ -1964,7 +2033,7 @@ Saída esperada:
 
 No PowerShell, o comando funciona igual. Se aparecer um erro, vão para "Se deu errado".
 
-> **Entenda — por que a `Parte` começa com `id` nulo.** Quem escolhe o `id` de uma linha é o banco, na hora da gravação. Antes de gravar, a parte ainda não tem número, e `null` diz exatamente isso. O mesmo vale para `ordem`: ela só existe depois que o `ParteDAO` descobre onde a parte entra na música.
+> **Entenda — por que a `Parte` começa com `id` nulo.** Quem escolhe o `id` de uma linha é o banco, na hora da gravação. Antes de gravar, a parte ainda não tem número, e `null` indica isso. O mesmo vale para `ordem`: ela só existe depois que o `ParteDAO` calcula a posição da parte na música.
 
 ### Commit sugerido
 
@@ -1980,7 +2049,7 @@ git push
 |---|---|---|
 | `Cannot find module './karaoke/artista'` | o arquivo foi salvo com outro nome ou fora da pasta `karaoke/` | confiram o caminho `karaoke/artista.js` na árvore do projeto e rodem o comando na pasta do projeto, não dentro de `karaoke/` |
 | `Artista is not a constructor` | o `require` foi escrito sem as chaves, ou o `module.exports` do arquivo está diferente do guia | o `require` precisa ser `const { Artista } = require(...)` e o arquivo termina com `module.exports = { Artista };` |
-| `TypeError: Cannot read properties of undefined (reading 'nome')` | a `Musica` recebeu um texto no lugar do objeto, ou o argumento `a` ficou de fora | confiram que o teste passa o objeto `a` como segundo argumento de `new Musica` |
+| `TypeError: Cannot read properties of undefined (reading 'nome')` | a `Musica` recebeu um texto no lugar do objeto, ou o argumento `a` não foi passado | confiram que o teste passa o objeto `a` como segundo argumento de `new Musica` |
 | `3 Turma 5 undefined undefined` | a `Parte` não foi alterada: faltam `this.id = null;` e `this.ordem = null;` no construtor | copiem de novo o arquivo `karaoke/parte.js` inteiro |
 | O `Ctrl+F` não encontra o trecho "Antes" do `karaoke/musica.js` | a troca da seção 2.4 não foi feita, ou o arquivo aberto é outro | confiram o caminho e o construtor; ele precisa ter `constructor(nome, artista, id)` |
 
@@ -1990,7 +2059,7 @@ git push
 
 ## Etapa 7 — `ArtistaDAO`
 
-**Objetivo:** criar o primeiro DAO que usa o banco de verdade. Ao final, o `ArtistaDAO` lista, busca, insere e cria artistas no Supabase, e um teste confere isso direto na tabela `artistas`.
+**Objetivo:** criar o primeiro DAO que usa o banco. Ao final, o `ArtistaDAO` lista, busca, insere e cria artistas no Supabase, e um teste confere isso direto na tabela `artistas`.
 
 ```text
 nosso-karaoke/
@@ -2002,13 +2071,13 @@ nosso-karaoke/
 
 ### 7.1 O DAO
 
-O `ArtistaDAO` segue o desenho dos DAOs da etapa 3, com duas diferenças. Os dados vêm da tabela `artistas`, e todos os métodos são `async`, porque falar com a nuvem leva tempo. Cada chamada ao banco devolve um objeto com dois campos, `data` e `error`. O código sempre confere o `error` primeiro.
+O `ArtistaDAO` segue a estrutura dos DAOs da etapa 3, com duas diferenças. Os dados vêm da tabela `artistas`, e todos os métodos são `async`, porque a comunicação com o banco pela internet leva tempo. Cada chamada ao banco devolve um objeto com dois campos, `data` e `error`. O código sempre confere o `error` primeiro.
 
-Três detalhes do código merecem atenção:
+Observem três detalhes do código:
 
 - `maybeSingle()` espera zero ou uma linha. Com uma linha devolve o objeto, com zero devolve `null`. Já o `single()` trata zero linhas como erro. Por isso a busca usa `maybeSingle()` (um artista pode não existir) e o `inserir` usa `single()` (depois de inserir, a linha tem de existir).
 - No `inserir`, o `.select('id, nome')` depois do `.insert()` pede ao banco que devolva a linha criada. Sem ele, o código não saberia o `id` gerado.
-- O `buscarOuCriar` primeiro procura o artista pelo nome e só insere se não achar. A API continua recebendo o artista como texto, e este método transforma o texto em um `Artista` do banco sem duplicar nomes.
+- O `buscarOuCriar` primeiro procura o artista pelo nome e só insere se não encontrar. A API continua recebendo o artista como texto, e este método transforma o texto em um `Artista` do banco sem duplicar nomes.
 
 
 <!-- arquivo: DAO/ArtistaDAO.js | etapa: 7 -->
@@ -2157,7 +2226,7 @@ buscarPorId encontrou: Turma de Programação III
 ArtistaDAO OK
 ```
 
-> **Entenda — o padrão `{ data, error }`.** O `supabase-js` não lança exceção quando o banco recusa um pedido; ele devolve o problema no campo `error`. Se o código ignorar o `error`, `data` vem `null` e o programa quebra mais adiante, em outro lugar, com uma mensagem que não ajuda. Por isso cada método confere o `error` e lança um `Error` com a mensagem do banco. Quem chamar o DAO recebe o erro já com o contexto.
+> **Entenda — o padrão `{ data, error }`.** O `supabase-js` não lança exceção quando o banco recusa um pedido. Ele devolve o problema no campo `error`. Se o código ignorar o `error`, `data` vem `null` e o programa falha mais adiante, em outro ponto do código, com uma mensagem que não indica a causa. Por isso cada método confere o `error` e lança um `Error` com a mensagem do banco. Quem chamar o DAO recebe o erro já com o contexto.
 
 ### Commit sugerido
 
@@ -2174,7 +2243,7 @@ git push
 | `Cannot find module '../supabaseClient'` | o `supabaseClient.js` não está na raiz do projeto, ao lado do `app.js` | confiram o arquivo da etapa 5 e rodem o teste na pasta do projeto: `node testes/teste_artista_dao.js` |
 | `Falhou: Erro ao listar artistas: Invalid API key` | o `.env` está com a chave errada ou incompleta | refaçam a seção 5.5 e rodem o `testes/teste_conexao.js` para confirmar a conexão |
 | `Could not find the table 'public.artistas'` | o `schema.sql` não rodou neste projeto, ou a URL do `.env` é de outro projeto | confiram no Table Editor se a tabela `artistas` existe no projeto da dupla |
-| `Falhou: Erro ao listar artistas: TypeError: fetch failed` | sem internet, ou a `SUPABASE_URL` do `.env` está errada | confiram a conexão e a URL; o `testes/teste_conexao.js` da etapa 5 mostra o mesmo problema |
+| `Falhou: Erro ao listar artistas: TypeError: fetch failed` | sem internet, ou a `SUPABASE_URL` do `.env` está errada | confiram a conexão com a internet e a URL; o `testes/teste_conexao.js` da etapa 5 mostra o mesmo problema |
 | `Falhou: buscarOuCriar criou um artista repetido` | o `buscarPorNome` não encontra o artista que acabou de ser criado | confiram se o nome no `.eq('nome', nome)` e a coluna da tabela são `nome`, e se não há espaço extra no texto |
 
 > **Pergunte ao agente.** *"Explique por que o buscarOuCriar primeiro busca e só depois insere. O que daria errado se ele sempre inserisse? Use como fonte o guia_supabase.md (Etapa 7), na página do trabalho: https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md."*
@@ -2183,7 +2252,7 @@ git push
 
 ## Etapa 8 — `ParteDAO`
 
-**Objetivo:** criar o DAO das partes (versos e refrões). Ao final, o `ParteDAO` lista as partes de uma música na ordem certa e insere uma parte nova no fim da música, e um teste confere as duas partes da amostra.
+**Objetivo:** criar o DAO das partes (versos e refrões). Ao final, o `ParteDAO` lista as partes de uma música na ordem certa e insere uma parte nova no fim da música. Um teste confere as duas partes da amostra.
 
 ```text
 nosso-karaoke/
@@ -2197,11 +2266,11 @@ nosso-karaoke/
 
 Uma linha numa tabela não tem posição. O banco pode devolver as linhas de um `select` em qualquer ordem, e a ordem pode mudar depois de uma edição. A letra de uma música, porém, só faz sentido na sequência certa. Por isso a tabela `partes` tem a coluna `ordem` (0, 1, 2...), e o DAO pede ao banco `.order('ordem')` em toda consulta de partes.
 
-Na hora de inserir, o DAO descobre a parte de maior `ordem` daquela música e usa o número seguinte. Música sem partes começa em 0.
+Ao inserir, o DAO busca a parte de maior `ordem` daquela música e usa o número seguinte. Uma música sem partes começa em 0.
 
 ### 8.2 O mapeamento nos dois sentidos
 
-O método `_paraParte` converte uma linha do banco em um objeto `Parte`: `tempo_espera` vira `tempoEspera`. É por isso que o player continua funcionando sem mudança. No `inserir` acontece o caminho contrário: `parte.tempoEspera` vira a chave `tempo_espera` do objeto enviado ao banco.
+O método `_paraParte` converte uma linha do banco em um objeto `Parte`: `tempo_espera` vira `tempoEspera`. É por isso que o player continua funcionando sem mudança. No `inserir` acontece a conversão contrária: `parte.tempoEspera` vira a chave `tempo_espera` do objeto enviado ao banco.
 
 
 <!-- arquivo: DAO/ParteDAO.js | etapa: 8 -->
@@ -2285,7 +2354,7 @@ module.exports = new ParteDAO();
 
 ### 8.3 O teste
 
-O teste busca a música de amostra pelo nome, porque o `id` dela pode ser diferente em cada banco, e confere que as duas partes chegam em ordem e com o tempo convertido. Ele só lê; não grava nada.
+O teste busca a música de amostra pelo nome, porque o `id` dela pode ser diferente em cada banco. Depois, ele confere que as duas partes vêm em ordem e com o `tempo_espera` convertido em `tempoEspera`. O teste só lê; não grava nada.
 
 
 <!-- arquivo: testes/teste_parte_dao.js | etapa: 8 -->
@@ -2374,7 +2443,7 @@ git push
 
 ## Etapa 9 — `MusicaDAO` com o banco
 
-**Objetivo:** trocar o array do `MusicaDAO` da etapa 3 pelo banco. Ao final, listar, buscar, inserir, editar e remover músicas acontece no Supabase, e um teste confere o ciclo completo sem deixar registros.
+**Objetivo:** trocar o array do `MusicaDAO` da etapa 3 pelo banco. Ao final, o DAO lista, busca, insere, edita e remove músicas no Supabase. Um teste confere todas essas operações e não deixa registros no banco.
 
 ```text
 nosso-karaoke/
@@ -2384,7 +2453,7 @@ nosso-karaoke/
     └── teste_musica_dao.js    (novo)
 ```
 
-> **Atenção — entre esta etapa e a próxima, o servidor responde errado. É esperado.** O `MusicaDAO` agora é `async`: cada método devolve uma Promise. As rotas do `app.js` ainda são síncronas e tratam essa Promise como se fosse a música. Por isso, até a etapa 10, o servidor sobe, mas as respostas da API saem erradas (um `{}`, por exemplo). Não é erro de vocês. A etapa 10 corrige as rotas.
+> **Atenção — entre esta etapa e a próxima, o servidor responde errado. É esperado.** O `MusicaDAO` agora é `async`: cada método devolve uma Promise. As rotas do `app.js` ainda são síncronas e tratam essa Promise como se fosse a música. Por isso, até a etapa 10, o servidor inicia, mas as respostas da API saem erradas (um `{}`, por exemplo). Não é erro de vocês. A etapa 10 corrige as rotas.
 
 ### 9.1 O que muda e o que continua igual
 
@@ -2394,20 +2463,20 @@ Comparem com o DAO da etapa 3:
 |---|---|---|
 | Nomes dos métodos | `listarTodas`, `buscarPorId`, `inserir`, `adicionarPartes`, `atualizar`, `remover` | os mesmos |
 | Como se chamam | `musicaDAO.buscarPorId(1)` | `await musicaDAO.buscarPorId(1)` |
-| Onde ficam os dados | num array, que some ao reiniciar o servidor | nas tabelas `musicas`, `artistas` e `partes` |
+| Onde ficam os dados | num array, que é apagado quando o servidor reinicia | nas tabelas `musicas`, `artistas` e `partes` |
 | O artista | um texto | um objeto `Artista`, guardado na tabela `artistas` |
 | Partes | dentro da música | em outra tabela, buscadas pelo `ParteDAO` |
 
-Por fora, quase nada muda. Por dentro, o DAO agora divide o trabalho: o `ArtistaDAO` cuida dos artistas, o `ParteDAO` cuida das partes, e o `MusicaDAO` cuida só das músicas e junta o resultado.
+Para quem chama o DAO, quase nada muda. Dentro do DAO, o trabalho agora é dividido: o `ArtistaDAO` cuida dos artistas, o `ParteDAO` cuida das partes, e o `MusicaDAO` cuida só das músicas e junta o resultado.
 
 ### 9.2 O código
 
-Alguns pontos para observar antes de copiar:
+Observem quatro pontos antes de copiar:
 
-- `artista:artistas(id, nome)` pede, junto com cada música, o artista ligado pela chave estrangeira. O `partes(count)` pede ao banco que conte as partes, e é assim que o `totalPartes` chega sem trazer todas as letras.
-- No `atualizar`, o `.eq('id', id)` é indispensável. Um `update` sem filtro altera **todas** as linhas da tabela. O mesmo vale para o `delete` do `remover`.
+- `artista:artistas(id, nome)` pede, junto com cada música, o artista ligado pela chave estrangeira. O `partes(count)` pede ao banco que conte as partes. Assim o `totalPartes` vem pronto, sem o banco enviar todas as letras.
+- No `atualizar`, o `.eq('id', id)` é obrigatório. Um `update` sem filtro altera **todas** as linhas da tabela. O mesmo vale para o `delete` do `remover`.
 - O `atualizar` troca o vínculo da música com o artista. Ele não renomeia o artista, que continua com o nome antigo para as outras músicas.
-- O `remover` não apaga as partes uma a uma. O `on delete cascade` da tabela `partes`, criado na etapa 4, apaga as partes quando a música sai.
+- O `remover` não apaga as partes uma a uma. O `on delete cascade` da tabela `partes`, criado na etapa 4, apaga as partes quando a música é excluída.
 
 
 <!-- arquivo: DAO/MusicaDAO.js | etapa: 9 -->
@@ -2546,7 +2615,7 @@ module.exports = new MusicaDAO();
 
 ### 9.3 O teste
 
-O teste percorre o ciclo inteiro: lista, busca, insere, edita e remove. Ele usa o artista da amostra, então não cria artistas novos, e remove a música que criou. Ao final, o banco fica como estava.
+O teste executa todas as operações: lista, busca, insere, edita e remove. Ele usa o artista da amostra, então não cria artistas novos, e remove a música que criou. Ao final, o banco fica como estava.
 
 
 <!-- arquivo: testes/teste_musica_dao.js | etapa: 9 -->
@@ -2613,9 +2682,9 @@ MusicaDAO OK
 
 ### Observem o servidor com a rota ainda antiga
 
-Se quiserem ver o efeito do aviso, rodem `npm start` e abram `http://localhost:3000/api/musicas/1` no navegador. A resposta sai errada, um `{}` no lugar da música. A rota chamou `musicaDAO.buscarPorId(1)` sem `await`, recebeu uma Promise e a transformou em JSON; uma Promise não tem campos para mostrar. A etapa 10 explica e corrige isso. Parem o servidor com `Ctrl+C` antes de seguir.
+Este teste é opcional. Para ver o efeito descrito no aviso do início desta etapa, rodem `npm start` e abram `http://localhost:3000/api/musicas/1` no navegador. A resposta sai errada: um `{}` no lugar da música. A rota chamou `musicaDAO.buscarPorId(1)` sem `await`, recebeu uma Promise e a transformou em JSON. Uma Promise não tem campos para mostrar. A etapa 10 explica e corrige isso. Parem o servidor com `Ctrl+C` antes de seguir.
 
-> **Entenda — por que `async`.** Ler do array era instantâneo. Falar com o Supabase atravessa a internet e leva milissegundos. O JavaScript não trava o programa esperando: a função `async` devolve uma Promise, uma promessa de resultado, e o `await` espera por ela dentro da própria função. Por isso o `await` aparece antes de toda chamada ao banco, e por isso as rotas também terão de esperar na etapa 10.
+> **Entenda — por que `async`.** Ler do array era instantâneo. A comunicação com o Supabase passa pela internet e leva milissegundos. O JavaScript não para o programa enquanto espera: a função `async` devolve uma Promise, uma promessa de resultado, e o `await` espera por ela dentro da própria função. Por isso o `await` aparece antes de toda chamada ao banco, e por isso as rotas também terão de esperar na etapa 10.
 
 > **Pergunte ao agente.** *"Compare o MusicaDAO da etapa 3 com o da etapa 9: o que mudou por dentro e o que continuou igual por fora? Responda com uma tabela, sem reescrever o código. Use como fonte o guia_supabase.md (Etapas 3 e 9), na página do trabalho: https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md."*
 
@@ -2642,7 +2711,7 @@ git push
 
 ## Etapa 10 — Rotas `async`
 
-**Objetivo:** fazer o `app.js` esperar o banco. Ao final, o mesmo `testes/musicas.http` da etapa 3 passa, agora com os dados vindos do Supabase.
+**Objetivo:** fazer o `app.js` esperar a resposta do banco. Ao final, o mesmo `testes/musicas.http` da etapa 3 passa, agora com os dados vindos do Supabase.
 
 ```text
 nosso-karaoke/
@@ -2651,7 +2720,7 @@ nosso-karaoke/
 
 ### 10.1 O efeito em cadeia
 
-O `MusicaDAO` da etapa 9 é `async`: cada método devolve uma Promise. Quem chama um método `async` precisa de `await` para pegar o resultado, e o `await` só funciona dentro de uma função `async`. Por isso a mudança sobe a cadeia:
+O `MusicaDAO` da etapa 9 é `async`: cada método devolve uma Promise. Quem chama um método `async` precisa de `await` para receber o resultado, e o `await` só funciona dentro de uma função `async`. Por isso a mudança no DAO obriga a mudar também quem chama o DAO:
 
 | Camada | O que acontece |
 |---|---|
@@ -2659,13 +2728,17 @@ O `MusicaDAO` da etapa 9 é `async`: cada método devolve uma Promise. Quem cham
 | rota do `app.js` | precisa de `await` ao chamar o DAO, então a função da rota vira `async` |
 | erro no banco | o DAO lança um `Error`; a rota captura no `try/catch` e entrega ao middleware com `next(erro)` |
 
-Sem o `await`, a rota recebe a Promise no lugar da música e a envia como JSON. Uma Promise não tem campos para mostrar, e a resposta sai `{}`, exatamente o que vocês viram no fim da etapa 9.
+Sem o `await`, a rota recebe a Promise no lugar da música e a envia como JSON. Uma Promise não tem campos para mostrar, e a resposta sai `{}`, como vocês viram no fim da etapa 9.
 
-O `try/catch` com `next(erro)` é uma escolha explícita deste guia: deixa o caminho do erro visível no código e mantém o controle da resposta com quem escreve a rota, com o mesmo comportamento para todos. Com `next(erro)`, o erro segue até o middleware de erro, no final do arquivo, que escreve a causa no terminal (nos Logs da Render, depois da publicação) e devolve ao cliente um `500` com `{ "erro": "..." }`, sem expor detalhes internos. (O desenho desse caminho está na Parte II, em "async/await e o caminho de um erro". O Express 5 já repassa ao middleware de erro as promessas rejeitadas de uma rota `async`, então o `try/catch` não é obrigatório; ele está aqui para o caminho do erro ficar escrito no código.)
+O `try/catch` com `next(erro)` é uma escolha deste guia. Ele deixa o caminho do erro visível no código. Ele também mantém o controle da resposta com quem escreve a rota, com o mesmo comportamento para todos.
+
+Com `next(erro)`, o erro segue até o middleware de erro, no final do arquivo. O middleware escreve a causa no terminal (nos Logs da Render, depois da publicação). Depois, devolve ao cliente um `500` com `{ "erro": "..." }`, sem expor detalhes internos.
+
+O desenho desse caminho está na Parte II, em "async/await e o caminho de um erro". O Express 5 já repassa ao middleware de erro as promessas rejeitadas de uma rota `async`. Por isso o `try/catch` não é obrigatório. Ele está no código para o caminho do erro ficar escrito.
 
 ### 10.2 O `app.js` final
 
-Compare com o da etapa 3: o contrato da API é o mesmo (rotas, status e formato dos erros). O que muda é que cada rota é `async`, usa `await` e tem `try/catch`. O `totalPartes` agora vem pronto do DAO, e o `artista` sai como objeto `{ id, nome }`.
+Comparem com o da etapa 3: o contrato da API é o mesmo (rotas, status e formato dos erros). O que muda é que cada rota é `async`, usa `await` e tem `try/catch`. O `totalPartes` agora vem pronto do DAO, e o `artista` sai como objeto `{ id, nome }`.
 
 <!-- arquivo: app.js | etapa: 10 -->
 **Arquivo `app.js`** (substitui o da etapa 3 inteiro)
@@ -2814,11 +2887,11 @@ Saída esperada:
 Karaokê no ar: http://localhost:3000
 ```
 
-No VS Code, enviem as 11 requisições do `testes/musicas.http`, na ordem. O arquivo é o mesmo da etapa 3, sem alteração, e cada resposta precisa ter o status do "espera" do título. O teste 3 devolve a música criada com o `artista` como objeto e `partes` vazio.
+No VS Code, enviem as 11 requisições do `testes/musicas.http`, na ordem. O arquivo é o mesmo da etapa 3, sem alteração, e cada resposta precisa ter o status escrito depois de "espera" no título. O teste 3 devolve a música criada com o `artista` como objeto e `partes` vazio.
 
-O teste 9 exclui uma música que tem uma parte. Se ele passa, o `on delete cascade` da etapa 4 está funcionando: o banco apagou a parte junto com a música. Se ele falha com erro de chave estrangeira, o cascade não foi criado; voltem à etapa 4B.
+O teste 9 exclui uma música que tem uma parte. Se ele passa, o `on delete cascade` da etapa 4 está funcionando: o banco apagou a parte junto com a música. Se ele falha com erro de chave estrangeira, o cascade não foi criado. Nesse caso, voltem à etapa 4B (seção 4.4).
 
-Os testes criam os artistas "Artista de teste" e "Artista editado", e eles continuam no banco depois que a música é removida. São inofensivos: ficam só na tabela `artistas`, sem música ligada.
+Os testes criam os artistas "Artista de teste" e "Artista editado", e eles continuam no banco depois que a música é removida. Eles não causam problema: ficam só na tabela `artistas`, sem música ligada.
 
 ### Commit sugerido
 
@@ -2854,9 +2927,9 @@ nosso-karaoke/
 
 ### 11.1 O sintoma
 
-Até a etapa 9, a API devolvia o artista como texto, e o player o concatenava direto. Agora o `artista` é um objeto, `{ "id": 1, "nome": "Turma de Programação III" }`. O JavaScript converte um objeto para texto como `[object Object]`, e é isso que a página mostra no lugar do nome. A correção é pedir o campo certo: `musica.artista.nome`.
+Até a etapa 9, a API devolvia o artista como texto, e o player juntava esse texto ao nome da música. Agora o `artista` é um objeto, `{ "id": 1, "nome": "Turma de Programação III" }`. O JavaScript converte um objeto para texto como `[object Object]`, e é isso que a página mostra no lugar do nome. A correção é usar o campo `nome` do objeto: `musica.artista.nome`.
 
-São duas trocas no `public/player.js`, uma em cada função. Em cada uma, o trecho "Antes" aparece uma única vez no arquivo: procurem com `Ctrl+F` e troquem só ele.
+São duas trocas no `public/player.js`, uma em cada função. Em cada uma, o trecho "Antes" aparece uma única vez no arquivo: procurem com `Ctrl+F` e troquem só esse trecho.
 
 <!-- trocar: public/player.js | etapa: 11 -->
 **Arquivo `public/player.js`** — na função `carregarPlaylist`, troquem:
@@ -2897,8 +2970,8 @@ npm start
 ```
 
 1. Abram [http://localhost:3000](http://localhost:3000). Em **Músicas Disponíveis** aparece `Encontro da turma — Turma de Programação III`, sem `[object Object]`.
-2. Cliquem na música e depois em **Tocar**. As duas partes aparecem em sequência e termina em **Fim da música.**
-3. Enviem a requisição 3 do `testes/musicas.http`, que cadastra uma música sem partes, e recarreguem a página. Cliquem na música nova: a mensagem "Esta música ainda não tem partes para reprodução." aparece e o botão **Tocar** fica desabilitado.
+2. Cliquem na música e depois em **Tocar**. As duas partes aparecem em sequência, e no fim aparece **Fim da música.**
+3. Enviem a requisição 3 do `testes/musicas.http`, que cadastra uma música sem partes. Recarreguem a página. Cliquem na música nova. Deve aparecer a mensagem "Esta música ainda não tem partes para reprodução.", e o botão **Tocar** deve ficar desabilitado.
 4. Voltem ao `.http` e enviem a requisição 9 para remover a música de teste.
 
 ### Commit sugerido
@@ -2930,25 +3003,25 @@ Esta etapa não altera código. É um procedimento de teste que vocês executam 
 
 ### 12.1 Por que recarregar a página não prova nada
 
-Ao recarregar a página, o navegador pede a lista de novo ao servidor. Se o servidor ainda está de pé, a página não distingue um dado que continua vivo na memória do servidor de um dado guardado no banco. Só o reinício, que cria um processo novo com a memória vazia, faz essa distinção. O que sobreviver ao reinício está em outro lugar, no banco.
+Ao recarregar a página, o navegador pede a lista de novo ao servidor. Se o servidor continua rodando, a página mostra do mesmo jeito um dado que está na memória do servidor e um dado guardado no banco. Só o reinício mostra a diferença, porque ele cria um processo novo com a memória vazia. O dado que continua existindo depois do reinício está fora do processo, no banco.
 
 ### 12.2 O procedimento
 
 1. Com o terminal na pasta do projeto, rodem `npm start`.
-2. No `testes/musicas.http`, enviem a requisição 3. Anotem o `id` da música criada. Quem usa a base de retomada cria esse arquivo a partir da seção 3.5, porque a base não o traz.
-3. Parem o servidor com `Ctrl+C` e rodem `npm start` de novo. A memória do processo anterior se perdeu.
-4. Enviem a requisição 4 com o mesmo `id` (o REST Client guarda a resposta da requisição 3 no editor, e o reinício do servidor não apaga isso; se o `{{criar.response.body.$.id}}` estiver vazio porque o VS Code foi fechado ou recarregado, ou porque a 3 não foi enviada nesta sessão, troquem pelo número anotado). A resposta precisa ser `200` com a música. Na etapa 3, ela era `404`.
-5. Confiram no Supabase. No **Table Editor**, abram a tabela `musicas` e procurem a linha. No **SQL Editor**, rodem, trocando `<ID>` pelo número anotado:
+2. No `testes/musicas.http`, enviem a requisição 3. Anotem o `id` da música criada. Se vocês usam a base de retomada, criem esse arquivo seguindo a seção 3.5, porque a base não traz esse arquivo.
+3. Parem o servidor com `Ctrl+C` e rodem `npm start` de novo. A memória do processo anterior foi apagada.
+4. Enviem a requisição 4 com o mesmo `id`. O REST Client guarda a resposta da requisição 3 no editor, e o reinício do servidor não apaga isso. Se o `{{criar.response.body.$.id}}` estiver vazio, troquem pelo número anotado. Ele fica vazio quando o VS Code foi fechado ou recarregado, ou quando a 3 não foi enviada nesta sessão. A resposta precisa ser `200` com a música. Na etapa 3, ela era `404`.
+5. Confiram no Supabase, de duas formas. No **Table Editor**, abram a tabela `musicas` e procurem a linha com o `id` anotado. No **SQL Editor**, rodem a consulta abaixo, trocando `<ID>` pelo número anotado:
 
 ```sql
 select * from musicas where id = <ID>;
 ```
 
-6. Removam a música com a requisição 9 (ajustando o `id` como no passo 4) e rodem a consulta de novo: não pode voltar nenhuma linha.
+6. Removam a música com a requisição 9 (ajustando o `id` como no passo 4). Depois, rodem a consulta de novo: ela não pode devolver nenhuma linha.
 
 ### 12.3 O registro para o README
 
-Registrem o resultado no `README.md` do repositório da dupla. Esse registro é evidência do requisito R7 do projeto "O repertório da turma" (consultem o enunciado, disponível no Classroom da disciplina, para o que ele exige). Modelo:
+Registrem o resultado no `README.md` do repositório da dupla. Esse registro é evidência do requisito R7 do projeto "O repertório da turma" (consultem o enunciado, disponível no Classroom da disciplina, para saber o que ele exige). Usem este modelo:
 
 ```markdown
 ## Prova de persistência
@@ -2986,11 +3059,11 @@ git push
 
 **Objetivo:** deixar o projeto pronto para a publicação na Render. Ao final, vocês têm as variáveis de ambiente listadas e o checklist de publicação conferido.
 
-Esta etapa não altera código. A publicação em si (criar o serviço, ligar ao repositório, acompanhar o deploy) está no **Guia de deploy na Render, disponível no Classroom da disciplina**. Aqui fica o que é específico deste projeto com banco.
+Esta etapa não altera código. A publicação em si (criar o serviço, ligar ao repositório, acompanhar o deploy) está no **Guia de deploy na Render, disponível no Classroom da disciplina**. Esta etapa traz só o que é específico deste projeto com banco.
 
 ### 13.1 O que muda na nuvem
 
-No computador de vocês, a URL e a secret key estão no arquivo `.env`. Na Render não existe `.env`, porque ele não foi para o GitHub (de propósito). As mesmas variáveis são criadas no painel do serviço, na área **Environment**:
+No computador de vocês, a URL e a secret key estão no arquivo `.env`. Na Render não existe `.env`, porque ele não foi para o GitHub (de propósito). Vocês criam as mesmas variáveis no painel do serviço, na área **Environment**:
 
 | Variável | Valor | Observação |
 |---|---|---|
@@ -2998,7 +3071,7 @@ No computador de vocês, a URL e a secret key estão no arquivo `.env`. Na Rende
 | `SUPABASE_SECRET_KEY` | a mesma secret key do `.env` | digitada ou colada por vocês no painel da Render; sem aspas; nunca em print, README ou conversa com o agente |
 | `PORT` | não criem | a Render define a porta; o `app.js` já lê `process.env.PORT` e só usa 3000 quando ela não existe |
 
-O código é o mesmo nos dois lugares. O `supabaseClient.js` chama o `dotenv`, que não encontra o `.env` na Render e simplesmente não faz nada; o `process.env` já chega preenchido pela plataforma. Se uma das duas variáveis faltar, o servidor para na inicialização com a mensagem `Preencham SUPABASE_URL e SUPABASE_SECRET_KEY no .env (ou no ambiente da Render)`, e essa mensagem aparece nos **Logs** do serviço.
+O código é o mesmo nos dois lugares. O `supabaseClient.js` chama o `dotenv`. Na Render, o `dotenv` não encontra o `.env` e não faz nada. A plataforma já preenche o `process.env`. Se uma das duas variáveis faltar, o servidor para na inicialização com a mensagem `Preencham SUPABASE_URL e SUPABASE_SECRET_KEY no .env (ou no ambiente da Render)`. Essa mensagem aparece nos **Logs** do serviço.
 
 > **Entenda — configuração por ambiente.** O que muda entre o computador e a nuvem são os valores, não o código. Por isso a chave não precisa estar no repositório para o projeto funcionar publicado. A Parte II explica isso na seção "Variáveis de ambiente".
 
@@ -3006,7 +3079,7 @@ O código é o mesmo nos dois lugares. O `supabaseClient.js` chama o `dotenv`, q
 
 Confiram cada item e só depois sigam o Guia de deploy na Render.
 
-1. O `.env` **não** está no Git: `git status` não pode listá-lo. Se listar, parem e corrijam o `.gitignore` antes de qualquer `git add`.
+1. O `.env` **não** está no Git: `git status` não pode mostrar esse arquivo. Se mostrar, parem e corrijam o `.gitignore` antes de qualquer `git add`.
 2. O `.env.example` está no repositório, com os nomes das variáveis e sem valores reais.
 3. `@supabase/supabase-js` e `dotenv` aparecem em `dependencies` no `package.json` (foi o `npm install` da etapa 5 que os colocou lá).
 4. O `npm start` funciona no computador de vocês e a lista de músicas aparece em [http://localhost:3000](http://localhost:3000).
@@ -3016,16 +3089,19 @@ Confiram cada item e só depois sigam o Guia de deploy na Render.
 
 ### 13.3 Depois de publicar
 
-Abram o endereço do serviço e confirmem que a lista mostra a música de exemplo. Repitam a prova da etapa 12 no endereço publicado: criem uma música, reiniciem o serviço pelo painel da Render e consultem o mesmo `id`. O primeiro acesso depois de um tempo parado pode demorar, porque o plano gratuito da Render põe o serviço para dormir.
+1. Abram o endereço do serviço e confirmem que a lista mostra a música de exemplo.
+2. Repitam a prova da etapa 12 no endereço publicado: criem uma música, reiniciem o serviço pelo painel da Render e consultem o mesmo `id`.
+
+O primeiro acesso depois de um tempo sem uso pode demorar, porque o plano gratuito da Render põe o serviço para dormir depois de um tempo sem acesso.
 
 ### Se deu errado
 
 | Sintoma | Causa provável | O que fazer |
 |---|---|---|
-| funciona no computador, mas a página publicada mostra erro `500` | o servidor subiu, mas não consegue falar com o banco: a URL ou a secret key na Render está errada (incompleta, trocada, de outro projeto), ou o projeto do Supabase está pausado. Variável ausente não dá `500`: sem ela o servidor nem sobe (ver 13.1) | leiam os **Logs** do serviço. `Invalid API key` indica a chave: colem de novo em **Environment**, salvem e esperem a nova publicação. Falha de conexão indica o projeto pausado: restaurem no painel do Supabase |
+| funciona no computador, mas a página publicada mostra erro `500` | o servidor iniciou, mas não consegue acessar o banco: a URL ou a secret key na Render está errada (incompleta, trocada, de outro projeto), ou o projeto do Supabase está pausado. Variável ausente não dá `500`: sem ela o servidor não inicia (ver 13.1) | leiam os **Logs** do serviço. `Invalid API key` indica a chave: colem de novo em **Environment**, salvem e esperem a nova publicação. Falha de conexão indica o projeto pausado: restaurem no painel do Supabase |
 | nos Logs: `Preencham SUPABASE_URL e SUPABASE_SECRET_KEY no .env (ou no ambiente da Render)` | uma das variáveis está ausente, vazia ou com o nome errado | confiram os nomes letra por letra, sem espaço |
 | nos Logs: `Invalid API key` | a chave foi colada incompleta, com aspas ou com espaço, ou é de outro projeto | colem de novo a secret key de **Project Settings → API Keys**, sem aspas |
-| a página publicada demora muito no primeiro acesso | o serviço gratuito estava dormindo | espere; o próximo acesso é rápido |
+| a página publicada demora muito no primeiro acesso | o serviço gratuito estava dormindo | esperem; o próximo acesso é rápido |
 | tudo parou de funcionar depois de alguns dias sem uso | o projeto do Supabase foi pausado por inatividade | no painel do Supabase, restaurem o projeto e esperem o status **Healthy** |
 
 > **Pergunte ao agente.** *"Meu serviço na Render responde 500, mas no meu computador funciona. Sem eu colar nenhuma chave, explique quais diferenças entre os dois ambientes podem causar isso e o que devo procurar nos Logs. Use como fonte a Etapa 13 do guia_supabase.md e a Etapa 10 do guia_deploy_render.md, na página do trabalho: https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/."*
@@ -3037,8 +3113,8 @@ Abram o endereço do serviço e confirmem que a lista mostra a música de exempl
 Esta parte reúne o que vocês precisam **entender** para usar o Supabase e ligar o karaokê a ele. A Parte I diz **o que fazer**, passo a passo; esta parte explica **por quê**. Os quadros **Entenda** da Parte I remetem a ela.
 
 - Na primeira leitura, sigam a ordem: cada seção usa o que a anterior explicou.
-- No fim de várias seções há um quadro **Para conferir**. Se vocês não conseguem responder, releiam antes de seguir.
-- Travaram num erro? A seção [Socorro — erros comuns](#socorro--erros-comuns) tem a tabela dos mais frequentes.
+- No fim de várias seções há um quadro **Para conferir**. Se vocês não conseguem responder, releiam a seção antes de seguir.
+- Se vocês não conseguem resolver um erro, consultem a seção [Socorro — erros comuns](#socorro--erros-comuns), que tem a tabela dos erros mais frequentes.
 
 ### Por que um banco de dados
 
@@ -3048,7 +3124,7 @@ Até a etapa 9, o `MusicaDAO` guardava as músicas num array (o `ArtistaDAO` e o
 this.musicas = [];   // o "banco de dados de mentira"
 ```
 
-Um array vive na **memória RAM** do processo Node. Quando o processo termina, a memória é devolvida ao sistema operacional e tudo que estava nela some. Isso acontece:
+Um array fica na **memória RAM** do processo Node. Quando o processo termina, a memória é devolvida ao sistema operacional e tudo que estava nela é apagado. Isso acontece:
 
 - quando vocês param o servidor com `Ctrl+C`;
 - quando a Render reinicia o serviço (a cada publicação, por exemplo);
@@ -3056,15 +3132,15 @@ Um array vive na **memória RAM** do processo Node. Quando o processo termina, a
 
 Vocês viram isso na seção 3.6: a música criada pela API desaparece depois de reiniciar o servidor.
 
-**Persistir** é guardar os dados num lugar que sobrevive ao fim do processo. Um **banco de dados** é um programa especializado nisso: guarda os dados em disco, organiza, protege contra corrupção e responde a consultas. O nosso é o **PostgreSQL**, rodando na nuvem do Supabase.
+**Persistir** é guardar os dados num lugar que continua existindo depois do fim do processo. Um **banco de dados** é um programa especializado nisso: guarda os dados em disco, organiza, protege contra corrupção e responde a consultas. O banco deste projeto é o **PostgreSQL**, rodando na nuvem do Supabase.
 
-E o DAO? A etapa 3 prometeu que só a parte de dentro dele mudaria. É o que a etapa 9 faz: o array sai, as consultas ao banco entram, e os métodos continuam com os mesmos nomes.
+Sobre o DAO: a etapa 3 afirmou que só o código interno dele mudaria. A etapa 9 faz isso: as consultas ao banco substituem o array, e os métodos continuam com os mesmos nomes.
 
-> **Para conferir:** por que uma música criada na API publicada some depois de um restart na Render, se o array ainda está no código?
+> **Para conferir:** por que uma música criada na API publicada desaparece depois de um restart na Render, se o array ainda está no código?
 
 ### O mínimo de banco relacional
 
-Um banco **relacional** organiza os dados em **tabelas**, e as tabelas se ligam umas às outras por **relações**. Uma tabela lembra uma planilha:
+Um banco **relacional** organiza os dados em **tabelas**, e as tabelas se ligam umas às outras por **relações**. Uma tabela é parecida com uma planilha:
 
 <figure style="margin: 1.6em 0; text-align: center;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 188" style="width: 100%; max-width: 660px; height: auto;" role="img" aria-label="Tabela artistas com três linhas; destaque de uma linha e de uma coluna" font-family="Open Sans, Segoe UI, sans-serif">
@@ -3111,14 +3187,14 @@ A diferença para uma planilha é que o banco **obriga** regras. Os termos que v
 | **Coluna** | Um atributo, com tipo definido | `nome` (texto), `tempo_espera` (número) |
 | **Linha** | Um registro | a música "Encontro da turma" |
 | **Chave primária** (PK, *primary key*) | A coluna que identifica cada linha. Não repete e não fica vazia | `id` |
-| **Identity** | O banco gera o valor sozinho: 1, 2, 3... | `id` de todas as tabelas. Substitui o `proximoId++` da etapa 3 e **começa em 1** |
+| **Identity** | O banco gera o valor automaticamente: 1, 2, 3... | `id` de todas as tabelas. Substitui o `proximoId++` da etapa 3 e **começa em 1** |
 | **Chave estrangeira** (FK, *foreign key*) | Coluna que aponta para a chave primária de **outra** tabela | `musicas.artista_id` aponta para `artistas.id` |
 | **`not null`** | Campo obrigatório | `nome`, `letra`... |
 | **`unique`** | O valor não pode se repetir na coluna | `artistas.nome` |
 
 #### Relações 1-para-N
 
-"Um artista tem várias músicas" é uma relação **1-para-N**. No banco, ela é guardada **do lado do N**: cada música carrega o número do seu artista.
+"Um artista tem várias músicas" é uma relação **1-para-N**. No banco, ela é guardada **do lado do N**: cada música guarda o número do seu artista.
 
 <figure style="margin: 1.6em 0; text-align: center;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 184" style="width: 100%; max-width: 630px; height: auto;" role="img" aria-label="Três músicas apontando para seus artistas pela coluna artista_id" font-family="Open Sans, Segoe UI, sans-serif">
@@ -3181,18 +3257,18 @@ A diferença para uma planilha é que o banco **obriga** regras. Os termos que v
 <figcaption style="font-size: 0.9em; color: #6b7c86; margin-top: 0.5em;">Relação 1-para-N: My Hero e Everlong apontam para o mesmo artista (id 1).</figcaption>
 </figure>
 
-A chave estrangeira também é uma **regra**. O banco recusa uma música com `artista_id = 99` se não existe artista 99. E recusa apagar um artista que ainda tem músicas: sem isso, as músicas ficariam apontando para o nada.
+A chave estrangeira também é uma **regra**. O banco recusa uma música com `artista_id = 99` se não existe artista 99. E recusa apagar um artista que ainda tem músicas: sem isso, as músicas ficariam apontando para um artista que não existe.
 
 #### `on delete cascade`
 
-Às vezes, apagar o "pai" deve apagar os "filhos" junto. Uma parte (verso) não faz sentido sem a sua música. Por isso a chave estrangeira de `partes` tem `on delete cascade`: apagou a música, o banco apaga as partes dela.
+Às vezes, apagar o "pai" deve apagar os "filhos" junto. Aqui, "pai" é a linha para a qual a chave estrangeira aponta (a música), e "filhos" são as linhas que apontam para ela (as partes). Uma parte (verso) não faz sentido sem a sua música. Por isso a chave estrangeira de `partes` tem `on delete cascade`: quando a música é apagada, o banco apaga as partes dela.
 
 Comparem as duas escolhas do nosso modelo:
 
 | Chave estrangeira | Ao apagar o "pai"... | Por quê |
 |---|---|---|
-| `partes.musica_id` → `musicas`, **com** cascade | as partes são apagadas junto | verso sem música é lixo |
-| `musicas.artista_id` → `artistas`, **sem** cascade | o banco **recusa** (erro 23503) | apagar um artista não deveria sumir com as músicas por acidente |
+| `partes.musica_id` → `musicas`, **com** cascade | as partes são apagadas junto | um verso sem música não tem uso |
+| `musicas.artista_id` → `artistas`, **sem** cascade | o banco **recusa** (erro 23503) | apagar um artista não deve apagar as músicas dele por acidente |
 
 Se a ligação `partes → musicas` não tem o cascade, apagar uma música com partes falha com `update or delete on table "musicas" violates foreign key constraint`. É o que o diagnóstico da etapa 4 marca como `ajustar`.
 
@@ -3206,7 +3282,7 @@ As classes do karaokê viram tabelas seguindo três regras:
 2. **Cada atributo simples vira uma coluna.** `Parte.letra` → `partes.letra`.
 3. **Objeto dentro de objeto vira chave estrangeira.** No JavaScript, `musica.partes` é um array **dentro** da música. No banco, as partes são **linhas de outra tabela**, e cada uma guarda o `musica_id` da sua música.
 
-A terceira regra é a mudança mental mais importante. No array, a música "continha" as partes. No banco, cada parte "aponta" para a sua música.
+A terceira regra é a mudança mais importante na forma de pensar os dados. No array, a música "continha" as partes. No banco, cada parte "aponta" para a sua música.
 
 <figure style="margin: 1.6em 0; text-align: center;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 684 204" style="width: 100%; max-width: 684px; height: auto;" role="img" aria-label="Modelo do karaokê: artistas 1 para N musicas, musicas 1 para N partes" font-family="Open Sans, Segoe UI, sans-serif">
@@ -3279,7 +3355,7 @@ A terceira regra é a mudança mental mais importante. No array, a música "cont
 
 No array, a posição do verso era implícita: `partes[0]`, `partes[1]`... No banco, **as linhas não têm ordem garantida**. O PostgreSQL devolve as linhas na ordem que for mais conveniente para ele, e essa ordem pode mudar depois de um `update` ou de uma manutenção interna. Quem guarda a sequência dos versos é a coluna `ordem` (0, 1, 2...), e toda consulta de partes precisa pedir `order by ordem`.
 
-Esse é o pior tipo de bug: funciona nos testes e, um dia, a letra sai embaralhada.
+Esse tipo de erro é difícil de perceber: o código funciona nos testes e, depois, a letra pode aparecer fora de ordem.
 
 #### `snake_case` × `camelCase`
 
@@ -3289,13 +3365,13 @@ Esse é o pior tipo de bug: funciona nos testes e, um dia, a letra sai embaralha
 | `musica_id` | (a parte fica dentro de `musica.partes`) |
 | `criado_em` | (não usamos no JavaScript) |
 
-SQL não diferencia maiúsculas de minúsculas em nomes de colunas, então o padrão no banco é separar as palavras com `_`. No JavaScript, o padrão é `camelCase`. Quem traduz entre os dois é o DAO (ver "supabase-js: falando com o banco pelo Node", mais abaixo).
+SQL não diferencia maiúsculas de minúsculas em nomes de colunas, então o padrão no banco é separar as palavras com `_`. No JavaScript, o padrão é `camelCase`. Quem converte de um padrão para o outro é o DAO (ver "supabase-js: falando com o banco pelo Node", mais abaixo).
 
-> **Para conferir:** o que aconteceria no player se o `ParteDAO` devolvesse as linhas do banco sem tradução?
+> **Para conferir:** o que aconteceria no player se o `ParteDAO` devolvesse as linhas do banco sem essa conversão?
 
 ### O que é o Supabase
 
-O **Supabase** é um serviço que entrega, na nuvem:
+O **Supabase** é um serviço que oferece, na nuvem:
 
 - um banco **PostgreSQL** completo, que vocês não precisam instalar nem manter;
 - um **painel web** para criar tabelas, ver e editar dados e rodar SQL;
@@ -3339,11 +3415,11 @@ O **Supabase** é um serviço que entrega, na nuvem:
 <figcaption style="font-size: 0.9em; color: #6b7c86; margin-top: 0.5em;">Dois servidores HTTP: o nosso Express, que o player chama, e a API do Supabase, que os DAOs chamam.</figcaption>
 </figure>
 
-Reparem que existem **dois** servidores HTTP nessa história: o nosso Express, que o player chama, e a API do Supabase, que os nossos DAOs chamam.
+Observem que existem **dois** servidores HTTP nessa figura: o nosso Express, que o player chama, e a API do Supabase, que os nossos DAOs chamam.
 
 #### O botão Connect
 
-No topo do painel, o botão **Connect** pergunta como vocês querem usar o Supabase:
+No topo do painel, o botão **Connect** abre uma janela com as formas de usar o Supabase:
 
 | Opção | Para quê | Nosso caso? |
 |---|---|---|
@@ -3353,12 +3429,12 @@ No topo do painel, o botão **Connect** pergunta como vocês querem usar o Supab
 | **ORM** | Bibliotecas de terceiros, como Prisma e Drizzle | Não |
 | **MCP** | Conectar agentes de IA | Não |
 
-A opção **Server** mostra variáveis de ambiente de um servidor. Delas, usamos só `SUPABASE_URL` e `SUPABASE_SECRET_KEY`. O passo 1 dessa janela manda instalar o `@supabase/server`, que este projeto **não** usa: a biblioteca é a `@supabase/supabase-js`, instalada na etapa 5.
+A opção **Server** mostra variáveis de ambiente de um servidor. Delas, usamos só `SUPABASE_URL` e `SUPABASE_SECRET_KEY`. O passo 1 dessa janela diz para instalar o `@supabase/server`, que este projeto **não** usa: a biblioteca é a `@supabase/supabase-js`, instalada na etapa 5.
 
 #### Plano gratuito: dois avisos
 
 > [!WARNING]
-> **Projeto parado por 7 dias é pausado.** O Supabase pausa projetos do plano gratuito com pouca atividade numa semana. Pausado, o banco não responde, e a aplicação na Render passa a dar erro 500. Para voltar, entrem no painel do projeto e restaurem o projeto (botão **Restore**). Lembrem disso antes de uma apresentação ou de uma entrega.
+> **Projeto parado por 7 dias é pausado.** O Supabase pausa projetos do plano gratuito com pouca atividade numa semana. Com o projeto pausado, o banco não responde, e a aplicação na Render passa a dar erro 500. Para reativar, entrem no painel do projeto e restaurem o projeto (botão **Restore**). Confiram isso antes de uma apresentação ou de uma entrega.
 
 - Cada conta pode ter **dois projetos gratuitos ativos**. Projetos pausados não contam.
 
@@ -3366,25 +3442,31 @@ A opção **Server** mostra variáveis de ambiente de um servidor. Delas, usamos
 
 ### As chaves de acesso
 
-Para usar a API do Supabase, toda requisição leva uma **chave**. Existem dois tipos:
+Para usar a API do Supabase, toda requisição precisa enviar uma **chave**. Existem dois tipos:
 
 | Chave | Começa com | Onde pode ficar | O que consegue |
 |---|---|---|---|
 | **Publishable** | `sb_publishable_` | Aplicativos e páginas (é "pública") | Só o que as regras de segurança do banco permitirem (ver "RLS: a trava que já vem ligada") |
 | **Secret** | `sb_secret_` | **Só no servidor**, só no `.env` e no painel da Render | **Tudo**: lê, altera e apaga qualquer tabela |
 
-No nosso projeto, **quem fala com o banco é o servidor Express**, nunca o navegador. Então usamos a **secret key**, e ela fica protegida no servidor. No painel, as duas ficam em **Project Settings → API Keys**.
+No nosso projeto, **quem acessa o banco é o servidor Express**, nunca o navegador. Então usamos a **secret key**, e ela fica protegida no servidor. No painel, as duas ficam em **Project Settings → API Keys**.
 
 > [!CAUTION]
 > A secret key **nunca** pode aparecer em: código commitado, `player.js` ou qualquer arquivo de `public/`, print no grupo da turma, slide, README. Quem tem essa chave pode apagar o banco inteiro.
 >
-> **Se vazar:** em **Project Settings → API Keys**, criem uma nova secret key e apaguem a vazada; atualizem o `.env` e o painel da Render; e **avisem o professor**. Trocar chave vazada é rotina profissional. Esconder o vazamento é o que transforma o problema em algo sério.
+> **Se vazar:**
+>
+> 1. Em **Project Settings → API Keys**, criem uma nova secret key e apaguem a vazada.
+> 2. Atualizem o `.env` e o painel da Render.
+> 3. Por fim, **avisem o professor**.
+>
+> Trocar uma chave vazada é um procedimento comum no trabalho profissional. O problema fica grave quando alguém esconde o vazamento.
 
-Uma proteção extra: se alguém tentar usar a secret key **de dentro de um navegador**, o Supabase recusa a requisição (erro 401). Mesmo assim, a regra continua: a chave não sai do servidor.
+Uma proteção extra: se alguém tentar usar a secret key **de dentro de um navegador**, o Supabase recusa a requisição (erro 401). Mesmo assim, a regra continua: a chave fica só no servidor.
 
 #### E `anon` e `service_role`?
 
-Tutoriais antigos falam em chave `anon` e chave `service_role`. São as **chaves antigas** do Supabase, que ainda aparecem na aba *Legacy anon, service_role API keys*. A correspondência é direta:
+Tutoriais antigos citam a chave `anon` e a chave `service_role`. São as **chaves antigas** do Supabase, que ainda aparecem na aba *Legacy anon, service_role API keys*. A correspondência é direta:
 
 | Chave antiga | Chave nova |
 |---|---|
@@ -3405,15 +3487,15 @@ alter table musicas enable row level security;
 
 Neste projeto, vocês **não escrevem regras de RLS**. O que precisam saber é só isto:
 
-- Com o RLS ligado e **nenhuma regra**, a chave **publishable** não enxerga nada: as consultas voltam **vazias, sem erro**, e as inserções falham.
-- A chave **secret** passa por cima do RLS. Como o nosso servidor usa a secret, o RLS não atrapalha em nada.
-- Por isso, **se as consultas voltarem vazias sem erro**, a primeira suspeita é: vocês colocaram a publishable no lugar da secret.
+- Com o RLS ligado e **nenhuma regra**, a chave **publishable** não lê nada: as consultas voltam **vazias, sem erro**, e as inserções falham.
+- A chave **secret** ignora o RLS. Como o nosso servidor usa a secret, o RLS não bloqueia nenhuma operação do servidor.
+- Por isso, **se as consultas voltarem vazias sem erro**, a primeira coisa a verificar é esta: vocês colocaram a publishable no lugar da secret.
 
-O RLS volta mais adiante na disciplina, quando o sistema tiver usuários com login.
+A disciplina volta a tratar do RLS mais adiante, quando o sistema tiver usuários com login.
 
 ### Table Editor × SQL Editor
 
-O painel oferece dois jeitos de criar e mexer nas tabelas:
+O painel oferece dois jeitos de criar e alterar as tabelas:
 
 | | **Table Editor** (interface gráfica) | **SQL Editor** (código) |
 |---|---|---|
@@ -3422,7 +3504,7 @@ O painel oferece dois jeitos de criar e mexer nas tabelas:
 | Dá para repetir? | Só clicando tudo de novo | Sim: o mesmo arquivo `.sql` recria tudo em outro projeto |
 | Dá para guardar no Git? | Não | Sim |
 
-Os dois fazem **a mesma coisa por baixo**: todo clique no Table Editor vira um comando SQL. Dá para conferir: no Table Editor, alternem de **Data** para **Definition** e vejam o `create table` que o painel escreveu.
+Os dois fazem **a mesma coisa** internamente: todo clique no Table Editor vira um comando SQL. Para conferir, no Table Editor, alternem de **Data** para **Definition** e vejam o `create table` que o painel escreveu.
 
 Por isso, neste guia, as tabelas são criadas por SQL (o `schema.sql`, para ter o esquema guardado em arquivo) e o Table Editor serve para conferir e explorar os dados. Em projetos reais, o esquema do banco é **código**: fica versionado no repositório, junto com o resto do sistema.
 
@@ -3440,7 +3522,7 @@ Ao criar uma coluna pelo Table Editor, as opções correspondem às regras da se
 
 ### SQL essencial
 
-**SQL** é a linguagem para conversar com bancos relacionais. Estes são os comandos que aparecem neste guia, todos usando as tabelas do karaokê.
+**SQL** é a linguagem usada para dar comandos a bancos relacionais. Estes são os comandos que aparecem neste guia, todos usando as tabelas do karaokê.
 
 #### Criar tabela
 
@@ -3461,7 +3543,7 @@ insert into artistas (nome) values ('Nirvana');
 insert into musicas (nome, artista_id) values ('Smells Like Teen Spirit', 6);
 ```
 
-O `id` não aparece: o banco gera. O `criado_em` também não: vale o `default`.
+O `id` não aparece no comando, porque o banco gera esse valor. O `criado_em` também não aparece, porque o banco usa o valor `default`.
 
 #### Consultar
 
@@ -3475,7 +3557,7 @@ select * from partes where musica_id = 1 order by ordem;   -- ...na ordem certa
 
 #### Juntar tabelas: `join`
 
-A tabela `musicas` só tem o **número** do artista. Para ver o **nome**, junta-se com `artistas`:
+A tabela `musicas` só tem o **número** do artista. Para ver o **nome**, é preciso juntar com `artistas`:
 
 ```sql
 select m.id, m.nome, a.nome as artista
@@ -3494,7 +3576,7 @@ delete from musicas where id = 6;    -- as partes da 6 vão junto (cascade)
 ```
 
 > [!WARNING]
-> `update` e `delete` **sem `where`** alteram ou apagam **todas** as linhas da tabela. Leiam duas vezes antes de rodar.
+> `update` e `delete` **sem `where`** alteram ou apagam **todas** as linhas da tabela. Leiam o comando duas vezes antes de rodar.
 
 #### Recomeçar
 
@@ -3503,7 +3585,7 @@ truncate table partes, musicas restart identity;   -- esvazia e volta os ids par
 drop table partes;                                  -- apaga a tabela inteira (estrutura + dados)
 ```
 
-O `seed.sql` deste guia é aditivo: ele só acrescenta a música de exemplo se ela ainda não existe, e por isso pode ser rodado várias vezes sem duplicar nada. O `truncate` e o `drop` apagam tudo e só se usam em banco de teste, nunca num banco que tem dados que vocês querem manter.
+O `seed.sql` deste guia é aditivo: ele só acrescenta a música de exemplo se ela ainda não existe, e por isso pode ser rodado várias vezes sem duplicar nada. O `truncate` e o `drop` apagam tudo. Usem esses comandos só em banco de teste, nunca num banco com dados que vocês querem manter.
 
 ### supabase-js: falando com o banco pelo Node
 
@@ -3532,7 +3614,7 @@ const { data, error } = await supabase
     .order('ordem');                             // ordenado por ordem
 ```
 
-Cada método acrescenta um pedaço à consulta, e o `await` a envia. O SQL equivalente:
+Cada método acrescenta uma parte à consulta, e o `await` envia a consulta. O SQL equivalente:
 
 ```sql
 select id, ordem, letra, tempo_espera, tag from partes where musica_id = 1 order by ordem;
@@ -3563,7 +3645,7 @@ Todo método devolve um objeto com dois campos:
 - deu errado → `data` é `null` e `error.message` explica.
 
 > [!IMPORTANT]
-> O supabase-js **não lança exceção** quando a consulta falha. Se o código não verificar o `error`, o erro passa em silêncio e aparece mais tarde como um `null` misterioso, longe da causa. **Toda chamada ao banco precisa de um `if (error)` logo em seguida.** No DAO, o padrão é transformar o erro em exceção:
+> O supabase-js **não lança exceção** quando a consulta falha. Se o código não verificar o `error`, nenhuma mensagem aparece na hora. O problema aparece mais tarde, como um `null` em outro ponto do código, longe da causa. **Toda chamada ao banco precisa de um `if (error)` logo em seguida.** No DAO, o padrão é transformar o erro em exceção:
 >
 > ```javascript
 > if (error) throw new Error('Erro ao listar músicas: ' + error.message);
@@ -3614,11 +3696,11 @@ _paraParte(linha) {
 }
 ```
 
-Esse é o mesmo trabalho que um ORM faz sozinho. Fazer à mão, uma vez, é o melhor jeito de entender o que um ORM esconde.
+Esse é o mesmo trabalho que um ORM faz automaticamente. Escrever esse mapeamento manualmente, uma vez, ajuda a entender o que um ORM faz sem mostrar.
 
 ### Variáveis de ambiente
 
-A URL do banco e a secret key **não podem** ficar escritas no código. O código vai para o GitHub; a chave não pode ir. A solução são as **variáveis de ambiente**: valores que o sistema operacional entrega ao programa quando ele liga, e que o Node lê em `process.env`.
+A URL do banco e a secret key **não podem** ficar escritas no código. O código vai para o GitHub; a chave não pode ir. A solução são as **variáveis de ambiente**: valores que o sistema operacional entrega ao programa quando ele inicia, e que o Node lê em `process.env`.
 
 ```javascript
 const url = process.env.SUPABASE_URL;
@@ -3643,24 +3725,24 @@ Os três arquivos da configuração:
 
 | Arquivo | Vai para o GitHub? | Para quê |
 |---|---|---|
-| `.env` | **Nunca** | Os valores de verdade, só na máquina de vocês |
-| `.env.example` | Sim | Os **nomes** das variáveis, com valores em branco: o mapa para quem clonar o projeto |
+| `.env` | **Nunca** | Os valores reais, só na máquina de vocês |
+| `.env.example` | Sim | Os **nomes** das variáveis, com valores em branco: o modelo para quem clonar o projeto |
 | `.gitignore` | Sim | Tem a linha `.env`, que impede o Git de enviar o arquivo |
 
 > [!CAUTION]
-> Coloquem `.env` no `.gitignore` **antes** de criar o `.env`. Se o arquivo for commitado uma única vez, a chave fica no histórico do Git para sempre, mesmo que vocês apaguem o arquivo depois. Aí só resta trocar a chave (ver "As chaves de acesso").
+> Coloquem `.env` no `.gitignore` **antes** de criar o `.env`. Se o arquivo for commitado uma única vez, a chave fica no histórico do Git para sempre, mesmo que vocês apaguem o arquivo depois. Nesse caso, a única solução é trocar a chave (ver "As chaves de acesso").
 
 #### Na Render: o painel Environment
 
-Na Render não existe `.env` (ele não foi para o GitHub, de propósito). As mesmas variáveis são criadas no painel do serviço, em **Environment**, como mostra o Guia de deploy na Render, disponível no Classroom da disciplina, e como resume a etapa 13.
+Na Render não existe `.env` (ele não foi para o GitHub, de propósito). Vocês criam as mesmas variáveis no painel do serviço, em **Environment**. O Guia de deploy na Render, disponível no Classroom da disciplina, mostra como fazer isso, e a etapa 13 resume.
 
-O `dotenv` pode continuar no código: quando não encontra o arquivo `.env`, ele simplesmente não faz nada, e o `process.env` já vem preenchido pela Render. **O código é o mesmo nos dois lugares; só a origem dos valores muda.** Esse padrão tem nome no mercado: *configuração por ambiente*.
+O `dotenv` pode continuar no código: quando não encontra o arquivo `.env`, ele não faz nada, e o `process.env` já vem preenchido pela Render. **O código é o mesmo nos dois lugares; só a origem dos valores muda.** Esse padrão se chama *configuração por ambiente*.
 
 ### async/await e o caminho de um erro
 
-Consultar o Supabase é uma requisição pela internet: leva alguns milissegundos (às vezes mais). O JavaScript não fica parado esperando. As funções do supabase-js devolvem uma **promessa**, e o `await` espera ela se cumprir. É o mesmo mecanismo do `fetch` no player.
+Consultar o Supabase é uma requisição pela internet: leva alguns milissegundos (às vezes mais). O JavaScript não fica parado esperando. As funções do supabase-js devolvem uma **promessa**, e o `await` espera o resultado dessa promessa. É o mesmo mecanismo do `fetch` no player.
 
-A consequência se espalha pelo sistema:
+Isso tem três consequências, uma depois da outra:
 
 1. O DAO usa `await supabase...`, então os métodos do DAO viram `async`.
 2. Um método `async` devolve uma promessa, então **quem chama o DAO também precisa de `await`**.
@@ -3678,7 +3760,7 @@ app.get('/api/musicas/:id', async (req, res, next) => {
 });
 ```
 
-(O trecho acima é um resumo para ler a ideia; o `app.js` completo está na etapa 10.)
+O trecho acima é um resumo. O `app.js` completo está na etapa 10.
 
 #### O `await` esquecido
 
@@ -3688,7 +3770,7 @@ Sem o `await`, a variável recebe a **promessa**, não a música:
 const musica = musicaDAO.buscarPorId(1);   // Promise { <pending> }
 ```
 
-Uma promessa é um objeto, e objeto nunca é "falso": o `if (!musica)` nunca dispara, e o `res.json` envia `{}`. **Resposta `{}` onde devia haver dados = procurem o `await` que falta.**
+Uma promessa é um objeto, e objeto nunca é "falso": o bloco do `if (!musica)` nunca executa, e o `res.json` envia `{}`. **Resposta `{}` onde devia haver dados = procurem o `await` que falta.**
 
 #### O caminho de um erro do banco
 
@@ -3718,11 +3800,11 @@ Uma promessa é um objeto, e objeto nunca é "falso": o `if (!musica)` nunca dis
 <figcaption style="font-size: 0.9em; color: #6b7c86; margin-top: 0.5em;">O erro sobe do DAO até o middleware de erro, que responde 500 e registra a mensagem.</figcaption>
 </figure>
 
-O `console.error` do middleware é o que aparece nos **Logs** da Render. Quando algo quebrar só na nuvem, é lá que a mensagem real do banco vai estar.
+O `console.error` do middleware é o que aparece nos **Logs** da Render. Quando um erro acontecer só no projeto publicado, a mensagem real do banco vai estar nesses Logs.
 
 ### Perguntas de autoverificação
 
-Respondam sem olhar o guia. As que travarem indicam o que reler. Estas perguntas são boas para treinar a verificação individual: cada pessoa da dupla deve conseguir responder sozinha.
+Respondam sem olhar o guia. As perguntas que vocês não conseguirem responder indicam o que reler. Estas perguntas servem para treinar a verificação individual: cada pessoa da dupla deve conseguir responder sozinha.
 
 1. O que acontece com os dados de um array quando a Render reinicia o serviço? E com os dados do Supabase? *(Por que um banco de dados; etapas 3 e 12)*
 2. Qual a diferença entre chave primária e chave estrangeira? Deem um exemplo de cada no karaokê. *(O mínimo de banco relacional)*
@@ -3755,23 +3837,27 @@ Procurem o sintoma na primeira coluna (a mensagem aparece no terminal onde roda 
 | `relation "artistas" already exists` | o `schema.sql` rodou num projeto que já tinha as tabelas (Unidade 3) | não rodem o `schema.sql` de novo; sigam o caminho 4B (diagnóstico e ajustes) | 4B |
 | `there is no unique or exclusion constraint matching the ON CONFLICT specification` | o `seed.sql` rodou antes do `ajustes.sql` num banco da Unidade 3 sem a regra de nome único em `artistas.nome` | rodem o `ajustes.sql` e o diagnóstico; depois, repitam o `seed.sql` (ele não duplica nada) | 4B |
 | `relation "partes" does not exist` | o `schema.sql` não rodou, ou parou no meio, neste projeto | num projeto novo e vazio, rodem o `schema.sql` inteiro (caminho 4A); num projeto da Unidade 3, rodem o diagnóstico e sigam o 4B | 4A |
-| o diagnóstico mostra `criar` numa coluna de `partes` | a tabela `partes` da Unidade 3 tem outra forma | leiam "Linha `criar` numa coluna de `partes`" na etapa 4B antes de rodar qualquer coisa: o bloco de recriação apaga as letras | 4B |
-| `update or delete on table "musicas" violates foreign key constraint` (erro 23503) | a ligação `partes → musicas` está sem `on delete cascade` | rodem o diagnóstico e o `ajustes.sql`; a linha deve virar `ok` | 4B |
+| o diagnóstico mostra `criar` numa coluna de `partes` | a tabela `partes` da Unidade 3 tem outra estrutura | leiam "Linha `criar` numa coluna de `partes`" na etapa 4B antes de rodar qualquer coisa: o bloco de recriação apaga as letras | 4B |
+| `update or delete on table "musicas" violates foreign key constraint` (erro 23503) | a ligação `partes → musicas` está sem `on delete cascade` | rodem o diagnóstico e o `ajustes.sql`; a linha deve mostrar `ok` | 4B |
 | `update or delete on table "artistas" violates foreign key constraint` | tentaram apagar um artista que ainda tem músicas | é o comportamento correto do banco: apaguem ou mudem as músicas antes | Parte II |
 | `insert or update on table "musicas" violates foreign key constraint` | `artista_id` de um artista que não existe | criem o artista antes (o `buscarOuCriar` faz isso) | 7 e 9 |
 | `duplicate key value violates unique constraint "artistas_nome_key"` | inserção de artista com nome repetido | usem `buscarOuCriar`, que procura antes de criar | 7 |
 | `null value in column "..." violates not-null constraint` | campo obrigatório faltando no `insert` | confiram o objeto do `insert`: os nomes são os **das colunas** (`tempo_espera`, não `tempoEspera`) | 8 e 9 |
-| o `package.json` ainda lista `@supabase/server`, ou a janela Connect mandou instalá-lo | o passo 1 ou o passo 3 da janela Connect foi seguido (ou o prompt do botão **Copy prompt** foi usado), ou a remoção da etapa 2 não foi feita | removam com `npm uninstall @supabase/server` (etapa 2) e usem só o `@supabase/supabase-js` | 2 |
-| rota responde `{}` onde devia vir dados | faltou `await` na chamada ao DAO | ver "async/await e o caminho de um erro"; conferam cada `musicaDAO.` da rota | 10 |
-| `data` vem `null` sem erro aparente | o `error` não foi verificado | `if (error)` depois de toda chamada | 7 e 9 |
+| o `package.json` ainda lista `@supabase/server`, ou a janela Connect indicou a instalação dele | o passo 1 ou o passo 3 da janela Connect foi seguido (ou o prompt do botão **Copy prompt** foi usado), ou a remoção da etapa 2 não foi feita | removam com `npm uninstall @supabase/server` (etapa 2) e usem só o `@supabase/supabase-js` | 2 |
+| rota responde `{}` onde devia vir dados | faltou `await` na chamada ao DAO | vejam "async/await e o caminho de um erro"; confiram se cada `musicaDAO.` da rota tem `await` | 10 |
+| `data` vem `null` sem erro aparente | o `error` não foi verificado | coloquem `if (error)` depois de toda chamada ao banco | 7 e 9 |
 | partes fora de ordem, às vezes | faltou `.order('ordem')` | acrescentem o `.order('ordem')` na consulta das partes | 8 |
-| o player mostra `[object Object]` no lugar do artista | o artista agora é objeto | `musica.artista.nome` no `player.js` | 11 |
-| o karaokê não espera entre os versos | `tempoEspera` chegou `undefined` (linha crua do banco, sem mapeamento) | mapeamento no `ParteDAO` (`_paraParte`) | 8 |
-| `Cannot find module '../../supabaseClient'` (ou `'../supabaseClient'`) | o caminho do `require` não bate com a estrutura de pastas | contem os níveis de pasta; ver o Anexo | Anexo |
-| funciona no computador, erro 500 na Render | URL ou secret key erradas na Render (incompletas, trocadas, de outro projeto), ou projeto do Supabase pausado; sem as variáveis o servidor nem sobe, e a mensagem `Preencham ...` aparece nos Logs | leiam os **Logs**: com `Invalid API key`, colem a chave de novo em **Environment** e esperem a nova publicação; com falha de conexão, restaurem o projeto no Supabase | 13 |
+| o player mostra `[object Object]` no lugar do artista | o artista agora é objeto | usem `musica.artista.nome` no `player.js` | 11 |
+| o karaokê não espera entre os versos | `tempoEspera` chegou `undefined` (linha do banco sem mapeamento) | confiram o mapeamento no `ParteDAO` (`_paraParte`) | 8 |
+| `Cannot find module '../../supabaseClient'` (ou `'../supabaseClient'`) | o caminho do `require` não corresponde à estrutura de pastas | contem os níveis de pasta; vejam o Anexo | Anexo |
+| funciona no computador, erro 500 na Render | URL ou secret key erradas na Render (incompletas, trocadas, de outro projeto), ou projeto do Supabase pausado; sem as variáveis o servidor não inicia, e a mensagem `Preencham ...` aparece nos Logs | leiam os **Logs**: com `Invalid API key`, colem a chave de novo em **Environment** e esperem a nova publicação; com falha de conexão, restaurem o projeto no Supabase | 13 |
 | tudo parou de funcionar depois de uns dias, ou o projeto está pausado antes da apresentação | o projeto do Supabase foi **pausado** por inatividade | no painel do Supabase, restaurem o projeto e esperem o status **Healthy**; abram o projeto na véspera de qualquer apresentação | 4B e 13 |
 
-Se o erro não está na tabela: leiam a mensagem **inteira** (ela costuma dizer a tabela e a coluna), reproduzam do jeito mais simples possível e tragam ao professor **o que já tentaram**.
+Se o erro não está na tabela:
+
+1. Leiam a mensagem **inteira** (ela costuma dizer a tabela e a coluna).
+2. Reproduzam o erro do jeito mais simples possível.
+3. Mostrem ao professor **o que já tentaram**.
 
 > **Pergunte ao agente.** *"Leia esta mensagem de erro (colada abaixo, sem chaves) e me diga em qual camada o problema está: navegador, rota, DAO ou banco. Explique como você chegou a essa conclusão. Use como fonte o guia_supabase.md ("Socorro — erros comuns"), na página do trabalho: https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md."*
 
@@ -3817,10 +3903,10 @@ Os arquivos que ficam na **mesma pasta** (como `ArtistaDAO` dentro do `MusicaDAO
 ### Num projeto próprio: como calcular o caminho
 
 1. Escrevam o caminho da **pasta do arquivo que importa** (por exemplo, `karaoke/DAO/`).
-2. Cada `..` sobe uma pasta. Subam até a pasta que é ancestral comum dos dois arquivos. De `karaoke/DAO/` até a raiz são dois níveis: `../../`.
+2. Cada `..` sobe uma pasta. Subam até a primeira pasta que contém os dois arquivos (diretamente ou em subpastas). De `karaoke/DAO/` até a raiz são dois níveis: `../../`.
 3. Desçam até o arquivo que querem importar, escrevendo o caminho a partir dali: `../../supabaseClient`, ou `../musica` (um nível acima já é a pasta `karaoke/`).
 4. Se o arquivo está na **mesma pasta**, o caminho começa com `./`.
-5. A extensão `.js` pode ficar de fora, mas as maiúsculas e minúsculas precisam bater com o nome real: `DAO` e `Dao` são pastas diferentes no Linux, onde a Render roda o projeto.
+5. A extensão `.js` pode ser omitida, mas as maiúsculas e minúsculas precisam ser iguais às do nome real: `DAO` e `Dao` são pastas diferentes no Linux, onde a Render roda o projeto.
 
 Para conferir, abram o terminal na raiz do projeto e rodem o teste do DAO (`node testes/teste_musica_dao.js`, ou o equivalente da estrutura de vocês). Se o erro for `Cannot find module`, a mensagem mostra qual `require` não foi encontrado e em qual arquivo.
 
@@ -3837,7 +3923,7 @@ Para conferir, abram o terminal na raiz do projeto e rodem o teste do DAO (`node
 **SQL**
 
 - [SQLBolt](https://sqlbolt.com/) — exercícios interativos de SQL, direto no navegador
-- [Documentação do PostgreSQL: tutorial](https://www.postgresql.org/docs/current/tutorial.html) — para quem quiser ir além do que o Supabase esconde
+- [Documentação do PostgreSQL: tutorial](https://www.postgresql.org/docs/current/tutorial.html) — para quem quiser estudar o PostgreSQL além do que o painel do Supabase mostra
 
 **Node.js**
 

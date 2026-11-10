@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programação III - Material Didático</title>
+  <title>Trabalho integrador — O repertório da turma · Programação III</title>
   <style>
     
 
@@ -317,6 +317,30 @@
       }
     }
 
+    
+    /* --leitura-acessivel */
+    body { background: #faf8f4; font-size: 17px; line-height: 1.8; }
+    .page { box-shadow: none; }
+    .hero { padding: 16px 32px 12px; }
+    .hero h1 { font-size: 1.25rem; }
+    .hero .meta { margin-top: 10px; }
+    main p, main li, main blockquote { max-width: 75ch; }
+    main td p, main td li { max-width: none; }
+    main h2 { margin-top: 3rem; }
+    main li { margin: 0.35rem 0; }
+    main li.tarefa { list-style: none; margin-left: -1.4em; }
+    main li.tarefa > p { display: inline; }
+    main li.tarefa input[type="checkbox"] { display: inline-block; width: 1.15em; height: 1.15em; margin-right: 0.5em; vertical-align: -0.15em; accent-color: #1d7a2d; }
+    main li.tarefa.feita { color: #4b5a63; }
+    .pular-conteudo { position: absolute; left: -9999px; top: 0; padding: 10px 16px; background: #fff; border: 2px solid #1d7a2d; border-radius: 0 0 8px 0; font-weight: 600; z-index: 20; }
+    .pular-conteudo:focus { left: 0; }
+    .sumario-flutuante { position: fixed; right: 18px; bottom: 18px; padding: 10px 16px; border: 2px solid #1d7a2d; border-radius: 999px; background: #fff; color: #14532d; font-weight: 700; font-size: 0.95rem; text-decoration: none; z-index: 10; }
+    .sumario-flutuante:hover, .sumario-flutuante:focus { background: #1d7a2d; color: #fff; }
+    button:focus-visible, input:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+    @media (max-width: 640px) { .sumario-flutuante { right: 10px; bottom: 10px; padding: 6px 12px; font-size: 0.85rem; } body { padding-bottom: 64px; } }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+    @media print { .pular-conteudo, .sumario-flutuante { display: none !important; } main p, main li, main blockquote { max-width: none; } }
+
     @media print {
       .diagram-expand, .diagram-dialog { display: none; }
       body {
@@ -361,6 +385,7 @@
   </style>
 </head>
 <body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
   <div class="page">
     <section class="hero">
       <div class="hero-top">
@@ -373,65 +398,173 @@
         <div class="meta-card"><strong>Curso</strong>Ensino Médio Integrado - Técnico em Informática</div>
       </div>
     </section>
-    <main>
+    <main id="conteudo">
       <h1 id="trabalho-integrador--o-repertório-da-turma">Trabalho integrador — O repertório da turma</h1>
-<p><strong>Versão 2 · 27/10/2026 · Valor: 4,0 pontos.</strong> Substitui a versão de entrega de 20/10/2026.<br><strong>IFSul — Campus Passo Fundo · Ensino Médio Integrado — Técnico em Informática</strong><br><strong>Disciplina:</strong> Programação III<br><strong>Professor:</strong> Élder F. F. Bernardi<br><strong>Tutor da atividade:</strong> Prof. Leonardo Constantin<br><strong>Turmas:</strong> 3D1 e 3D2 · <strong>Modalidade:</strong> duplas, com verificação individual<br><strong>Apresentações:</strong> 3D2 em 24/11/2026; 3D1 em 04/12/2026<br><strong>Tempo:</strong> quatro encontros de 150min + até 60min extraclasse por encontro; apresentação em outro encontro de 150min.</p>
+<p><strong>Versão 3 · 10/11/2026 · Valor: 4,0 pontos.</strong> Substitui a versão 2, de 27/10/2026.<br><strong>IFSul — Campus Passo Fundo · Ensino Médio Integrado — Técnico em Informática</strong><br><strong>Disciplina:</strong> Programação III<br><strong>Professor:</strong> Élder F. F. Bernardi<br><strong>Tutor da atividade:</strong> Prof. Leonardo Constantin<br><strong>Turmas:</strong> 3D1 e 3D2 · <strong>Modalidade:</strong> duplas, com verificação individual<br><strong>Apresentações:</strong> 3D2 em 24/11/2026; 3D1 em 04/12/2026<br><strong>Tempo:</strong> quatro encontros de 150min + até 60min extraclasse por encontro; apresentação em outro encontro de 150min.</p>
+<p>Todos os materiais do trabalho estão na <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">página do trabalho</a> e no Classroom da disciplina.</p>
 <blockquote>
-<p><strong>O que mudou na versão 2</strong></p>
+<p><strong>O que mudou na versão 3</strong></p>
 <ul>
-<li>Critérios, pesos, níveis, requisitos e datas continuam os mesmos.</li>
-<li>Nova seção: &quot;Banco de dados: preparar e conferir&quot;.</li>
-<li>Novos materiais de apoio: Guia passo a passo do Supabase, Guia de interface — CRUD na tela com fetch e o <code>AGENTS.md</code> para uso de agentes de IA como tutor.</li>
-<li>Os materiais passam a ser citados pelo nome e estão no Classroom da disciplina.</li>
-<li>Texto revisado para leitura mais direta.</li>
+<li><strong>Nenhuma regra mudou.</strong> Requisitos R1 a R8, marcos, datas, critérios, pesos, níveis, entrega, uso de IA e recuperação são os mesmos da versão 2.</li>
+<li>Quem já começou o trabalho continua do ponto em que está. Não é preciso refazer nada.</li>
+<li>O texto foi reorganizado: há um resumo no início, as instruções estão em listas e os materiais de apoio têm link direto.</li>
+<li>As seções da versão 2 continuam com os mesmos títulos e na mesma ordem.</li>
+<li>Seções novas: &quot;Como usar este documento&quot;, &quot;Resumo do trabalho&quot; e &quot;Glossário&quot;.</li>
 </ul>
 </blockquote>
-<nav class="sumario-auto"><h2 id="sumario-auto">Sumário</h2><ol><li><a href="#o-que-vocês-vão-resolver">O que vocês vão resolver</a></li><li><a href="#de-onde-partir">De onde partir</a></li><li><a href="#como-as-partes-se-conectam">Como as partes se conectam</a></li><li><a href="#banco-de-dados-preparar-e-conferir">Banco de dados: preparar e conferir</a></li><li><a href="#núcleo-do-trabalho--r1-a-r8">Núcleo do trabalho — R1 a R8</a></li><li><a href="#quatro-encontros-para-desenvolver">Quatro encontros para desenvolver</a></li><li><a href="#percurso-para-testar-e-demonstrar">Percurso para testar e demonstrar</a></li><li><a href="#o-que-guardar-e-entregar">O que guardar e entregar</a></li><li><a href="#o-que-cada-integrante-precisa-compreender">O que cada integrante precisa compreender</a></li><li><a href="#como-será-avaliado">Como será avaliado</a></li><li><a href="#uso-de-ia">Uso de IA</a></li><li><a href="#correção-e-recuperação">Correção e recuperação</a></li><li><a href="#aprofundamentos-por-escolha">Aprofundamentos por escolha</a></li><li><a href="#se-houver-impedimento-técnico">Se houver impedimento técnico</a></li><li><a href="#apoios-da-disciplina">Apoios da disciplina</a></li></ol></nav>
+<nav class="sumario-auto"><h2 id="sumario-auto">Sumário</h2><ol><li><a href="#como-usar-este-documento">Como usar este documento</a></li><li><a href="#resumo-do-trabalho">Resumo do trabalho</a></li><li><a href="#o-que-vocês-vão-resolver">O que vocês vão resolver</a></li><li><a href="#de-onde-partir">De onde partir</a></li><li><a href="#como-as-partes-se-conectam">Como as partes se conectam</a></li><li><a href="#banco-de-dados-preparar-e-conferir">Banco de dados: preparar e conferir</a></li><li><a href="#núcleo-do-trabalho--r1-a-r8">Núcleo do trabalho — R1 a R8</a></li><li><a href="#quatro-encontros-para-desenvolver">Quatro encontros para desenvolver</a></li><li><a href="#percurso-para-testar-e-demonstrar">Percurso para testar e demonstrar</a></li><li><a href="#o-que-guardar-e-entregar">O que guardar e entregar</a></li><li><a href="#o-que-cada-integrante-precisa-compreender">O que cada integrante precisa compreender</a></li><li><a href="#como-será-avaliado">Como será avaliado</a></li><li><a href="#uso-de-ia">Uso de IA</a></li><li><a href="#correção-e-recuperação">Correção e recuperação</a></li><li><a href="#aprofundamentos-por-escolha">Aprofundamentos por escolha</a></li><li><a href="#se-houver-impedimento-técnico">Se houver impedimento técnico</a></li><li><a href="#apoios-da-disciplina">Apoios da disciplina</a></li><li><a href="#glossário">Glossário</a></li></ol></nav>
+<h2 id="como-usar-este-documento">Como usar este documento</h2>
+<ol>
+<li>Leiam primeiro o <strong>Resumo do trabalho</strong>. Ele é curto.</li>
+<li>Depois, leiam a seção <strong>Quatro encontros para desenvolver</strong>. Ela diz o que mostrar em cada encontro.</li>
+<li>As outras seções são de consulta. Vocês podem ler cada uma quando precisarem dela.</li>
+</ol>
+<p>Neste documento:</p>
+<ul>
+<li><strong>Núcleo</strong> é a parte obrigatória do trabalho: os requisitos R1 a R8.</li>
+<li><strong>Opcional</strong> é o que a dupla escolhe fazer ou não. O que é opcional não é exigido para a nota máxima e não reduz a nota.</li>
+<li>As tabelas de requisitos, marcos, critérios e níveis têm o mesmo texto das versões anteriores.</li>
+<li>As explicações novas desta versão não criam regra. As explicações novas são: o resumo, as listas que vêm depois das tabelas, as linhas &quot;Deu certo se&quot; e o glossário.</li>
+<li>Se vocês notarem diferença entre uma explicação e uma tabela, vale a tabela. Nesse caso, avisem o professor.</li>
+<li>As palavras técnicas estão explicadas no <strong>Glossário</strong>, no fim do documento.</li>
+</ul>
+<p>Ficaram com dúvida sobre o que fazer? Perguntem ao professor.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
+<h2 id="resumo-do-trabalho">Resumo do trabalho</h2>
+<table>
+<thead>
+<tr>
+<th>Pergunta</th>
+<th>Resposta</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>O que é o trabalho?</td>
+<td>Um karaokê na web, com um catálogo de músicas. Pela tela, quem usa o karaokê consulta, cadastra, edita e exclui músicas. Os dados ficam em um banco de dados. A aplicação fica publicada em uma URL pública.</td>
+</tr>
+<tr>
+<td>O que é obrigatório?</td>
+<td>O núcleo: os requisitos R1 a R8.</td>
+</tr>
+<tr>
+<td>Com quem?</td>
+<td>Em dupla. Cada pessoa da dupla também passa por uma verificação individual.</td>
+</tr>
+<tr>
+<td>Quanto vale?</td>
+<td>4,0 pontos. Até 2,8 pontos vêm da dupla. Até 1,2 ponto vem da compreensão de cada pessoa.</td>
+</tr>
+<tr>
+<td>Quando?</td>
+<td>Quatro encontros para desenvolver e um encontro para apresentar. As datas estão na seção &quot;Quatro encontros para desenvolver&quot;.</td>
+</tr>
+<tr>
+<td>O que entregar?</td>
+<td>O link do repositório GitHub, a URL pública da aplicação e o caminho do README.</td>
+</tr>
+<tr>
+<td>Onde entregar?</td>
+<td>No Classroom da disciplina.</td>
+</tr>
+</tbody></table>
+<p>O caminho do trabalho, em ordem:</p>
+<ol>
+<li><strong>M1:</strong> abrir a página, listar as músicas vindas da API, conferir o banco e iniciar a publicação.</li>
+<li><strong>M2:</strong> cadastrar uma música pela tela e conferir que ela continua no banco depois de reiniciar o servidor.</li>
+<li><strong>M3:</strong> editar e excluir pela tela, validar campos vazios, mostrar mensagens de erro e repetir o CRUD na URL pública.</li>
+<li><strong>M4:</strong> conferir tudo na URL pública, completar o README e ensaiar.</li>
+<li><strong>Apresentação:</strong> demonstrar o trabalho. Cada pessoa mostra o que compreendeu.</li>
+</ol>
+<p>Esta lista é um resumo. A lista completa de cada marco está na seção &quot;Quatro encontros para desenvolver&quot;.</p>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="o-que-vocês-vão-resolver">O que vocês vão resolver</h2>
-<p>A turma está organizando um repertório para um karaokê. Quem consulta o catálogo
-quer encontrar uma música, conferir seu artista e reproduzir as partes disponíveis.
-Quem mantém o repertório precisa incluir uma música, corrigir seus dados ou retirar
-um registro pela própria tela, sem escrever SQL para cada alteração.</p>
+<p>A turma está organizando um repertório para um karaokê. Repertório é o conjunto de músicas do catálogo.</p>
+<p>Duas situações precisam funcionar:</p>
+<ul>
+<li><strong>Consultar o catálogo.</strong> Quem usa o karaokê encontra uma música, confere o artista e reproduz as partes disponíveis.</li>
+<li><strong>Manter o repertório.</strong> Quem mantém o repertório inclui uma música, corrige os dados de uma música ou retira um registro. Tudo isso é feito pela própria tela, sem escrever SQL para cada alteração.</li>
+</ul>
 <p>O desafio é completar <strong>interface → API → DAO → banco → resposta na interface</strong>,
 com a aplicação acessível por uma URL pública.
 Os dados precisam continuar disponíveis depois de reiniciar o servidor.
 Usem dados de demonstração. O trabalho não exige login.</p>
 <p>Este trabalho continua o karaokê que vocês exploraram no terminal, na API, no player
-e na integração com banco. Cada projeto pode estar numa etapa diferente, e vocês
-podem começar de onde o projeto de vocês está.
-A primeira meta é <strong>abrir a página e listar músicas vindas da API</strong>.
+e na integração com banco.
+Cada projeto pode estar numa etapa diferente. Vocês podem começar de onde o projeto de vocês está.</p>
+<p>A primeira meta é <strong>abrir a página e listar músicas vindas da API</strong>.
 Completem uma operação por vez.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="de-onde-partir">De onde partir</h2>
-<p>Vocês podem aproveitar o projeto da dupla ou usar a base de retomada disponibilizada pelo professor no Classroom (também em <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip">base_retomada.zip</a>, na página do trabalho).
-A base vem acompanhada do Roteiro de retomada, disponível no Classroom da disciplina.
-<strong>A base é opcional, não reduz a nota e permite alcançar o nível excelente.</strong>
-Vocês podem recorrer a ela durante o trabalho, preservando os registros úteis.</p>
-<p>Na base, leitura, listagem, seleção, player, API e DAOs já estão preparados.
-As três tarefas de integração ficam em <code>public/admin.js</code>:</p>
+<p>Vocês podem partir de um destes dois pontos:</p>
+<table>
+<thead>
+<tr>
+<th>Ponto de partida</th>
+<th>O que é</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Projeto da dupla</strong></td>
+<td>O karaokê que vocês já vinham fazendo nas aulas. Vocês aproveitam o que já funciona.</td>
+</tr>
+<tr>
+<td><strong>Base de retomada</strong></td>
+<td>Um projeto preparado pelo professor. Ele está no Classroom e em <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip">base_retomada.zip</a>, na página do trabalho.</td>
+</tr>
+</tbody></table>
+<p><strong>A base é opcional, não reduz a nota e permite alcançar o nível excelente.</strong></p>
+<ul>
+<li>A base vem acompanhada do <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/roteiro_retomada.html">Roteiro de retomada</a>.</li>
+<li>Vocês podem recorrer à base durante o trabalho. Se fizerem isso, preservem os registros úteis que já existem.</li>
+<li>Os requisitos são os mesmos nos dois pontos de partida. Quem usa projeto próprio aproveita o que já funciona e demonstra os mesmos requisitos.</li>
+<li>Em dúvida sobre qual escolher? O <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_dia_01.html">Guia do dia 1</a>, no passo 2, ajuda a decidir.</li>
+</ul>
+<p><strong>O que a base já traz pronto:</strong> leitura, listagem, seleção, player, API e DAOs.</p>
+<p><strong>O que a dupla faz na base:</strong> três tarefas de integração, no arquivo <code>public/admin.js</code>:</p>
 <ol>
 <li>Conectar o formulário ao <strong>cadastro</strong> de música.</li>
 <li>Aproveitar a seleção para <strong>editar</strong> a música escolhida.</li>
 <li>Conectar a ação de <strong>exclusão</strong>, com confirmação.</li>
 </ol>
-<p>Em cada tarefa, tratem a resposta, informem sucesso ou erro e atualizem a lista.
-Os controles de escrita começam indisponíveis: habilitem cada ação quando sua integração estiver pronta.
-Quem usa projeto próprio aproveita o que já funciona e demonstra os mesmos requisitos.</p>
-<p>HTML, CSS e JavaScript com <code>fetch</code> atendem ao núcleo. Vue é opcional.
-Reaproveitem as classes, os DAOs e as relações que já existem.
-O núcleo não exige trocar a arquitetura nem adicionar dependências.
-O Roteiro de retomada informa como instalar e executar a base com Node.js 22 ou superior.</p>
+<p>Em cada uma das três tarefas:</p>
+<ul>
+<li>tratem a resposta;</li>
+<li>informem sucesso ou erro;</li>
+<li>atualizem a lista.</li>
+</ul>
+<p>Os controles de escrita começam indisponíveis: habilitem cada ação quando sua integração estiver pronta.
+Na base, os controles de escrita são os botões de salvar, de excluir e de nova música. No arquivo <code>public/admin.js</code>, as três tarefas estão marcadas como <code>TODO 1</code>, <code>TODO 2</code> e <code>TODO 3</code>.</p>
+<p><strong>Tecnologias:</strong></p>
+<ul>
+<li>HTML, CSS e JavaScript com <code>fetch</code> atendem ao núcleo. Vue é opcional.</li>
+<li>Reaproveitem as classes, os DAOs e as relações que já existem.</li>
+<li>O núcleo não exige trocar a arquitetura nem adicionar dependências.</li>
+<li>O Roteiro de retomada informa como instalar e executar a base com Node.js 22 ou superior.</li>
+</ul>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="como-as-partes-se-conectam">Como as partes se conectam</h2>
 <p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDE4MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdHVsbyBkZXNjIj4KPHRpdGxlIGlkPSJ0aXR1bG8iPkNhbWluaG8gZG9zIGRhZG9zIGRvIGthcmFva8OqPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPkEgaW50ZXJmYWNlIHRyb2NhIHJlcXVpc2nDp8O1ZXMgZSByZXNwb3N0YXMgY29tIGEgQVBJIEV4cHJlc3MuIEEgQVBJIHVzYSBvcyBEQU9zLCBxdWUgY29uc3VsdGFtIGUgYWx0ZXJhbSBvIGJhbmNvLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0ic2V0YSIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI4IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTSAwIDAgTCAxMCA1IEwgMCAxMCB6IiBmaWxsPSIjMWQ3YTJkIi8+PC9tYXJrZXI+PC9kZWZzPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPgo8cmVjdCB4PSIyMCIgeT0iMjUiIHdpZHRoPSIyNDAiIGhlaWdodD0iMTEwIiByeD0iMTAiIGZpbGw9IiNmMGY4ZjEiIHN0cm9rZT0iIzFkN2EyZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTQwIiB5PSI2OSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMxZDVjMjkiPkludGVyZmFjZTwvdGV4dD48dGV4dCB4PSIxNDAiIHk9IjEwNSIgZm9udC1zaXplPSIxNyIgZmlsbD0iIzI0MzkyYiI+Zm9ybXVsw6FyaW8gZSBwbGF5ZXI8L3RleHQ+CjxyZWN0IHg9IjMyMCIgeT0iMjUiIHdpZHRoPSIyNDAiIGhlaWdodD0iMTEwIiByeD0iMTAiIGZpbGw9IiNmMGY4ZjEiIHN0cm9rZT0iIzFkN2EyZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNDQwIiB5PSI2OSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMxZDVjMjkiPkFQSSBFeHByZXNzPC90ZXh0Pjx0ZXh0IHg9IjQ0MCIgeT0iMTA1IiBmb250LXNpemU9IjE3IiBmaWxsPSIjMjQzOTJiIj5yZXF1aXNpw6fDtWVzIGUgcmVzcG9zdGFzPC90ZXh0Pgo8cmVjdCB4PSI2MjAiIHk9IjI1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjExMCIgcng9IjEwIiBmaWxsPSIjZjBmOGYxIiBzdHJva2U9IiMxZDdhMmQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9Ijc0MCIgeT0iNjkiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMWQ1YzI5Ij5EQU9zPC90ZXh0Pjx0ZXh0IHg9Ijc0MCIgeT0iMTA1IiBmb250LXNpemU9IjE3IiBmaWxsPSIjMjQzOTJiIj5jb25zdWx0YXMgZSBvYmpldG9zPC90ZXh0Pgo8cmVjdCB4PSI5MjAiIHk9IjI1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjExMCIgcng9IjEwIiBmaWxsPSIjZjBmOGYxIiBzdHJva2U9IiMxZDdhMmQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEwNDAiIHk9IjY5IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzFkNWMyOSI+QmFuY28gZGUgZGFkb3M8L3RleHQ+PHRleHQgeD0iMTA0MCIgeT0iMTA1IiBmb250LXNpemU9IjE3IiBmaWxsPSIjMjQzOTJiIj5hcnRpc3RhcyDCtyBtw7pzaWNhcyDCtyBwYXJ0ZXM8L3RleHQ+CjxwYXRoIGQ9Ik0gMjcyIDgwIEggMzA4IiBzdHJva2U9IiMxZDdhMmQiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLXN0YXJ0PSJ1cmwoI3NldGEpIiBtYXJrZXItZW5kPSJ1cmwoI3NldGEpIi8+CjxwYXRoIGQ9Ik0gNTcyIDgwIEggNjA4IiBzdHJva2U9IiMxZDdhMmQiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLXN0YXJ0PSJ1cmwoI3NldGEpIiBtYXJrZXItZW5kPSJ1cmwoI3NldGEpIi8+CjxwYXRoIGQ9Ik0gODcyIDgwIEggOTA4IiBzdHJva2U9IiMxZDdhMmQiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLXN0YXJ0PSJ1cmwoI3NldGEpIiBtYXJrZXItZW5kPSJ1cmwoI3NldGEpIi8+Cjx0ZXh0IHg9IjYwMCIgeT0iMTY2IiBmb250LXNpemU9IjE5IiBmaWxsPSIjNDI1NzRhIj5PIHJldG9ybm8gcGVyY29ycmUgYXMgbWVzbWFzIGNhbWFkYXMgYXTDqSBhdHVhbGl6YXIgYSBpbnRlcmZhY2UuPC90ZXh0PjwvZz48L3N2Zz4K" alt="Caminho dos dados: interface, API Express, DAOs e banco, com requisições e respostas."></p>
-<p>Um artista pode ter várias músicas; uma música pode ter várias partes.
-O CRUD obrigatório na interface é o de <strong>músicas, com nome e artista</strong>.
-As outras tabelas não precisam de telas próprias de administração.</p>
-<p>Na base, página e API usam a mesma origem: a interface chama <code>/api/musicas</code>.
-Por isso, não é preciso configurar CORS.
-No POST e no PUT, enviem <code>nome</code> e <code>artista</code> como <strong>strings</strong>.
-Na resposta, <code>artista</code> é um <strong>objeto</strong> com <code>id</code> e <code>nome</code>.
-Para preencher o formulário, usem o nome contido nesse objeto.</p>
+<p>O caminho dos dados, na ordem:</p>
+<ol>
+<li>Alguém usa a <strong>interface</strong>: a página aberta no navegador.</li>
+<li>A interface envia uma requisição para a <strong>API</strong>, com <code>fetch</code>.</li>
+<li>A API chama o <strong>DAO</strong>.</li>
+<li>O DAO lê ou altera o <strong>banco de dados</strong>.</li>
+<li>A resposta volta pelo mesmo caminho. A interface mostra o resultado.</li>
+</ol>
+<p><strong>Os dados:</strong></p>
+<ul>
+<li>Um artista pode ter várias músicas; uma música pode ter várias partes.</li>
+<li>O CRUD obrigatório na interface é o de <strong>músicas, com nome e artista</strong>.</li>
+<li>As outras tabelas não precisam de telas próprias de administração.</li>
+</ul>
+<p><strong>O formato das requisições:</strong></p>
+<ul>
+<li>Na base, página e API usam a mesma origem: a interface chama <code>/api/musicas</code>. Por isso, não é preciso configurar CORS.</li>
+<li>No POST e no PUT, enviem <code>nome</code> e <code>artista</code> como <strong>strings</strong>.</li>
+<li>Na resposta, <code>artista</code> é um <strong>objeto</strong> com <code>id</code> e <code>nome</code>.</li>
+<li>Para preencher o formulário, usem o nome contido nesse objeto.</li>
+</ul>
 <p><strong>Editar o artista de uma música</strong> significa alterar o nome informado e o vínculo
 daquela música com o artista correspondente. A mudança vale só para aquela música:
 as outras músicas do catálogo continuam com o artista que já tinham.</p>
@@ -439,22 +572,46 @@ as outras músicas do catálogo continuam com o artista que já tinham.</p>
 <h2 id="banco-de-dados-preparar-e-conferir">Banco de dados: preparar e conferir</h2>
 <p>Esta seção orienta o preparo do banco; os requisitos continuam sendo R1 a R8.
 Os guias da disciplina usam um projeto Supabase por dupla, com dados de demonstração.</p>
-<p>Quem já tem o projeto Supabase da Unidade 3 pode continuar com ele.
-Antes, recomendamos rodar o diagnóstico da etapa 4 do Guia passo a passo do Supabase,
-disponível no Classroom da disciplina, e os ajustes que ele indicar.
-O diagnóstico confere se as tabelas estão como a aplicação espera; por exemplo,
-se excluir uma música também remove as partes dela.
-Para criar um projeto novo, o passo a passo está na mesma etapa 4.</p>
-<p>As credenciais, como a chave secreta do Supabase, ficam somente no servidor:
-no <code>.env</code> local e nas variáveis de ambiente do serviço publicado.
-Não as coloquem no JavaScript público, no Git, em capturas ou no README.</p>
+<p><strong>Situações mais comuns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Situação da dupla</th>
+<th>O que fazer</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vocês já têm o projeto Supabase da Unidade 3</td>
+<td>Podem continuar com ele. Antes, recomendamos rodar o diagnóstico e os ajustes que ele indicar.</td>
+</tr>
+<tr>
+<td>Vocês vão criar um projeto novo</td>
+<td>O passo a passo de criação está no guia.</td>
+</tr>
+</tbody></table>
+<p>Os dois casos estão na <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#etapa-4--o-banco-no-supabase">etapa 4 do Guia passo a passo do Supabase</a>.</p>
+<p>O diagnóstico confere se as tabelas estão como a aplicação espera. Por exemplo: ele confere
+se excluir uma música também remove as partes dela.</p>
+<p><strong>Onde ficam as credenciais:</strong></p>
+<p>As credenciais, como a chave secreta do Supabase, ficam somente no servidor:</p>
+<ul>
+<li>no <code>.env</code> local;</li>
+<li>nas variáveis de ambiente do serviço publicado.</li>
+</ul>
+<p>Não as coloquem no JavaScript público, no Git, em capturas ou no README.</p>
+<p><strong>Projeto pausado:</strong></p>
 <p>O plano gratuito do Supabase pausa projetos sem atividade por 7 dias.
-Com o projeto pausado, o banco não responde e a aplicação publicada passa a dar erro.
-Antes da apresentação, abram o painel do projeto e confiram o status.
-Se ele estiver pausado, restaurem o projeto (botão <strong>Restore</strong>) e esperem o banco voltar a responder.
-Se o projeto não voltar a responder, sigam a seção &quot;Se houver impedimento técnico&quot;.</p>
+Com o projeto pausado, o banco não responde e a aplicação publicada passa a dar erro.</p>
+<p>Antes da apresentação:</p>
+<ol>
+<li>Abram o painel do projeto no Supabase.</li>
+<li>Confiram o status.</li>
+<li>Se o projeto estiver pausado, restaurem o projeto (botão <strong>Restore</strong>) e esperem o banco voltar a responder.</li>
+<li>Se o projeto não voltar a responder, sigam a seção &quot;Se houver impedimento técnico&quot;.</li>
+</ol>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="núcleo-do-trabalho--r1-a-r8">Núcleo do trabalho — R1 a R8</h2>
+<p>O núcleo é a parte obrigatória. Ele tem oito requisitos:</p>
 <table>
 <thead>
 <tr>
@@ -495,18 +652,67 @@ Se o projeto não voltar a responder, sigam a seção &quot;Se houver impediment
 <td>Cada pessoa acompanha um fluxo e realiza ou prevê uma pequena intervenção; a dupla registra execução, testes e uma decisão no README.</td>
 </tr>
 </tbody></table>
-<p>O ID pode ficar fora do layout: confiram-no na resposta da API, na aba Rede do navegador, com orientação do professor.
-Música sem partes continua listável, editável e removível. Cadastrar letras não faz parte do núcleo.
-Preservem ao menos uma música do repertório inicial para o player.</p>
-<p>Para a tela, bastam campos identificados, texto legível e ações utilizáveis.
-Ficam fora do núcleo: relatório de dados, técnica específica de responsividade,
+<p><strong>Onde conferir cada requisito:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Requisito</th>
+<th>Onde está o teste ou a explicação</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>R1</td>
+<td>Passo 1 do &quot;Percurso para testar e demonstrar&quot;.</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>Passo 2 do Percurso.</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>Passo 3 do Percurso.</td>
+</tr>
+<tr>
+<td>R4</td>
+<td>Passos 5 e 6 do Percurso.</td>
+</tr>
+<tr>
+<td>R5</td>
+<td>Passo 7 do Percurso e &quot;Falha controlada local&quot;.</td>
+</tr>
+<tr>
+<td>R6</td>
+<td>Passos 1 e 2 do Percurso.</td>
+</tr>
+<tr>
+<td>R7</td>
+<td>Passo 4 do Percurso. O CRUD também é executado na URL pública (marco M3).</td>
+</tr>
+<tr>
+<td>R8</td>
+<td>Seções &quot;O que cada integrante precisa compreender&quot; e &quot;O que guardar e entregar&quot;.</td>
+</tr>
+</tbody></table>
+<p><strong>Detalhes do núcleo:</strong></p>
+<ul>
+<li>O ID pode ficar fora do layout: confiram-no na resposta da API, na aba Rede do navegador, com orientação do professor.</li>
+<li>Música sem partes continua listável, editável e removível.</li>
+<li>Cadastrar letras não faz parte do núcleo.</li>
+<li>Preservem ao menos uma música do repertório inicial para o player.</li>
+<li>Para a tela, bastam campos identificados, texto legível e ações utilizáveis.</li>
+</ul>
+<p><strong>Ficam fora do núcleo:</strong> relatório de dados, técnica específica de responsividade,
 fila, upload, áudio, MIDI, sincronização e autenticação.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="quatro-encontros-para-desenvolver">Quatro encontros para desenvolver</h2>
-<p>O trabalho essencial acontece em aula, incluindo a configuração inicial e o apoio para a integração.
-Para cada encontro, são <strong>150min em aula + até 60min extraclasse</strong> para revisão, testes e documentação.
-No total, são <strong>600 + até 240min</strong>, ou seja, até <strong>14h</strong> de desenvolvimento.
-A apresentação final ocupa mais um encontro de 150min.</p>
+<p>O trabalho essencial acontece em aula, incluindo a configuração inicial e o apoio para a integração.</p>
+<p><strong>O tempo:</strong></p>
+<ul>
+<li>Para cada encontro, são <strong>150min em aula + até 60min extraclasse</strong> para revisão, testes e documentação.</li>
+<li>No total, são <strong>600 + até 240min</strong>, ou seja, até <strong>14h</strong> de desenvolvimento.</li>
+<li>A apresentação final ocupa mais um encontro de 150min.</li>
+</ul>
+<p><strong>Os marcos e as datas:</strong></p>
 <table>
 <thead>
 <tr>
@@ -547,70 +753,212 @@ A apresentação final ocupa mais um encontro de 150min.</p>
 <td>Percurso integrado e evidências de compreensão dos dois integrantes.</td>
 </tr>
 </tbody></table>
-<p><strong>Extraclasse proposta, até uma hora por encontro:</strong></p>
+<p>Os marcos orientam o acompanhamento e a retomada. Não há desconto automático por marco.</p>
+<p>As listas abaixo explicam a coluna &quot;O que mostrar ao final&quot;, um item por linha.</p>
+<h3 id="m1--o-que-mostrar">M1 — o que mostrar</h3>
 <ul>
-<li>após M1, revisar o mapa dos arquivos e as instruções de execução;</li>
-<li>após M2, repetir cadastro/reconsulta e registrar o resultado;</li>
-<li>após M3, conferir o checklist e preparar a explicação de um fluxo;</li>
-<li>após M4, revisar o README, ensaiar a demonstração e organizar as evidências.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> A lista de músicas vinda da API.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> Onde ficam a rota e o DAO no código.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> A situação do banco. Por exemplo: funcionando, pausado ou ainda não criado.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> O ponto de partida escolhido: projeto da dupla ou base de retomada.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> A publicação iniciada.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> A URL inicial registrada, ou o impedimento registrado.</li>
 </ul>
-<p>Essas tarefas não pedem funcionalidades novas.
-Se faltar acesso fora da aula, registrem a dificuldade para que o apoio seja organizado.
-Se algo não funcionar, localizem a primeira quebra do percurso e retomem esse ponto com o professor.
-Os marcos orientam o acompanhamento e a retomada. Não há desconto automático por marco.</p>
+<p><strong>Extraclasse proposta, até uma hora:</strong> revisar o mapa dos arquivos e as instruções de execução.</p>
+<p><strong>Apoio:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_dia_01.html">Guia do dia 1 — Repositório, Supabase e Render</a>.</p>
+<h3 id="m2--o-que-mostrar">M2 — o que mostrar</h3>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> O cadastro de uma música pela tela.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> O ID da música cadastrada.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> A consulta da mesma música depois de reiniciar o servidor.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> Meta: listagem e cadastro publicados, com banco.</li>
+</ul>
+<p>Neste encontro começam as observações individuais.</p>
+<p><strong>Extraclasse proposta, até uma hora:</strong> repetir cadastro e reconsulta e registrar o resultado.</p>
+<p><strong>Apoio:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.html">Guia de interface — CRUD na tela com fetch</a>.</p>
+<h3 id="m3--o-que-mostrar">M3 — o que mostrar</h3>
+<p>Para conferir cada item, façam o passo indicado do &quot;Percurso para testar e demonstrar&quot;.</p>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> A edição conferida: Passo 3 do Percurso.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> A exclusão conferida: Passos 5 e 6 do Percurso.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> A validação e as mensagens de erro conferidas: Passo 7 do Percurso e &quot;Falha controlada local&quot;.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> A música sem partes conferida: Passo 2 do Percurso.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> O player conferido: Passo 1 do Percurso.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> O CRUD repetido na URL pública.</li>
+</ul>
+<p><strong>Extraclasse proposta, até uma hora:</strong> conferir o checklist e preparar a explicação de um fluxo.</p>
+<p><strong>Apoio:</strong> seção &quot;Percurso para testar e demonstrar&quot;, neste documento, e <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.html">Guia de interface — CRUD na tela com fetch</a>.</p>
+<h3 id="m4--o-que-mostrar">M4 — o que mostrar</h3>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> A conferência completa.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> A persistência na URL pública.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> O README.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> As observações individuais.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> As pendências corrigidas.</li>
+</ul>
+<p><strong>Extraclasse proposta, até uma hora:</strong> revisar o README, ensaiar a demonstração e organizar as evidências.</p>
+<p><strong>Apoio:</strong> <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html">Guia de deploy na Render</a>, seções &quot;Antes da apresentação&quot; e &quot;Checklist final de entrega&quot;.</p>
+<h3 id="apresentação--o-que-mostrar">Apresentação — o que mostrar</h3>
+<ul>
+<li class="tarefa"><input disabled="" type="checkbox"> O percurso integrado.</li>
+<li class="tarefa"><input disabled="" type="checkbox"> As evidências de compreensão dos dois integrantes.</li>
+</ul>
+<h3 id="sobre-o-trabalho-extraclasse-e-os-imprevistos">Sobre o trabalho extraclasse e os imprevistos</h3>
+<ul>
+<li>As tarefas extraclasse não pedem funcionalidades novas.</li>
+<li>Se faltar acesso fora da aula, registrem a dificuldade para que o apoio seja organizado.</li>
+<li>Se algo não funcionar, localizem o primeiro ponto do percurso que falha. Retomem esse ponto com o professor.</li>
+</ul>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="percurso-para-testar-e-demonstrar">Percurso para testar e demonstrar</h2>
-<p>Executem esta sequência no projeto concluído. Nas escritas, usem uma música nova,
-sem partes, e preservem a amostra reproduzível. Confiram o dado antes de removê-lo.</p>
+<p>Executem esta sequência no projeto concluído, na ordem dos passos.</p>
+<p>Antes de começar:</p>
+<ul>
+<li>Nas escritas (cadastrar, editar e excluir), usem uma música nova, sem partes. Neste documento, ela se chama <strong>música de teste</strong>.</li>
+<li>Preservem a música do repertório inicial que vocês usam para demonstrar o player.</li>
+<li>Confiram o dado antes de removê-lo.</li>
+</ul>
+<h3 id="passo-1--consultar-e-reproduzir">Passo 1 — Consultar e reproduzir</h3>
 <ol>
-<li><strong>Consultar e reproduzir:</strong> abram a lista, selecionem uma música do repertório
-inicial e demonstrem o player com suas partes.</li>
-<li><strong>Cadastrar:</strong> criem pela tela uma música de teste com nome e artista, sem partes.
-Confiram a resposta da API, anotem o ID e consultem a música novamente.
-Ao selecioná-la, a tela deve informar que não há partes e manter Tocar indisponível.</li>
-<li><strong>Editar:</strong> mudem nome/artista desse registro e confiram a atualização na lista
-e na resposta da API. O ID deve continuar o mesmo.</li>
-<li><strong>Conferir persistência:</strong> antes de excluir, reiniciem o servidor, consultem
-novamente e mostrem o mesmo ID com os dados alterados. Repitam a conferência
-no serviço publicado, com orientação para o reinício.</li>
-<li><strong>Cancelar exclusão:</strong> iniciem a exclusão da mesma música de teste sem partes e cancelem.
-Uma nova consulta deve mostrar que ela continua cadastrada.</li>
-<li><strong>Confirmar exclusão:</strong> confirmem a remoção dessa música e consultem novamente para verificar
-a ausência do registro. Preservem a música usada para demonstrar o player.</li>
-<li><strong>Conferir validação:</strong> tentem cadastrar com nome vazio e com artista vazio.
-A interface deve informar o problema, sem anunciar um cadastro válido.</li>
+<li>Abram a lista.</li>
+<li>Selecionem uma música do repertório inicial.</li>
+<li>Demonstrem o player com as partes dessa música.</li>
 </ol>
-<p><strong>Falha controlada local:</strong> com a página já aberta, parem somente o processo
-do servidor local. Tentem uma requisição, como atualizar a lista ou cadastrar
-uma música de teste. Observem a mensagem de erro: a interface não pode afirmar
-sucesso. Reiniciem o processo e consultem a lista para conferir o estado.
-Não alterem credenciais reais para simular falhas nem parem o serviço publicado
-para fazer esse teste. Realizem-no com orientação do professor.</p>
+<p><strong>Deu certo se:</strong> a tela mostra o nome e o artista da música, e o player reproduz as partes.</p>
+<h3 id="passo-2--cadastrar">Passo 2 — Cadastrar</h3>
+<ol>
+<li>Criem pela tela uma música de teste com nome e artista, sem partes.</li>
+<li>Confiram a resposta da API, na aba Rede do navegador. O Guia de interface explica como, na seção <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.html#conferir-na-aba-rede-devtools">Conferir na aba Rede</a>.</li>
+<li>Anotem o ID.</li>
+<li>Consultem a música novamente.</li>
+<li>Selecionem a música de teste.</li>
+</ol>
+<p><strong>Deu certo se:</strong></p>
+<ul>
+<li>a resposta da API mostra o ID da música criada;</li>
+<li>a música aparece na nova consulta;</li>
+<li>a tela informa que não há partes e mantém Tocar indisponível.</li>
+</ul>
+<h3 id="passo-3--editar">Passo 3 — Editar</h3>
+<ol>
+<li>Mudem nome/artista da música de teste.</li>
+<li>Confiram a atualização na lista.</li>
+<li>Confiram a atualização na resposta da API.</li>
+</ol>
+<p><strong>Deu certo se:</strong></p>
+<ul>
+<li>a lista mostra a atualização;</li>
+<li>a resposta da API mostra a atualização;</li>
+<li>o ID continua o mesmo.</li>
+</ul>
+<h3 id="passo-4--conferir-persistência">Passo 4 — Conferir persistência</h3>
+<p>Façam este passo antes de excluir a música de teste.</p>
+<ol>
+<li>Reiniciem o servidor.</li>
+<li>Consultem novamente.</li>
+<li>Mostrem o mesmo ID com os dados alterados.</li>
+<li>Repitam a conferência no serviço publicado, com orientação para o reinício. O passo a passo está na <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#84-o-teste-de-persist%C3%AAncia-r7">Etapa 8.4 do Guia de deploy na Render</a>.</li>
+</ol>
+<p><strong>Deu certo se:</strong> depois do reinício, a consulta mostra o mesmo ID com os dados alterados. Isso vale para o servidor local e para o serviço publicado.</p>
+<h3 id="passo-5--cancelar-exclusão">Passo 5 — Cancelar exclusão</h3>
+<ol>
+<li>Iniciem a exclusão da mesma música de teste sem partes.</li>
+<li>Cancelem.</li>
+<li>Façam uma nova consulta.</li>
+</ol>
+<p><strong>Deu certo se:</strong> a nova consulta mostra que a música continua cadastrada.</p>
+<h3 id="passo-6--confirmar-exclusão">Passo 6 — Confirmar exclusão</h3>
+<ol>
+<li>Iniciem a exclusão da música de teste outra vez.</li>
+<li>Confirmem a remoção.</li>
+<li>Consultem novamente.</li>
+</ol>
+<p><strong>Deu certo se:</strong> o registro não aparece mais.</p>
+<p>Preservem a música usada para demonstrar o player.</p>
+<h3 id="passo-7--conferir-validação">Passo 7 — Conferir validação</h3>
+<ol>
+<li>Tentem cadastrar com nome vazio.</li>
+<li>Tentem cadastrar com artista vazio.</li>
+</ol>
+<p><strong>Deu certo se:</strong> nas duas tentativas, a interface informa o problema, sem anunciar um cadastro válido.</p>
+<h3 id="falha-controlada-local">Falha controlada local</h3>
+<p>Realizem este teste com orientação do professor.</p>
+<ol>
+<li>Deixem a página aberta no navegador.</li>
+<li>Parem somente o processo do servidor local.</li>
+<li>Tentem uma requisição, como atualizar a lista ou cadastrar uma música de teste.</li>
+<li>Observem a mensagem de erro: a interface não pode afirmar sucesso.</li>
+<li>Reiniciem o processo.</li>
+<li>Consultem a lista para conferir o estado.</li>
+</ol>
+<p><strong>Deu certo se:</strong> com o servidor parado, a interface mostra uma mensagem de erro e não mostra mensagem de sucesso.</p>
+<p>Neste teste:</p>
+<ul>
+<li>não alterem credenciais reais para simular falhas;</li>
+<li>não parem o serviço publicado.</li>
+</ul>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="o-que-guardar-e-entregar">O que guardar e entregar</h2>
+<p><strong>O que a dupla precisa ter:</strong></p>
 <ul>
-<li>Código-fonte versionado, identificando os dois integrantes, e URL pública com banco.</li>
-<li>README curto com: instalação e execução; nomes das variáveis necessárias, <strong>sem valores secretos</strong>;
-URL; uma decisão da dupla; um registro por marco, com data, teste, resultado e próximo passo.</li>
+<li>Código-fonte versionado, identificando os dois integrantes.</li>
+<li>URL pública com banco.</li>
+<li>README curto.</li>
 <li>Demonstração do núcleo e verificação individual no próprio projeto.</li>
 </ul>
-<p>A Ficha de marcos, disponível no Classroom da disciplina, é um apoio opcional para organizar esses registros.
-Registro textual curto e demonstração observada bastam para acompanhar os testes.
-Vídeo, relatório técnico separado e slides não são necessários.
-Não enviem <code>.env</code>, chaves ou senhas.</p>
-<p><strong>Entrega pelo Classroom da disciplina:</strong> os dois integrantes devem constar na entrega. Informem o link do repositório GitHub, a URL pública da aplicação e o caminho do README. Mantenham o código e os registros no repositório; não é necessário anexar <code>node_modules/</code> ou um ZIP do projeto.</p>
+<p><strong>O que o README precisa ter:</strong></p>
+<ul>
+<li>instalação e execução;</li>
+<li>nomes das variáveis necessárias, <strong>sem valores secretos</strong>;</li>
+<li>URL;</li>
+<li>uma decisão da dupla;</li>
+<li>um registro por marco, com data, teste, resultado e próximo passo.</li>
+</ul>
+<p><strong>Entrega pelo Classroom da disciplina:</strong></p>
+<ol>
+<li>Os dois integrantes devem constar na entrega.</li>
+<li>Informem o link do repositório GitHub.</li>
+<li>Informem a URL pública da aplicação.</li>
+<li>Informem o caminho do README.</li>
+</ol>
+<p>Mantenham o código e os registros no repositório; não é necessário anexar <code>node_modules/</code> ou um ZIP do projeto.</p>
+<p><strong>O que não é necessário:</strong> vídeo, relatório técnico separado e slides.
+Registro textual curto e demonstração observada bastam para acompanhar os testes.</p>
+<p><strong>O que não enviar:</strong> <code>.env</code>, chaves ou senhas.</p>
+<p>A <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/ficha_marcos.html">Ficha de marcos</a> é um apoio opcional para organizar esses registros.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="o-que-cada-integrante-precisa-compreender">O que cada integrante precisa compreender</h2>
-<p>Alternem quem conduz e quem revisa. Ambos devem passar pela interface e pela API/DAO.
-As duas observações individuais de cada pessoa podem ocorrer nos encontros 2–4
-e ser complementadas na apresentação. Isso evita concentrar tudo no último dia.</p>
-<p>Cada pessoa acompanha um caminho dos dados e realiza ou prevê uma pequena mudança
-já exemplificada: validar nome/artista vazio, tratar retorno de erro, conferir
-persistência após reinício ou explicar o vínculo artista/música/partes.
-As tarefas terão objetivos e dificuldade comparáveis para os dois integrantes.</p>
-<p>Vocês podem consultar o próprio código e os materiais de apoio, explicar oralmente,
-apontar o percurso no código ou usar anotação/desenho com demonstração.
-Digitação rápida, memorização e fluência na fala não são critérios.</p>
+<p>Esta seção explica a verificação individual. Ela vale 30% da nota (critério &quot;Compreensão — individual&quot;).</p>
+<p><strong>Durante os encontros:</strong></p>
+<ul>
+<li>Alternem quem conduz e quem revisa.</li>
+<li>Ambos devem passar pela interface e pela API/DAO.</li>
+</ul>
+<p><strong>As observações individuais:</strong></p>
+<ul>
+<li>Cada pessoa tem duas observações individuais.</li>
+<li>Elas podem ocorrer nos encontros 2–4 e ser complementadas na apresentação. Isso evita concentrar tudo no último dia.</li>
+<li>As tarefas terão objetivos e dificuldade comparáveis para os dois integrantes.</li>
+</ul>
+<p><strong>O que cada pessoa faz, ao longo das observações:</strong></p>
+<ol>
+<li>Acompanha um caminho dos dados.</li>
+<li>Realiza ou prevê uma pequena mudança já exemplificada.</li>
+</ol>
+<p>Prever uma mudança é dizer o que aconteceria se ela fosse feita.</p>
+<p>As mudanças já exemplificadas são:</p>
+<ul>
+<li>validar nome vazio ou artista vazio;</li>
+<li>tratar retorno de erro;</li>
+<li>conferir persistência após reinício;</li>
+<li>explicar o vínculo entre artista, música e partes.</li>
+</ul>
+<p><strong>Como vocês podem responder:</strong></p>
+<ul>
+<li>Vocês podem consultar o próprio código e os materiais de apoio.</li>
+<li>Vocês podem explicar oralmente, apontar o percurso no código ou usar anotação ou desenho com demonstração.</li>
+</ul>
+<p><strong>O que não é critério:</strong> digitação rápida, memorização e fluência na fala.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="como-será-avaliado">Como será avaliado</h2>
 <table>
@@ -653,11 +1001,15 @@ Digitação rápida, memorização e fluência na fala não são critérios.</p>
 <td>0,4 ponto</td>
 </tr>
 </tbody></table>
-<p>Os quatro níveis de desempenho estão na Rubrica dos estudantes, disponível no Classroom da disciplina.
-<strong>O núcleo excelente e compreendido permite nota máxima, sem funcionalidades extras.</strong>
-A origem da base, a quantidade de código/commits e o uso de Vue não determinam a nota.
-A avaliação soma <strong>2,8 pontos da dupla (70%)</strong> e <strong>1,2 ponto da compreensão de cada pessoa (30%)</strong>.
-Cada integrante pode ter uma pontuação individual diferente.</p>
+<p>Os quatro níveis de desempenho estão na <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/rubrica_estudantes.html">Rubrica dos estudantes</a>.</p>
+<p><strong>O que vale para a nota:</strong></p>
+<ul>
+<li><strong>O núcleo excelente e compreendido permite nota máxima, sem funcionalidades extras.</strong></li>
+<li>A avaliação soma <strong>2,8 pontos da dupla (70%)</strong> e <strong>1,2 ponto da compreensão de cada pessoa (30%)</strong>.</li>
+<li>Cada integrante pode ter uma pontuação individual diferente.</li>
+</ul>
+<p><strong>O que não determina a nota:</strong> a origem da base, a quantidade de código/commits e o uso de Vue.</p>
+<p><strong>Como a pontuação é calculada:</strong></p>
 <p>Em cada critério, aplica-se o nível descrito na rubrica ao seu valor máximo:</p>
 <table>
 <thead>
@@ -683,23 +1035,43 @@ Cada integrante pode ter uma pontuação individual diferente.</p>
 <td>25%</td>
 </tr>
 </tbody></table>
-<p>Exemplo: nível Bom em integração corresponde a <code>1,2 × 0,75 = 0,9 ponto</code>.
-Evidência ausente ou impedida fica registrada para retomada. Ela não será confundida automaticamente com domínio insuficiente.</p>
+<p>Exemplo: nível Bom em integração corresponde a <code>1,2 × 0,75 = 0,9 ponto</code>.</p>
+<p>Evidência ausente ou impedida fica registrada para retomada. Ela não será confundida automaticamente com domínio insuficiente.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="uso-de-ia">Uso de IA</h2>
-<p>É permitido usar IA para compreender erros, discutir soluções, revisar código e apoiar a implementação. Registrem brevemente no README a ferramenta utilizada, em que parte ajudou e como vocês conferiram o resultado. Não é necessário transcrever conversas inteiras.</p>
-<p>Cada integrante continua responsável por compreender e testar o código entregue. O uso declarado de IA não reduz a nota; a compreensão será observada no projeto, nos marcos e na verificação individual.</p>
-<p>Recomendamos usar o <code>AGENTS.md</code> fornecido (no repositório da aula e na base de retomada; explicado no Guia passo a passo do Supabase, etapa 0), que orienta o agente a explicar e revisar sem entregar a solução pronta.</p>
+<p><strong>É permitido usar IA</strong> para compreender erros, discutir soluções, revisar código e apoiar a implementação.</p>
+<p><strong>O que registrar no README</strong>, de forma breve:</p>
+<ul>
+<li>a ferramenta utilizada;</li>
+<li>em que parte ajudou;</li>
+<li>como vocês conferiram o resultado.</li>
+</ul>
+<p>Não é necessário transcrever conversas inteiras.</p>
+<p><strong>Responsabilidade:</strong></p>
+<ul>
+<li>Cada integrante continua responsável por compreender e testar o código entregue.</li>
+<li>O uso declarado de IA não reduz a nota.</li>
+<li>A compreensão será observada no projeto, nos marcos e na verificação individual.</li>
+</ul>
+<p><strong>Recomendação:</strong> usem o <code>AGENTS.md</code> fornecido. Ele orienta o agente de IA a explicar e revisar sem entregar a solução pronta.</p>
+<ul>
+<li>Onde está: no repositório da aula, na base de retomada e em <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/AGENTS.md">AGENTS.md</a>, na página do trabalho.</li>
+<li>Onde está explicado: na <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#etapa-0--antes-de-come%C3%A7ar">etapa 0 do Guia passo a passo do Supabase</a>.</li>
+</ul>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="correção-e-recuperação">Correção e recuperação</h2>
-<p>Durante os marcos, corrijam as pendências no mesmo repositório, preservando os registros anteriores.
-Na recuperação, cada dupla ou estudante poderá corrigir os pontos não demonstrados e produzir
-nova evidência equivalente, com consulta aos materiais e orientação do professor.</p>
-<p>A nova conferência usará os mesmos critérios e pesos.
-O professor comunicará o momento da retomada das pendências após o acompanhamento.
-Funcionalidades extras não serão condição de recuperação.</p>
+<p><strong>Durante os marcos:</strong> corrijam as pendências no mesmo repositório, preservando os registros anteriores.</p>
+<p><strong>Na recuperação:</strong></p>
+<ul>
+<li>Cada dupla ou estudante poderá corrigir os pontos não demonstrados e produzir nova evidência equivalente.</li>
+<li>Isso acontece com consulta aos materiais e orientação do professor.</li>
+<li>A nova conferência usará os mesmos critérios e pesos.</li>
+<li>O professor comunicará o momento da retomada das pendências após o acompanhamento.</li>
+<li>Funcionalidades extras não serão condição de recuperação.</li>
+</ul>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="aprofundamentos-por-escolha">Aprofundamentos por escolha</h2>
+<p>Esta seção é opcional. A nota máxima não depende dessas escolhas, e elas não substituem a compreensão.</p>
 <p>Assim que demonstrarem o núcleo funcionando, vocês podem escolher um aprofundamento,
 sem esperar o M4. Conversem com o professor sobre o recorte.</p>
 <table>
@@ -731,28 +1103,180 @@ sem esperar o M4. Conversem com o professor sobre o recorte.</p>
 <td>Preservar o mesmo contrato e os mesmos testes do núcleo.</td>
 </tr>
 </tbody></table>
-<p>A nota máxima não depende dessas escolhas, e elas não substituem a compreensão.
-O núcleo não exige dependências novas.</p>
+<p>O núcleo não exige dependências novas.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="se-houver-impedimento-técnico">Se houver impedimento técnico</h2>
-<p>Registrem no README a data, a etapa, o erro (sem segredos) e as tentativas de solução.
-Mostrem o que funciona localmente com banco e preservem as evidências anteriores.
-O professor orientará a retomada da verificação impedida.
+<p>Impedimento técnico é um problema técnico que impede a dupla de demonstrar uma parte do trabalho. Exemplo: o projeto do Supabase não volta a responder.</p>
+<p>O que fazer:</p>
+<ol>
+<li>Registrem no README a data, a etapa, o erro (sem segredos) e as tentativas de solução.</li>
+<li>Mostrem o que funciona localmente com banco.</li>
+<li>Preservem as evidências anteriores.</li>
+</ol>
+<p>O professor orientará a retomada da verificação impedida.
 A publicação com banco continua sendo objetivo, sem penalidade automática por indisponibilidade externa.</p>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="apoios-da-disciplina">Apoios da disciplina</h2>
-<p>Todos estão disponíveis no Classroom da disciplina e na página do trabalho, <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/</a>, em HTML, PDF e texto (<code>.md</code>). A seção <strong>Downloads</strong> dessa página tem os arquivos para baixar: os dois pacotes do Classroom, a base de retomada, o exemplo do mural, o <code>AGENTS.md</code> e os quatro arquivos SQL.</p>
+<p>Todos os materiais estão no Classroom da disciplina e na <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">página do trabalho</a>, em HTML, PDF e texto (<code>.md</code>).</p>
+<p>A seção <strong>Downloads</strong> da página do trabalho tem os arquivos para baixar: os dois pacotes do Classroom, a base de retomada, o exemplo do mural, o <code>AGENTS.md</code> e os quatro arquivos SQL.</p>
+<p><strong>Qual material abrir:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Vocês precisam de</th>
+<th>Material</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Preparar o projeto, o banco e a publicação no primeiro encontro</td>
+<td><a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_dia_01.html">Guia do dia 1 — Repositório, Supabase e Render</a></td>
+</tr>
+<tr>
+<td>Ir do repositório da aula até a API gravando no banco, etapa por etapa</td>
+<td><a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html">Guia passo a passo do Supabase</a>. A etapa 0 explica o <code>AGENTS.md</code>; a etapa 4, o diagnóstico do banco.</td>
+</tr>
+<tr>
+<td>Fazer a página cadastrar, editar e excluir pela API</td>
+<td><a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.html">Guia de interface — CRUD na tela com fetch</a>. Traz um exemplo completo e a aplicação às músicas.</td>
+</tr>
+<tr>
+<td>Publicar, configurar variáveis de ambiente e conferir o serviço publicado</td>
+<td><a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html">Guia de deploy na Render</a></td>
+</tr>
+<tr>
+<td>Instalar e executar a base de retomada e fazer as tarefas de integração</td>
+<td><a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/roteiro_retomada.html">Roteiro de retomada</a></td>
+</tr>
+<tr>
+<td>Ver os quatro níveis de desempenho de cada critério</td>
+<td><a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/rubrica_estudantes.html">Rubrica dos estudantes</a></td>
+</tr>
+<tr>
+<td>Organizar os registros de cada marco (apoio opcional)</td>
+<td><a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/ficha_marcos.html">Ficha de marcos</a></td>
+</tr>
+</tbody></table>
+<p><strong>Atividades anteriores que ajudam</strong> (no Classroom da disciplina):</p>
 <ul>
-<li><strong>Guia passo a passo do Supabase:</strong> do repositório da aula até a API gravando no banco, etapa por etapa. A etapa 0 explica o <code>AGENTS.md</code>; a etapa 4, o diagnóstico do banco.</li>
-<li><strong>Guia de interface — CRUD na tela com fetch:</strong> como a página cadastra, edita e exclui pela API, com um exemplo completo e a aplicação às músicas.</li>
-<li><strong>Guia de deploy na Render:</strong> publicação, variáveis de ambiente e conferência do serviço publicado.</li>
-<li><strong>Roteiro de retomada:</strong> instalação, execução e tarefas de integração da base de retomada.</li>
-<li><strong>Rubrica dos estudantes:</strong> os quatro níveis de desempenho de cada critério.</li>
-<li><strong>Ficha de marcos:</strong> apoio opcional para organizar os registros de cada marco.</li>
 <li><strong>Atividade &quot;CRUD de Dispositivos com fetch&quot;</strong> (Atividade 3): eventos, requisições e atualização da tela.</li>
 <li><strong>Atividade &quot;Evoluindo a API do Karaokê — DAO, Múltiplas Músicas e Player no Navegador&quot;</strong> (Atividade 5): rotas e responsabilidades.</li>
 <li><strong>Atividade &quot;Karaokê com Banco de Dados — DAOs no Supabase&quot;</strong> (Unidade 3): relações, persistência e configuração do servidor.</li>
 </ul>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
+<h2 id="glossário">Glossário</h2>
+<p>As explicações abaixo valem para este trabalho.</p>
+<table>
+<thead>
+<tr>
+<th>Palavra</th>
+<th>O que significa neste trabalho</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>API</strong></td>
+<td>O conjunto de rotas do servidor que a página chama, como <code>/api/musicas</code>.</td>
+</tr>
+<tr>
+<td><strong>Base de retomada</strong></td>
+<td>O projeto preparado pelo professor, de uso opcional. Também aparece como &quot;base&quot;.</td>
+</tr>
+<tr>
+<td><strong>CRUD</strong></td>
+<td>As quatro operações com um registro: cadastrar, consultar, editar e excluir.</td>
+</tr>
+<tr>
+<td><strong>DAO</strong></td>
+<td>A classe que lê e altera os dados no banco.</td>
+</tr>
+<tr>
+<td><strong>Encontro</strong></td>
+<td>Uma aula de 150min do trabalho.</td>
+</tr>
+<tr>
+<td><strong>Evidência</strong></td>
+<td>O que mostra que algo funciona ou foi compreendido. Exemplos: uma demonstração observada, um registro curto de teste, uma explicação.</td>
+</tr>
+<tr>
+<td><strong>Fluxo</strong> ou <strong>caminho dos dados</strong></td>
+<td>O caminho interface → API → DAO → banco → resposta na interface.</td>
+</tr>
+<tr>
+<td><strong>ID</strong></td>
+<td>O número que identifica um registro.</td>
+</tr>
+<tr>
+<td><strong>Interface</strong></td>
+<td>A página que a pessoa usa no navegador. Também aparece como &quot;tela&quot;.</td>
+</tr>
+<tr>
+<td><strong>Intervenção</strong></td>
+<td>Uma pequena mudança ou tarefa, de um dos tipos listados na seção &quot;O que cada integrante precisa compreender&quot;.</td>
+</tr>
+<tr>
+<td><strong>Marco</strong></td>
+<td>O ponto de conferência de um encontro. São quatro: M1, M2, M3 e M4.</td>
+</tr>
+<tr>
+<td><strong>Música de teste</strong></td>
+<td>A música nova, sem partes, que vocês criam para testar. Ela é excluída no passo 6 do Percurso.</td>
+</tr>
+<tr>
+<td><strong>Núcleo</strong></td>
+<td>A parte obrigatória do trabalho: os requisitos R1 a R8.</td>
+</tr>
+<tr>
+<td><strong>Parte</strong></td>
+<td>Um trecho da letra de uma música. O player reproduz as partes em ordem.</td>
+</tr>
+<tr>
+<td><strong>Percurso</strong></td>
+<td>A sequência de passos da seção &quot;Percurso para testar e demonstrar&quot;.</td>
+</tr>
+<tr>
+<td><strong>Persistir</strong></td>
+<td>Guardar os dados no banco. Dado persistido continua disponível depois de reiniciar o servidor.</td>
+</tr>
+<tr>
+<td><strong>Player</strong></td>
+<td>A parte da tela que apresenta as partes da letra, uma depois da outra, quando alguém clica em Tocar. Na base de retomada, o player apresenta texto, sem áudio.</td>
+</tr>
+<tr>
+<td><strong>Publicar</strong></td>
+<td>Colocar a aplicação em um serviço na internet, como a Render, para que ela abra pela URL pública. &quot;Serviço publicado&quot; é a aplicação funcionando nesse serviço.</td>
+</tr>
+<tr>
+<td><strong>README</strong></td>
+<td>O arquivo <code>README.md</code> do repositório, com as instruções e os registros da dupla.</td>
+</tr>
+<tr>
+<td><strong>Registro</strong></td>
+<td>Tem dois sentidos neste trabalho. (1) Uma linha no banco de dados, como uma música cadastrada. (2) Uma anotação curta da dupla, como o registro de um marco no README.</td>
+</tr>
+<tr>
+<td><strong>Repertório inicial</strong></td>
+<td>As músicas que já estão no banco antes dos testes de vocês. O arquivo <code>seed.sql</code> inclui a música de exemplo <code>Encontro da turma</code>, que tem partes.</td>
+</tr>
+<tr>
+<td><strong>Requisito</strong></td>
+<td>Um resultado que o trabalho precisa apresentar. São oito: R1 a R8.</td>
+</tr>
+<tr>
+<td><strong>Rota</strong></td>
+<td>Um endereço da API com um método, como <code>GET /api/musicas</code>.</td>
+</tr>
+<tr>
+<td><strong>Seed</strong> ou <strong>amostra</strong></td>
+<td>Nomes usados na Rubrica, no Roteiro e na Ficha para a música de exemplo incluída pelo arquivo <code>seed.sql</code>.</td>
+</tr>
+<tr>
+<td><strong>URL pública</strong></td>
+<td>O endereço da aplicação publicada na internet.</td>
+</tr>
+<tr>
+<td><strong>Verificação individual</strong></td>
+<td>A observação do que cada pessoa compreendeu, feita no próprio projeto.</td>
+</tr>
+</tbody></table>
 <p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 
     </main>
@@ -760,6 +1284,7 @@ A publicação com banco continua sendo objetivo, sem penalidade automática por
       <span>IFSul - Campus Passo Fundo · Programação III</span>
     </footer>
   </div>
+  <a class="sumario-flutuante" href="#sumario-auto">↑ Sumário</a>
   <dialog class="diagram-dialog" aria-label="Diagrama ampliado">
     <button type="button" class="diagram-close">Fechar diagrama</button>
     <p>Use a rolagem para explorar o diagrama. Pressione Esc para fechar.</p>
@@ -784,6 +1309,21 @@ A publicação com banco continua sendo objetivo, sem penalidade automática por
         diagramScroll.scrollTo(0, 0);
       });
     });
+    
+    // Listas de tarefas: clicáveis, com a marcação guardada neste navegador (por página).
+    document.querySelectorAll('main li.tarefa input[type="checkbox"]').forEach((caixa, indice) => {
+      const chave = 'tarefa:' + location.pathname + ':' + indice;
+      const item = caixa.closest('li');
+      caixa.disabled = false;
+      caixa.setAttribute('aria-label', 'Marcar como feito: ' + item.textContent.trim().slice(0, 120));
+      try { caixa.checked = localStorage.getItem(chave) === '1'; } catch (erro) { /* sem armazenamento: só marca na tela */ }
+      item.classList.toggle('feita', caixa.checked);
+      caixa.addEventListener('change', () => {
+        item.classList.toggle('feita', caixa.checked);
+        try { caixa.checked ? localStorage.setItem(chave, '1') : localStorage.removeItem(chave); } catch (erro) { /* idem */ }
+      });
+    });
+
   </script>
 </body>
 </html>

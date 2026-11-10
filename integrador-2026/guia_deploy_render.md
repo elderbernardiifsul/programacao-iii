@@ -10,25 +10,29 @@
 
 **Material de apoio** · Projeto usado como exemplo: o Karaokê com banco de dados construído no Guia passo a passo do Supabase (disponível no Classroom da disciplina), que é a base do projeto "O repertório da turma"
 
-Hoje o projeto de vocês só funciona no computador de vocês. Para alguém ver o karaokê, precisa estar ali do lado, com o `npm start` rodando.
+**Versão 3 · 10/11/2026.** Revisão de linguagem. Os passos, os comandos e o conteúdo técnico são os mesmos da versão anterior.
 
-Quando vocês terminarem este guia, o projeto vai ter um endereço na internet, tipo `karaoke-turma.onrender.com`. Qualquer pessoa poderá abrir esse endereço no celular, de qualquer lugar.
+[Página do trabalho](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/) · [Enunciado](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/enunciado.html)
 
-A plataforma que vamos usar chama **Render.com**. Ela mantém o servidor de vocês ligado do mesmo jeito que ele fica ligado no computador de vocês, com o mesmo `app.listen()` de sempre. Por isso quase nada muda no código: praticamente tudo que vocês já sabem continua valendo.
+Hoje o projeto de vocês só funciona no computador de vocês. Para outra pessoa ver o karaokê, ela precisa estar na frente desse computador, com o `npm start` rodando.
+
+Quando vocês terminarem este guia, o projeto vai ter um endereço na internet, parecido com `karaoke-turma.onrender.com`. Qualquer pessoa poderá abrir esse endereço no celular, de qualquer lugar.
+
+A plataforma que vamos usar se chama **Render.com**. Ela mantém o servidor de vocês ligado, do mesmo jeito que ele fica ligado no computador de vocês. O código usa o mesmo `app.listen()`. Por isso quase nada muda no código, e quase tudo que vocês já aprenderam continua valendo.
 
 ### Como usar este guia
 
-- Siga as etapas **na ordem**. Elas dependem umas das outras.
-- Cada etapa termina com um teste. **Se o teste falhar, não avance.** Vá à [Etapa 10](#etapa-10--socorro-erros-mais-comuns) e resolva antes.
-- Não decore os cliques. Entenda o motivo de cada um — é isso que vai ser cobrado na apresentação.
+- Sigam as etapas **na ordem**. Elas dependem umas das outras.
+- Cada etapa termina com um teste. **Se o teste falhar, não avancem.** Vão à [Etapa 10](#etapa-10--socorro-erros-mais-comuns) e resolvam o erro antes de continuar.
+- Não decorem os cliques. Entendam o motivo de cada um. Na apresentação, vocês vão precisar explicar esses motivos.
 
 ### Quando chamar o professor
 
-Este guia foi escrito para vocês conseguirem ir sozinhos do começo ao fim. Mesmo assim, alguns pontos do caminho envolvem **segurança, dados de pagamento ou risco de perder trabalho já feito**. Nesses pontos vocês vão ver um aviso assim:
+Vocês conseguem fazer este guia sozinhos, do começo ao fim. Mesmo assim, algumas etapas envolvem **segurança, dados de pagamento ou risco de perder trabalho já feito**. Nessas etapas vocês vão ver um aviso assim:
 
-> **Chame o professor.** É melhor perguntar antes do que desfazer depois.
+> **Chamem o professor.** É melhor perguntar antes do que desfazer depois.
 
-Chamem sem constrangimento. Pedir ajuda não tira nota de ninguém. Ficar duas horas travados no mesmo erro, esse sim custa caro — em tempo e em vontade de continuar.
+Chamem o professor quando acontecer o que o aviso descreve. Vocês não precisam ter vergonha de chamar. Pedir ajuda não tira nota de ninguém. Ficar duas horas parados no mesmo erro faz vocês perderem tempo.
 
 Chamem **imediatamente**, sem tentar resolver sozinhos, quando:
 
@@ -38,14 +42,14 @@ Chamem **imediatamente**, sem tentar resolver sozinhos, quando:
 - o mesmo erro voltar pela **terceira vez** depois de vocês já terem tentado o que o guia manda;
 - estiverem a menos de **uma hora da apresentação** com o sistema fora do ar.
 
-**Como pedir ajuda de um jeito que funciona.** Cheguem com estas quatro informações — assim o problema costuma se resolver em minutos, e não no fim da aula:
+**Como pedir ajuda de um jeito que funciona.** Tragam estas quatro informações. Com elas, o professor costuma resolver o problema em poucos minutos:
 
 1. Em que etapa do guia vocês estavam.
 2. A mensagem de erro **copiada inteira** (print da tela do log serve).
 3. O que vocês já tentaram.
 4. O link do repositório no GitHub e o link do serviço na Render.
 
-"Não funciona" não é uma descrição de problema. "Travou na Etapa 7, o log diz `Cannot find module`, já rodei `npm install` e commitei" é.
+Não digam só "Não funciona". Digam, por exemplo: "Travou na Etapa 7, o log diz `Cannot find module`, já rodei `npm install` e commitei".
 
 ---
 
@@ -54,7 +58,7 @@ Chamem **imediatamente**, sem tentar resolver sozinhos, quando:
 | Palavra | O que quer dizer |
 |---|---|
 | **Deploy** | Colocar a aplicação no ar. "Fazer o deploy" = publicar uma versão na internet. |
-| **Produção** | O lugar onde as pessoas de verdade usam o sistema. O contrário é o computador de vocês, onde vocês desenvolvem. |
+| **Produção** | O lugar onde as pessoas usam o sistema publicado. O contrário é o computador de vocês, onde vocês desenvolvem. |
 | **Servidor** | O computador que fica ligado recebendo pedidos e respondendo. Até agora, esse computador era o de vocês. |
 
 ---
@@ -81,11 +85,11 @@ Chamem **imediatamente**, sem tentar resolver sozinhos, quando:
 
 ## Etapa 0 — O que vai acontecer
 
-Publicar não é "mandar os arquivos para um site". Funciona assim:
+Para publicar, vocês não mandam os arquivos direto para um site. Funciona assim:
 
-A Render é um computador emprestado, ligado 24 horas por dia, dentro da internet. Só que ela **não pega os arquivos direto do computador de vocês**. Ela pega do **GitHub**.
+A Render deixa vocês usarem um computador dela. Esse computador fica ligado 24 horas por dia, conectado à internet. A Render **não pega os arquivos direto do computador de vocês**. Ela pega do **GitHub**.
 
-Então o caminho é este:
+O caminho dos arquivos é este:
 
 ```
    Computador de vocês           GitHub                       Render.com
@@ -102,16 +106,16 @@ Então o caminho é este:
                                             https://karaoke-turma.onrender.com
 ```
 
-Guardem estas três frases. Elas explicam quase todos os erros que vocês vão encontrar:
+Leiam com atenção estas três frases. Elas explicam quase todos os erros que vocês vão encontrar:
 
-**1. A Render só enxerga o que está no GitHub.**
-Arquivo que vocês não commitaram, para ela, não existe. Quando algo funciona no computador de vocês e não funciona lá, essa é sempre a primeira coisa a checar.
+**1. A Render só recebe o que está no GitHub.**
+Para a Render, um arquivo que vocês não commitaram não existe. Se algo funciona no computador de vocês e não funciona na Render, confiram primeiro se os arquivos que vocês criaram ou alteraram foram commitados e enviados ao GitHub.
 
-**2. A Render instala as bibliotecas do zero.**
-Ela lê o `package.json` e baixa tudo de novo. A pasta `node_modules` do computador de vocês não vai junto (nem precisa). Se uma biblioteca não está anotada no `package.json`, ela não vai existir lá.
+**2. A Render instala todas as bibliotecas de novo.**
+Ela lê o `package.json` e baixa tudo de novo. A pasta `node_modules` do computador de vocês não vai para a Render, e não precisa ir. Se uma biblioteca não está anotada no `package.json`, a Render não instala essa biblioteca.
 
-**3. O arquivo `.env` não sobe — e isso é de propósito.**
-Senhas e chaves nunca vão para o GitHub. Como a Render precisa desses valores para funcionar, vocês vão informá-los de outro jeito: digitando no painel dela ([Etapa 6](#etapa-6--configurando-as-senhas-e-chaves)).
+**3. O arquivo `.env` não sobe (não vai para o GitHub), e isso é de propósito.**
+Senhas e chaves não podem ir para o GitHub. A Render precisa desses valores para o servidor funcionar. Vocês vão digitar esses valores no painel da Render ([Etapa 6](#etapa-6--configurando-as-senhas-e-chaves)).
 
 > **Existe um nome para isso.** Quando o código é igual em todo lugar e só os valores mudam de um ambiente para o outro, chamamos de **configuração por ambiente**. É assim que empresas de software trabalham.
 
@@ -119,7 +123,7 @@ Senhas e chaves nunca vão para o GitHub. Como a Render precisa desses valores p
 
 ## Etapa 1 — Conferindo o projeto antes de publicar
 
-Antes de criar conta em qualquer lugar, o projeto precisa estar arrumado **no computador de vocês**. São seis conferências rápidas. Façam todas.
+Antes de criar a conta na Render, confiram o projeto **no computador de vocês**. São seis conferências rápidas. Façam todas.
 
 ### 1.1 O projeto roda sem erro aqui
 
@@ -130,11 +134,11 @@ npm install
 npm start
 ```
 
-Abram `http://localhost:3000` e testem as rotas com o arquivo `testes/musicas.http`. No terminal deve aparecer `Karaokê no ar: http://localhost:3000` (na base de retomada, `Karaokê disponível na porta 3000`).
+Abram `http://localhost:3000` no navegador. Testem as rotas com o arquivo `testes/musicas.http`. No terminal deve aparecer `Karaokê no ar: http://localhost:3000` (na base de retomada, `Karaokê disponível na porta 3000`).
 
-Se está quebrado aqui, vai estar quebrado lá também — com a diferença de que lá vocês não têm o VS Code para procurar o problema. Arrumem agora.
+Se o projeto dá erro no computador de vocês, ele vai dar erro na Render também. Na Render vocês não têm o VS Code para procurar o problema. Corrijam o erro agora, antes de continuar.
 
-> **Quem usa a base de retomada.** Este guia usa como exemplo o projeto do Guia passo a passo do Supabase. Na base de retomada, a mensagem de início é `Karaokê disponível na porta …`, o DAO fica em `karaoke/DAO/`, a mensagem de variável faltando é `Preencha SUPABASE_URL e SUPABASE_SECRET_KEY no .env ou no ambiente do servidor`, e o `.http` vem da seção 3.5 do Guia passo a passo do Supabase (disponível no Classroom da disciplina), porque a base não traz esse arquivo. O resto do caminho é o mesmo.
+> **Quem usa a base de retomada.** Este guia usa como exemplo o projeto do Guia passo a passo do Supabase. Na base de retomada, a mensagem de início é `Karaokê disponível na porta …`. O DAO fica em `karaoke/DAO/`. A mensagem de variável faltando é `Preencha SUPABASE_URL e SUPABASE_SECRET_KEY no .env ou no ambiente do servidor`. O `.http` vem da seção 3.5 do Guia passo a passo do Supabase (disponível no Classroom da disciplina), porque a base não traz esse arquivo. As outras etapas são iguais.
 
 ### 1.2 O `package.json` tem um script `start`
 
@@ -172,11 +176,11 @@ Na base de retomada, o `package.json` é outro: nome `karaoke-integrador-retomad
 
 Três coisas importantes:
 
-- O `start` tem que rodar com **`node`**, nunca com `nodemon`. O `nodemon` serve para desenvolver: ele fica vigiando se vocês salvaram algum arquivo, para reiniciar sozinho. Na internet, ninguém edita arquivo — então ele não tem função ali, e ainda pode nem estar instalado. O script `dev` do exemplo usa `nodemon` e pode ficar: a Render só roda o `start`.
+- O `start` tem que rodar com **`node`**, nunca com `nodemon`. O `nodemon` serve para desenvolver: ele reinicia o servidor sozinho quando vocês salvam um arquivo. Na Render, ninguém edita arquivo. Por isso o `nodemon` não tem função lá, e ele pode nem estar instalado. O script `dev` do exemplo usa `nodemon` e pode ficar: a Render só roda o `start`.
 - O script `start` precisa apontar para o arquivo que liga o servidor. No projeto do Guia do Supabase é `node app`, que executa o `app.js`. Se o arquivo principal de vocês tiver outro nome, ajustem o script.
-- Os números de versão no seu `package.json` podem ser diferentes dos do exemplo. O que importa é que as três bibliotecas que o servidor usa (`express`, `@supabase/supabase-js` e `dotenv`) estejam em `dependencies`.
+- Os números de versão no `package.json` de vocês podem ser diferentes dos do exemplo. O que importa é que as três bibliotecas que o servidor usa (`express`, `@supabase/supabase-js` e `dotenv`) estejam em `dependencies`.
 
-**Como saber se está certo:** o comando `npm start` liga o servidor. Se aparecer `Missing script: "start"`, é porque esse script não existe. Criem.
+**Como saber se está certo:** o comando `npm start` liga o servidor. Se aparecer `Missing script: "start"`, esse script não existe. Criem o script `start` no bloco `scripts`.
 
 ### 1.3 As bibliotecas estão anotadas
 
@@ -196,7 +200,7 @@ npm install nome-da-biblioteca
 
 Esse comando já anota a biblioteca no `package.json` sozinho.
 
-> **Cuidado com o `-D`.** Se vocês instalarem com `npm install -D alguma-coisa`, a biblioteca vai parar numa lista chamada `devDependencies`, que serve só para ferramentas de desenvolvimento. Em produção, essa lista pode ser ignorada — e o programa quebra com `Cannot find module`. Biblioteca que o servidor usa para funcionar vai em `dependencies`, sem o `-D`.
+> **Cuidado com o `-D`.** Se vocês instalarem com `npm install -D alguma-coisa`, a biblioteca fica numa lista chamada `devDependencies`. Essa lista serve só para ferramentas de desenvolvimento. Em produção, a instalação pode ignorar essa lista. Nesse caso, o programa para com o erro `Cannot find module`. Biblioteca que o servidor usa para funcionar vai em `dependencies`: instalem sem o `-D`.
 
 ### 1.4 O `.gitignore` está protegendo o que não pode subir
 
@@ -213,15 +217,20 @@ Para conferir se está funcionando:
 git status
 ```
 
-Se aparecer `node_modules` ou `.env` na lista (o `.env.example` pode e deve aparecer: ele não tem valores reais), alguma coisa está errada: ou o `.gitignore` não está sendo lido, ou esses arquivos já foram commitados antes (nesse caso, vejam a [Etapa 3.4](#34-e-se-o-env-já-subiu-sem-querer)).
+O `.env.example` pode e deve aparecer na lista: ele não tem valores reais.
+
+Se aparecer `node_modules` ou `.env` na lista, há um erro. As causas possíveis são duas:
+
+- o Git não está lendo o `.gitignore`;
+- esses arquivos já foram commitados antes. Nesse caso, vejam a [Etapa 3.4](#34-e-se-o-env-já-subiu-sem-querer).
 
 ### 1.5 Maiúsculas e minúsculas nos nomes dos arquivos
 
 Esta é a causa número 1 de erro no primeiro deploy da turma. Leiam com atenção.
 
-No Windows e no macOS, `MusicaDAO.js` e `musicadao.js` são tratados como o **mesmo** arquivo. No Linux, são **dois arquivos diferentes**. E a Render roda Linux.
+No Windows e no macOS, `MusicaDAO.js` e `musicadao.js` são tratados como o **mesmo** arquivo. No Linux, são **dois arquivos diferentes**. A Render usa Linux.
 
-Ou seja: um `require` escrito com a letra errada funciona no computador de vocês e quebra na internet.
+Por isso, um `require` com maiúscula ou minúscula errada funciona no computador de vocês e dá erro na Render.
 
 Confiram cada `require` do projeto:
 
@@ -231,7 +240,7 @@ const musicaDAO = require('./DAO/MusicaDAO');
 //                                ↑ o arquivo é MusicaDAO ou musicaDAO?
 ```
 
-Para ver o nome verdadeiro dos arquivos, usem o terminal (na base de retomada, a pasta é `karaoke/DAO/`):
+Para ver o nome exato dos arquivos, usem o terminal (na base de retomada, a pasta é `karaoke/DAO/`):
 
 ```bash
 ls DAO/
@@ -239,7 +248,7 @@ ls DAO/
 
 A regra: **o que está escrito no `require` tem que ser igual, letra por letra, ao que o `ls` mostrou.**
 
-> **Chame o professor** se vocês decidirem **renomear** uma pasta ou um arquivo para arrumar isso. O Git às vezes não percebe uma renomeação que só muda maiúscula para minúscula, e o resultado é um arquivo duplicado no repositório — que quebra a publicação de um jeito difícil de enxergar. Renomear com alguém do lado leva dois minutos; descobrir esse problema sozinho leva uma aula.
+> **Chamem o professor** se vocês decidirem **renomear** uma pasta ou um arquivo para corrigir isso. O Git às vezes não percebe uma renomeação que só muda maiúscula para minúscula. O resultado é um arquivo duplicado no repositório. Esse arquivo duplicado faz a publicação falhar, e a causa é difícil de encontrar. Renomear com o professor leva cerca de dois minutos. Encontrar esse problema sem ajuda pode levar uma aula inteira.
 
 ### 1.6 Nenhum caminho do seu computador no código
 
@@ -256,13 +265,13 @@ app.use(express.static(path.join(__dirname, 'public')));    // melhor ainda
 
 ## Etapa 2 — Duas mudanças no código
 
-Só duas. E uma delas é opcional.
+São só duas mudanças. Uma delas é opcional.
 
 ### 2.1 A porta precisa vir do ambiente (obrigatório)
 
-No computador de vocês, o servidor escuta na porta 3000. Se vocês seguiram o Guia do Supabase, o `app.js` já faz a leitura certa (veja o bloco "DEPOIS" abaixo) e esta correção só precisa ser conferida. Se o seu `app.listen` ainda tem o número fixo, troquem.
+No computador de vocês, o servidor escuta na porta 3000. Se vocês seguiram o Guia do Supabase, o `app.js` já faz a leitura certa (vejam o bloco "DEPOIS" abaixo). Nesse caso, só confiram esta correção. Se o `app.listen` de vocês ainda tem o número fixo, troquem pelo código do bloco "DEPOIS".
 
-Na Render é diferente: **quem escolhe a porta é ela**. A Render escolhe um número (normalmente `10000`), guarda esse número num lugar chamado *variável de ambiente*, e fica esperando o servidor de vocês atender ali. Se o servidor insistir na 3000, a Render procura, não encontra ninguém, conclui que o programa não subiu e cancela a publicação.
+Na Render é diferente: **quem escolhe a porta é ela**. A Render escolhe um número (normalmente `10000`). Ela guarda esse número num lugar chamado *variável de ambiente*. Depois, ela espera o servidor de vocês atender nessa porta. Se o servidor usar a porta 3000, a Render não encontra o servidor na porta que ela escolheu. Ela conclui que o programa não ligou e cancela a publicação.
 
 A correção é uma linha:
 
@@ -284,23 +293,23 @@ app.listen(PORT, (erro) => {
 });
 ```
 
-O `||` é o coração da coisa. Ele se lê assim:
+O `||` é a parte mais importante. Leiam o `||` assim:
 
-> "Use a porta que o ambiente mandou. Se ninguém mandou nada (ou seja, estou no computador do aluno), use a 3000."
+> "Use a porta que o ambiente informou. Se o ambiente não informou nenhuma porta (ou seja, o programa está no computador do aluno), use a 3000."
 
-Um código só, servindo para os dois lugares.
+O mesmo código funciona nos dois lugares.
 
-> **Um detalhe que derruba muita gente:** não escrevam `app.listen(PORT, 'localhost')`. O `localhost` significa "só aceito conexões de dentro deste próprio computador" — o que na Render impede que ela chegue até o servidor de vocês. Deixem só `app.listen(PORT)`, sem o segundo valor. O Express já faz a coisa certa sozinho.
+> **Um erro comum:** não escrevam `app.listen(PORT, 'localhost')`. O `localhost` significa "só aceito conexões de dentro deste próprio computador". Na Render, isso impede que ela se conecte ao servidor de vocês. Deixem só `app.listen(PORT)`, sem o segundo valor. Sem o segundo valor, o Express já funciona na Render.
 
 ### 2.2 Avisar qual versão do Node o projeto exige (recomendado)
 
-Assim a Render usa uma versão compatível com a que vocês usam. O projeto exige Node 22 ou mais novo. Descubram a sua com:
+Assim a Render usa uma versão compatível com a que vocês usam. O projeto exige Node 22 ou mais novo. Descubram a versão de vocês com:
 
 ```bash
 node -v
 ```
 
-E acrescentem no `package.json`:
+Depois, acrescentem no `package.json`:
 
 ```json
 {
@@ -310,7 +319,7 @@ E acrescentem no `package.json`:
 }
 ```
 
-O `package.json` do Guia do Supabase já traz esse trecho; confiram se ele está no seu. Isso evita aquele problema clássico de "mas na minha máquina funciona", causado por versões diferentes.
+O `package.json` do Guia do Supabase já traz esse trecho; confiram se ele está no `package.json` de vocês. Esse trecho evita um problema comum: o projeto funciona no computador de vocês e falha na Render porque as versões do Node são diferentes.
 
 ### 2.3 Testem de novo, aqui mesmo
 
@@ -318,9 +327,9 @@ O `package.json` do Guia do Supabase já traz esse trecho; confiram se ele está
 npm start
 ```
 
-Tem que continuar funcionando em `http://localhost:3000`. As mudanças da Etapa 2 foram feitas justamente para não atrapalhar nada local.
+O servidor tem que continuar funcionando em `http://localhost:3000`. As mudanças da Etapa 2 não alteram o funcionamento no computador de vocês.
 
-Agora um teste que imita a Render — vocês mesmos mandam a porta pelo ambiente:
+Agora façam um teste que imita a Render. Neste teste, vocês mesmos informam a porta pelo ambiente:
 
 ```bash
 # Linux, macOS ou Git Bash
@@ -330,7 +339,7 @@ PORT=4000 npm start
 $env:PORT=4000; npm start
 ```
 
-O servidor deve imprimir `Karaokê no ar: http://localhost:4000` (na base de retomada, `Karaokê disponível na porta 4000`) e responder nessa porta. Se subiu, a Etapa 2 está certa.
+O servidor deve imprimir `Karaokê no ar: http://localhost:4000` (na base de retomada, `Karaokê disponível na porta 4000`) e responder nessa porta. Se o servidor ligou e respondeu nessa porta, a Etapa 2 está certa.
 
 ---
 
@@ -342,15 +351,15 @@ A Render não copia os arquivos do computador de vocês: ela copia de um reposit
 
 Por três motivos:
 
-- O histórico de commits de vocês está lá. Ele faz parte da avaliação e conta a história do projeto.
+- O histórico de commits de vocês está nesse repositório. Ele faz parte da avaliação e mostra como o projeto foi construído.
 - O professor já acompanha esse repositório.
-- Repositório novo significa começar um histórico do zero, como se o trabalho anterior não tivesse existido.
+- Um repositório novo começa com o histórico vazio. O trabalho anterior não aparece nele.
 
 O que esta etapa faz é preparar esse repositório para a publicação.
 
 ### 3.1 Confirmando que vocês estão no repositório certo
 
-No terminal, dentro da pasta do projeto:
+No terminal, dentro da pasta do projeto, rodem:
 
 ```bash
 git remote -v
@@ -369,16 +378,16 @@ Confiram também em qual branch vocês estão:
 git branch --show-current
 ```
 
-Normalmente vai aparecer `main`. Se aparecer `master`, anotem esse nome — vocês vão precisar dele na [Etapa 5.2](#52-preenchendo-o-formulário), no campo **Branch**.
+Normalmente vai aparecer `main`. Se aparecer `master`, anotem esse nome. Vocês vão precisar dele na [Etapa 5.2](#52-preenchendo-o-formulário), no campo **Branch**.
 
-> **O nome que vale é o que está no GitHub.** A pasta no computador de vocês pode se chamar `karaoke`, `trabalho`, `projeto final` ou qualquer outra coisa — isso não tem importância nenhuma. O que a Render enxerga é o nome do **repositório no GitHub**, aquele que aparece no endereço do site:
+> **O nome que vale é o que está no GitHub.** A pasta no computador de vocês pode se chamar `karaoke`, `trabalho`, `projeto final` ou ter outro nome. O nome da pasta não importa. A Render usa o nome do **repositório no GitHub**. Esse nome aparece no endereço do site:
 >
 > ```
 > https://github.com/SEU-USUARIO/karaoke-api
 >                    └── usuário ──┘ └─ nome do repositório ─┘
 > ```
 >
-> Anotem esse nome exatamente como ele está escrito lá, com os mesmos hífens, as mesmas maiúsculas e as mesmas minúsculas. Vocês vão usá-lo na Etapa 5 para escolher o repositório certo na Render.
+> Anotem esse nome exatamente como ele está escrito no GitHub, com os mesmos hífens, as mesmas maiúsculas e as mesmas minúsculas. Vocês vão usá-lo na Etapa 5 para escolher o repositório certo na Render.
 
 > **Se o `git remote -v` não mostrar nada**, este projeto ainda não está ligado a nenhum repositório do GitHub. Vejam a [Etapa 3.5](#35-caso-especial-o-projeto-ainda-não-está-no-github).
 
@@ -393,22 +402,26 @@ git commit -m "Ajusta a porta para funcionar na Render"
 git push
 ```
 
-**Se o `git push` for recusado** com uma mensagem falando em `rejected` ou `behind`, é porque tem coisa nova no GitHub que vocês ainda não baixaram (o colega da dupla commitou, por exemplo). Resolve assim:
+**Se o `git push` for recusado** com uma mensagem falando em `rejected` ou `behind`, o GitHub tem commits que vocês ainda não baixaram. Por exemplo: o colega da dupla commitou. Para resolver, rodem:
 
 ```bash
 git pull
 git push
 ```
 
-**Como saber se deu certo:** o `git status` responde `nothing to commit, working tree clean` e o `git log --oneline -3` mostra o seu commit no topo.
+**Como saber se deu certo:** o `git status` responde `nothing to commit, working tree clean` e o `git log --oneline -3` mostra o commit de vocês no topo.
 
-> **Chame o professor** se o `git pull` trouxer **conflito** (mensagem com `CONFLICT` e marcações `<<<<<<<` dentro dos arquivos), ou se alguma pesquisa na internet sugerir usar `git push --force` ou `git reset --hard`.
+> **Chamem o professor** em qualquer um destes três casos:
 >
-> Esses três casos mexem no histórico do projeto e podem **apagar o trabalho do colega da dupla** de forma difícil de recuperar. Não é vergonha nenhuma não saber resolver conflito ainda — é assunto que a gente resolve junto, na hora, em poucos minutos.
+> - o `git pull` trouxe **conflito** (mensagem com `CONFLICT` e marcações `<<<<<<<` dentro dos arquivos);
+> - alguma pesquisa na internet sugeriu usar `git push --force`;
+> - alguma pesquisa na internet sugeriu usar `git reset --hard`.
+>
+> Esses três casos alteram o histórico do projeto e podem **apagar o trabalho do colega da dupla** de forma difícil de recuperar. Se vocês ainda não sabem resolver conflito, isso é esperado. O professor resolve com vocês, na hora, em poucos minutos.
 
 ### 3.3 A conferência que salva a nota
 
-Abram o repositório **no navegador** e olhem a lista de arquivos. Não confiem na memória: olhem a página. É exatamente isso que a Render vai receber.
+Abram o repositório **no navegador** e olhem a lista de arquivos. Não confiem na memória: olhem a página. A Render vai receber exatamente os arquivos dessa lista.
 
 | Precisa estar lá | Não pode estar lá |
 |---|---|
@@ -421,13 +434,13 @@ Confiram também se o arquivo que vocês acabaram de editar está com a versão 
 
 ### 3.4 E se o `.env` já subiu sem querer?
 
-Acontece, e tem conserto. Primeiro, tirem o arquivo do controle do Git (ele continua existindo no computador de vocês):
+Isso acontece, e dá para corrigir. Façam os passos abaixo, na ordem. Primeiro, tirem o arquivo do controle do Git (ele continua existindo no computador de vocês):
 
 ```bash
 git rm --cached .env
 ```
 
-Depois, abram o `.gitignore` no VS Code e confiram que ele tem uma linha só com `.env`. Se não tiver, acrescentem essa linha e salvem. Editem pelo VS Code, e não com `echo ".env" >> .gitignore`: no PowerShell do Windows, esse comando pode gravar o texto em UTF-16, uma codificação que o Git não lê no `.gitignore`, e a proteção não funciona.
+Depois, abram o `.gitignore` no VS Code e confiram que ele tem uma linha só com `.env`. Se não tiver, acrescentem essa linha e salvem. Editem pelo VS Code. Não usem `echo ".env" >> .gitignore`. No PowerShell do Windows, esse comando pode gravar o texto em UTF-16. O Git não lê essa codificação no `.gitignore`, e a proteção não funciona.
 
 Por fim, registrem e enviem a remoção:
 
@@ -437,23 +450,23 @@ git commit -m "Remove o .env do repositório"
 git push
 ```
 
-Depois — e essa parte é a mais importante — **troquem as chaves que estavam nele**.
+Depois, **troquem as chaves que estavam nele**. Esta é a parte mais importante.
 
-Por quê? Porque o Git guarda o histórico. O commit antigo ainda tem a chave antiga escrita lá dentro, e num repositório público qualquer pessoa consegue ler. No Supabase, a troca fica em **Project Settings → API Keys**: apaguem a chave vazada e criem outra.
+O motivo: o Git guarda o histórico. O commit antigo ainda contém a chave antiga. Num repositório público, qualquer pessoa consegue ler essa chave. No Supabase, a troca fica em **Project Settings → API Keys**: apaguem a chave que foi para o GitHub e criem outra.
 
-> **Chame o professor no mesmo dia.** Chave que passou pelo GitHub é chave queimada, e quanto antes ela for trocada, menor o problema.
+> **Chamem o professor no mesmo dia.** Uma chave que foi para o GitHub não é mais segura, porque outras pessoas podem ter lido. Troquem essa chave o mais cedo possível.
 >
-> Trocar chave vazada é rotina profissional — acontece em empresa grande toda semana. Esconder que vazou é que não é rotina, e é o único jeito de isso virar um problema sério. Ninguém perde nota por avisar; avisar é exatamente o comportamento certo.
+> Trocar uma chave que foi exposta é um procedimento comum em empresas de software. O problema só fica sério quando alguém esconde que a chave foi exposta. Ninguém perde nota por avisar. Avisar é o comportamento certo.
 
 ### 3.5 Caso especial: o projeto ainda não está no GitHub
 
-Se, e somente se, o `git remote -v` não mostrou nada, façam este caminho. Quem já tem repositório deve pular direto para a Etapa 4.
+Façam esta seção só se o `git remote -v` não mostrou nada. Se vocês já têm repositório, pulem para a Etapa 4.
 
-1. Em [github.com](https://github.com), cliquem no **+** (canto superior direito) → **New repository**.
-2. Em **Repository name**, usem um nome que explique o projeto: `karaoke-api`. **Anotem esse nome exatamente como vocês digitaram** — vocês vão precisar dele daqui a três passos.
-3. **Não marquem** "Add a README" nem "Add .gitignore" — o projeto de vocês já tem esses arquivos, e marcar isso cria um conflito no primeiro envio.
+1. Em [github.com](https://github.com), cliquem no **+** (canto superior direito) e depois em **New repository**.
+2. Em **Repository name**, usem um nome que explique o projeto: `karaoke-api`. **Anotem esse nome exatamente como vocês digitaram**. Vocês vão precisar dele daqui a três passos.
+3. **Não marquem** "Add a README" nem "Add .gitignore". O projeto de vocês já tem esses arquivos. Marcar essas opções cria um conflito no primeiro envio.
 4. Cliquem em **Create repository**.
-5. No terminal, dentro da pasta do projeto:
+5. No terminal, dentro da pasta do projeto, rodem:
 
 ```bash
 git init
@@ -466,9 +479,9 @@ git push -u origin main
 
 > **Atenção na linha do `git remote add`.** O endereço tem que apontar para o repositório **exatamente** como ele existe no GitHub: o mesmo usuário e o mesmo nome, letra por letra.
 >
-> Não adianta escolher um nome novo aqui: o Git não cria repositório no GitHub, ele só aponta para um que já existe. Se o nome não bater, o `git push` responde algo como `Repository not found` — e o erro **não** aparece no `git remote add`, aparece só lá na frente, o que confunde bastante.
+> Não escolham um nome novo aqui. O Git não cria repositório no GitHub: ele só aponta para um que já existe. Se o nome for diferente, o `git push` responde algo como `Repository not found`. O erro **não** aparece no `git remote add`. Ele aparece só depois, no `git push`.
 >
-> Três armadilhas comuns:
+> Três erros comuns:
 >
 > | O que vocês digitaram | O que está no GitHub | Resultado |
 > |---|---|---|
@@ -476,7 +489,7 @@ git push -u origin main
 > | `Karaoke-API` | `karaoke-api` | `Repository not found` (o GitHub diferencia maiúsculas) |
 > | `karaoke-api` do colega | o repositório da dupla | Vocês publicam no lugar errado |
 >
-> **O jeito seguro é não digitar nada.** Na página do repositório no GitHub, cliquem no botão verde **Code**, copiem o endereço HTTPS que aparece ali e colem no terminal. Endereço copiado não tem erro de digitação.
+> **O jeito seguro é copiar o endereço em vez de digitar.** Na página do repositório no GitHub, cliquem no botão verde **Code**. Copiem o endereço HTTPS que aparece ali. Colem esse endereço no terminal, na linha do `git remote add`. Endereço copiado não tem erro de digitação.
 
 Depois, voltem e façam a conferência da [Etapa 3.3](#33-a-conferência-que-salva-a-nota).
 
@@ -487,78 +500,78 @@ Depois, voltem e façam a conferência da [Etapa 3.3](#33-a-conferência-que-sal
 ### 4.1 Fazendo o cadastro
 
 1. Entrem em [render.com](https://render.com) e cliquem em **Get Started** (ou **Sign Up**).
-2. Escolham entrar **com o GitHub**. Vale a pena: além de criar a conta, isso já adianta metade da conexão com o repositório.
+2. Escolham entrar **com o GitHub**. Essa opção cria a conta e já faz parte da conexão com o repositório.
    - Dá para usar e-mail e senha e conectar o GitHub depois, mas o caminho fica mais longo.
-3. O GitHub vai pedir permissão para a Render (**Authorize Render**). Leiam a tela antes de aceitar: vocês estão permitindo que a Render leia seus repositórios e receba avisos quando houver commits novos. É exatamente o que a gente quer.
-4. **Confirmem o e-mail.** A Render manda um link de confirmação. Sem clicar nele, a conta fica limitada. Se não chegar em alguns minutos, olhem o spam.
-5. Na primeira vez, a Render pergunta o nome do *workspace* (a área de trabalho da conta) e algumas informações de perfil. Pode ser o nome de vocês ou algo como `karaoke-turma`.
+3. O GitHub vai pedir permissão para a Render (**Authorize Render**). Leiam a tela antes de aceitar: vocês estão permitindo que a Render leia seus repositórios e receba avisos quando houver commits novos. O deploy precisa dessas duas permissões.
+4. **Confirmem o e-mail.** A Render manda um link de confirmação. Cliquem nesse link. Sem esse clique, a conta fica limitada. Se o e-mail não chegar em alguns minutos, olhem a pasta de spam.
+5. Na primeira vez, a Render pergunta o nome do *workspace* (a área de trabalho da conta) e algumas informações de perfil. O nome do workspace pode ser o nome de vocês ou algo como `karaoke-turma`.
 
 > **Sobre cartão de crédito:** para criar o serviço no plano gratuito (**$0 / month** no formulário, selo **Free** na página do serviço) não é preciso cadastrar cartão.
 >
-> **Chame o professor** se qualquer tela pedir dados de pagamento. Provavelmente é só um plano pago selecionado sem querer (veja a Etapa 5.3), e a gente corrige em um minuto. Mas **não digitem número de cartão de ninguém** — nem de vocês, nem dos pais — para fazer um trabalho da escola. Nenhuma atividade desta disciplina exige pagar por nada.
+> **Chamem o professor** se qualquer tela pedir dados de pagamento. A causa provável é um plano pago selecionado sem querer (vejam a Etapa 5.3). O professor corrige isso com vocês em cerca de um minuto. Mas **não digitem número de cartão de ninguém**, nem de vocês, nem dos pais, para fazer um trabalho da escola. Nenhuma atividade desta disciplina exige pagamento.
 
 ### 4.2 Liberando o acesso aos repositórios
 
-Façam esta parte se o repositório for privado, ou se a Render não mostrar seus repositórios na Etapa 5:
+Façam esta parte se o repositório for privado, ou se a Render não mostrar os repositórios de vocês na Etapa 5:
 
 1. No painel da Render: **Settings** → **GitHub** → **Configure**.
 2. O GitHub abre uma tela perguntando o que a Render pode acessar:
-   - **All repositories** — mais prático;
-   - **Only select repositories** — mais seguro; marquem o repositório do karaokê.
+   - **All repositories**: mais prático;
+   - **Only select repositories**: mais seguro; marquem o repositório do karaokê.
 3. Cliquem em **Save** (ou **Install**).
 
 ---
 
 ## Etapa 5 — Criando o Web Service
 
-Na Render, **Web Service** é o nome dado a "um programa que fica ligado respondendo pedidos pela internet". É exatamente o que o Express de vocês é.
+Na Render, **Web Service** é o nome dado a "um programa que fica ligado respondendo pedidos pela internet". O servidor Express de vocês é um programa desse tipo.
 
 ### 5.1 Começando
 
 1. No painel, criem um novo **Web Service** (botão **+ New**, no alto, ou o atalho **+** da barra superior).
 2. Na aba **Git Provider**, cliquem no repositório do karaokê. O clique já abre o formulário do serviço; não há um botão separado para confirmar.
    - **Confiram o nome antes de clicar.** A Render mostra todos os repositórios da conta de vocês, e vários podem ter nomes parecidos (`karaoke`, `karaoke-api`, `karaoke-teste`, o fork de um colega). Selecionem aquele cujo nome é **exatamente igual** ao que vocês anotaram na [Etapa 3.1](#31-confirmando-que-vocês-estão-no-repositório-certo).
-   - Publicar o repositório errado não dá mensagem de erro nenhuma: a Render simplesmente coloca no ar um projeto que não é o de vocês, e a confusão pode demorar bastante para ser percebida.
+   - Se vocês escolherem o repositório errado, a Render não mostra mensagem de erro. Ela coloca no ar um projeto que não é o de vocês, e vocês podem demorar para perceber.
    - Se o repositório não aparecer na lista, voltem à [Etapa 4.2](#42-liberando-o-acesso-aos-repositórios).
 
 ### 5.2 Preenchendo o formulário
 
-A Render tenta adivinhar vários campos quando percebe que é um projeto Node ("It looks like you're using Node, so we've autofilled some fields"). **Confiram todos mesmo assim** — adivinhação erra. No teste feito para este guia, a Render sugeriu `node index.js` no **Start Command**. O repositório da aula tem um `index.js` que **não** é o servidor do karaokê: com essa sugestão, o serviço ligaria o arquivo errado.
+A Render preenche vários campos sozinha quando percebe que é um projeto Node ("It looks like you're using Node, so we've autofilled some fields"). **Confiram todos mesmo assim**, porque a Render pode preencher um campo com o valor errado. No teste feito para este guia, a Render sugeriu `node index.js` no **Start Command**. O repositório da aula tem um `index.js` que **não** é o servidor do karaokê: com essa sugestão, o serviço ligaria o arquivo errado.
 
 | Campo | O que colocar | Para que serve |
 |---|---|---|
-| **Name** | `karaoke-turma-XX` (só minúsculas, sem espaço e sem acento) | Vira o endereço do site: `karaoke-turma-XX.onrender.com`. Não pode repetir um nome que já exista no mundo — se der conflito, acrescentem algo. |
+| **Name** | `karaoke-turma-XX` (só minúsculas, sem espaço e sem acento) | Vira o endereço do site: `karaoke-turma-XX.onrender.com`. Não pode repetir um nome que outra pessoa já usa na Render. Se o nome já existir, acrescentem algo ao nome. |
 | **Project** *(opcional)* | deixem em branco | Serve só para organizar o painel. |
 | **Language** | `Node` | Diz à Render qual linguagem o projeto usa. |
 | **Branch** | `main` (ou o nome que apareceu na [Etapa 3.1](#31-confirmando-que-vocês-estão-no-repositório-certo)) | A cada `push` nessa branch, a Render publica de novo. |
 | **Region** | `Ohio (US East)` ou `Oregon (US West)` | O lugar do mundo onde o servidor vai rodar. Não existe opção na América do Sul; Ohio costuma responder um pouco mais rápido para o Brasil. Escolham uma e não mudem mais. |
-| **Root Directory** | deixem em branco, se o `package.json` está na raiz do repositório | Se o projeto estiver dentro de uma subpasta (`servidor/`, por exemplo), é aqui que se avisa isso. |
+| **Root Directory** | deixem em branco, se o `package.json` está na raiz do repositório | Se o projeto estiver dentro de uma subpasta (`servidor/`, por exemplo), escrevam aqui o nome da subpasta. |
 | **Build Command** | `npm install` (projeto do Guia passo a passo do Supabase) ou `npm ci` (base de retomada) | O que rodar **antes** de ligar o programa: baixar as bibliotecas. O `npm ci` instala exatamente as versões do `package-lock.json` (a base traz esse arquivo); o `npm install` também segue o `package-lock.json` quando ele está no repositório. Os dois funcionam. |
 | **Start Command** | `npm start` (apaguem o `node index.js` que a Render sugere) | O comando que liga o servidor. O `npm start` roda o script `start` do `package.json`, que aponta para o `app.js`. Se não existe script `start`, voltem à [Etapa 1.2](#12-o-packagejson-tem-um-script-start). |
 
-> **Qual a diferença entre Build e Start?** Isso cai em prova, então entendam agora.
+> **Qual a diferença entre Build e Start?** Este assunto é cobrado em prova. Entendam agora.
 >
-> O **build** roda **uma vez** a cada publicação e prepara o terreno (baixar bibliotecas). Ele começa e termina.
+> O **build** roda **uma vez** a cada publicação e prepara o projeto (baixa as bibliotecas). Ele começa e termina.
 >
 > O **start** roda depois e **fica rodando** o tempo todo, enquanto o site estiver no ar. Ele nunca termina sozinho.
 >
-> Por isso, se vocês escreverem `npm install && npm start` no campo Build, a publicação trava para sempre: a Render fica esperando terminar um comando que, por natureza, não termina.
+> Por isso, se vocês escreverem `npm install && npm start` no campo Build, a publicação não termina: a Render fica esperando o fim de um comando que não termina sozinho.
 
 ### 5.3 Escolhendo o plano
 
 Na seção **Compute**, escolham a opção **$0 / month** (0.1 CPU, 512 MB RAM). Esse é o plano gratuito; a Render não escreve "Free" nessa lista.
 
-**A Render deixa um plano pago marcado de início** (**$7 / month**). Confiram que o alto do quadro mostra **Selected: $0 / month** antes de continuar. Ao escolher o gratuito, aparece um aviso de que esse tipo de serviço "dorme" sem uso; é o comportamento descrito na Etapa 11.
+**A Render deixa um plano pago marcado de início** (**$7 / month**). Confiram que o alto do quadro mostra **Selected: $0 / month** antes de continuar. Ao escolher o gratuito, aparece um aviso de que esse tipo de serviço "dorme" sem uso. "Dormir" quer dizer que a Render desliga o programa depois de 15 minutos sem ninguém abrir o site. A Etapa 11 descreve esse comportamento.
 
 ![Formulário New Web Service na Render, com Build Command npm install, Start Command npm start e a seção Compute com $0 / month selecionado.](img/cap_render_01_novo_servico.png)
 
-> **Chame o professor** se não aparecer a opção **$0 / month**, ou se aparecer qualquer valor diferente de zero. Não sigam adiante "para ver no que dá".
+> **Chamem o professor** se não aparecer a opção **$0 / month**, ou se aparecer qualquer valor diferente de zero. Não continuem a criação do serviço antes de falar com o professor.
 
 O que esse plano permite (e o que não permite) está na [Etapa 11](#etapa-11--o-que-o-plano-gratuito-permite). Leiam antes de marcar a apresentação para a turma.
 
 ### 5.4 Criando
 
-Se o projeto de vocês já usa o Supabase, **antes de clicar no botão final**, façam a [Etapa 6](#etapa-6--configurando-as-senhas-e-chaves) — o fim do próprio formulário tem a seção **Environment Variables** para isso. Se o projeto ainda guarda os dados num array na memória, sem `.env`, podem seguir direto.
+Se o projeto de vocês já usa o Supabase, façam a [Etapa 6](#etapa-6--configurando-as-senhas-e-chaves) **antes de clicar no botão final**. O fim do próprio formulário tem a seção **Environment Variables** para isso. Se o projeto ainda guarda os dados num array na memória, sem `.env`, pulem a Etapa 6 e cliquem no botão final.
 
 Cliquem em **Deploy web service**. A Render abre a página dessa publicação, com o status (**Building**, depois **In progress**) e os logs logo abaixo.
 
@@ -572,7 +585,7 @@ Esta etapa é obrigatória para o projeto "O repertório da turma", porque ele u
 
 O arquivo `.env` ficou de fora do GitHub, de propósito, por segurança.
 
-Resultado: a Render não sabe qual é o endereço do banco nem a chave de acesso. O `supabaseClient.js` encontra as variáveis vazias e o servidor para na inicialização, com uma mensagem nos Logs (ver a [Etapa 10](#etapa-10--socorro-erros-mais-comuns)).
+Por isso, a Render não tem o endereço do banco nem a chave de acesso. O `supabaseClient.js` encontra as variáveis vazias e o servidor para na inicialização, com uma mensagem nos Logs (vejam a [Etapa 10](#etapa-10--socorro-erros-mais-comuns)).
 
 ### 6.2 Como resolver
 
@@ -587,7 +600,7 @@ O projeto usa **somente duas** variáveis. Elas precisam ser recriadas na Render
 
 1. Cliquem em **Add Environment Variable** e preencham **Key** e **Value** da primeira variável.
 2. Cliquem de novo em **Add Environment Variable** para a segunda.
-3. Confiram que ficaram **exatamente duas linhas**, sem nenhuma linha vazia, e voltem à Etapa 5.4.
+3. Confiram que ficaram **exatamente duas linhas**, sem nenhuma linha vazia. Depois, voltem à Etapa 5.4.
 
 ![Seção Environment Variables do formulário, com SUPABASE_URL e SUPABASE_SECRET_KEY e os valores mascarados.](img/cap_render_02_environment.png)
 
@@ -595,7 +608,7 @@ O projeto usa **somente duas** variáveis. Elas precisam ser recriadas na Render
 
 1. Na página do serviço, no menu da esquerda, cliquem em **Environment**. Com a janela do navegador estreita, esse menu fica escondido no ícone **≡**, no canto superior esquerdo.
 2. Cliquem em **Edit**. Para trocar um valor, cliquem no campo **Value**, selecionem tudo (`Ctrl+A`) e colem o novo. Para criar uma variável, usem **Add variable**.
-3. Salvem com **Save, rebuild, and deploy**: grava as variáveis e publica o serviço de novo. Evitem a opção **Save only**, na setinha do mesmo botão: como o nome diz, ela só grava, sem publicar de novo; o servidor só lê as variáveis quando liga (veja o quadro no fim da Etapa 6.3).
+3. Salvem com **Save, rebuild, and deploy**. Esse botão grava as variáveis e publica o serviço de novo. Evitem a opção **Save only**, na seta do mesmo botão. Ela só grava, sem publicar de novo, e o servidor só lê as variáveis quando liga (vejam o quadro no fim da Etapa 6.3).
 
 Existe um atalho, **Add from .env**, que aceita colar o conteúdo de um arquivo `.env` de uma vez. Se usarem, apaguem depois qualquer linha que não seja `SUPABASE_URL` ou `SUPABASE_SECRET_KEY`: a linha do `PORT` e também as linhas que o Supabase mostra junto quando se copia o trecho do botão **Connect** (como `SUPABASE_PUBLISHABLE_KEY`).
 
@@ -603,13 +616,13 @@ Existe um atalho, **Add from .env**, que aceita colar o conteúdo de um arquivo 
 
 ### 6.3 Cuidados
 
-- **Copiem do `.env` de vocês, não de outro projeto.** Se a conta do Supabase tem mais de um projeto (o da Unidade 3, um de teste, o da dupla), é fácil copiar a URL e a chave do projeto errado. A Render publica sem reclamar, e o sintoma só aparece depois: a página mostra músicas diferentes das que vocês têm no computador, ou alguma rota responde erro 500. O `.env` é a referência, porque foi com ele que vocês testaram tudo na máquina.
+- **Copiem do `.env` de vocês, não de outro projeto.** Se a conta do Supabase tem mais de um projeto (o da Unidade 3, um de teste, o da dupla), é fácil copiar a URL e a chave do projeto errado. A Render publica sem mostrar erro, e o sintoma só aparece depois: a página mostra músicas diferentes das que vocês têm no computador, ou alguma rota responde erro 500. O `.env` é a referência, porque foi com ele que vocês testaram tudo no computador de vocês.
 - **Copiem e colem com precisão.** Espaço sobrando no fim, aspas em volta do valor ou o nome da variável repetido dentro do campo são as três causas mais comuns de "coloquei a chave e mesmo assim não funciona". No campo **Value** vai só o valor puro: sem aspas, sem `SUPABASE_URL=` na frente.
 - **Não criem uma variável chamada `PORT`.** A Render define a porta sozinha, e o `app.js` já lê `process.env.PORT`. O `PORT` do `.env` serve só para o computador de vocês. Uma variável `PORT` criada à mão, com outro número, pode fazer a Render não encontrar o servidor.
 - **Só a secret key vai para o servidor.** Nunca usem a **publishable key** no servidor: o `supabaseClient.js` do projeto foi escrito para a secret key, e a publishable key tem outro nível de acesso. Também não coloquem nenhuma chave no `player.js` nem em arquivo da pasta `public/`.
 - **Chave continua sendo segredo.** O valor que aparece nessa tela não pode ir para print no grupo da turma, slide de apresentação, README ou conversa com o agente de IA.
 
-> **Chame o professor** se ficarem em dúvida sobre **qual** chave copiar do Supabase. A **secret key** (`sb_secret_...`) dá acesso total ao banco: quem tem ela na mão pode apagar tudo. Copiar a chave errada para o lugar errado é o tipo de erro que só aparece depois, quando já é problema. Vale a pergunta de trinta segundos.
+> **Chamem o professor** se ficarem em dúvida sobre **qual** chave copiar do Supabase. A **secret key** (`sb_secret_...`) dá acesso total ao banco: quem tem essa chave pode apagar todos os dados. Se vocês copiarem a chave errada para o lugar errado, o erro só aparece depois. Perguntar leva cerca de trinta segundos.
 
 - **O `dotenv` continua no código, sem problema.** Ele lê o `.env` quando o arquivo existe (no computador de vocês) e não faz nada quando não existe (na Render). Nos dois casos, o `process.env.SUPABASE_URL` chega ao código do mesmo jeito.
 
@@ -617,15 +630,15 @@ Existe um atalho, **Add from .env**, que aceita colar o conteúdo de um arquivo 
 >
 > Porque o programa lê as variáveis **na hora em que liga**. Mudar o valor com o programa já rodando não muda nada: é preciso desligar e ligar de novo.
 >
-> É igual ao computador de vocês: se alterarem o `.env`, precisam parar o servidor (`Ctrl+C`) e subir de novo.
+> É igual ao computador de vocês: se alterarem o `.env`, precisam parar o servidor (`Ctrl+C`) e ligar de novo.
 
 ---
 
 ## Etapa 7 — Acompanhando o primeiro deploy
 
-Assim que o serviço é criado, a Render mostra a página da publicação: o status no alto e, embaixo, os logs, com o relato do que está acontecendo, linha por linha. Os mesmos logs ficam depois na aba **Logs** do menu do serviço.
+Assim que vocês criam o serviço, a Render mostra a página da publicação. O status fica no alto. Os logs ficam embaixo e mostram, linha por linha, o que está acontecendo. Os mesmos logs ficam depois na aba **Logs** do menu do serviço.
 
-**Leiam esses logs.** Não é enfeite: é a única janela que vocês têm para dentro daquele computador. Saber ler log é conteúdo da disciplina.
+**Leiam esses logs.** Eles são o único jeito de vocês verem o que acontece no computador da Render. Saber ler log é conteúdo da disciplina.
 
 A publicação passa por estas fases:
 
@@ -647,15 +660,15 @@ Na página do serviço, o status muda para **Live**, em verde. Do lado do nome d
 
 Se aparecer `==> Port scan timeout reached, no open ports detected`, o problema é a porta: revejam a [Etapa 2.1](#21-a-porta-precisa-vir-do-ambiente-obrigatório). Outros erros estão na [Etapa 10](#etapa-10--socorro-erros-mais-comuns).
 
-> O primeiro deploy costuma levar de 2 a 5 minutos. Se demorar bem mais que isso sem nada novo nos logs, atualizem a página antes de achar que travou.
+> O primeiro deploy costuma levar de 2 a 5 minutos. Se demorar bem mais que isso e os logs não mostrarem nada novo, atualizem a página antes de concluir que a publicação parou.
 
-> **Chame o professor** se o deploy falhar **três vezes seguidas** e a mensagem não estiver na tabela da Etapa 10. Três tentativas já mostram que vocês não estão sendo desatentos — o problema é outro, e ler log de deploy junto com alguém mais experiente é a forma mais rápida de aprender a ler log sozinho depois.
+> **Chamem o professor** se o deploy falhar **três vezes seguidas** e a mensagem não estiver na tabela da Etapa 10. Depois de três tentativas, a causa provavelmente não é falta de atenção de vocês. O professor lê o log junto com vocês, e assim vocês aprendem a ler log sozinhos depois.
 
 ---
 
 ## Etapa 8 — Testando o sistema publicado
 
-Status verde não quer dizer que está tudo funcionando. Testem de verdade, nesta ordem.
+O status verde não garante que tudo funciona. Façam os testes abaixo, nesta ordem.
 
 ### 8.1 A página do karaokê
 
@@ -663,9 +676,9 @@ Abram o endereço público no navegador. A página `public/index.html` deve carr
 
 Se a página vier em branco, ou a lista vazia, apertem **F12** e olhem a aba **Console**. Erros de `fetch` aparecem ali.
 
-> **A armadilha mais comum aqui:** endereço fixo no JavaScript do front-end.
+> **O erro mais comum aqui:** endereço fixo no JavaScript do front-end.
 >
-> Se o `player.js` tem `fetch('http://localhost:3000/api/musicas')`, ele vai continuar procurando o servidor **no computador de quem abriu a página** — e não vai encontrar nada.
+> Se o `player.js` tem `fetch('http://localhost:3000/api/musicas')`, ele vai continuar procurando o servidor **no computador de quem abriu a página**, e não vai encontrar.
 >
 > A correção é usar caminho relativo. Como o front-end e a API são entregues pelo mesmo endereço, funciona nos dois lugares:
 >
@@ -679,7 +692,7 @@ Se a página vier em branco, ou a lista vazia, apertem **F12** e olhem a aba **C
 
 ### 8.2 A API pelo REST Client
 
-O arquivo `testes/musicas.http` da seção 3.5 do Guia passo a passo do Supabase já serve (quem usa a base de retomada cria esse arquivo a partir dessa seção). Basta trocar o endereço no topo:
+O arquivo `testes/musicas.http` da seção 3.5 do Guia passo a passo do Supabase já serve (quem usa a base de retomada cria esse arquivo a partir dessa seção). Troquem só o endereço no topo do arquivo:
 
 ```http
 # @baseUrl = http://localhost:3000
@@ -706,13 +719,13 @@ Confiram os mesmos códigos de resposta do computador de vocês. A primeira requ
 
 Abram o endereço **no celular, usando dados móveis** (fora do Wi-Fi da escola).
 
-Se abriu, está publicado de verdade: o projeto de vocês está acessível de qualquer lugar do mundo. Mandem o link para alguém de fora da turma.
+Se a página abriu, o projeto está publicado: ele está acessível pela internet, fora da rede da escola. Mandem o link para alguém de fora da turma.
 
 ### 8.4 O teste de persistência (R7)
 
 Este teste é obrigatório. Ele prova o requisito R7 do projeto "O repertório da turma" (o enunciado está disponível no Classroom da disciplina): o CRUD funciona na URL pública, e o banco e os dados continuam lá depois de reiniciar o servidor.
 
-Recarregar a página não prova nada, porque o servidor continua de pé. Só um reinício, que cria um processo novo com a memória vazia, separa o dado guardado no banco do dado guardado na memória.
+Recarregar a página não prova a persistência, porque o servidor continua ligado. Um reinício cria um processo novo, com a memória vazia. Só depois de um reinício dá para saber se o dado está guardado no banco ou na memória.
 
 1. Criem uma música **pela tela publicada** (o formulário da página, no endereço público). Se a página ainda não tem formulário, usem o `POST /api/musicas` do arquivo `.http`.
 2. Anotem o `id` da música criada.
@@ -743,7 +756,7 @@ Se a música sumiu depois do reinício, os dados estão na memória e não no ba
 
 ### 9.1 Publicação automática
 
-Depois que o serviço existe, o trabalho de vocês passa a ser só este:
+Depois que o serviço existe, para publicar uma mudança vocês só precisam rodar:
 
 ```bash
 git add .
@@ -751,21 +764,21 @@ git commit -m "Corrige a validação do POST de partes"
 git push
 ```
 
-A Render percebe o `push` na branch `main` e publica de novo sozinha. Dá para acompanhar pela aba **Deploys**, que lista cada publicação com a mensagem do commit.
+A Render percebe o `push` na branch `main` e publica de novo sozinha. Vocês podem acompanhar pela aba **Deploys**, que lista cada publicação com a mensagem do commit.
 
-Isso muda o peso de cada commit: **tudo que vocês enviam para a `main` vai para o ar**. Commitar só código que funciona deixa de ser conselho do professor e vira consequência prática.
+Atenção: **tudo que vocês enviam para a `main` vai para o ar**. Por isso, façam commit e `push` só de código que vocês já testaram e que funciona.
 
 ### 9.2 Logs de produção
 
 Na aba **Logs** aparece tudo que o servidor imprime: `console.log`, `console.error` e os erros que ninguém tratou.
 
-Quando algo funciona no computador de vocês e quebra na internet (vai acontecer), é o primeiro lugar a olhar.
+Quando algo funcionar no computador de vocês e der erro na Render, olhem primeiro essa aba. Essa situação é comum.
 
-Aproveitem para melhorar o próprio código. Um `console.error('Erro ao listar músicas:', erro)` bem colocado dentro do `catch` é a diferença entre saber que "quebrou" e saber "quebrou aqui, por causa disso".
+Melhorem as mensagens de erro do código de vocês. Por exemplo: no `catch` da rota que lista as músicas, um `console.error('Erro ao listar músicas:', erro)` faz o log mostrar em que parte do código o erro aconteceu e qual foi a causa.
 
 ### 9.3 Voltar para a versão anterior (rollback)
 
-A publicação quebrou o sistema e a apresentação é daqui a dez minutos? Dá para voltar atrás:
+Se uma publicação nova deixar o sistema com erro e a apresentação for daqui a dez minutos, por exemplo, vocês podem voltar para a versão anterior:
 
 1. Abram a aba **Deploys** do serviço.
 2. Procurem a última publicação que estava funcionando (a lista mostra a mensagem de cada commit).
@@ -773,18 +786,18 @@ A publicação quebrou o sistema e a apresentação é daqui a dez minutos? Dá 
 
 Em cerca de um minuto o sistema volta ao que era antes.
 
-> Atenção: isso resolve a emergência, não o problema. O commit ruim continua na `main`. Depois da apresentação, corrijam o código, testem no computador de vocês e façam o `push`.
+> Atenção: o rollback faz o sistema voltar a funcionar, mas não corrige o código. O commit com erro continua na `main`. Depois da apresentação, corrijam o código, testem no computador de vocês e façam o `push`.
 
-> **Chame o professor** se o sistema estiver fora do ar faltando menos de uma hora para a apresentação. Não tentem "consertar rápido" sob pressão: é assim que um problema pequeno vira três. Chamem, expliquem o que aconteceu e a gente decide junto entre voltar a versão anterior ou apresentar rodando localmente.
+> **Chamem o professor** se o sistema estiver fora do ar faltando menos de uma hora para a apresentação. Não tentem consertar com pressa: correções feitas com pressa costumam criar erros novos. Chamem o professor e expliquem o que aconteceu. O professor decide com vocês entre voltar para a versão anterior ou apresentar com o projeto rodando no computador de vocês.
 
 ### 9.4 Publicar na mão
 
 O botão **Manual Deploy** tem quatro opções:
 
-- **Deploy latest commit** — publica de novo o último commit.
-- **Deploy a specific commit** — publica um commit escolhido da lista. Para voltar atrás numa emergência, o **Rollback** da Etapa 9.3 é mais direto.
-- **Clear build cache & deploy** — refaz tudo do zero. Serve quando o erro é de biblioteca ("mas eu instalei esse pacote!") e nada mais explica.
-- **Restart service** — só desliga e liga o programa, sem reinstalar nada. É o que usar para reiniciar o servidor, como no teste da [Etapa 8.4](#84-o-teste-de-persistência-r7).
+- **Deploy latest commit**: publica de novo o último commit.
+- **Deploy a specific commit**: publica um commit escolhido da lista. Para voltar à versão anterior numa emergência, o **Rollback** da Etapa 9.3 é mais direto.
+- **Clear build cache & deploy**: refaz toda a publicação desde o início. Usem quando o erro é de biblioteca (por exemplo, o log diz que falta um pacote que vocês instalaram) e as outras conferências não explicaram o erro.
+- **Restart service**: só desliga e liga o programa, sem reinstalar nada. Usem esta opção para reiniciar o servidor, como no teste da [Etapa 8.4](#84-o-teste-de-persistência-r7).
 
 ---
 
@@ -805,50 +818,50 @@ Procurem a mensagem que aparece nos **Logs da Render**, não a que aparece no na
 | A página publicada mostra músicas diferentes das que aparecem no computador de vocês | Os valores da Etapa 6 vieram de outro projeto do Supabase | Copiar de novo a URL e a chave **do `.env`** e salvar com **Save, rebuild, and deploy** ([Etapa 6.2](#62-como-resolver)). |
 | Só excluir uma música que tem partes responde erro 500; as outras rotas funcionam | O banco é de um projeto antigo, sem `on delete cascade` entre partes e músicas, ou os valores da Etapa 6 são de outro projeto | Conferir primeiro de onde vieram os valores. Se o projeto é o certo, rodar nele o `diagnostico.sql` e, se aparecer `ajustar`, o `ajustes.sql` (Guia passo a passo do Supabase, Etapa 4, disponível no Classroom da disciplina). |
 | As rotas respondem erro 500 e os Logs mostram falha de conexão com o Supabase, ou a lista vem vazia de repente | O projeto do Supabase foi pausado por 7 dias sem atividade | Abrir o painel do Supabase e usar **Restore** no projeto ([Antes da apresentação](#antes-da-apresentação)). |
-| O build termina, mas o serviço fica "Deploying" para sempre | Colocaram `npm install && npm start` no **Build Command** | Separar: Build = `npm install` (ou `npm ci`), Start = `npm start` ([Etapa 5.2](#52-preenchendo-o-formulário)). |
+| O build termina, mas o serviço fica em "Deploying" e não sai desse status | Colocaram `npm install && npm start` no **Build Command** | Separar: Build = `npm install` (ou `npm ci`), Start = `npm start` ([Etapa 5.2](#52-preenchendo-o-formulário)). |
 | `404 Not Found` na página inicial, mas a API responde | O Express não está entregando a pasta `public` | Conferir o `app.use(express.static('public'))` e se a pasta foi commitada. |
 | No console do navegador: `Failed to fetch` ou erro de CORS | O front-end está chamando `http://localhost:3000` | Trocar por caminho relativo ([Etapa 8.1](#81-a-página-do-karaokê)). |
 | A primeira requisição demora quase um minuto, depois fica tudo rápido | O serviço estava dormindo (plano Free) | É o comportamento esperado ([Etapa 11](#etapa-11--o-que-o-plano-gratuito-permite)). |
 
-**E quando o erro não está na tabela?** Sigam este método:
+**Se o erro não está na tabela**, sigam este método:
 
-1. Leiam a **primeira** linha de erro do log, não a última. As de baixo costumam ser só consequência da primeira.
-2. Tentem reproduzir no computador de vocês com `npm start`. Se acontecer aqui também, o problema está no código.
-3. Se aqui funciona e lá não, o problema é diferença de ambiente: variável faltando, nome de arquivo, versão do Node ou biblioteca não commitada.
-4. Para pedir ajuda, **copiem a mensagem de erro inteira**. "Não funciona" não ajuda ninguém a ajudar vocês.
+1. Leiam a **primeira** linha de erro do log, não a última. As linhas de baixo costumam ser só consequência da primeira.
+2. Tentem reproduzir o erro no computador de vocês com `npm start`. Se o erro acontecer no computador de vocês também, o problema está no código.
+3. Se o projeto funciona no computador de vocês e não funciona na Render, o problema é diferença de ambiente: variável faltando, nome de arquivo, versão do Node ou biblioteca não commitada.
+4. Para pedir ajuda, **copiem a mensagem de erro inteira**. Dizer só "Não funciona" não dá informação para quem vai ajudar.
 
 > **Pergunte ao agente.** *"O serviço na Render mostra este erro nos Logs (colado abaixo, sem chaves). Explique a causa provável e o que devo conferir no painel Environment. Use como fonte o guia_deploy_render.md (Etapas 6 e 10), na página do trabalho: https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.md."* Colem a mensagem do log abaixo do pedido. Antes de colar, apaguem qualquer chave, URL de projeto com senha ou valor do Environment. Usem o agente para entender e diagnosticar; a correção, quem faz e confere são vocês.
 
-> **Chame o professor** quando vocês já tiverem passado por esses quatro passos e o erro continuar. A partir daí, insistir sozinho costuma virar tentativa e erro no escuro — e tentativa e erro no escuro, num sistema publicado, tem chance de quebrar o que ainda funcionava.
+> **Chamem o professor** quando vocês já tiverem feito esses quatro passos e o erro continuar. Depois desses passos, quem continua sem ajuda costuma fazer mudanças sem saber a causa do erro. Num sistema publicado, essas mudanças podem estragar partes que ainda funcionavam.
 >
-> Levem as quatro informações combinadas na abertura do guia: etapa, mensagem copiada, o que já tentaram e os links do repositório e do serviço.
+> Levem as quatro informações listadas no começo do guia: etapa, mensagem copiada, o que já tentaram e os links do repositório e do serviço.
 
 ---
 
 ## Etapa 11 — O que o plano gratuito permite
 
-O plano Free da Render é generoso, mas tem regras. Vocês precisam conhecer essas regras **antes** da apresentação, não no meio dela.
+O plano Free da Render é suficiente para este trabalho, mas tem regras. Leiam essas regras **antes** da apresentação.
 
 | Regra | O que isso significa na prática |
 |---|---|
 | **Dorme depois de 15 minutos sem acesso** | Se ninguém abrir o site por 15 minutos, a Render desliga o programa para economizar. |
 | **Acordar leva cerca de 1 minuto** | A primeira pessoa que acessar depois disso vai ver uma tela de carregamento. As próximas entram normalmente. |
-| **750 horas de funcionamento por mês** | Sobra para os projetos da turma. Só conta o tempo em que o serviço está acordado. |
-| **Um servidor só** | Não dá para dividir a carga entre vários. Para nós, não faz diferença. |
+| **750 horas de funcionamento por mês** | É mais do que os projetos da turma usam. Só conta o tempo em que o serviço está acordado. |
+| **Um servidor só** | Não dá para dividir os acessos entre vários servidores. Para este trabalho, isso não faz diferença. |
 | **Não guarda arquivos** | Arquivo que o programa gravar some na próxima publicação ou reinício. Dados vão para o banco; arquivos vão para o Storage. |
-| **Sem acesso por terminal** | Vocês só conseguem investigar pelos logs. Mais um motivo para escrever bons `console.error`. |
+| **Sem acesso por terminal** | Vocês só conseguem investigar pelos logs. Por isso, escrevam mensagens claras no `console.error`. |
 
-**O que fazer no dia da apresentação:** abram o endereço **cinco minutos antes** de começar, para o serviço acordar. Começar a apresentação com um minuto de tela branca não é defeito do projeto de vocês, mas perde a atenção da turma. Evitar isso é planejamento — e planejamento também é conteúdo desta disciplina.
+**O que fazer no dia da apresentação:** abram o endereço **cinco minutos antes** de começar, para o serviço acordar (voltar a ficar ligado). Se vocês não fizerem isso, a apresentação pode começar com um minuto de tela branca. Essa espera não é defeito do projeto de vocês, mas atrasa a apresentação. Abrir o endereço antes faz parte do planejamento da apresentação.
 
-> **Chame o professor** se o serviço aparecer como suspenso (faixa "Suspended" com o botão **Resume service**), ou se a Render avisar que as horas do mês acabaram. Tem conserto, mas o conserto depende do que causou — e não é coisa para descobrir na véspera da entrega.
+> **Chamem o professor** se o serviço aparecer como suspenso (faixa "Suspended" com o botão **Resume service**), ou se a Render avisar que as horas do mês acabaram. Dá para corrigir, mas a correção depende da causa. Chamem assim que o aviso aparecer. Não deixem para a véspera da entrega.
 
-> **Não montem robôs para ficar acessando o site** de minuto em minuto só para ele não dormir. Além de contornar a regra do plano gratuito, isso gasta as 750 horas do mês muito mais rápido. Quando as horas acabam, o serviço fica desligado até o mês seguinte — provavelmente no dia da entrega.
+> **Não criem programas automáticos para acessar o site** de minuto em minuto só para ele não dormir. Isso contorna a regra do plano gratuito e gasta as 750 horas do mês muito mais rápido. Quando as horas acabam, o serviço fica desligado até o mês seguinte. Isso pode acontecer no dia da entrega.
 
 ---
 
 ## Antes da apresentação
 
-Dois serviços gratuitos entram na cadeia, e os dois podem estar parados no dia. Confiram **na véspera** e **alguns minutos antes de começar**.
+O sistema publicado depende de dois serviços gratuitos: o Supabase e a Render. Os dois podem estar parados no dia da apresentação. Confiram **na véspera** e **alguns minutos antes de começar**.
 
 1. **Projeto do Supabase pausado.** Projetos gratuitos são pausados depois de 7 dias sem atividade. Entrem no painel do Supabase com antecedência. Se o projeto estiver pausado, usem **Restore** e esperem o status voltar a **Healthy** (pode levar alguns minutos). Não deixem para fazer isso na hora da apresentação.
 2. **Serviço da Render dormindo.** O plano gratuito põe o serviço para dormir depois de 15 minutos sem acesso. Abram a URL pública alguns minutos antes e esperem a lista carregar ([Etapa 11](#etapa-11--o-que-o-plano-gratuito-permite)).
@@ -874,7 +887,7 @@ Confiram tudo antes de mandar o link para o professor:
 - [ ] O último commit da `main` é o mesmo que está publicado (confiram na aba **Deploys**).
 - [ ] Vocês sabem explicar, sem olhar o guia: por que o `.env` não vai para o GitHub, e de onde a Render tira essas informações.
 
-O último item é justamente o que costuma ser perguntado na apresentação.
+O professor costuma perguntar o último item na apresentação.
 
 ---
 
@@ -886,21 +899,21 @@ O último item é justamente o que costuma ser perguntado na apresentação.
 | **Build** | A preparação que acontece antes de ligar o programa. No nosso caso, o `npm install` (ou o `npm ci`). |
 | **Web Service** | Nome que a Render dá a um programa que fica ligado respondendo pedidos pela internet. |
 | **Variável de ambiente** | Um valor guardado fora do código, que o programa lê com `process.env`. Serve para segredos e para o que muda de um lugar para outro. |
-| **Produção** | O ambiente que as pessoas usam de verdade. O oposto de "desenvolvimento", que é o computador de vocês. |
+| **Produção** | O ambiente onde as pessoas usam o sistema publicado. O oposto de "desenvolvimento", que é o computador de vocês. |
 | **Cold start** | A demora da primeira resposta depois que o serviço dormiu. |
 | **Rollback** | Voltar o sistema publicado para uma versão anterior. |
 | **Logs** | O relato do que o servidor foi imprimindo enquanto rodava. |
 | **Webhook** | O aviso automático que o GitHub manda para a Render a cada `push`, disparando uma nova publicação. |
-| **Repositório** | A pasta do projeto versionada pelo Git — no GitHub, a cópia oficial do código. |
+| **Repositório** | A pasta do projeto versionada pelo Git. No GitHub, é a cópia oficial do código. |
 
 ---
 
 ## Uma última coisa
 
-Publicar um sistema pela primeira vez dá um pouco de insegurança, e isso é normal — é a primeira vez que o código de vocês sai do computador de vocês e fica exposto para o mundo. Errar aqui faz parte, e quase tudo tem conserto.
+Esta é a primeira vez que o código de vocês sai do computador de vocês e fica acessível pela internet. Erros nesta etapa são esperados, e quase todos têm correção.
 
-O que não vale é ficar travado em silêncio. Chamem. Perguntem na aula, perguntem no laboratório, tragam o erro copiado. Trabalhar assim — pedindo ajuda cedo, com informação organizada na mão — é exatamente como funciona uma equipe de desenvolvimento de verdade.
+Se vocês ficarem parados num erro, chamem o professor cedo. Perguntem na aula ou no laboratório. Tragam as quatro informações: a etapa do guia, a mensagem de erro copiada inteira, o que vocês já tentaram e os links do repositório e do serviço. Equipes de desenvolvimento profissionais também trabalham assim: pedem ajuda cedo e levam a informação organizada.
 
 ---
 
-*Material de apoio da disciplina de Programação III — IFSul, Campus Passo Fundo. As telas e os nomes dos botões da Render podem mudar com o tempo; a lógica das etapas continua a mesma. Dúvida que a Etapa 10 não resolveu: tragam a mensagem de erro copiada do log.*
+*Material de apoio da disciplina de Programação III — IFSul, Campus Passo Fundo. As telas e os nomes dos botões da Render podem mudar com o tempo; a lógica das etapas continua a mesma. Se a Etapa 10 não resolver a dúvida, tragam a mensagem de erro copiada do log.*

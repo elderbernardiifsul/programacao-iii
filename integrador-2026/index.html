@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programação III - Material Didático</title>
+  <title>Trabalho integrador 2026 — O repertório da turma · Programação III</title>
   <style>
     
 
@@ -317,6 +317,30 @@
       }
     }
 
+    
+    /* --leitura-acessivel */
+    body { background: #faf8f4; font-size: 17px; line-height: 1.8; }
+    .page { box-shadow: none; }
+    .hero { padding: 16px 32px 12px; }
+    .hero h1 { font-size: 1.25rem; }
+    .hero .meta { margin-top: 10px; }
+    main p, main li, main blockquote { max-width: 75ch; }
+    main td p, main td li { max-width: none; }
+    main h2 { margin-top: 3rem; }
+    main li { margin: 0.35rem 0; }
+    main li.tarefa { list-style: none; margin-left: -1.4em; }
+    main li.tarefa > p { display: inline; }
+    main li.tarefa input[type="checkbox"] { display: inline-block; width: 1.15em; height: 1.15em; margin-right: 0.5em; vertical-align: -0.15em; accent-color: #1d7a2d; }
+    main li.tarefa.feita { color: #4b5a63; }
+    .pular-conteudo { position: absolute; left: -9999px; top: 0; padding: 10px 16px; background: #fff; border: 2px solid #1d7a2d; border-radius: 0 0 8px 0; font-weight: 600; z-index: 20; }
+    .pular-conteudo:focus { left: 0; }
+    .sumario-flutuante { position: fixed; right: 18px; bottom: 18px; padding: 10px 16px; border: 2px solid #1d7a2d; border-radius: 999px; background: #fff; color: #14532d; font-weight: 700; font-size: 0.95rem; text-decoration: none; z-index: 10; }
+    .sumario-flutuante:hover, .sumario-flutuante:focus { background: #1d7a2d; color: #fff; }
+    button:focus-visible, input:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+    @media (max-width: 640px) { .sumario-flutuante { right: 10px; bottom: 10px; padding: 6px 12px; font-size: 0.85rem; } body { padding-bottom: 64px; } }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+    @media print { .pular-conteudo, .sumario-flutuante { display: none !important; } main p, main li, main blockquote { max-width: none; } }
+
     @media print {
       .diagram-expand, .diagram-dialog { display: none; }
       body {
@@ -361,6 +385,7 @@
   </style>
 </head>
 <body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
   <div class="page">
     <section class="hero">
       <div class="hero-top">
@@ -373,43 +398,128 @@
         <div class="meta-card"><strong>Curso</strong>Ensino Médio Integrado - Técnico em Informática</div>
       </div>
     </section>
-    <main>
+    <main id="conteudo">
       <h1 id="trabalho-integrador-2026--o-repertório-da-turma">Trabalho integrador 2026 — O repertório da turma</h1>
 <p><strong>Disciplina:</strong> Programação III<br><strong>Professor:</strong> Élder F. F. Bernardi</p>
-<p>O trabalho integrador é uma aplicação web com API em Node.js e Express, banco de dados no Supabase e interface em HTML que consome a API com <code>fetch</code>. É feito em duplas, com verificação individual, e publicado na Render. <strong>Valor: 4,0 pontos.</strong></p>
+<p>Esta é a página do trabalho integrador. Ela reúne todos os documentos e arquivos do trabalho.</p>
+<p>O trabalho é um karaokê na web: uma API em Node.js e Express, um banco de dados no Supabase e uma página HTML que chama a API com <code>fetch</code>. É feito em duplas, com verificação individual, e publicado na Render. <strong>Valor: 4,0 pontos.</strong></p>
 <p><strong>Apresentações:</strong> 3D2 em 24/11/2026; 3D1 em 04/12/2026.</p>
-<p>Os documentos abaixo são os mesmos distribuídos no Classroom da disciplina. Cada um está disponível em HTML, para ler na tela, em PDF e em texto (<code>.md</code>), a versão mais leve para um agente de IA ler.</p>
+<h2 id="por-onde-começar">Por onde começar</h2>
+<p>Procurem na primeira coluna a situação de vocês. Abram o documento da segunda coluna.</p>
+<table>
+<thead>
+<tr>
+<th>Situação</th>
+<th>Documento para abrir</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Quero saber o que é o trabalho e o que é obrigatório</td>
+<td><a href="enunciado.html">Enunciado</a>, seção &quot;Resumo do trabalho&quot;</td>
+</tr>
+<tr>
+<td>Quero saber o que mostrar no encontro de hoje</td>
+<td><a href="enunciado.html#quatro-encontros-para-desenvolver">Enunciado</a>, seção &quot;Quatro encontros para desenvolver&quot;</td>
+</tr>
+<tr>
+<td>O projeto ainda não roda, não tem banco ou não está publicado</td>
+<td><a href="guia_dia_01.html">Guia do dia 1</a></td>
+</tr>
+<tr>
+<td>O projeto da dupla não funciona e quero começar de um projeto pronto</td>
+<td><a href="roteiro_retomada.html">Roteiro de retomada</a> e <a href="downloads/base_retomada.zip">base_retomada.zip</a></td>
+</tr>
+<tr>
+<td>Preciso fazer a tela cadastrar, editar ou excluir</td>
+<td><a href="guia_interface_crud.html">Guia de interface — CRUD na tela com fetch</a></td>
+</tr>
+<tr>
+<td>Tenho um erro no banco ou no Supabase</td>
+<td><a href="guia_supabase.html#socorro--erros-comuns">Guia passo a passo do Supabase</a>, seção &quot;Socorro — erros comuns&quot;</td>
+</tr>
+<tr>
+<td>Tenho um erro na publicação ou na Render</td>
+<td><a href="guia_deploy_render.html#etapa-10--socorro-erros-mais-comuns">Guia de deploy na Render</a>, Etapa 10</td>
+</tr>
+<tr>
+<td>Quero testar tudo antes de apresentar</td>
+<td><a href="enunciado.html#percurso-para-testar-e-demonstrar">Enunciado</a>, seção &quot;Percurso para testar e demonstrar&quot;</td>
+</tr>
+<tr>
+<td>Quero saber o que entregar e onde</td>
+<td><a href="enunciado.html#o-que-guardar-e-entregar">Enunciado</a>, seção &quot;O que guardar e entregar&quot;</td>
+</tr>
+<tr>
+<td>Quero saber como é a verificação individual</td>
+<td><a href="enunciado.html#o-que-cada-integrante-precisa-compreender">Enunciado</a>, seção &quot;O que cada integrante precisa compreender&quot;</td>
+</tr>
+<tr>
+<td>Quero saber como a nota é calculada</td>
+<td><a href="rubrica_estudantes.html">Rubrica dos estudantes</a></td>
+</tr>
+<tr>
+<td>Não entendi uma palavra</td>
+<td><a href="enunciado.html#gloss%C3%A1rio">Enunciado</a>, seção &quot;Glossário&quot;</td>
+</tr>
+</tbody></table>
+<p>Não encontraram a situação de vocês na tabela? Perguntem ao professor.</p>
+<h2 id="como-esta-página-está-organizada">Como esta página está organizada</h2>
+<ul>
+<li>Cada documento existe em três formatos, com o mesmo conteúdo.</li>
+<li><strong>HTML</strong> é para ler na tela. Nas listas de conferência do HTML, vocês podem clicar nas caixas de marcação para marcar o que já fizeram. O navegador guarda as marcações neste computador.</li>
+<li><strong>PDF</strong> é para imprimir ou guardar.</li>
+<li><strong>Texto (.md)</strong> é o arquivo de texto simples. Usem este formato para indicar o documento a um agente de IA.</li>
+<li>Os documentos são os mesmos distribuídos no Classroom da disciplina.</li>
+</ul>
 <h2 id="enunciado-e-avaliação">Enunciado e avaliação</h2>
 <ul>
-<li><strong>Enunciado (versão 2)</strong> — o que construir, requisitos, entregas e política de uso de IA. <a href="enunciado.html">Ler (HTML)</a> · <a href="enunciado.pdf">PDF</a> · <a href="enunciado.md">Texto (.md)</a></li>
+<li><strong>Enunciado (versão 3)</strong> — o que construir, requisitos, datas, entregas e uso de IA. Comecem por ele. <a href="enunciado.html">Ler (HTML)</a> · <a href="enunciado.pdf">PDF</a> · <a href="enunciado.md">Texto (.md)</a></li>
 <li><strong>Rubrica dos estudantes</strong> — critérios, pesos e níveis de desempenho. <a href="rubrica_estudantes.html">Ler (HTML)</a> · <a href="rubrica_estudantes.pdf">PDF</a> · <a href="rubrica_estudantes.md">Texto (.md)</a></li>
-<li><strong>Ficha de marcos</strong> — registro do andamento ao longo dos encontros. <a href="ficha_marcos.html">Ler (HTML)</a> · <a href="ficha_marcos.pdf">PDF</a> · <a href="ficha_marcos.md">Texto (.md)</a></li>
+<li><strong>Ficha de marcos</strong> — apoio opcional para registrar o andamento em cada encontro. <a href="ficha_marcos.html">Ler (HTML)</a> · <a href="ficha_marcos.pdf">PDF</a> · <a href="ficha_marcos.md">Texto (.md)</a></li>
 </ul>
 <h2 id="guias-de-trabalho">Guias de trabalho</h2>
-<p>Listas do que fazer em cada encontro, na ordem, com o link para a seção do guia de apoio que explica cada passo.</p>
+<p>Um guia de trabalho é uma lista do que fazer em um encontro, na ordem. Cada passo tem um link para a explicação completa.</p>
 <ul>
-<li><strong>Guia do dia 1 — Repositório, Supabase e Render</strong> — escolher o ponto de partida (projeto da dupla ou base de retomada), deixar o repositório pronto para as duas pessoas, conferir o banco no Supabase e criar o serviço na Render. Marco M1. <a href="guia_dia_01.html">Ler (HTML)</a> · <a href="guia_dia_01.pdf">PDF</a> · <a href="guia_dia_01.md">Texto (.md)</a></li>
+<li><strong>Guia do dia 1 — Repositório, Supabase e Render</strong> — deixar o projeto funcionando no computador e no GitHub da dupla, preparar o banco no Supabase e publicar na Render. Marco M1. <a href="guia_dia_01.html">Ler (HTML)</a> · <a href="guia_dia_01.pdf">PDF</a> · <a href="guia_dia_01.md">Texto (.md)</a></li>
 </ul>
+<p>Só o primeiro encontro tem guia de trabalho. Nos encontros 2, 3 e 4, usem a seção &quot;Quatro encontros para desenvolver&quot; do Enunciado e o Guia de interface.</p>
 <h2 id="guias-de-apoio">Guias de apoio</h2>
+<p>Um guia de apoio explica um assunto por inteiro. Usem para consultar ou quando um passo não funcionar.</p>
 <ul>
 <li><strong>Guia passo a passo do Supabase</strong> — criação do banco, tabelas, dados iniciais e integração da API. <a href="guia_supabase.html">Ler (HTML)</a> · <a href="guia_supabase.pdf">PDF</a> · <a href="guia_supabase.md">Texto (.md)</a></li>
 <li><strong>Guia de interface — CRUD na tela com fetch</strong> — listar, criar, editar e remover registros pela página. <a href="guia_interface_crud.html">Ler (HTML)</a> · <a href="guia_interface_crud.pdf">PDF</a> · <a href="guia_interface_crud.md">Texto (.md)</a></li>
 <li><strong>Guia de deploy na Render</strong> — publicação da aplicação e configuração das variáveis de ambiente. <a href="guia_deploy_render.html">Ler (HTML)</a> · <a href="guia_deploy_render.pdf">PDF</a> · <a href="guia_deploy_render.md">Texto (.md)</a></li>
-<li><strong>Roteiro de retomada</strong> — como retomar o trabalho a partir da base de retomada, caso seja necessário. <a href="roteiro_retomada.html">Ler (HTML)</a> · <a href="roteiro_retomada.pdf">PDF</a> · <a href="roteiro_retomada.md">Texto (.md)</a></li>
+<li><strong>Roteiro de retomada</strong> — como trabalhar a partir da base de retomada. Só para a dupla que usa a base. <a href="roteiro_retomada.html">Ler (HTML)</a> · <a href="roteiro_retomada.pdf">PDF</a> · <a href="roteiro_retomada.md">Texto (.md)</a></li>
 </ul>
 <h2 id="downloads">Downloads</h2>
 <ul>
-<li><strong>Documentos da atividade (ZIP)</strong> — enunciado, rubrica, roteiro de retomada e ficha de marcos, em Markdown, HTML e PDF. É o mesmo pacote do Classroom. <a href="downloads/entrega_estudantes.zip">entrega_estudantes.zip</a></li>
-<li><strong>Materiais de apoio (ZIP)</strong> — os três guias (HTML e PDF), o exemplo do mural, o <code>AGENTS.md</code> e os arquivos SQL. É o mesmo pacote do Classroom. <a href="downloads/materiais_apoio.zip">materiais_apoio.zip</a></li>
-<li><strong>Arquivos SQL</strong> — para abrir e colar no SQL Editor do Supabase, como no Guia passo a passo do Supabase, etapa 4: <a href="downloads/sql/schema.sql">schema.sql</a> (cria as tabelas) · <a href="downloads/sql/seed.sql">seed.sql</a> (música de amostra) · <a href="downloads/sql/diagnostico.sql">diagnostico.sql</a> (confere um banco existente, só leitura) · <a href="downloads/sql/ajustes.sql">ajustes.sql</a> (corrige o que o diagnóstico apontar, sem apagar dados)</li>
-<li><strong>Base de retomada (ZIP)</strong> — projeto inicial de apoio. O uso é opcional: serve para quem precisa retomar o trabalho de um ponto funcional. <a href="downloads/base_retomada.zip">base_retomada.zip</a></li>
+<li><strong>Base de retomada (ZIP)</strong> — projeto inicial de apoio. O uso é opcional e não reduz a nota. <a href="downloads/base_retomada.zip">base_retomada.zip</a></li>
+<li><strong>Arquivos SQL</strong> — para abrir e colar no SQL Editor do Supabase, como no Guia passo a passo do Supabase, etapa 4:<ul>
+<li><a href="downloads/sql/schema.sql">schema.sql</a> — cria as tabelas.</li>
+<li><a href="downloads/sql/seed.sql">seed.sql</a> — inclui a música de exemplo.</li>
+<li><a href="downloads/sql/diagnostico.sql">diagnostico.sql</a> — confere um banco existente. Só lê.</li>
+<li><a href="downloads/sql/ajustes.sql">ajustes.sql</a> — corrige o que o diagnóstico apontar, sem apagar dados.</li>
+</ul>
+</li>
 <li><strong>Mural de recados (ZIP)</strong> — exemplo executável usado no guia de interface. <a href="downloads/mural_recados.zip">mural_recados.zip</a></li>
 <li><strong>AGENTS.md</strong> — instruções para usar um agente de IA como tutor, e não como autor do código. <a href="downloads/AGENTS.md">AGENTS.md</a></li>
+<li><strong>Documentos da atividade (ZIP)</strong> — enunciado, rubrica, roteiro de retomada e ficha de marcos, em Markdown, HTML e PDF. É o mesmo pacote do Classroom. <a href="downloads/entrega_estudantes.zip">entrega_estudantes.zip</a></li>
+<li><strong>Materiais de apoio (ZIP)</strong> — os três guias (HTML e PDF), o exemplo do mural, o <code>AGENTS.md</code> e os arquivos SQL. É o mesmo pacote do Classroom. <a href="downloads/materiais_apoio.zip">materiais_apoio.zip</a></li>
 </ul>
 <h2 id="para-agentes-de-ia">Para agentes de IA</h2>
-<p>Esta página é a fonte que o <code>AGENTS.md</code> do projeto indica ao agente. Ao pedir ajuda, mencionem o documento e a seção, como fazem os quadros <strong>Pergunte ao agente</strong> dos guias, e indiquem o endereço do <code>.md</code> correspondente, por exemplo <code>https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</code>. O agente responde a partir do material da disciplina, e vocês conferem a resposta no mesmo documento.</p>
+<p>Esta página é a fonte que o <code>AGENTS.md</code> do projeto indica ao agente.</p>
+<p>Ao pedir ajuda ao agente:</p>
+<ol>
+<li>Digam qual é o documento e qual é a seção. Os quadros <strong>Pergunte ao agente</strong> dos guias fazem assim.</li>
+<li>Indiquem o endereço do <code>.md</code> do documento. Exemplo: <code>https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.md</code>.</li>
+<li>Confiram a resposta do agente no mesmo documento.</li>
+</ol>
 <h2 id="chaves-e-segredos">Chaves e segredos</h2>
-<p>Chaves do Supabase, URLs de conexão e qualquer valor secreto nunca entram no repositório. Eles ficam no arquivo <code>.env</code>, que está no <code>.gitignore</code>, e são digitados diretamente no painel da Render.</p>
+<p>Chaves do Supabase, URLs de conexão e qualquer valor secreto nunca entram no repositório.</p>
+<ul>
+<li>Eles ficam no arquivo <code>.env</code>, que está no <code>.gitignore</code>.</li>
+<li>Na Render, eles são digitados diretamente no painel.</li>
+</ul>
 <p><a href="../index.html">Voltar à página da disciplina</a></p>
 
     </main>
@@ -417,6 +527,7 @@
       <span>IFSul - Campus Passo Fundo · Programação III</span>
     </footer>
   </div>
+  
   <dialog class="diagram-dialog" aria-label="Diagrama ampliado">
     <button type="button" class="diagram-close">Fechar diagrama</button>
     <p>Use a rolagem para explorar o diagrama. Pressione Esc para fechar.</p>
@@ -441,6 +552,21 @@
         diagramScroll.scrollTo(0, 0);
       });
     });
+    
+    // Listas de tarefas: clicáveis, com a marcação guardada neste navegador (por página).
+    document.querySelectorAll('main li.tarefa input[type="checkbox"]').forEach((caixa, indice) => {
+      const chave = 'tarefa:' + location.pathname + ':' + indice;
+      const item = caixa.closest('li');
+      caixa.disabled = false;
+      caixa.setAttribute('aria-label', 'Marcar como feito: ' + item.textContent.trim().slice(0, 120));
+      try { caixa.checked = localStorage.getItem(chave) === '1'; } catch (erro) { /* sem armazenamento: só marca na tela */ }
+      item.classList.toggle('feita', caixa.checked);
+      caixa.addEventListener('change', () => {
+        item.classList.toggle('feita', caixa.checked);
+        try { caixa.checked ? localStorage.setItem(chave, '1') : localStorage.removeItem(chave); } catch (erro) { /* idem */ }
+      });
+    });
+
   </script>
 </body>
 </html>

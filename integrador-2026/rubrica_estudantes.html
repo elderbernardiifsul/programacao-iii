@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programação III - Material Didático</title>
+  <title>Rubrica dos estudantes — Trabalho integrador: O repertório da turma · Programação III</title>
   <style>
     
 
@@ -269,6 +269,25 @@
       height: auto;
     }
 
+    main { min-width: 0; overflow-wrap: anywhere; }
+    pre { max-width: 100%; overflow-wrap: normal; }
+    table { display: block; max-width: 100%; overflow-x: auto; }
+    :target { scroll-margin-top: 24px; }
+    a:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+    main img { display: block; margin: 24px auto 8px; padding: 16px; border: 1px solid var(--borda); border-radius: 12px; background: white; }
+    .voltar-indice { text-align: right; margin: 28px 0 12px; break-before: avoid; page-break-before: avoid; }
+    .voltar-indice a { display: inline-block; padding: 6px 14px; border: 1px solid var(--ifsul-verde); border-radius: 999px; background: var(--superficie); color: var(--ifsul-verde-escuro); font-size: 0.9em; font-weight: 600; text-decoration: none; }
+    .voltar-indice a:hover, .voltar-indice a:focus { background: var(--ifsul-verde); color: #fff; }
+    .sumario-auto ol { columns: 2; column-gap: 32px; }
+    @media (max-width: 640px) { .sumario-auto ol { columns: 1; } }
+    .diagram-expand, .diagram-close { padding: 10px 16px; border: 1px solid #1d7a2d; border-radius: 8px; background: white; color: #14532d; cursor: pointer; font: inherit; }
+    .diagram-expand { display: block; margin: 8px auto 24px; }
+    .diagram-dialog { width: 95vw; max-width: 1600px; max-height: 94vh; padding: 20px; border: 1px solid #9bbda4; border-radius: 12px; }
+    .diagram-dialog::backdrop { background: rgba(15, 30, 20, .75); }
+    .diagram-scroll { overflow: auto; max-height: 72vh; margin-top: 16px; }
+    .diagram-scroll img { display: block; max-width: none; width: auto; min-width: 700px; background: white; }
+    .diagram-close:focus-visible, .diagram-expand:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+
     footer {
       display: flex;
       justify-content: space-between;
@@ -298,7 +317,32 @@
       }
     }
 
+    
+    /* --leitura-acessivel */
+    body { background: #faf8f4; font-size: 17px; line-height: 1.8; }
+    .page { box-shadow: none; }
+    .hero { padding: 16px 32px 12px; }
+    .hero h1 { font-size: 1.25rem; }
+    .hero .meta { margin-top: 10px; }
+    main p, main li, main blockquote { max-width: 75ch; }
+    main td p, main td li { max-width: none; }
+    main h2 { margin-top: 3rem; }
+    main li { margin: 0.35rem 0; }
+    main li.tarefa { list-style: none; margin-left: -1.4em; }
+    main li.tarefa > p { display: inline; }
+    main li.tarefa input[type="checkbox"] { display: inline-block; width: 1.15em; height: 1.15em; margin-right: 0.5em; vertical-align: -0.15em; accent-color: #1d7a2d; }
+    main li.tarefa.feita { color: #4b5a63; }
+    .pular-conteudo { position: absolute; left: -9999px; top: 0; padding: 10px 16px; background: #fff; border: 2px solid #1d7a2d; border-radius: 0 0 8px 0; font-weight: 600; z-index: 20; }
+    .pular-conteudo:focus { left: 0; }
+    .sumario-flutuante { position: fixed; right: 18px; bottom: 18px; padding: 10px 16px; border: 2px solid #1d7a2d; border-radius: 999px; background: #fff; color: #14532d; font-weight: 700; font-size: 0.95rem; text-decoration: none; z-index: 10; }
+    .sumario-flutuante:hover, .sumario-flutuante:focus { background: #1d7a2d; color: #fff; }
+    button:focus-visible, input:focus-visible { outline: 3px solid #1d7a2d; outline-offset: 3px; }
+    @media (max-width: 640px) { .sumario-flutuante { right: 10px; bottom: 10px; padding: 6px 12px; font-size: 0.85rem; } body { padding-bottom: 64px; } }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+    @media print { .pular-conteudo, .sumario-flutuante { display: none !important; } main p, main li, main blockquote { max-width: none; } }
+
     @media print {
+      .diagram-expand, .diagram-dialog { display: none; }
       body {
         background: white;
         padding: 0;
@@ -341,6 +385,7 @@
   </style>
 </head>
 <body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
   <div class="page">
     <section class="hero">
       <div class="hero-top">
@@ -353,12 +398,36 @@
         <div class="meta-card"><strong>Curso</strong>Ensino Médio Integrado - Técnico em Informática</div>
       </div>
     </section>
-    <main>
-      <h1 id="rubrica-do-trabalho-integrador--curadoria-do-repertório">Rubrica do trabalho integrador — Curadoria do repertório</h1>
-<p><strong>Versão de entrega · 20/10/2026.</strong>
-<strong>Programação III · IFSul — Campus Passo Fundo · Professor Élder F. F. Bernardi</strong>
-<strong>Tutor da atividade:</strong> Prof. Leonardo Constantin  </p>
-<p>Os critérios abaixo descrevem as evidências que serão observadas no núcleo do trabalho. O núcleo bem executado e compreendido permite nota máxima, com ou sem base de retomada, Vue ou funcionalidades extras. Não há desconto pelo apoio recebido nem avaliação por quantidade de código ou commits.</p>
+    <main id="conteudo">
+      <h1 id="rubrica-dos-estudantes--trabalho-integrador-o-repertório-da-turma">Rubrica dos estudantes — Trabalho integrador: O repertório da turma</h1>
+<p><strong>Versão 3 · 10/11/2026.</strong> Substitui a versão de entrega de 20/10/2026.<br><strong>Programação III · IFSul — Campus Passo Fundo · Professor Élder F. F. Bernardi</strong><br><strong>Tutor da atividade:</strong> Prof. Leonardo Constantin  </p>
+<p><a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/">Página do trabalho</a> · <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/enunciado.html">Enunciado</a></p>
+<blockquote>
+<p><strong>O que mudou na versão 3</strong></p>
+<ul>
+<li><strong>Nenhum critério mudou.</strong> Os pesos, os valores e as tabelas de níveis são os mesmos da versão de 20/10/2026.</li>
+<li>O título passou a usar o nome do trabalho: &quot;O repertório da turma&quot;.</li>
+<li>Há uma seção nova, &quot;Como ler esta rubrica&quot;, e um glossário no fim.</li>
+<li>As observações de cada critério foram reescritas em listas.</li>
+</ul>
+</blockquote>
+<nav class="sumario-auto"><h2 id="sumario-auto">Sumário</h2><ol><li><a href="#como-ler-esta-rubrica">Como ler esta rubrica</a></li><li><a href="#pesos-e-cálculo-da-pontuação">Pesos e cálculo da pontuação</a></li><li><a href="#os-cinco-critérios">Os cinco critérios</a></li><li><a href="#glossário">Glossário</a></li></ol></nav>
+<h2 id="como-ler-esta-rubrica">Como ler esta rubrica</h2>
+<p>A rubrica diz como o professor transforma o que observa em pontos.</p>
+<ol>
+<li>O trabalho tem cinco critérios: C1, C2, C3, C4 e C5.</li>
+<li>Cada critério tem uma tabela com quatro níveis: Excelente, Bom, Regular e Insuficiente.</li>
+<li>Cada nível descreve o que o professor observa no projeto.</li>
+<li>Para se preparar, leiam o nível <strong>Excelente</strong> de cada critério. Depois, confiram se o projeto de vocês mostra o que está escrito ali.</li>
+</ol>
+<p>O que vale para todos os critérios:</p>
+<ul>
+<li>Os critérios descrevem as evidências que serão observadas no núcleo do trabalho.</li>
+<li>O núcleo bem executado e compreendido permite nota máxima, com ou sem base de retomada, Vue ou funcionalidades extras.</li>
+<li>Não há desconto pelo apoio recebido.</li>
+<li>Não há avaliação por quantidade de código ou commits.</li>
+</ul>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 <h2 id="pesos-e-cálculo-da-pontuação">Pesos e cálculo da pontuação</h2>
 <p><strong>Valor total: 4,0 pontos. Tutor da atividade: Prof. Leonardo Constantin.</strong></p>
 <table>
@@ -401,8 +470,21 @@
 <td>0,4 ponto</td>
 </tr>
 </tbody></table>
-<p>Para cada critério, multiplicar o valor máximo pelo fator do nível: Excelente = 1; Bom = 0,75; Regular = 0,50; Insuficiente = 0,25. A pontuação de cada estudante soma os quatro critérios da dupla (até 2,8 pontos) ao seu C4 individual (até 1,2 ponto). Evidência ausente ou impedida fica pendente de verificação equivalente, sem inferir desconhecimento automaticamente.</p>
-<p>Uma falha externa ou ausência de evidência exige encaminhamento e nova conferência; não equivale automaticamente a desconhecimento.</p>
+<p><strong>Como calcular:</strong></p>
+<ol>
+<li>Em cada critério, o professor escolhe o nível que descreve o que observou.</li>
+<li>Cada nível tem um fator: Excelente = 1; Bom = 0,75; Regular = 0,50; Insuficiente = 0,25.</li>
+<li>A pontuação do critério é o valor máximo multiplicado pelo fator do nível.</li>
+<li>A pontuação de cada estudante soma os quatro critérios da dupla (até 2,8 pontos) ao seu C4 individual (até 1,2 ponto).</li>
+</ol>
+<p>Exemplo: nível Bom em C1 corresponde a <code>1,2 × 0,75 = 0,9 ponto</code>.</p>
+<p><strong>Quando falta uma evidência:</strong></p>
+<ul>
+<li>Evidência ausente ou impedida fica pendente de verificação equivalente. O professor não conclui automaticamente que a pessoa não sabe.</li>
+<li>Uma falha externa ou ausência de evidência exige encaminhamento e nova conferência. Ela não equivale automaticamente a desconhecimento.</li>
+</ul>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
+<h2 id="os-cinco-critérios">Os cinco critérios</h2>
 <h3 id="c1--integração-e-funcionamento--r1r4-r6">C1 — Integração e funcionamento · R1–R4, R6</h3>
 <table>
 <thead>
@@ -428,8 +510,12 @@
 <td>Não apresenta leitura e escrita integradas verificáveis; alteração existe só na tela ou as ações indicam sucesso sem executar o percurso correspondente.</td>
 </tr>
 </tbody></table>
-<p><strong>Observar:</strong> CRUD cotidiano acontece na interface. Chamadas manuais são apoio
-de diagnóstico, não substituem a integração. Preservar amostra para o player.</p>
+<p><strong>Observações sobre o C1:</strong></p>
+<ul>
+<li>O CRUD cotidiano acontece na interface.</li>
+<li>Chamadas manuais à API são apoio de diagnóstico. Elas não substituem a integração.</li>
+<li>Preservem a amostra para o player.</li>
+</ul>
 <h3 id="c2--persistência-e-publicação--r2r4-r7">C2 — Persistência e publicação · R2–R4, R7</h3>
 <table>
 <thead>
@@ -455,10 +541,13 @@ de diagnóstico, não substituem a integração. Preservar amostra para o player
 <td>A única evidência é dado em memória/lista local ou aplicação pública sem integração verificável ao banco; não distingue esses estados mesmo com consulta orientada.</td>
 </tr>
 </tbody></table>
-<p><strong>Impedimento externo:</strong> indisponibilidade não equivale a nível insuficiente.
-Registrar o impedimento, evidência local com banco e evidências anteriores;
-deixar a verificação impedida pendente, conforme encaminhamento docente.
-O objetivo de publicação com banco permanece, sem criar prazo/penalidade novos.</p>
+<p><strong>Impedimento externo no C2:</strong></p>
+<ul>
+<li>Indisponibilidade não equivale a nível insuficiente.</li>
+<li>Registrem o impedimento, a evidência local com banco e as evidências anteriores.</li>
+<li>A verificação impedida fica pendente, conforme encaminhamento do professor.</li>
+<li>O objetivo de publicação com banco permanece. O impedimento não cria prazo novo nem penalidade nova.</li>
+</ul>
 <h3 id="c3--qualidade-proporcional-ao-ensino--r5-r8">C3 — Qualidade proporcional ao ensino · R5, R8</h3>
 <table>
 <thead>
@@ -484,8 +573,11 @@ O objetivo de publicação com banco permanece, sem criar prazo/penalidade novos
 <td>Aceita entradas obrigatórias inválidas ou anuncia sucesso na falha, impedindo verificar operações; não consegue localizar o tratamento nem acompanhar uma correção orientada.</td>
 </tr>
 </tbody></table>
-<p>Não cobrar estética elaborada, biblioteca nova, relatório ou técnica de
-responsividade não confirmada. A análise limita-se a uso legível e feedback.</p>
+<p><strong>Observações sobre o C3:</strong></p>
+<ul>
+<li>Este critério não cobra estética elaborada, biblioteca nova, relatório ou técnica de responsividade não confirmada.</li>
+<li>A análise limita-se a uso legível e feedback.</li>
+</ul>
 <h3 id="c4--compreensão-individual--r8-e-fluxo-associado">C4 — Compreensão individual · R8 e fluxo associado</h3>
 <table>
 <thead>
@@ -511,10 +603,13 @@ responsividade não confirmada. A análise limita-se a uso legível e feedback.<
 <td>Mesmo com consulta e retomada orientada, não relaciona a operação demonstrada ao próprio código nem prevê seu efeito; evidência de domínio ainda não foi produzida.</td>
 </tr>
 </tbody></table>
-<p>Registrar separadamente por estudante. Ausência, ansiedade ou falta de tempo
-não comprovam desconhecimento: coletar outra evidência equivalente.
-Aceitar fala, percurso apontado no código ou anotação/desenho com demonstração;
-não pontuar rapidez, memória, quantidade de fala ou contribuição por commits.</p>
+<p><strong>Observações sobre o C4:</strong></p>
+<ul>
+<li>O professor registra este critério separadamente por estudante.</li>
+<li>Ausência, ansiedade ou falta de tempo não comprovam desconhecimento. Nesses casos, o professor coleta outra evidência equivalente.</li>
+<li>Formas de resposta aceitas: fala, percurso apontado no código, ou anotação ou desenho com demonstração.</li>
+<li>Não são pontuados: rapidez, memória, quantidade de fala ou contribuição por commits.</li>
+</ul>
 <h3 id="c5--processo-e-comunicação-técnica--r8">C5 — Processo e comunicação técnica · R8</h3>
 <table>
 <thead>
@@ -540,11 +635,96 @@ não pontuar rapidez, memória, quantidade de fala ou contribuição por commits
 <td>Não há instrução nem registro suficiente para reproduzir/verificar o trabalho; a dupla não consegue reconstruir execução e processo mesmo com apoio.</td>
 </tr>
 </tbody></table>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
+<h2 id="glossário">Glossário</h2>
+<p>As explicações abaixo valem para esta rubrica. O <a href="https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/enunciado.html">Enunciado</a> tem um glossário maior.</p>
+<table>
+<thead>
+<tr>
+<th>Palavra</th>
+<th>O que significa nesta rubrica</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Amostra</strong> ou <strong>seed</strong></td>
+<td>A música com partes do repertório inicial, usada para demonstrar o player. O arquivo <code>seed.sql</code> inclui a música de exemplo.</td>
+</tr>
+<tr>
+<td><strong>Com consulta</strong></td>
+<td>A pessoa pode olhar o próprio código e os materiais de apoio enquanto responde. Não é o mesmo que consultar uma música na API.</td>
+</tr>
+<tr>
+<td><strong>Evidência</strong></td>
+<td>O que mostra que algo funciona ou foi compreendido. Exemplos: uma demonstração observada, um registro curto de teste, uma explicação.</td>
+</tr>
+<tr>
+<td><strong>Fluxo</strong></td>
+<td>O caminho tela → rota → DAO → banco → retorno.</td>
+</tr>
+<tr>
+<td><strong>Intervenção</strong></td>
+<td>Uma pequena mudança ou tarefa, de um dos tipos listados no Enunciado, na seção &quot;O que cada integrante precisa compreender&quot;.</td>
+</tr>
+<tr>
+<td><strong>Percurso CRUD</strong></td>
+<td>A sequência de consultar, cadastrar, editar e excluir pela interface.</td>
+</tr>
+<tr>
+<td><strong>Requisição manual</strong></td>
+<td>Uma chamada à API feita fora da interface da aplicação.</td>
+</tr>
+<tr>
+<td><strong>R1 a R8</strong></td>
+<td>Os oito requisitos do núcleo. Estão no Enunciado, na seção &quot;Núcleo do trabalho — R1 a R8&quot;.</td>
+</tr>
+</tbody></table>
+<p class="voltar-indice"><a href="#sumario-auto">↑ Voltar ao sumário</a></p>
 
     </main>
     <footer>
       <span>IFSul - Campus Passo Fundo · Programação III</span>
     </footer>
   </div>
+  <a class="sumario-flutuante" href="#sumario-auto">↑ Sumário</a>
+  <dialog class="diagram-dialog" aria-label="Diagrama ampliado">
+    <button type="button" class="diagram-close">Fechar diagrama</button>
+    <p>Use a rolagem para explorar o diagrama. Pressione Esc para fechar.</p>
+    <div class="diagram-scroll"></div>
+  </dialog>
+  <script>
+    const diagramDialog = document.querySelector('.diagram-dialog');
+    const diagramScroll = document.querySelector('.diagram-scroll');
+    document.querySelector('.diagram-close').addEventListener('click', () => diagramDialog.close());
+    document.querySelectorAll('main img').forEach((img) => {
+      if (!img.src.startsWith('data:image/svg+xml') && !/\.svg(?:[?#]|$)/i.test(img.src)) return;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'diagram-expand';
+      button.textContent = 'Ampliar diagrama';
+      button.setAttribute('aria-label', 'Ampliar: ' + img.alt);
+      img.insertAdjacentElement('afterend', button);
+      button.addEventListener('click', () => {
+        const enlarged = img.cloneNode();
+        diagramScroll.replaceChildren(enlarged);
+        diagramDialog.showModal();
+        diagramScroll.scrollTo(0, 0);
+      });
+    });
+    
+    // Listas de tarefas: clicáveis, com a marcação guardada neste navegador (por página).
+    document.querySelectorAll('main li.tarefa input[type="checkbox"]').forEach((caixa, indice) => {
+      const chave = 'tarefa:' + location.pathname + ':' + indice;
+      const item = caixa.closest('li');
+      caixa.disabled = false;
+      caixa.setAttribute('aria-label', 'Marcar como feito: ' + item.textContent.trim().slice(0, 120));
+      try { caixa.checked = localStorage.getItem(chave) === '1'; } catch (erro) { /* sem armazenamento: só marca na tela */ }
+      item.classList.toggle('feita', caixa.checked);
+      caixa.addEventListener('change', () => {
+        item.classList.toggle('feita', caixa.checked);
+        try { caixa.checked ? localStorage.setItem(chave, '1') : localStorage.removeItem(chave); } catch (erro) { /* idem */ }
+      });
+    });
+
+  </script>
 </body>
 </html>
