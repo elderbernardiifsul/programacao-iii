@@ -1,110 +1,222 @@
 # Guia do dia 1 — Repositório, Supabase e Render
 
 **Trabalho integrador 2026 — O repertório da turma · Programação III**  
-**IFSul — Campus Passo Fundo · Ensino Médio Integrado — Técnico em Informática**  
 **Professor:** Élder F. F. Bernardi · **Tutor da atividade:** Prof. Leonardo Constantin
 
-Este guia é a lista do que fazer **hoje**, na ordem. Ele não substitui os guias: cada item aponta a seção do documento que explica o passo em detalhe. Abram o link quando precisarem do passo a passo; se o item já está feito, marquem e sigam.
+Hoje vocês **não vão programar**. Hoje é só deixar tudo funcionando:
 
-Hoje vocês **não programam** o CRUD. O objetivo é deixar o terreno pronto:
+1. o projeto no computador e no GitHub da dupla;
+2. o banco de dados (Supabase);
+3. o site no ar (Render).
 
-- o projeto rodando no computador e guardado no repositório da dupla, com as duas pessoas com acesso;
-- o banco no Supabase conferido e ligado ao projeto;
-- o serviço na Render criado, com a URL anotada (ou o impedimento registrado).
+**Como usar este guia**
 
-Isso corresponde ao **marco M1 — Abrir e compreender** ([Ficha de marcos](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/ficha_marcos.html#aceites-e-atividades-por-marco)).
+- Façam **um passo por vez**, na ordem. Marquem o ☐ quando terminar.
+- Travou? Cliquem no link **Ajuda** do passo. Ele abre a explicação completa.
+- Continua travado depois de 10 minutos? **Chamem o professor.** Não fiquem parados.
 
-## 0. Escolher o ponto de partida
+---
 
-Leiam [Enunciado → De onde partir](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/enunciado.html#de-onde-partir) e decidam em dupla:
+## Parte 1 — O projeto
 
-| Situação da dupla | Caminho de hoje |
+### ☐ Passo 1 — Conferir o Node
+
+No terminal do VS Code:
+
+```bash
+node --version
+```
+
+**Deu certo se:** aparece `v22` ou um número maior.  
+**Ajuda:** [Guia do Supabase, Etapa 0](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#etapa-0--antes-de-começar)
+
+### ☐ Passo 2 — O projeto de vocês roda?
+
+Abram a pasta do projeto no VS Code e rodem:
+
+```bash
+npm install
+npm start
+```
+
+Abram `http://localhost:3000` no navegador.
+
+- **Abriu a página do karaokê?** Ótimo. Vão para o passo 3.
+- **Deu erro, ou vocês não acham o projeto?** Usem a **base de retomada**. Ela é um projeto pronto para começar, e **não tira nota**:
+  1. Baixem a [base_retomada.zip](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip) e descompactem.
+  2. Abram a pasta `base_retomada` no VS Code.
+  3. Rodem `npm ci` no terminal.
+  4. A base só abre no navegador depois da Parte 2. Sigam para o passo 3.
+
+**Ajuda:** [Roteiro de retomada, 1. Preparar e executar](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/roteiro_retomada.html#1-preparar-e-executar)
+
+### ☐ Passo 3 — O projeto está no GitHub da dupla?
+
+```bash
+git remote -v
+```
+
+Olhem o endereço que aparece:
+
+| O que apareceu | O que fazer |
 |---|---|
-| O projeto de vocês roda, já está no GitHub e já fala (ou quase) com o Supabase | **Caminho A** — seguir com o repositório que vocês já têm |
-| O projeto não roda, se perdeu, ou está muito atrás | **Caminho B** — base de retomada |
+| Um endereço com o **usuário de vocês** | Está certo. Vão para o passo 4. |
+| Um endereço com `elderbernardiifsul` | É o repositório da aula. Troquem para o de vocês: [Ajuda](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#15-o-repositório-da-dupla-no-github) |
+| Nada, ou um erro | O projeto ainda não está no GitHub. Criem o repositório: [Ajuda](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#35-caso-especial-o-projeto-ainda-não-está-no-github) |
 
-A base de retomada é opcional, **não reduz a nota** e permite chegar ao nível excelente. Em dúvida, perguntem ao professor antes de começar: trocar de caminho no meio do dia custa caro.
+### ☐ Passo 4 — Os dois têm acesso?
 
-## 1. Conferir as ferramentas (as duas pessoas)
+1. Quem criou o repositório abre ele no GitHub: **Settings → Collaborators → Add people** e adiciona o colega.
+2. O colega aceita o convite (chega por e-mail).
+3. O colega baixa o projeto no computador dele com `git clone`.
 
-- ☐ `node --version` mostra 22 ou mais; `git --version` responde; `git config user.name` mostra o **seu** nome. → [Guia do Supabase, Etapa 0](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#etapa-0--antes-de-começar)
-- ☐ Extensão **REST Client** instalada no VS Code. → [Etapa 0 → Ferramentas](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#ferramentas)
-- ☐ Conseguem entrar no GitHub, no Supabase e na Render (os dois últimos com **Continue with GitHub**).
-- ☐ O agente de IA está configurado como tutor, com o `AGENTS.md` do projeto. → [Etapa 0 → O agente como tutor](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#o-agente-como-tutor)
+**Deu certo se:** os dois abrem o projeto no próprio computador.  
+**Ajuda:** [Guia do Supabase, 1.5](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#15-o-repositório-da-dupla-no-github) e [1.6](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#16-a-outra-pessoa-da-dupla)
 
-## 2A. Caminho A — o repositório que vocês já têm
+---
 
-- ☐ `git remote -v` mostra o endereço do **repositório da dupla**, não o da aula (`elderbernardiifsul/aula-nodejs-...`).
-  - Mostra o da aula? → [Guia do Supabase, 1.5 O repositório da dupla no GitHub](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#15-o-repositório-da-dupla-no-github)
-  - Não mostra nada? → [Guia de deploy, 3.5 O projeto ainda não está no GitHub](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#35-caso-especial-o-projeto-ainda-não-está-no-github)
-- ☐ A outra pessoa foi convidada como colaboradora, aceitou o convite e clonou o repositório. → [1.5 (último parágrafo)](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#15-o-repositório-da-dupla-no-github) e [1.6 A outra pessoa da dupla](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#16-a-outra-pessoa-da-dupla)
-- ☐ Nos dois computadores: `git pull`, `npm install` e `npm start` sem erro.
-- ☐ Localizar em que etapa do Guia do Supabase o projeto de vocês está (DAO em memória? já com banco?). → [Guia do Supabase, Qual caminho seguir](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#qual-caminho-seguir) e [Sumário](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#sumário)
-- ☐ O `.gitignore` tem `node_modules` e `.env`. → [Guia do Supabase, 5.1](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#51-proteger-o-env-antes-de-criá-lo)
-- ☐ Os arquivos que vocês usam estão no lugar esperado (`require` com o caminho certo). → [Guia do Supabase, Anexo — Correspondência de estruturas](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#anexo--correspondência-de-estruturas)
+## Parte 2 — O banco (Supabase)
 
-## 2B. Caminho B — a base de retomada
+### ☐ Passo 5 — Abrir o projeto no Supabase
 
-- ☐ Baixar e descompactar a [base_retomada.zip](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/downloads/base_retomada.zip); abrir a pasta `base_retomada` no VS Code e ler o `README.md`.
-- ☐ Criar o repositório da dupla no GitHub (vazio, sem README) e enviar a base. → [Guia de deploy, 3.5](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#35-caso-especial-o-projeto-ainda-não-está-no-github)
-  - Antes do `git add .`, confiram que ainda **não existe** `.env` na pasta, ou que `git status` não o lista. A base já traz o `.gitignore` certo.
-- ☐ Convidar a outra pessoa como colaboradora; ela aceita, clona o repositório da dupla e roda `npm ci`. → [Guia do Supabase, 1.5](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#15-o-repositório-da-dupla-no-github) e [1.6](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#16-a-outra-pessoa-da-dupla)
-- ☐ `npm ci` sem erro nos dois computadores. → [Roteiro de retomada, 1. Preparar e executar](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/roteiro_retomada.html#1-preparar-e-executar)
-- ☐ Vieram do repositório da aula? Vejam onde cada arquivo foi parar na base. → [Roteiro, Se vocês vieram do repositório da aula](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/roteiro_retomada.html#se-vocês-vieram-do-repositório-da-aula)
+Entrem em [supabase.com/dashboard](https://supabase.com/dashboard) com a conta do GitHub.
 
-O `npm start` da base só funciona depois do `.env` preenchido (item 3).
+| O que vocês veem | O que fazer |
+|---|---|
+| O projeto da Unidade 3, funcionando | Vão para o passo 6. |
+| O projeto está **pausado** | Cliquem em **Restore** e esperem alguns minutos. |
+| Não tem projeto nenhum | Criem um novo: [Ajuda](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#43-caminho-4a--projeto-novo) |
 
-## 3. Supabase — banco conferido e ligado ao projeto
+### ☐ Passo 6 — Preparar as tabelas
 
-- ☐ Abrir o painel do projeto da Unidade 3. Está pausado? Cliquem em **Restore** e esperem o status **Healthy**. → [Guia do Supabase, 4.4](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#44-caminho-4b--projeto-da-unidade-3)
-- ☐ Escolher **4A** (projeto novo) ou **4B** (projeto da Unidade 3). Em dúvida, 4A. → [4.2 Qual caminho seguir](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#42-qual-caminho-seguir)
-- ☐ Rodar os SQL no **SQL Editor**, na ordem do caminho escolhido. Os arquivos estão na pasta `sql/` do projeto e nos [Downloads da página do trabalho](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/index.html#downloads).
-  - **4A:** `schema.sql` → `seed.sql` → consulta de conferência → `diagnostico.sql` com 20 linhas `ok`. → [4.3](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#43-caminho-4a--projeto-novo)
-  - **4B:** `diagnostico.sql` → se houver `ajustar`, `ajustes.sql` → `diagnostico.sql` de novo → `seed.sql`. **Não** rodem o `schema.sql` num banco que já tem as tabelas. → [4.4](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#44-caminho-4b--projeto-da-unidade-3)
-- ☐ No **Table Editor**: tabelas `artistas`, `musicas` e `partes`, e a música `Encontro da turma`. → [4.5](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#45-conferir-no-table-editor)
-- ☐ Criar o `.env` a partir do `.env.example` e preencher `SUPABASE_URL` e `SUPABASE_SECRET_KEY`. → [5.3](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#53-o-arquivo-envexample), [5.4 Onde achar a URL e a secret key](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#54-onde-achar-a-url-e-a-secret-key) e [5.5](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#55-preencher-o-env)
-- ☐ `git status` **não** lista o `.env`.
-- ☐ Testar a conexão:
-  - **Base de retomada:** `npm start`, abrir `http://localhost:3000` e ver a lista com `Encontro da turma`; selecionar e tocar. → [Roteiro, 1. Preparar e executar, passo 6](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/roteiro_retomada.html#1-preparar-e-executar)
-  - **Projeto próprio:** `node testes/teste_conexao.js` (se ainda não existe, ele está na [5.7](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#57-o-teste-de-conexão)) e depois `npm start`.
-- ☐ Deu erro? → [Guia do Supabase, Socorro — erros comuns](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#socorro--erros-comuns)
+No Supabase, abram o **SQL Editor**. Os arquivos estão na pasta `sql/` do projeto (ou nos [Downloads](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/index.html#downloads)). Para cada arquivo: copiem tudo, colem no editor e cliquem em **Run**.
 
-> **A secret key é segredo.** Ela não vai para o GitHub, para print, para o grupo da turma nem para a conversa com o agente. Se vazar, troquem a chave: [Guia do Supabase, 5.5 (quadro "Cuidado")](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#55-preencher-o-env).
+**Projeto novo** (criado hoje):
 
-## 4. Render — o serviço criado e a URL anotada
+1. `schema.sql`
+2. `seed.sql`
 
-**Antes de publicar, no código:**
+**Projeto antigo** (da Unidade 3):
 
-- ☐ `package.json` com script `start`; `engines` com `"node": ">=22"`; `app.js` lendo a porta de `process.env.PORT`. → [Guia de deploy, Etapa 1](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#etapa-1--conferindo-o-projeto-antes-de-publicar) e [Etapa 2](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#etapa-2--duas-mudanças-no-código)
-  - Na base de retomada esses três itens **já estão prontos**: só confiram.
-- ☐ Tudo commitado e enviado (`git push`). No GitHub, o `.env` **não** aparece. → [Etapa 3.3 A conferência que salva a nota](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#33-a-conferência-que-salva-a-nota)
+1. `diagnostico.sql` — olhem a coluna `situacao`.
+2. Apareceu `ajustar`? Rodem o `ajustes.sql` e depois o `diagnostico.sql` de novo.
+3. Apareceu `criar`? **Chamem o professor.**
+4. `seed.sql`
 
-**Na Render:**
+**Atenção:** no projeto antigo, **não** rodem o `schema.sql`.
 
-- ☐ Conta criada com o GitHub e e-mail confirmado. → [Etapa 4](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#etapa-4--criando-a-conta-na-render)
-- ☐ Novo **Web Service** apontando para o repositório **da dupla**. → [Etapa 5.1](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#51-começando)
-- ☐ Formulário conferido campo a campo. → [Etapa 5.2](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#52-preenchendo-o-formulário)
-  - **Build Command:** `npm ci` (base) ou `npm install` (projeto próprio).
-  - **Start Command:** `npm start` (apaguem o `node index.js` que a Render sugere).
-  - **Region:** Ohio.
-- ☐ Plano **$0 / month** selecionado. Se pedir cartão, parem e chamem o professor. → [Etapa 5.3](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#53-escolhendo-o-plano)
-- ☐ **Exatamente duas** variáveis de ambiente: `SUPABASE_URL` e `SUPABASE_SECRET_KEY`, com os valores do `.env`. **Sem** `PORT`. → [Etapa 6.2](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#62-como-resolver) e [6.3 Cuidados](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#63-cuidados)
-- ☐ Acompanhar os logs até `Your service is live`. → [Etapa 7](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#etapa-7--acompanhando-o-primeiro-deploy)
-- ☐ Abrir a URL pública e ver a lista de músicas. → [Etapa 8.1](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#81-a-página-do-karaokê)
-- ☐ Deploy falhou? → [Etapa 10 — Socorro](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#etapa-10--socorro-erros-mais-comuns). Três falhas seguidas com erro fora da tabela: chamem o professor.
+**Ajuda:** [projeto novo](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#43-caminho-4a--projeto-novo) · [projeto antigo](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#44-caminho-4b--projeto-da-unidade-3)
 
-**Já tinham um serviço na Render?** Confiram que ele aponta para o repositório e a branch certos, que as duas variáveis batem com o `.env` de hoje (se trocaram de projeto no Supabase, elas mudaram) e que o último deploy ficou **Live**. → [Etapa 6.2, "Depois que o serviço existe"](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#62-como-resolver) e [Etapa 9.1](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#91-publicação-automática)
+### ☐ Passo 7 — Conferir a música de exemplo
 
-## 5. Antes de sair — fechamento do dia
+No Supabase, abram o **Table Editor** e cliquem na tabela `musicas`.
 
-- ☐ As duas pessoas sabem apontar o caminho **tela → rota → DAO → banco** no código. → [Roteiro, 2. Encontrar cada responsabilidade](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/roteiro_retomada.html#2-encontrar-cada-responsabilidade) ou [Guia do Supabase, 1.4 Quem importa quem](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#14-quem-importa-quem)
-- ☐ O README da dupla tem: como executar, a URL pública (ou o impedimento) e o caminho escolhido (A ou B).
-- ☐ Ficha de marcos preenchida: identificação da dupla, repositório, URL, base usada e diagnóstico inicial. → [Ficha de marcos, Identificação da dupla](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/ficha_marcos.html#identificação-da-dupla)
-- ☐ Algo travou? Registrem no README a data, a etapa, o erro (sem segredos) e o que tentaram. → [Enunciado, Se houver impedimento técnico](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/enunciado.html#se-houver-impedimento-técnico)
-- ☐ Último `git push` do dia feito.
+**Deu certo se:** aparece a música `Encontro da turma`.  
+**Ajuda:** [Guia do Supabase, 4.5](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#45-conferir-no-table-editor)
 
-**Extraclasse (até 60 min):** revisar o mapa dos arquivos, completar as instruções de execução no README e anotar a próxima dúvida. → [Ficha de marcos, Aceites e atividades por marco (M1)](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/ficha_marcos.html#aceites-e-atividades-por-marco)
+### ☐ Passo 8 — Criar o arquivo `.env`
 
-**Próximo encontro:** cadastro pela tela (R2 e R5). → [Roteiro, 4. Integrar cadastro](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/roteiro_retomada.html#4-integrar-cadastro--r2-e-r5) e [Guia de interface — CRUD na tela com fetch](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.html)
+O `.env` guarda o endereço e a senha do banco.
 
-> **Pergunte ao agente** citando o documento e a seção, com o endereço do `.md`. Exemplo: "Estou no item 3 do Guia do dia 1 (https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_dia_01.md). O diagnóstico mostrou `ajustar` em `partes → musicas`. O que isso quer dizer?"
+1. No VS Code, façam uma cópia do arquivo `.env.example` e deem o nome `.env`.
+2. No Supabase, cliquem no botão verde **Connect** e copiem a `SUPABASE_URL` e a `SUPABASE_SECRET_KEY`.
+3. Colem os dois valores no `.env` e salvem.
+
+> **A secret key é como uma senha.** Não mandem para ninguém: nem no grupo, nem em print, nem para a IA.
+
+**Ajuda:** [onde achar a URL e a chave](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#54-onde-achar-a-url-e-a-secret-key) · [como preencher](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#55-preencher-o-env)
+
+### ☐ Passo 9 — Testar
+
+```bash
+npm start
+```
+
+Abram `http://localhost:3000`.
+
+**Deu certo se:** a música `Encontro da turma` aparece na lista.  
+**Não apareceu?** Vejam os [erros comuns](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#socorro--erros-comuns) ou chamem o professor. Se o projeto de vocês ainda não usa o banco, é normal: mostrem ao professor em que etapa do [Guia do Supabase](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_supabase.html#sumário) vocês pararam.
+
+---
+
+## Parte 3 — O site no ar (Render)
+
+### ☐ Passo 10 — Enviar o projeto para o GitHub
+
+```bash
+git add .
+git commit -m "Projeto pronto para publicar"
+git push
+```
+
+Depois, abram o repositório no site do GitHub.
+
+**Deu certo se:** os arquivos estão lá e o `.env` **não** aparece.  
+**O `.env` apareceu?** Parem e chamem o professor.  
+**Ajuda:** [Guia de deploy, Etapa 3.3](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#33-a-conferência-que-salva-a-nota)
+
+### ☐ Passo 11 — Entrar na Render
+
+Entrem em [render.com](https://render.com) e escolham entrar **com o GitHub**.
+
+**Pediu cartão de crédito?** Parem e chamem o professor. O trabalho é gratuito.  
+**Ajuda:** [Guia de deploy, Etapa 4](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#etapa-4--criando-a-conta-na-render)
+
+### ☐ Passo 12 — Criar o serviço
+
+Cliquem em **+ New → Web Service** e escolham o repositório **da dupla**. Preencham assim:
+
+| Campo | O que colocar |
+|---|---|
+| **Build Command** | `npm install` |
+| **Start Command** | `npm start` |
+| **Plano** | **$0 / month** |
+
+**Ainda não cliquem no botão final.** Façam antes o passo 13.
+
+**Ajuda:** [Guia de deploy, Etapa 5.2](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#52-preenchendo-o-formulário)
+
+### ☐ Passo 13 — Colocar a URL e a chave do banco
+
+No fim do mesmo formulário, em **Environment Variables**, criem **duas** variáveis. Os valores são os mesmos do `.env`:
+
+| Key | Value |
+|---|---|
+| `SUPABASE_URL` | o valor que está no `.env` |
+| `SUPABASE_SECRET_KEY` | o valor que está no `.env` |
+
+Só essas duas. Não criem `PORT`.
+
+**Ajuda:** [Guia de deploy, Etapa 6.2](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#62-como-resolver)
+
+### ☐ Passo 14 — Publicar e testar
+
+1. Cliquem em **Deploy web service**.
+2. Esperem de 2 a 5 minutos, até aparecer `Your service is live`.
+3. Cliquem no endereço que termina em `.onrender.com`.
+
+**Deu certo se:** a página abre e mostra a lista de músicas.  
+**Deu erro?** Vejam a [tabela de erros](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#etapa-10--socorro-erros-mais-comuns). Se o projeto não é a base de retomada, confiram também a [Etapa 2 do guia de deploy](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_deploy_render.html#etapa-2--duas-mudanças-no-código).
+
+### ☐ Passo 15 — Guardar o endereço
+
+Colem o endereço do site no `README.md` do projeto e enviem:
+
+```bash
+git add .
+git commit -m "Endereço do site no README"
+git push
+```
+
+---
+
+## Antes de sair
+
+- ☐ O projeto abre no computador dos dois.
+- ☐ A música `Encontro da turma` aparece em `localhost:3000`.
+- ☐ O site abre no endereço da Render.
+- ☐ O endereço está no README.
+
+**Não deu tempo de terminar?** Tudo bem. Anotem no README em qual passo pararam e qual foi o erro, e avisem o professor. No próximo encontro vocês continuam desse passo.
+
+**Próximo encontro:** cadastrar uma música pela tela. Quem quiser adiantar a leitura: [Guia de interface — CRUD na tela com fetch](https://elderbernardiifsul.github.io/programacao-iii/integrador-2026/guia_interface_crud.html).
